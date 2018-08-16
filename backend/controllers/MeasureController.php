@@ -8,11 +8,11 @@ use yeesoft\controllers\admin\BaseController;
 /**
  * MeasureController implements the CRUD actions for backend\models\Measure model.
  */
-class MeasureController extends BaseController 
+class MeasureController extends BaseController
 {
     public $modelClass       = 'backend\models\Measure';
-    public $modelSearchClass = '';
-
+    public $modelSearchClass = 'backend\models\MeasureSearch';
+/*
     protected function getRedirectPage($action, $model = null)
     {
         switch ($action) {
@@ -25,5 +25,5 @@ class MeasureController extends BaseController
             default:
                 return parent::getRedirectPage($action, $model);
         }
-    }
+    }*/
 }

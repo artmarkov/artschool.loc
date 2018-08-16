@@ -2,7 +2,7 @@
 
 use yii\widgets\DetailView;
 use yeesoft\helpers\Html;
-
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Measure */
 
@@ -36,13 +36,29 @@ $this->params['breadcrumbs'][] = $this->title;
             </p>
 
 
-            <?=             DetailView::widget([
+            <?
+
+            /*$items = array();
+            foreach ($model->getEavAttributes() as $attr)
+            {
+                $items[] = array(
+                    'label'=>$model->getEavAttribute($attr)->label,
+                    'value'=>$model->owner->$attr,
+                    'visible'=> $model->owner->$attr,
+                );
+               // echo '<pre>' . print_r($model->getEavAttribute($attr), true) . '</pre>';
+            }*/
+            ?>
+            <?= DetailView::widget([
                 'model' => $model,
-                'attributes' => [
-            'id',
-            'name',
-            'abbr',
-                ],
+                'attributes' => ArrayHelper::merge(
+                    [
+                        'id',
+                        'name',
+                        'abbr',
+                    ],
+                    $model->getEavAttributesViewList($model)
+                ),
             ])
             ?>
 

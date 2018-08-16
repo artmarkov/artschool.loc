@@ -9,7 +9,10 @@ use yeesoft\helpers\Html;
 /* @var $form yeesoft\widgets\ActiveForm */
 //echo '<pre>' . print_r($model, true) . '</pre>';
 //echo '<pre>' . print_r($model->getEavAttribute('drop')) . '</pre>';
-
+$fieldOptions = [
+    'options' => ['class' => 'form-group has-feedback'],
+    'inputTemplate' => "{input}<span class='fa fa-pencil form-control-feedback'></span>"
+];
 ?>
 
 <div class="measure-form">
@@ -34,8 +37,8 @@ use yeesoft\helpers\Html;
                    <!-- --><?php
                    foreach($model->getEavAttributes() as $attr){
                        //echo '<pre>' . print_r($attr, true) . '</pre>';
-                       if($model->getEavAttribute($attr)->type_id === 1) echo $form->field($model, $model->getEavAttribute($attr)->name)->textInput();
-                       else  echo $form->field($model, $model->getEavAttribute($attr)->name)->dropDownList($model->getEavAttribute($model->getEavAttribute($attr)->name)->getEavOptionsList());
+                       if($model->getEavAttribute($attr)->type_id === 1) echo $form->field($model, $model->getEavAttribute($attr)->name, $fieldOptions)->textInput()->hint($model->getEavAttribute($attr)->description)->label($model->getEavAttribute($attr)->label);
+                       else  echo $form->field($model, $model->getEavAttribute($attr)->name)->dropDownList($model->getEavAttribute($model->getEavAttribute($attr)->name)->getEavOptionsList())->hint($model->getEavAttribute($attr)->description)->label($model->getEavAttribute($attr)->label);
                        //echo $form->field($model, $attr->name)->eavInput($attr->type);
                     }
 

@@ -33,12 +33,17 @@ class Measure extends ActiveRecord implements EavCategories
     /**
      * {@inheritdoc}
      */
+
+
     public function rules()
     {
-        return [
-            [['name'], 'string', 'max' => 64],
-            [['abbr'], 'string', 'max' => 32],
-        ];
+        return  [
+                [['name'], 'required'],
+                [['name'], 'string', 'max' => 64],
+                [['abbr'], 'string', 'max' => 32],
+                [['field_1','field_2'], 'required'],
+
+            ];
     }
 
     /**
@@ -62,4 +67,41 @@ class Measure extends ActiveRecord implements EavCategories
         return false;
     }
 
+    public function getEavAttributesViewList($model)
+    {
+        $items = array();
+        foreach ($model->getEavAttributes() as $attr) {
+            $items[] = array(
+                'label' => $model->getEavAttribute($attr)->label,
+                'value' => $model->owner->$attr,
+            );
+        }
+        return $items;
+    }
+
+    public function getEavAttributesIndexList($model)
+    {
+        $items = array();
+        foreach ($model->getEavAttributes() as $attr) {
+            if($model->getEavAttribute($attr)->visible === 1) {
+                $items[] = array(
+                    'attribute' => $model->getEavAttribute($attr)->name,
+                    'label' => $model->getEavAttribute($attr)->label,
+
+                );
+            }
+        }
+        return $items;
+    }
+
+   /* public function getEavAttributesRules($model)
+    {
+        $items = array();
+        foreach ($model->getEavAttributes() as $attr) {
+            $items[] = array(
+                $model->getEavAttribute($attr)->name, 'required'
+            );
+        }
+        return $items;
+    }*/
 }
