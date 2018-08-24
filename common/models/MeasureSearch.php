@@ -1,15 +1,14 @@
 <?php
 
-namespace backend\models;
+namespace common\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Measure;
-use yeesoft\eav\EavQueryTrait;
+use common\models\Measure;
 
 /**
- * MeasureSearch represents the model behind the search form about `backend\models\Measure`.
+ * MeasureSearch represents the model behind the search form about `common\models\Measure`.
  */
 class MeasureSearch extends Measure
 {
@@ -70,8 +69,6 @@ class MeasureSearch extends Measure
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'abbr', $this->abbr]);
-
-//        $query->andEavFilterWhere('=', 'Field_1', Yii::$app->getRequest()->get('Field_1'));
 
         return $dataProvider;
     }

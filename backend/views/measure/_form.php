@@ -1,11 +1,11 @@
 <?php
 
 use yeesoft\widgets\ActiveForm;
-use backend\models\Measure;
+use common\models\Measure;
 use yeesoft\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Measure */
+/* @var $model common\models\Measure */
 /* @var $form yeesoft\widgets\ActiveForm */
 //echo '<pre>' . print_r($model, true) . '</pre>';
 //echo '<pre>' . print_r($model->getEavAttribute('drop')) . '</pre>';
@@ -62,11 +62,11 @@ $fieldOptions = [
                       <div class="form-group">
                           <?php  if ($model->isNewRecord): ?>
                               <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
-                              <?= Html::a(Yii::t('yee', 'Cancel'), ['/measure/default/index'], ['class' => 'btn btn-default']) ?>
+                              <?= Html::a(Yii::t('yee', 'Cancel'), ['/measure/index'], ['class' => 'btn btn-default']) ?>
                           <?php  else: ?>
                               <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
                               <?= Html::a(Yii::t('yee', 'Delete'),
-                                  ['/measure/default/delete', 'id' => $model->id], [
+                                  ['/measure/delete', 'id' => $model->id], [
                                   'class' => 'btn btn-default',
                                   'data' => [
                                       'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),

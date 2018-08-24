@@ -1,10 +1,11 @@
 <?php
 
-namespace backend\models;
+namespace common\models;
 
 use yeesoft\eav\models\EavCategories;
 use Yii;
 use yii\db\ActiveRecord;
+use yeesoft\eav\EavBehavior;
 
 /**
  * This is the model class for table "measure".
@@ -26,7 +27,7 @@ class Measure extends ActiveRecord implements EavCategories
     {
         return [
             'eav' => [
-                'class' => \yeesoft\eav\EavBehavior::className(),
+                'class' => EavBehavior::className(),
             ]
         ];
     }

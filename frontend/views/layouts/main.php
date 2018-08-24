@@ -77,7 +77,7 @@ ThemeAsset::register($this);
                             $menuItems = Menu::getMenuItems('main-menu');
                             Yii::$app->cache->set($menuItemsKey, $menuItems, 3600);
                         }
-                    
+
                         echo Navigation::widget([
                             'encodeLabels' => false,
                             'items' => $menuItems,

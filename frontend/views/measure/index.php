@@ -7,16 +7,13 @@ use yeesoft\grid\GridQuickLinks;
 use common\models\Measure;
 use yeesoft\helpers\Html;
 use yeesoft\grid\GridPageSize;
-use yii\helpers\ArrayHelper;
-use yeesoft\models\User;
+
 /* @var $this yii\web\View */
+/* @var $searchModel common\models\MeasureSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Measures';
 $this->params['breadcrumbs'][] = $this->title;
-
-$model = new Measure;
-//echo '<pre>' . print_r($model->getEavAttributesRules($model)) . '</pre>';
 ?>
 <div class="measure-index">
 
@@ -32,7 +29,7 @@ $model = new Measure;
 
             <div class="row">
                 <div class="col-sm-6">
-                    <?php
+                    <?php 
                     /* Uncomment this to activate GridQuickLinks */
                     /* echo GridQuickLinks::widget([
                         'model' => Measure::className(),
@@ -46,14 +43,14 @@ $model = new Measure;
                 </div>
             </div>
 
-            <?php
+            <?php 
             Pjax::begin([
                 'id' => 'measure-grid-pjax',
             ])
             ?>
 
-            <?=
-                 GridView::widget([
+            <?= 
+            GridView::widget([
                 'id' => 'measure-grid',
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
@@ -61,28 +58,23 @@ $model = new Measure;
                     'gridId' => 'measure-grid',
                     'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
                 ],
-                     'columns' => ArrayHelper::merge(
-                         [
-                             ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
-                             [
-                                 'class' => 'yeesoft\grid\columns\TitleActionColumn',
-                                 'attribute' => 'name',
-                                 'options' => ['style' => 'width:200px'],
-                                 'controller' => '/measure',
-                                 'title' => function (Measure $model) {
-                                         return Html::a($model->name, ['/measure/view',  'id' => $model->id], ['data-pjax' => 0]);
-                                 },
-                             ],
+                'columns' => [
+                    ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
+                    [
+                        'class' => 'yeesoft\grid\columns\TitleActionColumn',
+                        'controller' => '/measure',
+                        'title' => function(Measure $model) {
+                            return Html::a($model->id, ['view', 'id' => $model->id], ['data-pjax' => 0]);
+                        },
+                    ],
 
-//                           'id',
-//                           'name',
-                             'abbr',
-                         ],
-                         $model->getEavAttributesIndexList($model)
-                     ),
+            'id',
+            'name',
+            'abbr',
+
+                ],
             ]);
             ?>
-
 
             <?php Pjax::end() ?>
         </div>

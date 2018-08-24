@@ -18,7 +18,7 @@ return [
         'view' => [
             'theme' => [
                 'class' => 'frontend\components\Theme',
-                'theme' => 'readable', //cerulean, cosmo, default, flatly, readable, simplex, united
+                'theme' => 'default', //cerulean, cosmo, default, flatly, readable, simplex, united
             ],
             'as seo' => [
                 'class' => 'yeesoft\seo\components\SeoViewBehavior',
@@ -39,6 +39,11 @@ return [
                 '<module:auth>/<action:(oauth)>/<authclient:\w+>' => '<module>/default/<action>',
             ),
             'multilingualRules' => [
+                '<controller:(measure)>' => '<controller>/index',
+                '<controller:(measure)>/<id:\d+>' => '<controller>/view',
+                '<controller:(measure)>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:(measure)>/<action:\w+>' => '<controller>/<action>',
+
                 '<module:auth>/<action:\w+>' => '<module>/default/<action>',
                 '<controller:(category|tag)>/<slug:[\w \-]+>' => '<controller>/index',
                 '<controller:(category|tag)>' => '<controller>/index',
