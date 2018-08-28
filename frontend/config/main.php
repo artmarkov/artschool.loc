@@ -32,17 +32,18 @@ return [
         ],
         'urlManager' => [
             'class' => 'yeesoft\web\MultilingualUrlManager',
-            'showScriptName' => false,
             'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'suffix' => '.htm',
             'rules' => array(
                 '<module:auth>/<action:(logout|captcha)>' => '<module>/default/<action>',
                 '<module:auth>/<action:(oauth)>/<authclient:\w+>' => '<module>/default/<action>',
             ),
             'multilingualRules' => [
-                '<controller:(measure)>' => '<controller>/index',
-                '<controller:(measure)>/<id:\d+>' => '<controller>/view',
-                '<controller:(measure)>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                '<controller:(measure)>/<action:\w+>' => '<controller>/<action>',
+                '<controller:(measure|option)>' => '<controller>/index',
+                '<controller:(measure|option)>/<id:\d+>' => '<controller>/view',
+                '<controller:(measure|option)>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:(measure|option)>/<action:\w+>' => '<controller>/<action>',
 
                 '<module:auth>/<action:\w+>' => '<module>/default/<action>',
                 '<controller:(category|tag)>/<slug:[\w \-]+>' => '<controller>/index',
