@@ -11,8 +11,23 @@ return [
     'homeUrl' => '/admin',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'bootstrap' => ['log'],
     'modules' => [
+        'db-manager' => [
+            'class' => 'bs\dbManager\Module',
+            // path to directory for the dumps
+            'path' => '@frontend/web/backups',
+            // list of registerd db-components
+            'dbList' => ['db'],
+           /* 'as access' => [
+                'class' => 'yii\filters\AccessControl',
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                ],
+            ],*/
+        ],
         'settings' => [
             'class' => 'yeesoft\settings\SettingsModule',
         ],
@@ -68,6 +83,8 @@ return [
             'multilingualRules' => false,
             'rules' => array(
                 //add here local frontend controllers
+                '<controller:(db)>' => '<controller>/index',
+                '<controller:(db)>/<action>' => '<controller>/<action>',
                 '<controller:(measure)>' => '<controller>/index',
                 '<controller:(measure)>/<id:\d+>' => '<controller>/view',
                 '<controller:(measure)>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
@@ -81,15 +98,7 @@ return [
                 '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
             )
         ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
-        ],
+
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],

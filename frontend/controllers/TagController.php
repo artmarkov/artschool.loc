@@ -11,7 +11,7 @@ use yii\web\NotFoundHttpException;
 /**
  * Site controller
  */
-class TagController extends \yeesoft\controllers\BaseController
+class TagController extends BaseController
 {
     public $freeAccess = true;
 

@@ -11,7 +11,7 @@ use yii\web\NotFoundHttpException;
 /**
  * Site controller
  */
-class CategoryController extends \yeesoft\controllers\BaseController
+class CategoryController extends BaseController
 {
     public $freeAccess = true;
 

@@ -16,6 +16,15 @@ return [
             'class' => 'console\controllers\MigrateController'
         ],
     ],
+    'modules' => [
+        'db-manager' => [
+            'class' => 'bs\dbManager\Module',
+            // path to directory for the dumps
+            'path' => '@frontend/web/backups',
+            // list of registerd db-components
+            'dbList' => ['db'],
+        ],
+    ],
     'components' => [
         'log' => [
             'targets' => [

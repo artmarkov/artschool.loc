@@ -20,6 +20,7 @@ class OptionController extends BaseController
                 return ['update', 'id' => $model->id];
                 break;
             case 'create':
+               // $model->addCustomLog('hello world!', 'hello_type');
                 return ['update', 'id' => $model->id];
                 break;
             default:

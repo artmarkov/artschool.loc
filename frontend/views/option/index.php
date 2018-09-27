@@ -8,6 +8,7 @@ use common\models\Option;
 use yeesoft\helpers\Html;
 use yeesoft\grid\GridPageSize;
 
+
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\OptionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */

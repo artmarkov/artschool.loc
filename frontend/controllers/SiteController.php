@@ -13,7 +13,7 @@ use yii\data\Pagination;
 /**
  * Site controller
  */
-class SiteController extends \yeesoft\controllers\BaseController
+class SiteController extends BaseController
 {
     public $freeAccess = true;
 
@@ -40,9 +40,13 @@ class SiteController extends \yeesoft\controllers\BaseController
      */
     public function actionIndex($slug = 'index')
     {
+
+        Yii::info("info in index_site_controller.",'my_category');
+        Yii::error("error in index_site_controller.",'my_category');
+        Yii::warning("warning in index_site_controller.",'my_category');
+
         // display home page
         if (empty($slug) || $slug == 'index') {
-
             $query = Post::find()->where(['status' => Post::STATUS_PUBLISHED]);
             $countQuery = clone $query;
 

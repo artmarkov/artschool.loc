@@ -7,18 +7,20 @@ return [
     'id' => 'frontend',
     'homeUrl' => '/',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'modules' => [
         'auth' => [
             'class' => 'yeesoft\auth\AuthModule',
+        ],
+        'art' => [
+            'class' => 'frontend\modules\art\Module',
         ],
     ],
     'components' => [
         'view' => [
             'theme' => [
                 'class' => 'frontend\components\Theme',
-                'theme' => 'default', //cerulean, cosmo, default, flatly, readable, simplex, united
+                'theme' => 'ais_blue', //cerulean, cosmo, default, flatly, readable, simplex, united, ais_blue, ais_default
             ],
             'as seo' => [
                 'class' => 'yeesoft\seo\components\SeoViewBehavior',
@@ -30,13 +32,20 @@ return [
         'request' => [
             'baseUrl' => '',
         ],
+        'assetManager' => [
+            'bundles' => [
+                'yii\bootstrap\BootstrapAsset' => [
+                    'sourcePath' => '@yeesoft/yii2-yee-core/assets/theme/bootswatch/custom',
+                    'css' => ['bootstrap.css']
+                ],
+            ],
+        ],
         'urlManager' => [
             'class' => 'yeesoft\web\MultilingualUrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'suffix' => '.htm',
             'rules' => array(
-                '<module:auth>/<action:(logout|captcha)>' => '<module>/default/<action>',
+                '<module:auth>/<action:(logout|captcha|signup|finding)>' => '<module>/default/<action>',
                 '<module:auth>/<action:(oauth)>/<authclient:\w+>' => '<module>/default/<action>',
             ),
             'multilingualRules' => [
@@ -59,15 +68,6 @@ return [
         ],
         'authClientCollection' => [
             'class' => 'yii\authclient\Collection',
-        ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

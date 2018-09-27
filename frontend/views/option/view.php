@@ -2,6 +2,7 @@
 
 use yii\widgets\DetailView;
 use yeesoft\helpers\Html;
+use cranky4\changeLogBehavior\ListWidget;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Option */
@@ -43,6 +44,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'name:ntext',
                 ],
             ])
+            ?>
+            <?=  ListWidget::widget([
+                'model' => $model,
+            ]);
             ?>
 
         </div>

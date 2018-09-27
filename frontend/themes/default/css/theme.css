@@ -3319,7 +3319,7 @@ input[type="search"] {
 .checkbox input[type="checkbox"],
 .checkbox-inline input[type="checkbox"] {
     position: absolute;
-    margin-left: -20px;
+    margin-left: 0px; \
     margin-top: 4px \9;
 }
 
@@ -7963,4 +7963,18 @@ button.close {
     .hidden-print {
         display: none !important;
     }
+}
+
+.page-title {
+    margin-top: 0 !important;
+    padding-top: 0px;
+    float: left;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.breadcrumb > li + li:before {
+    content: "/\00a0";
+    padding: 0 5px;
+    color: #cccccc;
 }
