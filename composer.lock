@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "68f4f37f9ccbb008c90602d1f8c9e37c",
+    "content-hash": "0130c17ff4bb3ddfd945401cdf499773",
     "packages": [
         {
             "name": "2amigos/yii2-file-upload-widget",
@@ -1107,16 +1107,16 @@
         },
         {
             "name": "kartik-v/yii2-krajee-base",
-            "version": "v1.9.6",
+            "version": "v1.9.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-krajee-base.git",
-                "reference": "fe4324fca887e3219afb71ee394d6880ccc1812a"
+                "reference": "3ed7366a3a85f80e5dde158906ac72de7d804710"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/fe4324fca887e3219afb71ee394d6880ccc1812a",
-                "reference": "fe4324fca887e3219afb71ee394d6880ccc1812a",
+                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/3ed7366a3a85f80e5dde158906ac72de7d804710",
+                "reference": "3ed7366a3a85f80e5dde158906ac72de7d804710",
                 "shasum": ""
             },
             "require": {
@@ -1154,7 +1154,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2018-09-22T07:37:15+00:00"
+            "time": "2018-09-27T03:29:34+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-datepicker",
@@ -3057,7 +3057,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.2.0"
+        "php": ">=5.6.0"
     },
     "platform-dev": []
 }
