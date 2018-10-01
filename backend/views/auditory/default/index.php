@@ -74,8 +74,15 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id',
             'slug',
             'num',
-            'building_id',
-            'cat_id',
+            'catName',
+            'buildingName',
+            
+//            [
+//            'attribute' => 'cat_id',
+//            'value' => 'cat.name',
+//            ],
+          //  'building_id',
+           // 'cat_id',
                        [
                         'class' => 'yeesoft\grid\columns\StatusColumn',
                         'attribute' => 'study_flag',

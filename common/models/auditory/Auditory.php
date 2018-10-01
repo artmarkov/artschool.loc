@@ -68,18 +68,27 @@ class Auditory extends \yii\db\ActiveRecord
         ];
     }
     
-     /**
+    /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAuditoryCat()
+    public function getCat()
     {
         return $this->hasOne(AuditoryCat::className(), ['id' => 'cat_id']);
-        
-    } 
+    }
     
-    
-    public function getAuditoryBuilding()
+    /* Геттер для названия категории */
+    public function getCatName() {
+        return $this->cat->name;
+    }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBuilding()
     {
         return $this->hasOne(AuditoryBuilding::className(), ['id' => 'building_id']);
+    }
+ /* Геттер для названия здания */
+    public function getBuildingName() {
+        return $this->building->name;
     }
 }
