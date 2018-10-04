@@ -1,6 +1,6 @@
 <?php
 
-use yeesoft\widgets\ActiveForm;
+use common\widgets\ActiveForm;
 use common\models\Option;
 use yeesoft\helpers\Html;
 use kartik\date\DatePicker;

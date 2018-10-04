@@ -1,14 +1,17 @@
 <?php
 namespace backend\controllers;
+use yeesoft\controllers\admin\BaseController;
 use Yii;
 use yii\web\Controller;
-use yeesoft\controllers\admin\BaseController;
 use yii\helpers\FileHelper;
 use backend\models\Db;
 use yii\helpers\ArrayHelper;
 use yii\filters\VerbFilter;
 
 class DbController extends BaseController {
+
+    public $layout = '@backend/views/layouts/main.php';
+
     //Путь к файлам БД по-умолчанию
     public $dumpPath = '@frontend/web/db/';
 

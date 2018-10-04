@@ -12,6 +12,7 @@ use yeesoft\grid\GridPageSize;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Auditory Buildings';
+$this->params['breadcrumbs'][] = ['label' => 'Auditories', 'url' => ['auditory/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="auditory-building-index">
@@ -37,9 +38,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     ?>
                 </div>
 
-                <div class="col-sm-6 text-right">
-                    <?=  GridPageSize::widget(['pjaxId' => 'auditory-building-grid-pjax']) ?>
-                </div>
+               <!-- <div class="col-sm-6 text-right">
+                    <?/*=  GridPageSize::widget(['pjaxId' => 'auditory-building-grid-pjax']) */?>
+                </div>-->
             </div>
 
             <?php 
@@ -66,8 +67,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         
                         'controller' => '/auditory/building',
                         'title' => function(AuditoryBuilding $model) {
-                            return Html::a($model->name, ['view', 'id' => $model->id], ['data-pjax' => 0]);
+                            return Html::a($model->name, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
+                        'buttonsTemplate' => '{update} {delete}',
                     ],
 
             //'id',

@@ -13,35 +13,35 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'modules' => [
         'db-manager' => [
-            'class' => 'bs\dbManager\Module',
+            'class' => 'backend\modules\dbmanager\Module',
             // path to directory for the dumps
             'path' => '@frontend/web/backups',
             // list of registerd db-components
             'dbList' => ['db'],
-           /* 'as access' => [
-                'class' => 'yii\filters\AccessControl',
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['admin'],
-                    ],
-                ],
-            ],*/
+            /* 'as access' => [
+                 'class' => 'yii\filters\AccessControl',
+                 'rules' => [
+                     [
+                         'allow' => true,
+                         'roles' => ['admin'],
+                     ],
+                 ],
+             ],*/
         ],
         'settings' => [
-            'class' => 'yeesoft\settings\SettingsModule',
+            'class' => 'backend\modules\settings\Module',
         ],
         'menu' => [
-            'class' => 'yeesoft\menu\MenuModule',
+            'class' => 'backend\modules\menu\Module',
         ],
         'translation' => [
-            'class' => 'yeesoft\translation\TranslationModule',
+            'class' => 'backend\modules\translation\Module',
         ],
-        'user' => [
-            'class' => 'yeesoft\user\UserModule',
+       'user' => [
+            'class' => 'backend\modules\user\Module',
         ],
         'media' => [
-            'class' => 'yeesoft\media\MediaModule',
+            'class' => 'backend\modules\media\Module',
             'routes' => [
                 'baseUrl' => '', // Base absolute path to web directory
                 'basePath' => '@frontend/web', // Base web directory url
@@ -49,19 +49,19 @@ return [
             ],
         ],
         'post' => [
-            'class' => 'yeesoft\post\PostModule',
+            'class' => 'backend\modules\post\Module',
         ],
-        'page' => [
-            'class' => 'yeesoft\page\PageModule',
+       'page' => [
+            'class' => 'backend\modules\page\Module',
         ],
         'seo' => [
-            'class' => 'yeesoft\seo\SeoModule',
+            'class' => 'backend\modules\seo\Module',
         ],
         'comment' => [
-            'class' => 'yeesoft\comment\CommentModule',
+            'class' => 'backend\modules\comment\Module',
         ],
         'eav' => [
-            'class' => 'yeesoft\eav\EavModule',
+            'class' => 'backend\modules\eav\Module',
         ],
     ],
     'components' => [

@@ -1,4 +1,4 @@
-Copyright 2015 Taras Makitra
+Copyright 2018 Artur Markov
 <http://www.yee-soft.com/>
 
 Licensed under the Apache License, Version 2.0 (the "License");

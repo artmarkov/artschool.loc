@@ -10,10 +10,7 @@ return [
     'controllerNamespace' => 'frontend\controllers',
     'modules' => [
         'auth' => [
-            'class' => 'yeesoft\auth\AuthModule',
-        ],
-        'art' => [
-            'class' => 'frontend\modules\art\Module',
+            'class' => 'frontend\modules\auth\Module',
         ],
     ],
     'components' => [
@@ -45,6 +42,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => array(
+               // 'auth/signup' => 'auth/signup',
                 '<module:auth>/<action:(logout|captcha|signup|finding)>' => '<module>/default/<action>',
                 '<module:auth>/<action:(oauth)>/<authclient:\w+>' => '<module>/default/<action>',
             ),

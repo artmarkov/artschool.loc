@@ -29,7 +29,7 @@ class AuditoryCat extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description', 'study_flag', 'order'], 'required'],
+            [['name', 'study_flag'], 'required'],
             [['study_flag'], 'string'],
             [['order'], 'integer'],
             [['name'], 'string', 'max' => 128],
@@ -44,9 +44,9 @@ class AuditoryCat extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('yee/auditory', 'ID'),
-            'name' => Yii::t('yee/auditory', 'Name'),
-            'description' => Yii::t('yee/auditory', 'Description'),
-            'study_flag' => Yii::t('yee/auditory', 'Study Flag'),
+            'name' => Yii::t('yee/auditory', 'Auditory Category Name'),
+            'description' => Yii::t('yee/auditory', 'Auditory Category Description'),
+            'study_flag' => Yii::t('yee/auditory', 'Study Opportunity'),
             'order' => Yii::t('yee/auditory', 'Order'),
         ];
     }
@@ -54,6 +54,11 @@ class AuditoryCat extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Auditory::className(), ['cat_id' => 'id']);
         
+    }
+
+    public function getAuditoryCatList()
+    {
+      return  AuditoryCat::find()->select(['name', 'id'])->indexBy('id')->column();
     }
    
 }

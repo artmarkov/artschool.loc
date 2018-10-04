@@ -41,7 +41,6 @@ class Auditory extends \yii\db\ActiveRecord
             [['study_flag'], 'string'],
             [['area'], 'number'],
             [['name'], 'string', 'max' => 128],
-            [['slug'], 'string', 'max' => 64],
             [['floor'], 'string', 'max' => 32],
             [['description'], 'string', 'max' => 255],
         ];
@@ -59,7 +58,6 @@ class Auditory extends \yii\db\ActiveRecord
             'study_flag' => Yii::t('yee/auditory', 'Study Flag'),
             'num' => Yii::t('yee/auditory', 'Num'),
             'name' => Yii::t('yee/auditory', 'Name'),
-            'slug' => Yii::t('yee/auditory', 'Slug'),
             'floor' => Yii::t('yee/auditory', 'Floor'),
             'area' => Yii::t('yee/auditory', 'Area'),
             'capacity' => Yii::t('yee/auditory', 'Capacity'),
@@ -67,19 +65,32 @@ class Auditory extends \yii\db\ActiveRecord
             'order' => Yii::t('yee/auditory', 'Order'),
         ];
     }
-    
-     /**
+
+    /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAuditoryCat()
+    public function getCat()
     {
         return $this->hasOne(AuditoryCat::className(), ['id' => 'cat_id']);
-        
-    } 
-    
-    
-    public function getAuditoryBuilding()
+    }
+
+    /* Геттер для названия категории */
+    public function getCatName()
+    {
+        return $this->cat->name;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBuilding()
     {
         return $this->hasOne(AuditoryBuilding::className(), ['id' => 'building_id']);
+    }
+
+    /* Геттер для названия здания */
+    public function getBuildingName()
+    {
+        return $this->building->name;
     }
 }

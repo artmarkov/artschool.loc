@@ -1,6 +1,6 @@
 <?php
 
-use yeesoft\widgets\ActiveForm;
+use common\widgets\ActiveForm;
 use common\models\auditory\AuditoryBuilding;
 use yeesoft\helpers\Html;
 
@@ -26,8 +26,6 @@ use yeesoft\helpers\Html;
                     
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
-
                     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
                 </div>
@@ -44,6 +42,8 @@ use yeesoft\helpers\Html;
                             <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
                             <span><?=  $model->id ?></span>
                         </div>
+
+                        <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
                         <div class="form-group">
                             <?php  if ($model->isNewRecord): ?>

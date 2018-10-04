@@ -42,8 +42,8 @@ class AuditoryBuilding extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('yee/auditory', 'ID'),
-            'name' => Yii::t('yee/auditory', 'Name'),
-            'slug' => Yii::t('yee/auditory', 'Slug'),
+            'name' => Yii::t('yee/auditory', 'Building Name'),
+            'slug' => Yii::t('yee/auditory', 'Building Slug'),
             'address' => Yii::t('yee/auditory', 'Address'),
         ];
     }
@@ -51,5 +51,10 @@ class AuditoryBuilding extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Auditory::className(), ['building_id' => 'id']);
         
+    }
+
+    public function getAuditoryBuildingList()
+    {
+        return \yii\helpers\ArrayHelper::map(AuditoryBuilding::find()->all(), 'id', 'name');
     }
 }
