@@ -3,6 +3,7 @@
 use common\widgets\ActiveForm;
 use common\models\venue\VenueSity;
 use yeesoft\helpers\Html;
+use common\models\venue\VenueCountry;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\venue\VenueSity */
@@ -11,11 +12,11 @@ use yeesoft\helpers\Html;
 
 <div class="venue-sity-form">
 
-    <?php 
+    <?php
     $form = ActiveForm::begin([
-            'id' => 'venue-sity-form',
-            'validateOnBlur' => false,
-        ])
+        'id' => 'venue-sity-form',
+        'validateOnBlur' => false,
+    ])
     ?>
 
     <div class="row">
@@ -23,8 +24,6 @@ use yeesoft\helpers\Html;
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    
-                    <?= $form->field($model, 'country_id')->textInput() ?>
 
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -43,24 +42,31 @@ use yeesoft\helpers\Html;
                 <div class="panel-body">
                     <div class="record-info">
                         <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
-                            <span><?=  $model->id ?></span>
+                            <label class="control-label"
+                                   style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['id'] ?>
+                                : </label>
+                            <span><?= $model->id ?></span>
                         </div>
 
+                        <?= $form->field($model, 'country_id')
+                            ->dropDownList(VenueCountry::getVenueCountryList())
+                            ->label(VenueCountry::attributeLabels()['name']);
+                        ?>
+
                         <div class="form-group">
-                            <?php  if ($model->isNewRecord): ?>
+                            <?php if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
                                 <?= Html::a(Yii::t('yee', 'Cancel'), ['/venue-sity/default/index'], ['class' => 'btn btn-default']) ?>
-                            <?php  else: ?>
+                            <?php else: ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
                                 <?= Html::a(Yii::t('yee', 'Delete'),
                                     ['/venue-sity/default/delete', 'id' => $model->id], [
-                                    'class' => 'btn btn-default',
-                                    'data' => [
-                                        'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-                                        'method' => 'post',
-                                    ],
-                                ]) ?>
+                                        'class' => 'btn btn-default',
+                                        'data' => [
+                                            'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                                            'method' => 'post',
+                                        ],
+                                    ]) ?>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -70,6 +76,6 @@ use yeesoft\helpers\Html;
         </div>
     </div>
 
-    <?php  ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
 
 </div>

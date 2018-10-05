@@ -60,17 +60,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 'columns' => [
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
+                    ['class' => 'yii\grid\SerialColumn', 'options' => ['style' => 'width:20px']],
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
+                        'options' => ['style' => 'width:300px'],
+                        'attribute' => 'name',
                         'controller' => '/venue/district',
                         'title' => function(VenueDistrict $model) {
-                            return Html::a($model->id, ['update', 'id' => $model->id], ['data-pjax' => 0]);
+                            return Html::a($model->name, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
+                        'buttonsTemplate' => '{update} {delete}',
                     ],
 
-            'id',
-            'sity_id',
-            'name',
+//            'id',
+            'sityName',
+//            'name',
             'slug',
 
                 ],

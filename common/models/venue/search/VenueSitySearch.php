@@ -12,6 +12,8 @@ use common\models\venue\VenueSity;
  */
 class VenueSitySearch extends VenueSity
 {
+    public $countryName;
+
     /**
      * @inheritdoc
      */
@@ -21,6 +23,7 @@ class VenueSitySearch extends VenueSity
             [['id', 'country_id'], 'integer'],
             [['name'], 'safe'],
             [['latitude', 'longitude'], 'number'],
+            ['countryName', 'string'],
         ];
     }
 
@@ -56,6 +59,19 @@ class VenueSitySearch extends VenueSity
             ],
         ]);
 
+        $dataProvider->setSort([
+            'attributes' => [
+                'id',
+                'latitude',
+                'longitude',
+                'name',
+                'countryName' => [
+                    'asc' => ['venue_country.name' => SORT_ASC],
+                    'desc' => ['venue_country.name' => SORT_DESC],
+                    'label' => 'Country Name'
+                ]
+            ]
+        ]);
         $this->load($params);
 
         if (!$this->validate()) {
@@ -66,13 +82,21 @@ class VenueSitySearch extends VenueSity
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'country_id' => $this->country_id,
-            'latitude' => $this->latitude,
-            'longitude' => $this->longitude,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'venue_sity.name', $this->name]);
 
+        $query->joinWith(['country' => function ($q) {
+            $q->where('venue_sity.latitude LIKE "%' . $this->latitude . '%"');
+        }]);
+
+        $query->joinWith(['country' => function ($q) {
+            $q->where('venue_sity.longitude LIKE "%' . $this->longitude . '%"');
+        }]);
+
+        $query->joinWith(['country' => function ($q) {
+            $q->where('venue_country.name LIKE "%' . $this->countryName . '%"');
+        }]);
         return $dataProvider;
     }
 }

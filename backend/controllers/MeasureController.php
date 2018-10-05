@@ -2,14 +2,13 @@
 
 namespace backend\controllers;
 
-use yeesoft\controllers\admin\BaseController;
 use Yii;
 
 
 /**
  * MeasureController implements the CRUD actions for backend\models\Measure model.
  */
-class MeasureController extends BaseController
+class MeasureController extends DefaultController
 {
     public $modelClass       = 'common\models\Measure';
     public $modelSearchClass = 'common\models\MeasureSearch';

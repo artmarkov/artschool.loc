@@ -43,7 +43,7 @@ class VenueCountry extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('yee/venue', 'ID'),
-            'name' => Yii::t('yee/venue', 'Name'),
+            'name' => Yii::t('yee/venue', 'Name Country'),
             'fips' => Yii::t('yee/venue', 'Fips'),
         ];
     }
@@ -62,5 +62,10 @@ class VenueCountry extends \yii\db\ActiveRecord
     public function getVenueSities()
     {
         return $this->hasMany(VenueSity::className(), ['country_id' => 'id']);
+    }
+
+    public function getVenueCountryList()
+    {
+        return \yii\helpers\ArrayHelper::map(VenueCountry::find()->all(), 'id', 'name');
     }
 }

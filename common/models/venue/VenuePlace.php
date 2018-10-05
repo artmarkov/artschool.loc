@@ -4,6 +4,9 @@ namespace common\models\venue;
 
 use Yii;
 use yeesoft\models\User;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
+
 /**
  * This is the model class for table "{{%venue_place}}".
  *
@@ -40,15 +43,28 @@ class VenuePlace extends \yii\db\ActiveRecord
     {
         return '{{%venue_place}}';
     }
-
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+            'blameable' => [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'user_id',
+            ]
+        ];
+    }
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['country_id', 'sity_id', 'district_id', 'name', 'address', 'phone', 'phone_optional', 'email', 'сontact_person'], 'required'],
-            [['country_id', 'sity_id', 'district_id', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['country_id', 'sity_id', 'district_id', 'name', 'address', 'phone'], 'required'],
+            [['country_id', 'sity_id', 'district_id'], 'integer'],
+            ['email', 'email'],
             [['latitude', 'longitude'], 'number'],
             [['name', 'сontact_person'], 'string', 'max' => 127],
             [['address', 'email', 'description'], 'string', 'max' => 255],
@@ -71,7 +87,7 @@ class VenuePlace extends \yii\db\ActiveRecord
             'country_id' => Yii::t('yee/venue', 'Country ID'),
             'sity_id' => Yii::t('yee/venue', 'Sity ID'),
             'district_id' => Yii::t('yee/venue', 'District ID'),
-            'name' => Yii::t('yee/venue', 'Name'),
+            'name' => Yii::t('yee/venue', 'Name Sity'),
             'address' => Yii::t('yee/venue', 'Address'),
             'phone' => Yii::t('yee/venue', 'Phone'),
             'phone_optional' => Yii::t('yee/venue', 'Phone Optional'),
@@ -95,12 +111,24 @@ class VenuePlace extends \yii\db\ActiveRecord
         return $this->hasOne(VenueCountry::className(), ['id' => 'country_id']);
     }
 
+    /* Геттер для названия страны */
+    public function getCountryName()
+    {
+        return $this->country->name;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getDistrict()
     {
         return $this->hasOne(VenueDistrict::className(), ['id' => 'district_id']);
+    }
+
+    /* Геттер для названия округа */
+    public function getDistrictName()
+    {
+        return $this->district->name;
     }
 
     /**
@@ -111,12 +139,18 @@ class VenuePlace extends \yii\db\ActiveRecord
         return $this->hasOne(VenueSity::className(), ['id' => 'sity_id']);
     }
 
+    /* Геттер для названия города */
+    public function getSityName()
+    {
+        return $this->sity->name;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getCreatedBy()
     {
-        return $this->hasOne(User::className(), ['id' => 'created_by']);
+        return $this->hasOne(\common\models\auth\User::className(), ['id' => 'created_by']);
     }
 
     /**
@@ -124,6 +158,68 @@ class VenuePlace extends \yii\db\ActiveRecord
      */
     public function getUpdatedBy()
     {
-        return $this->hasOne(User::className(), ['id' => 'updated_by']);
+        return $this->hasOne(\common\models\auth\User::className(), ['id' => 'updated_by']);
+    }
+    /**
+     * Get created date
+     *
+     * @param string $format date format
+     * @return string
+     */
+    public function getCreatedDate($format = 'd-m-Y')
+    {
+        return date($format, ($this->isNewRecord) ? time() : $this->created_at);
+    }
+
+    /**
+     * Get created date
+     *
+     * @param string $format date format
+     * @return string
+     */
+    public function getUpdatedDate($format = 'd-m-Y')
+    {
+        return date($format, ($this->isNewRecord) ? time() : $this->updated_at);
+    }
+
+    /**
+     * Get created time
+     *
+     * @param string $format time format
+     * @return string
+     */
+    public function getCreatedTime($format = 'H:i')
+    {
+        return date($format, ($this->isNewRecord) ? time() : $this->created_at);
+    }
+
+    /**
+     * Get created time
+     *
+     * @param string $format time format
+     * @return string
+     */
+    public function getUpdatedTime($format = 'H:i')
+    {
+        return date($format, ($this->isNewRecord) ? time() : $this->updated_at);
+    }
+    /**
+     * Get created datetime
+     *
+     * @return string
+     */
+    public function getCreatedDatetime()
+    {
+        return "{$this->createdDate} {$this->createdTime}";
+    }
+
+    /**
+     * Get created datetime
+     *
+     * @return string
+     */
+    public function getUpdatedDatetime()
+    {
+        return "{$this->updatedDate} {$this->updatedTime}";
     }
 }

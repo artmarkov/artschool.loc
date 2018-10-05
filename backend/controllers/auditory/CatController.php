@@ -2,13 +2,13 @@
 
 namespace backend\controllers\auditory;
 
+use backend\controllers\DefaultController;
 use Yii;
-use yeesoft\controllers\admin\BaseController;
 
 /**
  * AuditoryCatController implements the CRUD actions for common\models\AuditoryCat model.
  */
-class CatController extends BaseController 
+class CatController extends DefaultController
 {
     public $modelClass       = 'common\models\auditory\AuditoryCat';
     public $modelSearchClass = 'common\models\auditory\search\AuditoryCatSearch';

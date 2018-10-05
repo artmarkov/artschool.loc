@@ -2,13 +2,13 @@
 
 namespace backend\controllers\venue;
 
+use backend\controllers\DefaultController;
 use Yii;
-use yeesoft\controllers\admin\BaseController;
 
 /**
  * CountryController implements the CRUD actions for common\models\venue\VenueCountry model.
  */
-class CountryController extends BaseController 
+class CountryController extends DefaultController
 {
     public $modelClass       = 'common\models\venue\VenueCountry';
     public $modelSearchClass = 'common\models\venue\search\VenueCountrySearch';

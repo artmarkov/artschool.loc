@@ -49,7 +49,7 @@ class VenueSity extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('yee/venue', 'ID'),
             'country_id' => Yii::t('yee/venue', 'Country ID'),
-            'name' => Yii::t('yee/venue', 'Name'),
+            'name' => Yii::t('yee/venue', 'Name Sity'),
             'latitude' => Yii::t('yee/venue', 'Latitude'),
             'longitude' => Yii::t('yee/venue', 'Longitude'),
         ];
@@ -78,4 +78,16 @@ class VenueSity extends \yii\db\ActiveRecord
     {
         return $this->hasOne(VenueCountry::className(), ['id' => 'country_id']);
     }
+
+    /* Геттер для названия страны */
+    public function getCountryName()
+    {
+        return $this->country->name;
+    }
+
+    public function getVenueSityList()
+    {
+        return \yii\helpers\ArrayHelper::map(VenueSity::find()->all(), 'id', 'name');
+    }
+
 }

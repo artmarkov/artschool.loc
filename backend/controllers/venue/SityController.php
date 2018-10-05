@@ -2,13 +2,13 @@
 
 namespace backend\controllers\venue;
 
+use backend\controllers\DefaultController;
 use Yii;
-use yeesoft\controllers\admin\BaseController;
 
 /**
  * SityController implements the CRUD actions for common\models\venue\VenueSity model.
  */
-class SityController extends BaseController 
+class SityController extends DefaultController
 {
     public $modelClass       = 'common\models\venue\VenueSity';
     public $modelSearchClass = 'common\models\venue\search\VenueSitySearch';

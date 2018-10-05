@@ -15,19 +15,19 @@ class AuditorySearch extends Auditory
     /**
      * @inheritdoc
      */
-    
+
     public $catName;
     public $buildingName;
 
 
     public function rules()
     {
-        
+
         return [
             [['id', 'building_id', 'cat_id', 'num', 'capacity', 'order'], 'integer'],
             [['study_flag', 'name', 'floor', 'description'], 'safe'],
             [['area'], 'number'],
-            [['catName','buildingName'], 'string'],
+            [['catName', 'buildingName'], 'string'],
         ];
     }
 
@@ -62,31 +62,32 @@ class AuditorySearch extends Auditory
                 ],
             ],
         ]);
-        
+
         $dataProvider->setSort([
-                'attributes' => [
-                    'id',
-                    'num',
-                    'study_flag',
-                    'catName' => [
-                        'asc' => ['auditory_cat.name' => SORT_ASC],
-                        'desc' => ['auditory_cat.name' => SORT_DESC],
-                        'label' => 'Cat Name'
-                    ],
-               'buildingName' => [
-                        'asc' => ['auditory_building.name' => SORT_ASC],
-                        'desc' => ['auditory_building.name' => SORT_DESC],
-                        'label' => 'building Name'
-                    ]
+            'attributes' => [
+                'id',
+                'num',
+                'study_flag',
+                'catName' => [
+                    'asc' => ['auditory_cat.name' => SORT_ASC],
+                    'desc' => ['auditory_cat.name' => SORT_DESC],
+                    'label' => 'Cat Name'
+                ],
+                'buildingName' => [
+                    'asc' => ['auditory_building.name' => SORT_ASC],
+                    'desc' => ['auditory_building.name' => SORT_DESC],
+                    'label' => 'building Name'
                 ]
-            ]);
+            ]
+        ]);
+
         $this->load($params);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             $query->joinWith(['auditory_cat']);
-       
+
             return $dataProvider;
         }
 
@@ -94,7 +95,7 @@ class AuditorySearch extends Auditory
             'id' => $this->id,
 //            'building_id' => $this->building_id,
 //            'cat_id' => $this->cat_id,
-            
+
             'num' => $this->num,
             'area' => $this->area,
             'capacity' => $this->capacity,
@@ -104,15 +105,16 @@ class AuditorySearch extends Auditory
         $query->andFilterWhere(['like', 'study_flag', $this->study_flag])
             ->andFilterWhere(['like', 'auditory.name', $this->name])
             ->andFilterWhere(['like', 'floor', $this->floor])
-            ->andFilterWhere(['like', 'description', $this->description])
-                ;
+            ->andFilterWhere(['like', 'description', $this->description]);
         
         $query->joinWith(['cat' => function ($q) {
-               $q->where('auditory_cat.name LIKE "%' . $this->catName . '%"');
-           }]);
-         $query->joinWith(['building' => function ($q) {
-               $q->where('auditory_building.name LIKE "%' . $this->buildingName . '%"');
-           }]);
+            $q->where('auditory_cat.name LIKE "%' . $this->catName . '%"');
+        }]);
+
+        $query->joinWith(['building' => function ($q) {
+            $q->where('auditory_building.name LIKE "%' . $this->buildingName . '%"');
+        }]);
+
         return $dataProvider;
     }
 }

@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-sm-12">
-            <h3 class="lte-hide-title page-title"><?=  Html::encode($this->title) ?></h3>
+            <h3 class="lte-hide-title page-title"><?= Html::encode($this->title) ?></h3>
             <?= Html::a(Yii::t('yee', 'Add New'), ['/venue/create'], ['class' => 'btn btn-sm btn-primary']) ?>
         </div>
     </div>
@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="row">
                 <div class="col-sm-6">
-                    <?php 
+                    <?php
                     /* Uncomment this to activate GridQuickLinks */
                     /* echo GridQuickLinks::widget([
                         'model' => VenuePlace::className(),
@@ -39,52 +39,59 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
 
                 <div class="col-sm-6 text-right">
-                    <?=  GridPageSize::widget(['pjaxId' => 'venue-place-grid-pjax']) ?>
+                    <?= GridPageSize::widget(['pjaxId' => 'venue-place-grid-pjax']) ?>
                 </div>
             </div>
 
-            <?php 
+            <?php
             Pjax::begin([
                 'id' => 'venue-place-grid-pjax',
             ])
             ?>
 
-            <?= 
+            <?=
             GridView::widget([
                 'id' => 'venue-place-grid',
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'bulkActionOptions' => [
                     'gridId' => 'venue-place-grid',
-                    'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
+                    'actions' => [Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
                 ],
                 'columns' => [
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
+                    ['class' => 'yii\grid\SerialColumn', 'options' => ['style' => 'width:20px']],
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
+                        'options' => ['style' => 'width:300px'],
+                        'attribute' => 'name',
                         'controller' => '/venue/default',
-                        'title' => function(VenuePlace $model) {
-                            return Html::a($model->id, ['view', 'id' => $model->id], ['data-pjax' => 0]);
+                        'title' => function (VenuePlace $model) {
+                            return Html::a($model->name, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
+                        'buttonsTemplate' => '{update} {delete}',
                     ],
 
-            'id',
-            'country_id',
-            'sity_id',
-            'district_id',
-            'name',
-            // 'address',
-            // 'phone',
-            // 'phone_optional',
-            // 'email:email',
-            // 'сontact_person',
-            // 'latitude',
-            // 'longitude',
-            // 'description',
-            // 'created_at',
-            // 'updated_at',
-            // 'created_by',
-            // 'updated_by',
+                    // 'id',
+                    // 'country_id',
+                    // 'sity_id',
+                    // 'district_id',
+                    // 'name',
+                    'countryName',
+                    'sityName',
+                    'districtName',
+                    'address',
+                    'phone',
+                    // 'phone_optional',
+                    // 'email:email',
+                    // 'сontact_person',
+                    'latitude',
+                    'longitude',
+                    // 'description',
+                    // 'created_at',
+                    // 'updated_at',
+                    // 'created_by',
+                    // 'updated_by',
 
                 ],
             ]);

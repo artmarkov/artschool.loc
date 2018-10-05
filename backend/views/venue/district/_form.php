@@ -3,6 +3,7 @@
 use common\widgets\ActiveForm;
 use common\models\venue\VenueDistrict;
 use yeesoft\helpers\Html;
+use common\models\venue\VenueSity;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\venue\VenueDistrict */
@@ -23,8 +24,7 @@ use yeesoft\helpers\Html;
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    
-                    <?= $form->field($model, 'sity_id')->textInput() ?>
+
 
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -44,6 +44,11 @@ use yeesoft\helpers\Html;
                             <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
                             <span><?=  $model->id ?></span>
                         </div>
+
+                        <?= $form->field($model, 'sity_id')
+                            ->dropDownList(VenueSity::getVenueSityList())
+                            ->label(VenueSity::attributeLabels()['name']);
+                        ?>
 
                         <div class="form-group">
                             <?php  if ($model->isNewRecord): ?>

@@ -3,12 +3,12 @@
 namespace backend\controllers\auditory;
 
 use Yii;
-use yeesoft\controllers\admin\BaseController;
+
 
 /**
  * AuditoryController implements the CRUD actions for common\models\Auditory model.
  */
-class DefaultController extends BaseController 
+class DefaultController extends \backend\controllers\DefaultController
 {
     public $modelClass       = 'common\models\auditory\Auditory';
     public $modelSearchClass = 'common\models\auditory\search\AuditorySearch';

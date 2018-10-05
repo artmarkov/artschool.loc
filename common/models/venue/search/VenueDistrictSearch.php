@@ -12,14 +12,16 @@ use common\models\venue\VenueDistrict;
  */
 class VenueDistrictSearch extends VenueDistrict
 {
+    public $sityName;
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'sity_id'], 'integer'],
+            ['id', 'integer'],
             [['name', 'slug'], 'safe'],
+            ['sityName', 'string'],
         ];
     }
 
@@ -55,6 +57,20 @@ class VenueDistrictSearch extends VenueDistrict
             ],
         ]);
 
+        $dataProvider->setSort([
+            'attributes' => [
+                'id',
+                'name',
+                'slug',
+                'sityName' => [
+                    'asc' => ['venue_sity.name' => SORT_ASC],
+                    'desc' => ['venue_sity.name' => SORT_DESC],
+                    'label' => 'Sity Name'
+                ]
+            ]
+        ]);
+
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -65,11 +81,14 @@ class VenueDistrictSearch extends VenueDistrict
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'sity_id' => $this->sity_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
+        $query->andFilterWhere(['like', 'venue_district.name', $this->name])
             ->andFilterWhere(['like', 'slug', $this->slug]);
+
+        $query->joinWith(['sity' => function ($q) {
+            $q->where('venue_sity.name LIKE "%' . $this->sityName . '%"');
+        }]);
 
         return $dataProvider;
     }

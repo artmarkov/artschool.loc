@@ -3,12 +3,11 @@
 namespace backend\controllers\venue;
 
 use Yii;
-use yeesoft\controllers\admin\BaseController;
 
 /**
  * DefaultController implements the CRUD actions for common\models\venue\VenuePlace model.
  */
-class DefaultController extends BaseController 
+class DefaultController extends \backend\controllers\DefaultController
 {
     public $modelClass       = 'common\models\venue\VenuePlace';
     public $modelSearchClass = 'common\models\venue\search\VenuePlaceSearch';

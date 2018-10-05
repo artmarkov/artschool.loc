@@ -47,7 +47,7 @@ class VenueDistrict extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('yee/venue', 'ID'),
             'sity_id' => Yii::t('yee/venue', 'Sity ID'),
-            'name' => Yii::t('yee/venue', 'Name'),
+            'name' => Yii::t('yee/venue', 'Name District'),
             'slug' => Yii::t('yee/venue', 'Slug'),
         ];
     }
@@ -60,11 +60,22 @@ class VenueDistrict extends \yii\db\ActiveRecord
         return $this->hasOne(VenueSity::className(), ['id' => 'sity_id']);
     }
 
+    /* Геттер для названия города */
+    public function getSityName()
+    {
+        return $this->sity->name;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getVenuePlaces()
     {
         return $this->hasMany(VenuePlace::className(), ['district_id' => 'id']);
+    }
+
+    public function getVenueDistrictList()
+    {
+        return \yii\helpers\ArrayHelper::map(VenueDistrict::find()->all(), 'id', 'name');
     }
 }

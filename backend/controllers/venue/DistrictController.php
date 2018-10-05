@@ -2,13 +2,13 @@
 
 namespace backend\controllers\venue;
 
+use backend\controllers\DefaultController;
 use Yii;
-use yeesoft\controllers\admin\BaseController;
 
 /**
  * DistrictController implements the CRUD actions for common\models\venue\VenueDistrict model.
  */
-class DistrictController extends BaseController 
+class DistrictController extends DefaultController
 {
     public $modelClass       = 'common\models\venue\VenueDistrict';
     public $modelSearchClass = 'common\models\venue\search\VenueDistrictSearch';

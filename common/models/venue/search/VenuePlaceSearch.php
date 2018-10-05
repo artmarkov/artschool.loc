@@ -12,15 +12,20 @@ use common\models\venue\VenuePlace;
  */
 class VenuePlaceSearch extends VenuePlace
 {
+    public $countryName;
+    public $districtName;
+    public $sityName;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'country_id', 'sity_id', 'district_id', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'address', 'phone', 'phone_optional', 'email', 'сontact_person', 'description'], 'safe'],
+            ['id', 'integer'],
+            [['name', 'address', 'phone'], 'safe'],
             [['latitude', 'longitude'], 'number'],
+            [['countryName', 'districtName', 'sityName'], 'string'],
         ];
     }
 
@@ -56,6 +61,31 @@ class VenuePlaceSearch extends VenuePlace
             ],
         ]);
 
+        $dataProvider->setSort([
+            'attributes' => [
+                'id',
+                'latitude',
+                'longitude',
+                'name',
+                'address',
+                'countryName' => [
+                    'asc' => ['venue_country.name' => SORT_ASC],
+                    'desc' => ['venue_country.name' => SORT_DESC],
+                    'label' => 'Country Name'
+                ],
+                'districtName' => [
+                    'asc' => ['venue_district.name' => SORT_ASC],
+                    'desc' => ['venue_district.name' => SORT_DESC],
+                    'label' => 'District Name'
+                ],
+                'sityName' => [
+                    'asc' => ['venue_sity.name' => SORT_ASC],
+                    'desc' => ['venue_sity.name' => SORT_DESC],
+                    'label' => 'Sity Name'
+                ]
+            ]
+        ]);
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -65,25 +95,32 @@ class VenuePlaceSearch extends VenuePlace
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'country_id' => $this->country_id,
-            'sity_id' => $this->sity_id,
-            'district_id' => $this->district_id,
-            'latitude' => $this->latitude,
-            'longitude' => $this->longitude,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'created_by' => $this->created_by,
-            'updated_by' => $this->updated_by,
+            'id' => $this->id
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'address', $this->address])
-            ->andFilterWhere(['like', 'phone', $this->phone])
-            ->andFilterWhere(['like', 'phone_optional', $this->phone_optional])
-            ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'сontact_person', $this->сontact_person])
-            ->andFilterWhere(['like', 'description', $this->description]);
+
+        $query->andFilterWhere(['like', 'venue_place.name', $this->name])
+            ->andFilterWhere(['like', 'address', $this->address]);
+
+        $query->joinWith(['country' => function ($q) {
+            $q->where('venue_place.latitude LIKE "%' . $this->latitude . '%"');
+        }]);
+
+        $query->joinWith(['country' => function ($q) {
+            $q->where('venue_place.longitude LIKE "%' . $this->longitude . '%"');
+        }]);
+
+        $query->joinWith(['country' => function ($q) {
+            $q->where('venue_country.name LIKE "%' . $this->countryName . '%"');
+        }]);
+
+        $query->joinWith(['district' => function ($q) {
+            $q->where('venue_district.name LIKE "%' . $this->districtName . '%"');
+        }]);
+
+        $query->joinWith(['sity' => function ($q) {
+            $q->where('venue_sity.name LIKE "%' . $this->sityName . '%"');
+        }]);
 
         return $dataProvider;
     }
