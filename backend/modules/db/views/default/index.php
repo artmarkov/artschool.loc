@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'format' => 'raw',
                                 'value' => function ($data, $id) {
                                     return Html::a('<span class="glyphicon glyphicon-download-alt"></span>',
-                                        Url::to(['db/download', 'path' => $data['dump']]),
+                                        Url::to(['default/download', 'path' => $data['dump']]),
                                         [
                                             'title' => Yii::t('yee/db', 'Download'),
                                             'class' => 'btn btn-sm btn-default',
@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'format' => 'raw',
                                 'value' => function ($data, $id) {
                                     return Html::a('<span class="glyphicon glyphicon-import"></span>',
-                                        Url::to(['db/import', 'path' => $data['dump']]),
+                                        Url::to(['default/import', 'path' => $data['dump']]),
                                         [
                                             'title' => Yii::t('yee/db', 'Import'),
                                             'data-confirm' => Yii::t('yee/db', 'All database entries will be overwritten. Are you sure?'),
@@ -75,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'format' => 'raw',
                                 'value' => function ($data, $id) {
                                     return Html::a('<span class="glyphicon glyphicon-trash"></span>',
-                                        Url::to(['db/delete', 'path' => $data['dump']]),
+                                        Url::to(['default/delete', 'path' => $data['dump']]),
 
                                         [
                                             'title' => Yii::t('yee/db', 'Delete'),

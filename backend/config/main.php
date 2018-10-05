@@ -28,6 +28,9 @@ return [
                  ],
              ],*/
         ],
+        'db' => [
+            'class' => 'backend\modules\db\Module',
+        ],
         'settings' => [
             'class' => 'backend\modules\settings\Module',
         ],
@@ -83,8 +86,7 @@ return [
             'multilingualRules' => false,
             'rules' => array(
                 //add here local frontend controllers
-                '<controller:(db)>' => '<controller>/index',
-                '<controller:(db)>/<action>' => '<controller>/<action>',
+               
                 '<controller:(measure)>' => '<controller>/index',
                 '<controller:(measure)>/<id:\d+>' => '<controller>/view',
                 '<controller:(measure)>/<action:\w+>/<id:\d+>' => '<controller>/<action>',

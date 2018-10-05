@@ -27,9 +27,10 @@ class DefaultController extends BaseController
     /**
      * @return array
      */
+    
     public function behaviors()
     {
-        return [
+        return ArrayHelper::merge(parent::behaviors(), [
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
@@ -40,7 +41,7 @@ class DefaultController extends BaseController
                     '*' => ['get'],
                 ],
             ],
-        ];
+        ]);
     }
     /**
      * @inheritdoc

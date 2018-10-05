@@ -1,9 +1,11 @@
 <?php
-namespace backend\models;
+namespace backend\modules\db\models;
+
 use Yii;
 use yii\base\Model;
 use yii\helpers\FileHelper;
 use yii\helpers\StringHelper;
+
 class Db extends Model{
 
     public function getFiles($files){
@@ -45,7 +47,7 @@ class Db extends Model{
         } else {
             Yii::$app->session->setFlash('crudMessage', 'Указанный путь не существует.');
         }
-        return Yii::$app->response->redirect(['db/index']);
+        return Yii::$app->response->redirect(['db/default/index']);
     }
 
 
@@ -55,14 +57,14 @@ class Db extends Model{
             if (is_dir($path)) {
                 if (!is_writable($path)) {
                     Yii::$app->session->setFlash('crudMessage', 'Дирректория не доступна для записи.');
-                    return Yii::$app->response->redirect(['db/index']);
+                    return Yii::$app->response->redirect(['db/default/index']);
                 }
                 $fileName = 'dump_' . date('Y_m_d_H_i_s') . '.sql';
                 $filePath = $path . DIRECTORY_SEPARATOR . $fileName;
                 $db = Yii::$app->getDb();
                 if (!$db) {
                     Yii::$app->session->setFlash('crudMessage', 'Нет подключения к базе данных.');
-                    return Yii::$app->response->redirect(['db/index']);
+                    return Yii::$app->response->redirect(['db/default/index']);
                 }
                 //Экранируем скобку которая есть в пароле
                 $db->password = str_replace("(","\(",$db->password);
@@ -74,7 +76,7 @@ class Db extends Model{
         } else {
             Yii::$app->session->setFlash('crudMessage', 'Указанный путь не существует.');
         }
-        return Yii::$app->response->redirect(['db/index']);
+        return Yii::$app->response->redirect(['db/default/index']);
     }
 
 
@@ -96,7 +98,7 @@ class Db extends Model{
         } else {
             Yii::$app->session->setFlash('crudMessage', 'Указанный путь не существует.');
         }
-        return Yii::$app->response->redirect(['db/index']);
+        return Yii::$app->response->redirect(['db/default/index']);
     }
 
     public function download($path) {
@@ -106,6 +108,6 @@ class Db extends Model{
         } else {
             Yii::$app->session->setFlash('crudMessage', 'Указанный путь не существует.');
         }
-        return Yii::$app->response->redirect(['db/index']);
+        return Yii::$app->response->redirect(['db/default/index']);
     }
 }

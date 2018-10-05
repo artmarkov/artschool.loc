@@ -1,14 +1,17 @@
 <?php
-namespace backend\controllers;
+
+namespace backend\modules\db\controllers;
+
+
 use yeesoft\controllers\admin\BaseController;
 use Yii;
 use yii\web\Controller;
 use yii\helpers\FileHelper;
-use backend\models\Db;
+use backend\modules\db\models\Db;
 use yii\helpers\ArrayHelper;
 use yii\filters\VerbFilter;
 
-class DbController extends BaseController {
+class DefaultController extends BaseController {
 
     public $layout = '@backend/views/layouts/main.php';
 
