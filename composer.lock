@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0130c17ff4bb3ddfd945401cdf499773",
+    "content-hash": "5a5578340aac840acd0163cc63e5d4e2",
     "packages": [
         {
             "name": "2amigos/yii2-file-upload-widget",
@@ -1107,16 +1107,16 @@
         },
         {
             "name": "kartik-v/yii2-krajee-base",
-            "version": "v1.9.8",
+            "version": "v1.9.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-krajee-base.git",
-                "reference": "3ed7366a3a85f80e5dde158906ac72de7d804710"
+                "reference": "1693374160c24443524ddc23508d2eb2955443f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/3ed7366a3a85f80e5dde158906ac72de7d804710",
-                "reference": "3ed7366a3a85f80e5dde158906ac72de7d804710",
+                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/1693374160c24443524ddc23508d2eb2955443f4",
+                "reference": "1693374160c24443524ddc23508d2eb2955443f4",
                 "shasum": ""
             },
             "require": {
@@ -1154,7 +1154,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2018-09-27T03:29:34+00:00"
+            "time": "2018-09-27T18:02:35+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-datepicker",
@@ -1533,16 +1533,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v3.4.15",
+            "version": "v3.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "4d6b125d5293cbceedc2aa10f2c71617e76262e7"
+                "reference": "1dc2977afa7d70f90f3fefbcd84152813558910e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/4d6b125d5293cbceedc2aa10f2c71617e76262e7",
-                "reference": "4d6b125d5293cbceedc2aa10f2c71617e76262e7",
+                "url": "https://api.github.com/repos/symfony/process/zipball/1dc2977afa7d70f90f3fefbcd84152813558910e",
+                "reference": "1dc2977afa7d70f90f3fefbcd84152813558910e",
                 "shasum": ""
             },
             "require": {
@@ -1578,7 +1578,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-08-03T10:42:44+00:00"
+            "time": "2018-10-02T12:28:39+00:00"
         },
         {
             "name": "tijsverkoyen/akismet",
