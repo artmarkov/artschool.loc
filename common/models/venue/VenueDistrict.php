@@ -3,6 +3,7 @@
 namespace common\models\venue;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "{{%venue_district}}".
@@ -73,9 +74,30 @@ class VenueDistrict extends \yii\db\ActiveRecord
     {
         return $this->hasMany(VenuePlace::className(), ['district_id' => 'id']);
     }
-
-    public function getVenueDistrictList()
-    {
-        return \yii\helpers\ArrayHelper::map(VenueDistrict::find()->all(), 'id', 'name');
+    /**
+     * @return \yii\db\ActiveQuery
+     * Полный список районов
+     */
+    public static function getVenueDistrictList() {
+        return ArrayHelper::map(VenueDistrict::find()->all(), 'id', 'name');
     }
+    /**
+     * @return \yii\db\ActiveQuery
+     * Полный список районов города по id
+     */
+    public static function getDistrictBySityId($sity_id) {
+        return self::find()->select(['id', 'name'])
+                        ->where(['sity_id' => $sity_id])
+                        ->asArray()->all();
+    }
+    /**
+     * @return \yii\db\ActiveQuery
+     * Полный список районов города по name
+     */
+    public static function getDistrictByName($sity_id) {
+        return self::find()->select(['name', 'id'])
+                        ->where(['sity_id' => $sity_id])
+                        ->indexBy('id')->column();
+    }
+
 }

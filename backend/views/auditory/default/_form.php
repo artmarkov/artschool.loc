@@ -59,12 +59,12 @@ use common\models\auditory\AuditoryCat;
                         </div>
                         <?= $form->field($model, 'building_id')
                             ->dropDownList(AuditoryBuilding::getAuditoryBuildingList())
-                            ->label(AuditoryBuilding::attributeLabels()['name']);
+                            ->label('Name Building');
                         ?>
 
                         <?= $form->field($model, 'cat_id')
                             ->dropDownList(AuditoryCat::getAuditoryCatList())
-                            ->label(AuditoryCat::attributeLabels()['name']);
+                            ->label('Name Category');
                         ?>
 
                         <?= $form->field($model, 'order')->textInput() ?>

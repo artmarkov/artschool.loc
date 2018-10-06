@@ -6,7 +6,8 @@ use Yii;
 use yeesoft\models\User;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
-
+use common\models\venue\VenueDistrict;
+use common\models\venue\VenueCountry;
 /**
  * This is the model class for table "{{%venue_place}}".
  *
@@ -36,6 +37,7 @@ use yii\behaviors\TimestampBehavior;
  */
 class VenuePlace extends \yii\db\ActiveRecord
 {
+    public $user_id;
     /**
      * {@inheritdoc}
      */
@@ -50,10 +52,7 @@ class VenuePlace extends \yii\db\ActiveRecord
     {
         return [
             TimestampBehavior::className(),
-            'blameable' => [
-                'class' => BlameableBehavior::className(),
-                'createdByAttribute' => 'user_id',
-            ]
+            BlameableBehavior::className(),
         ];
     }
     /**
@@ -62,7 +61,9 @@ class VenuePlace extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['country_id', 'sity_id', 'district_id', 'name', 'address', 'phone'], 'required'],
+            [['country_id', 'name', 'address', 'phone'], 'required'],
+            ['district_id', 'required', 'when' => function ($model) { return !empty(VenueDistrict::getDistrictBySityId($model->sity_id));}, 'enableClientValidation' => false ],                 ['district_id', 'required', 'when' => function ($model) { return !empty(VenueDistrict::getDistrictBySityId($model->sity_id));}, 'enableClientValidation' => false ], 
+            ['sity_id', 'required', 'when' => function ($model) { return !empty(VenueSity::getSityByCountryId($model->country_id));}, 'enableClientValidation' => false ],         
             [['country_id', 'sity_id', 'district_id'], 'integer'],
             ['email', 'email'],
             [['latitude', 'longitude'], 'number'],
@@ -87,7 +88,7 @@ class VenuePlace extends \yii\db\ActiveRecord
             'country_id' => Yii::t('yee/venue', 'Country ID'),
             'sity_id' => Yii::t('yee/venue', 'Sity ID'),
             'district_id' => Yii::t('yee/venue', 'District ID'),
-            'name' => Yii::t('yee/venue', 'Name Sity'),
+            'name' => Yii::t('yee/venue', 'Name Place'),
             'address' => Yii::t('yee/venue', 'Address'),
             'phone' => Yii::t('yee/venue', 'Phone'),
             'phone_optional' => Yii::t('yee/venue', 'Phone Optional'),

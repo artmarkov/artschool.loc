@@ -84,10 +84,34 @@ class VenueSity extends \yii\db\ActiveRecord
     {
         return $this->country->name;
     }
-
-    public function getVenueSityList()
+    /**
+     * @return \yii\db\ActiveQuery
+     * Полный список городов
+     */
+    public static function getVenueSityList()
     {
         return \yii\helpers\ArrayHelper::map(VenueSity::find()->all(), 'id', 'name');
     }
+    /**
+     * @return \yii\db\ActiveQuery
+     * Полный список городов страны по id
+     */
+    public static function getSityByCountryId($country_id) { 
+     $data = self::find()->select(['id','name']) 
+     ->where(['country_id'=>$country_id]) 
+     ->asArray()->all(); 
 
+      return $data; 
+     }  
+    /**
+     * @return \yii\db\ActiveQuery
+     * Полный список городов страны по name
+     */     
+     public static function getSityByName($country_id) { 
+     $data = self::find()->select(['name','id']) 
+     ->where(['country_id'=>$country_id]) 
+     ->indexBy('id')->column(); 
+
+      return $data; 
+     } 
 }

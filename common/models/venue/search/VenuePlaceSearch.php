@@ -24,7 +24,7 @@ class VenuePlaceSearch extends VenuePlace
         return [
             ['id', 'integer'],
             [['name', 'address', 'phone'], 'safe'],
-            [['latitude', 'longitude'], 'number'],
+           // [['latitude', 'longitude'], 'number'],
             [['countryName', 'districtName', 'sityName'], 'string'],
         ];
     }
@@ -64,8 +64,8 @@ class VenuePlaceSearch extends VenuePlace
         $dataProvider->setSort([
             'attributes' => [
                 'id',
-                'latitude',
-                'longitude',
+//                'latitude',
+//                'longitude',
                 'name',
                 'address',
                 'countryName' => [
@@ -102,20 +102,20 @@ class VenuePlaceSearch extends VenuePlace
         $query->andFilterWhere(['like', 'venue_place.name', $this->name])
             ->andFilterWhere(['like', 'address', $this->address]);
 
-        $query->joinWith(['country' => function ($q) {
-            $q->where('venue_place.latitude LIKE "%' . $this->latitude . '%"');
-        }]);
+//        $query->joinWith(['country' => function ($q) {
+//            $q->where('venue_place.latitude LIKE "%' . $this->latitude . '%"');
+//        }]);
+//
+//        $query->joinWith(['country' => function ($q) {
+//            $q->where('venue_place.longitude LIKE "%' . $this->longitude . '%"');
+//        }]);
 
         $query->joinWith(['country' => function ($q) {
-            $q->where('venue_place.longitude LIKE "%' . $this->longitude . '%"');
-        }]);
-
-        $query->joinWith(['country' => function ($q) {
-            $q->where('venue_country.name LIKE "%' . $this->countryName . '%"');
+            $q->where('venue_country.name LIKE "%' . $this->countryName . '%"'); 
         }]);
 
         $query->joinWith(['district' => function ($q) {
-            $q->where('venue_district.name LIKE "%' . $this->districtName . '%"');
+           $q->where('venue_district.name LIKE "%' . $this->districtName . '%"');
         }]);
 
         $query->joinWith(['sity' => function ($q) {

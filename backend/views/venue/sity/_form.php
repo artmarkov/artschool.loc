@@ -50,7 +50,7 @@ use common\models\venue\VenueCountry;
 
                         <?= $form->field($model, 'country_id')
                             ->dropDownList(VenueCountry::getVenueCountryList())
-                            ->label(VenueCountry::attributeLabels()['name']);
+                            ->label('Name Country ');
                         ?>
 
                         <div class="form-group">

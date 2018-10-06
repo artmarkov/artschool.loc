@@ -56,7 +56,7 @@ class AuditoryCat extends \yii\db\ActiveRecord
         
     }
 
-    public function getAuditoryCatList()
+    public static function getAuditoryCatList()
     {
       return  AuditoryCat::find()->select(['name', 'id'])->indexBy('id')->column();
     }

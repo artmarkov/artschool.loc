@@ -47,7 +47,7 @@ use common\models\venue\VenueSity;
 
                         <?= $form->field($model, 'sity_id')
                             ->dropDownList(VenueSity::getVenueSityList())
-                            ->label(VenueSity::attributeLabels()['name']);
+                            ->label('Name Sity');
                         ?>
 
                         <div class="form-group">

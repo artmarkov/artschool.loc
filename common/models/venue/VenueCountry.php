@@ -16,6 +16,7 @@ use Yii;
  */
 class VenueCountry extends \yii\db\ActiveRecord
 {
+    
     /**
      * {@inheritdoc}
      */
@@ -64,8 +65,9 @@ class VenueCountry extends \yii\db\ActiveRecord
         return $this->hasMany(VenueSity::className(), ['country_id' => 'id']);
     }
 
-    public function getVenueCountryList()
+    public static function getVenueCountryList()
     {
         return \yii\helpers\ArrayHelper::map(VenueCountry::find()->all(), 'id', 'name');
     }
+    
 }

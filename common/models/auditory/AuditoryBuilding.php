@@ -53,7 +53,7 @@ class AuditoryBuilding extends \yii\db\ActiveRecord
         
     }
 
-    public function getAuditoryBuildingList()
+    public static function getAuditoryBuildingList()
     {
         return \yii\helpers\ArrayHelper::map(AuditoryBuilding::find()->all(), 'id', 'name');
     }
