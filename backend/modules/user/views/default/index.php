@@ -58,18 +58,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 'columns' => [
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
-                    'last_name',
-                    'first_name',
-                    'middle_name',
                     [
-                        'attribute' => 'username',
+                        'attribute' => 'fullName',
                         'controller' => '/user/default',
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
-                        'title' => function (\yeesoft\models\User $model) {
-                            if (User::hasPermission('editUsers')) {
-                                return Html::a($model->username, ['/user/default/update', 'id' => $model->id], ['data-pjax' => 0]);
+                        'title' => function (User $model) {
+                            if (User::hasPermission('editUsers')) {                            
+                            $link = empty($model->last_name) ? '<span class="not-set">' . Yii::t('yii', '(not set)') . '</span>' : $model->fullName;
+                                return Html::a($link, ['/user/default/update', 'id' => $model->id], ['data-pjax' => 0]);
                             } else {
-                                return $model->username;
+                                return $link;
                             }
                         },
                         'buttonsTemplate' => '{update} {delete} {permissions} {password}',
@@ -93,6 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         'options' => ['style' => 'width:400px']
                     ],
+                    'username',                   
                     [
                         'attribute' => 'email',
                         'format' => 'raw',
@@ -106,7 +105,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'gridRoleSearch',
                         'filter' => ArrayHelper::map(Role::getAvailableRoles(Yii::$app->user->isSuperAdmin), 'name', 'description'),
-                        'value' => function (\yeesoft\models\User $model) {
+                        'value' => function (User $model) {
                             return implode(', ',
                                 ArrayHelper::map($model->roles, 'name',
                                     'description'));

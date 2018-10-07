@@ -63,6 +63,7 @@ class VenueCountrySearch extends VenueCountry
             return $dataProvider;
         }
 
+        $query->andWhere(['not', ['id' => 0]]); // убираем запись с 0 ид - 'Не определено'
         $query->andFilterWhere([
             'id' => $this->id,
         ]);

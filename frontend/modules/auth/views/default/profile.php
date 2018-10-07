@@ -221,7 +221,7 @@ $col3 = (int) ($col12 / 4);
                         </div>
                     </div>
 
-                    <?= $form->field($model, 'info')->textarea(['maxlength' => 255]) ?>
+                    <?= $form->field($model, 'info')->textarea(['rows' => 10, 'maxlength' => 1024]) ?>
 
                 </div>
             </div>

@@ -21,7 +21,7 @@ class DefaultController extends BaseController
     /**
      * @var UserSearch
      */
-    public $modelSearchClass = 'yeesoft\user\models\search\UserSearch';
+    public $modelSearchClass = 'backend\modules\user\models\search\UserSearch';
 
     public $disabledActions = ['view'];
 

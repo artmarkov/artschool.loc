@@ -67,7 +67,8 @@ class VenueCountry extends \yii\db\ActiveRecord
 
     public static function getVenueCountryList()
     {
-        return \yii\helpers\ArrayHelper::map(VenueCountry::find()->all(), 'id', 'name');
+        return \yii\helpers\ArrayHelper::map(VenueCountry::find()->where(['not',['id'=>0]])->all(), 'id', 'name');
+        
     }
     
 }

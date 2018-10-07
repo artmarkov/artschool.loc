@@ -40,12 +40,10 @@
     "yeesoft/yii2-yee-comment": "~0.1.0",
     "yeesoft/yii2-yee-generator": "~0.1.0",
     "yeesoft/yii2-yee-eav": "~0.1.0",
-    "yeesoft/yee-i18n": "*",
     "2amigos/yii2-transliterator-helper": "*",
     "beaten-sect0r/yii2-db-manager": "*",
     "cranky4/change-log-behavior": "*",
     "kartik-v/yii2-widget-datepicker": "@dev",
-    "kartik-v/yii2-widget-select2": "dev-master",
     "kartik-v/yii2-widget-depdrop": "dev-master"
 
   },

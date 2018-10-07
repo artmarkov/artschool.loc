@@ -68,16 +68,22 @@ class AuditorySearch extends Auditory
                 'id',
                 'num',
                 'study_flag',
-                'catName' => [
-                    'asc' => ['auditory_cat.name' => SORT_ASC],
-                    'desc' => ['auditory_cat.name' => SORT_DESC],
-                    'label' => 'Cat Name'
-                ],
-                'buildingName' => [
-                    'asc' => ['auditory_building.name' => SORT_ASC],
-                    'desc' => ['auditory_building.name' => SORT_DESC],
-                    'label' => 'building Name'
-                ]
+                
+//                закоментировать для сортировки по названию
+                'cat_id',
+                'building_id',
+                
+//                разкоментировать для сортировки по названию
+//                'catName' => [
+//                    'asc' => ['auditory_cat.name' => SORT_ASC],
+//                    'desc' => ['auditory_cat.name' => SORT_DESC],
+//                    'label' => 'Cat Name'
+//                ],
+//                'buildingName' => [
+//                    'asc' => ['auditory_building.name' => SORT_ASC],
+//                    'desc' => ['auditory_building.name' => SORT_DESC],
+//                    'label' => 'building Name'
+//                ]
             ]
         ]);
 
@@ -86,15 +92,19 @@ class AuditorySearch extends Auditory
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
-            $query->joinWith(['auditory_cat']);
 
             return $dataProvider;
         }
+//        жадная загрузка
+            $query->joinWith(['cat']);
+            $query->joinWith(['building']);
 
         $query->andFilterWhere([
             'id' => $this->id,
-//            'building_id' => $this->building_id,
-//            'cat_id' => $this->cat_id,
+            
+//                закоментировать для поиска путем ввода названия            
+            'building_id' => $this->building_id,
+            'cat_id' => $this->cat_id,
 
             'num' => $this->num,
             'area' => $this->area,
@@ -107,13 +117,14 @@ class AuditorySearch extends Auditory
             ->andFilterWhere(['like', 'floor', $this->floor])
             ->andFilterWhere(['like', 'description', $this->description]);
         
-        $query->joinWith(['cat' => function ($q) {
-            $q->where('auditory_cat.name LIKE "%' . $this->catName . '%"');
-        }]);
+//                разкоментировать для поиска путем ввода названия     (убрать Join если включена жадная загрузка)  
+//        $query->joinWith(['cat' => function ($q) {
+//            $q->where('auditory_cat.name LIKE "%' . $this->catName . '%"');
+//        }]);
 
-        $query->joinWith(['building' => function ($q) {
-            $q->where('auditory_building.name LIKE "%' . $this->buildingName . '%"');
-        }]);
+//        $query->joinWith(['building' => function ($q) {
+//            $q->where('auditory_building.name LIKE "%' . $this->buildingName . '%"');
+//        }]);
 
         return $dataProvider;
     }

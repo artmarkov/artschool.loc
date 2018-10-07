@@ -79,11 +79,13 @@ class VenueSitySearch extends VenueSity
             // $query->where('0=1');
             return $dataProvider;
         }
+//        жадная загрузка
+            $query->joinWith(['country']);
 
+        $query->andWhere(['not', ['venue_sity.id' => 0]]); // убираем запись с 0 ид - 'Не определено'
         $query->andFilterWhere([
             'id' => $this->id,
         ]);
-
         $query->andFilterWhere(['like', 'venue_sity.name', $this->name]);
 
 //        $query->joinWith(['country' => function ($q) {

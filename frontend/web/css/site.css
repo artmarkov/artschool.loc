@@ -107,3 +107,6 @@ img.user-image {
      margin-right: 10px;
      margin-top: -4px;
  }
+ textarea.form-control {
+    resize: none !important;
+}

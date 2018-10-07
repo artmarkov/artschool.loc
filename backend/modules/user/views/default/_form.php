@@ -82,7 +82,7 @@ use yii\widgets\MaskedInput;
                             <?= $form->field($model, 'phone_optional')->widget(MaskedInput::className(),['mask' => '+7 (999) 999 99 99',])->textInput() ?>
                         </div>
                     </div>
-                    <?= $form->field($model, 'info')->textarea(['maxlength' => 255]) ?>
+                    <?= $form->field($model, 'info')->textarea(['rows' => 10, 'maxlength' => 1024]) ?>
              
                 </div>
             </div>

@@ -5,6 +5,8 @@ use yii\widgets\Pjax;
 use yeesoft\grid\GridView;
 use yeesoft\grid\GridQuickLinks;
 use common\models\auditory\Auditory;
+use common\models\auditory\AuditoryCat;
+use common\models\auditory\AuditoryBuilding;
 use yeesoft\helpers\Html;
 use yeesoft\grid\GridPageSize;
 
@@ -74,8 +76,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     //'id',
                     'num',
-                    'catName',
-                    'buildingName',
+                    //'catName',
+                    //'buildingName',
+                    [
+                        'attribute' => 'cat_id',
+                        'value' => 'catName',
+                        'label' => 'Name Category',
+                        'filter' => AuditoryCat::getAuditoryCatList(),
+                    ],
+                    [
+                        'attribute' => 'building_id',
+                        'value' => 'buildingName',
+                        'label' => 'Name Building',
+                        'filter' => AuditoryBuilding::getAuditoryBuildingList(),
+                    ],
                     [
                         'class' => 'yeesoft\grid\columns\StatusColumn',
                         'attribute' => 'study_flag',

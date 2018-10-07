@@ -73,11 +73,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
 
                     // 'id',
-                    // 'country_id',
                     // 'sity_id',
                     // 'district_id',
                     // 'name',
-                    'countryName',
+                    // 'countryName',
+                    [
+                        'attribute' => 'country_id',
+                        'value' => 'countryName',
+                        'label' => 'Name Country',
+                        'filter' => common\models\venue\VenueCountry::getVenueCountryList(),
+                    ],                              
                     'sityName',
                     'districtName',
                     'address',

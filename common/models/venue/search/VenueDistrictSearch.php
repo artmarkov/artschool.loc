@@ -78,7 +78,10 @@ class VenueDistrictSearch extends VenueDistrict
             // $query->where('0=1');
             return $dataProvider;
         }
+        //        жадная загрузка
+            $query->joinWith(['sity']);
 
+        $query->andWhere(['not', ['venue_district.id' => 0]]); // убираем запись с 0 ид - 'Не определено'
         $query->andFilterWhere([
             'id' => $this->id,
         ]);

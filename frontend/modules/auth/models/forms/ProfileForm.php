@@ -26,7 +26,7 @@ class ProfileForm extends User
             ['phone', 'required'],
             ['birth_date', 'required'],
             ['birth_date','validateDateCorrect'],
-            ['info', 'string', 'max' => 255],
+            ['info', 'string', 'max' => 1024],
         ];
     }
 
