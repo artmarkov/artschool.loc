@@ -1,4 +1,5 @@
 <?php
+
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'bootstrap' => ['comments', 'yee', 'log'],
@@ -33,15 +34,21 @@ return [
                 [
                     'class' => 'yii\log\DbTarget' // пример в index SiteController
                     /* 'prefix' => function ($message) { // делаем свой префикс если нужно
-                         $user = Yii::$app->has('user', true) ? Yii::$app->get('user') : null;
-                         $userID = $user ? $user->getId(false) : '-';
-                         return "[$userID]";
-                     },*/,
+                      $user = Yii::$app->has('user', true) ? Yii::$app->get('user') : null;
+                      $userID = $user ? $user->getId(false) : '-';
+                      return "[$userID]";
+                      },*/,
                     'categories' => ['my_category'], //категория лого включенав
                     'levels' => ['error', 'warning', 'info'],
                     'logVars' => [] //не добавлять в лог глобальные переменные ($_SERVER, $_SESSION...),
                 ],
             ],
+        ],
+        'reCaptcha' => [
+            'name' => 'reCaptcha',
+            'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
+            'siteKey' => '6Lf6gV4UAAAAAC1ggJh-iF4okOEjP2Jj8ICbD0M9',
+            'secret' => '6Lf6gV4UAAAAANvOPDtx_2obe-hxVKnbeDjUCcfI',
         ],
     ],
     'modules' => [

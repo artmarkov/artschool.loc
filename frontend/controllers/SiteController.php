@@ -9,7 +9,7 @@ use yeesoft\page\models\Page;
 use yeesoft\post\models\Post;
 use Yii;
 use yii\data\Pagination;
-
+use frontend\controllers\BaseController;
 /**
  * Site controller
  */

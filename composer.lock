@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "dea1b769f64dc634993cdf998fe2d252",
+    "content-hash": "a43136f18c67e176e4f9423e707ba3ef",
     "packages": [
         {
             "name": "2amigos/yii2-file-upload-widget",
@@ -998,6 +998,50 @@
                 "icon"
             ],
             "time": "2016-10-24T15:52:54+00:00"
+        },
+        {
+            "name": "himiklab/yii2-recaptcha-widget",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/himiklab/yii2-recaptcha-widget.git",
+                "reference": "cc8a023bf51db3b40f1b8532cd94fc00c532edf5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/himiklab/yii2-recaptcha-widget/zipball/cc8a023bf51db3b40f1b8532cd94fc00c532edf5",
+                "reference": "cc8a023bf51db3b40f1b8532cd94fc00c532edf5",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0.11",
+                "yiisoft/yii2-httpclient": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "himiklab\\yii2\\recaptcha\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "HimikLab",
+                    "homepage": "https://github.com/himiklab/"
+                }
+            ],
+            "description": "Yii2 Google reCAPTCHA widget",
+            "keywords": [
+                "captcha",
+                "google",
+                "recaptcha",
+                "widget",
+                "yii2"
+            ],
+            "time": "2018-07-03T13:34:52+00:00"
         },
         {
             "name": "ikimea/browser",
