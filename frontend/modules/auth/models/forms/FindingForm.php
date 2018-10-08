@@ -13,6 +13,7 @@ use yeesoft\auth\AuthModule;
 use Yii;
 use yii\base\Model;
 use dosamigos\transliterator\TransliteratorHelper;
+use himiklab\yii2\recaptcha\ReCaptchaValidator;
 
 class FindingForm extends User
 {
@@ -37,6 +38,11 @@ class FindingForm extends User
             [['first_name', 'middle_name', 'last_name'], 'string', 'max' => 124],
             [['first_name', 'middle_name', 'last_name'], 'match', 'pattern' => Yii::$app->yee->cyrillicRegexp, 'message' => Yii::t('yee', 'Only need to enter Russian letters')],
             [['birth_timestamp'],'integer'],
+            [
+                ['reCaptcha'], ReCaptchaValidator::className(),
+                'secret' => '6Lf6gV4UAAAAANvOPDtx_2obe-hxVKnbeDjUCcfI',
+                'uncheckedMessage' => Yii::t('yee/auth', 'Please confirm that you are not a bot.')
+            ],
         ];
     }
 
@@ -47,6 +53,7 @@ class FindingForm extends User
             'middle_name' => Yii::t('yee', 'Middle Name'),
             'last_name' => Yii::t('yee', 'Last Name'),
             'birth_date' => Yii::t('yee', 'Birth Date'),
+            'reCaptcha' => Yii::t('yee', 'reCaptcha'),
         ];
     }
 

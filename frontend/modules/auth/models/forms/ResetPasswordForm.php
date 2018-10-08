@@ -3,7 +3,7 @@
 namespace frontend\modules\auth\models\forms;
 
 use common\models\auth\User;
-
+use himiklab\yii2\recaptcha\ReCaptchaValidator;
 use Yii;
 use yii\base\Model;
 
@@ -35,11 +35,15 @@ class ResetPasswordForm extends Model
     public function rules()
     {
         return [
-            ['captcha', 'captcha', 'captchaAction' => '/auth/default/captcha'],
             [['email', 'username', 'captcha'], 'required'],
             [['email', 'username'], 'trim'],
             ['email', 'email'],
             ['email', 'validateEmailConfirmedAndUserActive'],
+            [
+                ['reCaptcha'], ReCaptchaValidator::className(),
+                'secret' => '6Lf6gV4UAAAAANvOPDtx_2obe-hxVKnbeDjUCcfI',
+                'uncheckedMessage' => Yii::t('yee/auth', 'Please confirm that you are not a bot.')
+            ],
         ];
     }
 
@@ -75,7 +79,7 @@ class ResetPasswordForm extends Model
         return [
             'email' => 'E-mail',
             'username' => Yii::t('yee/auth', 'Login'),
-            'captcha' => Yii::t('yee/auth', 'Captcha'),
+            'reCaptcha' => Yii::t('yee', 'reCaptcha'),
         ];
     }
 

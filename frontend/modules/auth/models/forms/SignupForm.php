@@ -14,7 +14,7 @@ class SignupForm extends Model
     public $email;
     public $password;
     public $repeat_password;
-    public $captcha;
+//    public $captcha;
 
     /**
      * @inheritdoc
@@ -23,7 +23,7 @@ class SignupForm extends Model
     {
         $rules = [
             ['id', 'required'], // делаем update по ключу
-            ['captcha', 'captcha', 'captchaAction' => '/auth/default/captcha'],
+//            ['captcha', 'captcha', 'captchaAction' => '/auth/default/captcha'],
             [['username', 'email', 'password', 'repeat_password', 'captcha'], 'required'],
             [['username', 'email', 'password', 'repeat_password'], 'trim'],
             [['email'], 'email'],
@@ -35,7 +35,7 @@ class SignupForm extends Model
                 'targetClass' => 'yeesoft\models\User',
                 'targetAttribute' => 'email',
             ],*/
-            ['username', 'purgeXSS'],
+//            ['username', 'purgeXSS'],
             ['username', 'string', 'max' => 50],
             /*['username', 'match', 'pattern' => Yii::$app->yee->usernameRegexp, 'message' => Yii::t('yee/auth', 'The username should contain only Latin letters, numbers and the following characters: "-" and "_".')],
             ['username', 'match', 'not' => true, 'pattern' => Yii::$app->yee->usernameBlackRegexp, 'message' => Yii::t('yee/auth', 'Username contains not allowed characters or words.')],
@@ -67,7 +67,7 @@ class SignupForm extends Model
             'email' => Yii::t('yee/auth', 'E-mail'),
             'password' => Yii::t('yee/auth', 'Password'),
             'repeat_password' => Yii::t('yee/auth', 'Repeat password'),
-            'captcha' => Yii::t('yee/auth', 'Captcha'),
+//            'captcha' => Yii::t('yee/auth', 'Captcha'),
         ];
     }
 

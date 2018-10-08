@@ -42,86 +42,86 @@ $col3 = (int) ($col12 / 4);
         <div class="col-md-<?= $col3 ?>">
             <div class="panel panel-default">
                 <div class="panel-body">
-            <div class="image-uploader">
-                <?php
-                ActiveForm::begin([
-                    'method' => 'post',
-                    'action' => Url::to(['/auth/default/upload-avatar']),
-                    'options' => ['enctype' => 'multipart/form-data', 'autocomplete' => 'off'],
-                ])
-                ?>
+                    <div class="image-uploader">
+                        <?php
+                        ActiveForm::begin([
+                            'method' => 'post',
+                            'action' => Url::to(['/auth/default/upload-avatar']),
+                            'options' => ['enctype' => 'multipart/form-data', 'autocomplete' => 'off'],
+                        ])
+                        ?>
 
-                <?php $avatar = ($userAvatar = Yii::$app->user->identity->getAvatar('large')) ? $userAvatar : AvatarAsset::getDefaultAvatar('large') ?>
-                <div class="image-preview" data-default-avatar="<?= $avatar ?>">
-                    <img src="<?= $avatar ?>"/>
+                        <?php $avatar = ($userAvatar = Yii::$app->user->identity->getAvatar('large')) ? $userAvatar : AvatarAsset::getDefaultAvatar('large') ?>
+                        <div class="image-preview" data-default-avatar="<?= $avatar ?>">
+                            <img src="<?= $avatar ?>"/>
+                        </div>
+                        <div class="image-actions">
+                            <span class="btn btn-primary btn-file"
+                                  title="<?= Yii::t('yee/auth', 'Change profile picture') ?>" data-toggle="tooltip"
+                                  data-placement="left">
+                                <i class="fa fa-folder-open"></i>
+                                <?= Html::fileInput('image', null, ['class' => 'image-input']) ?>
+                            </span>
+
+                            <?=
+                            Html::submitButton('<i class="fa fa-save"></i>', [
+                                'class' => 'btn btn-primary image-submit',
+                                'title' => Yii::t('yee/auth', 'Save profile picture'),
+                                'data-toggle' => 'tooltip',
+                                'data-placement' => 'top',
+                            ])
+                            ?>
+
+                            <span class="btn btn-primary image-remove"
+                                  data-action="<?= Url::to(['/auth/default/remove-avatar']) ?>"
+                                  title="<?= Yii::t('yee/auth', 'Remove profile picture') ?>" data-toggle="tooltip"
+                                  data-placement="right">
+                                <i class="fa fa-remove"></i>
+                            </span>
+                        </div>
+                        <div class="upload-status"></div>
+
+                        <?php ActiveForm::end() ?>
+                    </div>
+
+                    <!-- <div class="oauth-services">
+                         <div class="oauth-authorized-services">
+                             <div class="label label-primary space-down"
+                                  title="<?/*= Yii::t('yee/auth', 'Click to unlink service') */?>" data-toggle="tooltip"
+                                  data-placement="right">
+                                 <?/*= Yii::t('yee/auth', 'Authorized Services') */?>:
+                             </div>
+         
+                             <?/*=
+                             AuthChoice::widget([
+                                 'baseAuthUrl' => ['/auth/default/unlink-oauth', 'language' => false],
+                                 'displayClients' => AuthChoice::DISPLAY_AUTHORIZED,
+                                 'popupMode' => false,
+                                 'shortView' => true,
+                             ])
+                             */?>
+                         </div>
+         
+                         <div>
+                             <div class="label label-primary space-down"
+                                  title="<?/*= Yii::t('yee/auth', 'Click to connect with service') */?>" data-toggle="tooltip"
+                                  data-placement="right">
+                                 <?/*= Yii::t('yee/auth', 'Non Authorized Services') */?>:
+                             </div>
+         
+                             <?/*=
+                             AuthChoice::widget([
+                                 'baseAuthUrl' => ['/auth/default/oauth', 'language' => false],
+                                 'displayClients' => AuthChoice::DISPLAY_NON_AUTHORIZED,
+                                 'popupMode' => false,
+                                 'shortView' => true,
+                             ])
+                             */?>
+                         </div>
+                     </div>-->
+
                 </div>
-                <div class="image-actions">
-                    <span class="btn btn-primary btn-file"
-                          title="<?= Yii::t('yee/auth', 'Change profile picture') ?>" data-toggle="tooltip"
-                          data-placement="left">
-                        <i class="fa fa-folder-open"></i>
-                        <?= Html::fileInput('image', null, ['class' => 'image-input']) ?>
-                    </span>
-
-                    <?=
-                    Html::submitButton('<i class="fa fa-save"></i>', [
-                        'class' => 'btn btn-primary image-submit',
-                        'title' => Yii::t('yee/auth', 'Save profile picture'),
-                        'data-toggle' => 'tooltip',
-                        'data-placement' => 'top',
-                    ])
-                    ?>
-
-                    <span class="btn btn-primary image-remove"
-                          data-action="<?= Url::to(['/auth/default/remove-avatar']) ?>"
-                          title="<?= Yii::t('yee/auth', 'Remove profile picture') ?>" data-toggle="tooltip"
-                          data-placement="right">
-                        <i class="fa fa-remove"></i>
-                    </span>
-                </div>
-                <div class="upload-status"></div>
-
-                <?php ActiveForm::end() ?>
             </div>
-
-           <!-- <div class="oauth-services">
-                <div class="oauth-authorized-services">
-                    <div class="label label-primary space-down"
-                         title="<?/*= Yii::t('yee/auth', 'Click to unlink service') */?>" data-toggle="tooltip"
-                         data-placement="right">
-                        <?/*= Yii::t('yee/auth', 'Authorized Services') */?>:
-                    </div>
-
-                    <?/*=
-                    AuthChoice::widget([
-                        'baseAuthUrl' => ['/auth/default/unlink-oauth', 'language' => false],
-                        'displayClients' => AuthChoice::DISPLAY_AUTHORIZED,
-                        'popupMode' => false,
-                        'shortView' => true,
-                    ])
-                    */?>
-                </div>
-
-                <div>
-                    <div class="label label-primary space-down"
-                         title="<?/*= Yii::t('yee/auth', 'Click to connect with service') */?>" data-toggle="tooltip"
-                         data-placement="right">
-                        <?/*= Yii::t('yee/auth', 'Non Authorized Services') */?>:
-                    </div>
-
-                    <?/*=
-                    AuthChoice::widget([
-                        'baseAuthUrl' => ['/auth/default/oauth', 'language' => false],
-                        'displayClients' => AuthChoice::DISPLAY_NON_AUTHORIZED,
-                        'popupMode' => false,
-                        'shortView' => true,
-                    ])
-                    */?>
-                </div>
-            </div>-->
-
-        </div>
-        </div>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">
@@ -151,7 +151,7 @@ $col3 = (int) ($col12 / 4);
                             <span><?= $model->updatedDatetime; ?></span>
                         </div>
                     </div>
-                 </div>
+                </div>
             </div>
         </div>
 
@@ -167,9 +167,9 @@ $col3 = (int) ($col12 / 4);
             <div class="panel panel-default">
                 <div class="panel-body">
 
-<!--                    --><?//= $form->field($model, 'username')->textInput(['maxlength' => 255, 'autofocus' => false]) ?>
+                    <!--                    --><?//= $form->field($model, 'username')->textInput(['maxlength' => 255, 'autofocus' => false]) ?>
 
-                    <?= $form->field($model, 'email')->textInput(['maxlength' => 255, 'autofocus' => false])->hint(Yii::t('yee/auth', 'After changing the E-mail confirmation is required'))  ?>
+                    <?= $form->field($model, 'email')->textInput(['maxlength' => 255, 'autofocus' => false])->hint(Yii::t('yee/auth', 'After changing the E-mail confirmation is required')) ?>
 
                 </div>
             </div>
@@ -187,37 +187,25 @@ $col3 = (int) ($col12 / 4);
                         <div class="col-md-<?= $col4 ?>">
                             <?= $form->field($model, 'middle_name')->textInput(['maxlength' => 124]) ?>
                         </div>
-                       </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-md-<?= $col3 ?>">
                             <?= $form->field($model, 'gender')->dropDownList(yeesoft\models\User::getGenderList()) ?>
                         </div>
                         <div class="col-md-<?= $col3 ?>">
-                            <?= $form->field($model, 'birth_date')->widget(MaskedInput::className(),['mask' => '99-99-9999',])->textInput() ?>
+                            <?= $form->field($model, 'birth_date')->widget(MaskedInput::className(), ['mask' => '99-99-9999',])->textInput() ?>
                         </div>
                         <div class="col-md-<?= $col3 ?>">
-                            <?= $form->field($model, 'snils')->widget(MaskedInput::className(),['mask' => '999-999-999 99',])->textInput() ?>
+                            <?= $form->field($model, 'snils')->widget(MaskedInput::className(), ['mask' => '999-999-999 99',])->textInput() ?>
                         </div>
                     </div>
-                    <!--<div class="row">
-                        <div class="col-md-<?/*= $col3 */?>">
-                            <?/*= $form->field($model, 'birth_day')->textInput(['maxlength' => 2]) */?>
-                        </div>
-                        <div class="col-md-<?/*= $col3 */?>">
-                            <?/*= $form->field($model, 'birth_month')->dropDownList(YeeHelper::getMonthsList()) */?>
-                        </div>
-                        <div class="col-md-<?/*= $col3 */?>">
-                            <?/*= $form->field($model, 'birth_year')->textInput(['maxlength' => 4]) */?>
-                        </div>
-                    </div>-->
-                    
                     <div class="row">
                         <div class="col-md-<?= $col6 ?>">
-                            <?= $form->field($model, 'phone')->widget(MaskedInput::className(),['mask' => '+7 (999) 999 99 99',])->textInput() ?>
+                            <?= $form->field($model, 'phone')->widget(MaskedInput::className(), ['mask' => '+7 (999) 999 99 99',])->textInput() ?>
                         </div>
                         <div class="col-md-<?= $col6 ?>">
-                            <?= $form->field($model, 'phone_optional')->widget(MaskedInput::className(),['mask' => '+7 (999) 999 99 99',])->textInput() ?>
+                            <?= $form->field($model, 'phone_optional')->widget(MaskedInput::className(), ['mask' => '+7 (999) 999 99 99',])->textInput() ?>
                         </div>
                     </div>
 
@@ -225,9 +213,9 @@ $col3 = (int) ($col12 / 4);
 
                 </div>
             </div>
-            
+
             <?= Html::submitButton(Yii::t('yee/auth', 'Save Profile'), ['class' => 'btn btn-primary']) ?>
- 
+
 
         </div>
         <?php ActiveForm::end(); ?>
