@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4511f3b13d1fd1fff5e7e3dfd84bf985",
+    "content-hash": "dea1b769f64dc634993cdf998fe2d252",
     "packages": [
         {
             "name": "2amigos/yii2-file-upload-widget",
@@ -553,7 +553,7 @@
         },
         {
             "name": "bower-asset/metismenu",
-            "version": "v3.0.3",
+            "version": "v2.7.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/onokumus/metismenu.git",
@@ -1259,31 +1259,26 @@
         },
         {
             "name": "kartik-v/yii2-widget-depdrop",
-            "version": "dev-master",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-depdrop.git",
-                "reference": "0244dc1b9c8529e85f4ac846934c4578c68be2a2"
+                "reference": "6918ca6f7d7be153c80f6aa9c261f9b333293e9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-depdrop/zipball/0244dc1b9c8529e85f4ac846934c4578c68be2a2",
-                "reference": "0244dc1b9c8529e85f4ac846934c4578c68be2a2",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-depdrop/zipball/6918ca6f7d7be153c80f6aa9c261f9b333293e9c",
+                "reference": "6918ca6f7d7be153c80f6aa9c261f9b333293e9c",
                 "shasum": ""
             },
             "require": {
                 "kartik-v/dependent-dropdown": "~1.4",
-                "kartik-v/yii2-krajee-base": "~1.9"
+                "kartik-v/yii2-krajee-base": "~1.7"
             },
             "type": "yii2-extension",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
-                    "kartik\\depdrop\\": "src"
+                    "kartik\\depdrop\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1309,7 +1304,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2018-08-17T08:59:06+00:00"
+            "time": "2016-01-10T17:30:48+00:00"
         },
         {
             "name": "league/flysystem",

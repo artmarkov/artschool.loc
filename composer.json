@@ -44,8 +44,8 @@
     "beaten-sect0r/yii2-db-manager": "*",
     "cranky4/change-log-behavior": "*",
     "kartik-v/yii2-widget-datepicker": "@dev",
-    "kartik-v/yii2-widget-depdrop": "dev-master"
-
+    "kartik-v/yii2-widget-depdrop": "@dev"
+        
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "~2.0.5",
