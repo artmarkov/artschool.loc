@@ -65,7 +65,7 @@ class VenueDistrictSearch extends VenueDistrict
                 'sityName' => [
                     'asc' => ['venue_sity.name' => SORT_ASC],
                     'desc' => ['venue_sity.name' => SORT_DESC],
-                    'label' => 'Sity Name'
+                    'label' => Yii::t('yee/guide', 'Name Sity')
                 ]
             ]
         ]);

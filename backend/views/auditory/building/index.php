@@ -11,8 +11,8 @@ use yeesoft\grid\GridPageSize;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Auditory Buildings';
-$this->params['breadcrumbs'][] = ['label' => 'Auditories', 'url' => ['auditory/default/index']];
+$this->title = Yii::t('yee/guide','Buildings');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide','Auditories'), 'url' => ['auditory/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="auditory-building-index">

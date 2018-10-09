@@ -68,7 +68,7 @@ class VenueSitySearch extends VenueSity
                 'countryName' => [
                     'asc' => ['venue_country.name' => SORT_ASC],
                     'desc' => ['venue_country.name' => SORT_DESC],
-                    'label' => 'Country Name'
+                    'label' => Yii::t('yee/guide', 'Name Country')
                 ]
             ]
         ]);

@@ -52,17 +52,17 @@ class Auditory extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('yee/auditory', 'ID'),
-            'building_id' => Yii::t('yee/auditory', 'Building ID'),
-            'cat_id' => Yii::t('yee/auditory', 'Cat ID'),
-            'study_flag' => Yii::t('yee/auditory', 'Study Flag'),
-            'num' => Yii::t('yee/auditory', 'Num'),
-            'name' => Yii::t('yee/auditory', 'Name'),
-            'floor' => Yii::t('yee/auditory', 'Floor'),
-            'area' => Yii::t('yee/auditory', 'Area'),
-            'capacity' => Yii::t('yee/auditory', 'Capacity'),
-            'description' => Yii::t('yee/auditory', 'Description'),
-            'order' => Yii::t('yee/auditory', 'Order'),
+            'id' => Yii::t('yee/guide', 'ID'),
+            'building_id' => Yii::t('yee/guide', 'Building ID'),
+            'cat_id' => Yii::t('yee/guide', 'Cat ID'),
+            'study_flag' => Yii::t('yee/guide', 'Study Flag'),
+            'num' => Yii::t('yee/guide', 'Num Auditory'),
+            'name' => Yii::t('yee/guide', 'Name Auditory'),
+            'floor' => Yii::t('yee/guide', 'Floor'),
+            'area' => Yii::t('yee/guide', 'Area Auditory'),
+            'capacity' => Yii::t('yee/guide', 'Capacity Auditory'),
+            'description' => Yii::t('yee/guide', 'Description Auditory'),
+            'order' => Yii::t('yee/guide', 'Order'),
         ];
     }
 

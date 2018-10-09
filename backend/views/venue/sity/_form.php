@@ -40,7 +40,7 @@ use common\models\venue\VenueCountry;
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <div class="record-info">
+<!--                    <div class="record-info">-->
                         <div class="form-group clearfix">
                             <label class="control-label"
                                    style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['id'] ?>
@@ -50,7 +50,7 @@ use common\models\venue\VenueCountry;
 
                         <?= $form->field($model, 'country_id')
                             ->dropDownList(VenueCountry::getVenueCountryList())
-                            ->label('Name Country ');
+                            ->label(Yii::t('yee/guide', 'Name Country'));
                         ?>
 
                         <div class="form-group">
@@ -67,9 +67,12 @@ use common\models\venue\VenueCountry;
                                             'method' => 'post',
                                         ],
                                     ]) ?>
+                                <?= Html::a(Yii::t('yee', 'Add New'), ['venue/sity/create'],
+                                    ['class' => 'btn btn-primary pull-right'])                                ?>
+
                             <?php endif; ?>
                         </div>
-                    </div>
+<!--                    </div>-->
                 </div>
             </div>
 

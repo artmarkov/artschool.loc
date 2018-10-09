@@ -46,10 +46,10 @@ class VenueDistrict extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('yee/venue', 'ID'),
-            'sity_id' => Yii::t('yee/venue', 'Sity ID'),
-            'name' => Yii::t('yee/venue', 'Name District'),
-            'slug' => Yii::t('yee/venue', 'Slug'),
+            'id' => Yii::t('yee/guide', 'ID'),
+            'sity_id' => Yii::t('yee/guide', 'Sity ID'),
+            'name' => Yii::t('yee/guide', 'Name District'),
+            'slug' => Yii::t('yee/guide', 'Slug'),
         ];
     }
 

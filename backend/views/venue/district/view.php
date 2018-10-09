@@ -7,7 +7,7 @@ use yeesoft\helpers\Html;
 /* @var $model common\models\venue\VenueDistrict */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Venue Districts', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide','Districts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="venue-district-view">

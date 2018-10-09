@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\venue\VenuePlace */
 
-$this->title = 'Create Venue Place';
-$this->params['breadcrumbs'][] = ['label' => 'Venue Places', 'url' => ['index']];
+$this->title = Yii::t('yee/guide','Create Place');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide','Places'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

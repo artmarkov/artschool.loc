@@ -37,7 +37,6 @@ use common\models\venue\VenueCountry;
  */
 class VenuePlace extends \yii\db\ActiveRecord
 {
-    public $user_id;
     /**
      * {@inheritdoc}
      */
@@ -84,23 +83,23 @@ class VenuePlace extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('yee/venue', 'ID'),
-            'country_id' => Yii::t('yee/venue', 'Country ID'),
-            'sity_id' => Yii::t('yee/venue', 'Sity ID'),
-            'district_id' => Yii::t('yee/venue', 'District ID'),
-            'name' => Yii::t('yee/venue', 'Name Place'),
-            'address' => Yii::t('yee/venue', 'Address'),
-            'phone' => Yii::t('yee/venue', 'Phone'),
-            'phone_optional' => Yii::t('yee/venue', 'Phone Optional'),
-            'email' => Yii::t('yee/venue', 'Email'),
-            'сontact_person' => Yii::t('yee/venue', 'сontact Person'),
-            'latitude' => Yii::t('yee/venue', 'Latitude'),
-            'longitude' => Yii::t('yee/venue', 'Longitude'),
-            'description' => Yii::t('yee/venue', 'Description'),
-            'created_at' => Yii::t('yee/venue', 'Created At'),
-            'updated_at' => Yii::t('yee/venue', 'Updated At'),
-            'created_by' => Yii::t('yee/venue', 'Created By'),
-            'updated_by' => Yii::t('yee/venue', 'Updated By'),
+            'id' => Yii::t('yee/guide', 'ID'),
+            'country_id' => Yii::t('yee/guide', 'Country ID'),
+            'sity_id' => Yii::t('yee/guide', 'Sity ID'),
+            'district_id' => Yii::t('yee/guide', 'District ID'),
+            'name' => Yii::t('yee/guide', 'Name Place'),
+            'address' => Yii::t('yee/guide', 'Address'),
+            'phone' => Yii::t('yee/guide', 'Phone'),
+            'phone_optional' => Yii::t('yee/guide', 'Phone Optional'),
+            'email' => Yii::t('yee/guide', 'Email'),
+            'сontact_person' => Yii::t('yee/guide', 'Contact Person'),
+            'latitude' => Yii::t('yee/guide', 'Latitude'),
+            'longitude' => Yii::t('yee/guide', 'Longitude'),
+            'description' => Yii::t('yee/guide', 'Description Venue'),
+            'created_at' => Yii::t('yee', 'Created At'),
+            'updated_at' => Yii::t('yee', 'Updated At'),
+            'created_by' => Yii::t('yee', 'Created By'),
+            'updated_by' => Yii::t('yee', 'Updated By'),
         ];
     }
 

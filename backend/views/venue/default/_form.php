@@ -68,7 +68,7 @@ use yii\helpers\Url;
                     echo $form->field($model, 'country_id')->dropDownList(VenueCountry::getVenueCountryList(), [
                         'prompt' => 'Select Country...',
                         'id' => 'country_id'
-                    ])->label('Name Country');
+                    ])->label(Yii::t('yee/guide', 'Name Country'));
                     echo $form->field($model, 'sity_id')->widget(DepDrop::classname(), [
                         'data' => VenueSity::getSityByName($model ->country_id),
                         'options' => ['prompt' => 'Select Sity...', 'id' => 'sity_id'],
@@ -77,7 +77,7 @@ use yii\helpers\Url;
                             'placeholder' => 'Select Sity...',
                             'url' => Url::to(['/venue/default/sity'])
                         ]
-                    ])->label('Name Sity');
+                    ])->label(Yii::t('yee/guide', 'Name Sity'));
 
                     echo $form->field($model, 'district_id')->widget(DepDrop::classname(), [
                         'data' => VenueDistrict::getDistrictByName($model ->sity_id),
@@ -87,7 +87,7 @@ use yii\helpers\Url;
                             'placeholder' => 'Select District...',
                             'url' => Url::to(['/venue/default/district'])
                         ]
-                    ])->label('Name District');
+                    ])->label(Yii::t('yee/guide', 'Name District'));
                     ?>
                       
                     
@@ -109,6 +109,9 @@ use yii\helpers\Url;
                                             'method' => 'post',
                                         ],
                                     ]) ?>
+                                <?= Html::a(Yii::t('yee', 'Add New'), ['/venue/default/create'],
+                                    ['class' => 'btn btn-primary pull-right'])
+                                ?>
                             <?php endif; ?>
                         </div>
                     

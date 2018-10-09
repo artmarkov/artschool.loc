@@ -71,18 +71,15 @@ class VenuePlaceSearch extends VenuePlace
                 'country_id',
 //                'countryName' => [
 //                    'asc' => ['venue_country.name' => SORT_ASC],
-//                    'desc' => ['venue_country.name' => SORT_DESC],
-//                    'label' => 'Country Name'
+//                    'desc' => ['venue_country.name' => SORT_DESC]
 //                ],
                 'districtName' => [
                     'asc' => ['venue_district.name' => SORT_ASC],
-                    'desc' => ['venue_district.name' => SORT_DESC],
-                    'label' => 'District Name'
+                    'desc' => ['venue_district.name' => SORT_DESC]
                 ],
                 'sityName' => [
                     'asc' => ['venue_sity.name' => SORT_ASC],
-                    'desc' => ['venue_sity.name' => SORT_DESC],
-                    'label' => 'Sity Name'
+                    'desc' => ['venue_sity.name' => SORT_DESC]
                 ]
             ]
         ]);

@@ -7,7 +7,7 @@ use yeesoft\helpers\Html;
 /* @var $model common\models\Auditory */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Auditories', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide','Auditories'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="auditory-view">

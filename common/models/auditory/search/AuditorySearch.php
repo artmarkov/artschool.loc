@@ -77,12 +77,12 @@ class AuditorySearch extends Auditory
 //                'catName' => [
 //                    'asc' => ['auditory_cat.name' => SORT_ASC],
 //                    'desc' => ['auditory_cat.name' => SORT_DESC],
-//                    'label' => 'Cat Name'
+//                    'label' => Yii::t('yee/guide', 'Name Cat')
 //                ],
 //                'buildingName' => [
 //                    'asc' => ['auditory_building.name' => SORT_ASC],
 //                    'desc' => ['auditory_building.name' => SORT_DESC],
-//                    'label' => 'building Name'
+//                    'label' => Yii::t('yee/guide', 'Name Building')
 //                ]
             ]
         ]);

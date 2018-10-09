@@ -7,7 +7,7 @@ use yeesoft\helpers\Html;
 /* @var $model common\models\venue\VenueCountry */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Venue Countries', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide','Countries'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="venue-country-view">

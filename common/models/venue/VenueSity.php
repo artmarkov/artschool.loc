@@ -47,11 +47,11 @@ class VenueSity extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('yee/venue', 'ID'),
-            'country_id' => Yii::t('yee/venue', 'Country ID'),
-            'name' => Yii::t('yee/venue', 'Name Sity'),
-            'latitude' => Yii::t('yee/venue', 'Latitude'),
-            'longitude' => Yii::t('yee/venue', 'Longitude'),
+            'id' => Yii::t('yee/guide', 'ID'),
+            'country_id' => Yii::t('yee/guide', 'Country ID'),
+            'name' => Yii::t('yee/guide', 'Name Sity'),
+            'latitude' => Yii::t('yee/guide', 'Latitude'),
+            'longitude' => Yii::t('yee/guide', 'Longitude'),
         ];
     }
 

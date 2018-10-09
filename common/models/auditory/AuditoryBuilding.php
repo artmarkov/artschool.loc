@@ -41,10 +41,10 @@ class AuditoryBuilding extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('yee/auditory', 'ID'),
-            'name' => Yii::t('yee/auditory', 'Building Name'),
-            'slug' => Yii::t('yee/auditory', 'Building Slug'),
-            'address' => Yii::t('yee/auditory', 'Address'),
+            'id' => Yii::t('yee/guide', 'ID'),
+            'name' => Yii::t('yee/guide', 'Name Building'),
+            'slug' => Yii::t('yee/guide', 'Slug'),
+            'address' => Yii::t('yee/guide', 'Address'),
         ];
     }
     public function getAuditory()

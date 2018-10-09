@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\AuditoryBuilding */
 
-$this->title = 'Create Auditory Building';
-$this->params['breadcrumbs'][] = ['label' => 'Auditory Buildings', 'url' => ['index']];
+$this->title = Yii::t('yee/guide','Create Building');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide','Buildings'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

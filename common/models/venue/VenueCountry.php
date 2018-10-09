@@ -43,9 +43,9 @@ class VenueCountry extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('yee/venue', 'ID'),
-            'name' => Yii::t('yee/venue', 'Name Country'),
-            'fips' => Yii::t('yee/venue', 'Fips'),
+            'id' => Yii::t('yee/guide', 'ID'),
+            'name' => Yii::t('yee/guide', 'Name Country'),
+            'fips' => Yii::t('yee/guide', 'Fips'),
         ];
     }
 

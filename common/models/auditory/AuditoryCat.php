@@ -43,11 +43,11 @@ class AuditoryCat extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('yee/auditory', 'ID'),
-            'name' => Yii::t('yee/auditory', 'Auditory Category Name'),
-            'description' => Yii::t('yee/auditory', 'Auditory Category Description'),
-            'study_flag' => Yii::t('yee/auditory', 'Study Opportunity'),
-            'order' => Yii::t('yee/auditory', 'Order'),
+            'id' => Yii::t('yee/guide', 'ID'),
+            'name' => Yii::t('yee/guide', 'Name Auditory Category'),
+            'description' => Yii::t('yee/guide', 'Description Auditory Category'),
+            'study_flag' => Yii::t('yee/guide', 'Study Opportunity'),
+            'order' => Yii::t('yee/guide', 'Order'),
         ];
     }
     public function getAuditory()

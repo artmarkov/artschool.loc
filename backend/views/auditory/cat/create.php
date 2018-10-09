@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\AuditoryCat */
 
-$this->title = 'Create Auditory Cat';
-$this->params['breadcrumbs'][] = ['label' => 'Auditory Cats', 'url' => ['index']];
+$this->title = Yii::t('yee/guide','Create Auditory Cats');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide','Auditory Cats'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

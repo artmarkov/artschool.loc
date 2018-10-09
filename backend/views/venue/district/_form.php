@@ -39,7 +39,7 @@ use common\models\venue\VenueSity;
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <div class="record-info">
+<!--                    <div class="record-info">-->
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
                             <span><?=  $model->id ?></span>
@@ -47,7 +47,7 @@ use common\models\venue\VenueSity;
 
                         <?= $form->field($model, 'sity_id')
                             ->dropDownList(VenueSity::getVenueSityList())
-                            ->label('Name Sity');
+                            ->label(Yii::t('yee/guide', 'Name Sity'));
                         ?>
 
                         <div class="form-group">
@@ -64,9 +64,13 @@ use common\models\venue\VenueSity;
                                         'method' => 'post',
                                     ],
                                 ]) ?>
+                                <?= Html::a(Yii::t('yee', 'Add New'), ['/venue/district/create'],
+                                    ['class' => 'btn btn-primary pull-right'])
+                                ?>
+
                             <?php endif; ?>
                         </div>
-                    </div>
+<!--                    </div>-->
                 </div>
             </div>
 

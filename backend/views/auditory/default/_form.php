@@ -49,7 +49,7 @@ use common\models\auditory\AuditoryCat;
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <div class="record-info">
+<!--                    <div class="record-info">-->
                         <div class="form-group clearfix">
                             <label class="control-label"
                                    style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['id'] ?>
@@ -59,12 +59,12 @@ use common\models\auditory\AuditoryCat;
                         </div>
                         <?= $form->field($model, 'building_id')
                             ->dropDownList(AuditoryBuilding::getAuditoryBuildingList())
-                            ->label('Name Building');
+                            ->label(Yii::t('yee/guide', 'Name Building'));
                         ?>
 
                         <?= $form->field($model, 'cat_id')
                             ->dropDownList(AuditoryCat::getAuditoryCatList())
-                            ->label('Name Category');
+                            ->label(Yii::t('yee/guide', 'Name Auditory Category'));
                         ?>
 
                         <?= $form->field($model, 'order')->textInput() ?>
@@ -87,7 +87,7 @@ use common\models\auditory\AuditoryCat;
                                     ]) ?>
                             <?php endif; ?>
                         </div>
-                    </div>
+<!--                    </div>-->
                 </div>
             </div>
 
