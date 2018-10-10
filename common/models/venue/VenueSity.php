@@ -34,7 +34,7 @@ class VenueSity extends \yii\db\ActiveRecord
     {
         return [
             [['country_id'], 'integer'],
-            [['name'], 'required'],
+            [['name','country_id'], 'required'],
             [['latitude', 'longitude'], 'number'],
             [['name'], 'string', 'max' => 64],
             [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => VenueCountry::className(), 'targetAttribute' => ['country_id' => 'id']],

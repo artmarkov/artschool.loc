@@ -130,6 +130,11 @@ class VenuePlace extends \yii\db\ActiveRecord
     {
         return $this->district->name;
     }
+    /* Геттер для короткого названия округа */
+    public function getDistrictSlug()
+    {
+        return $this->district->slug;
+    }
 
     /**
      * @return \yii\db\ActiveQuery

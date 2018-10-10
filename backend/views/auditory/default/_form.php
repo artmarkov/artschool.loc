@@ -58,13 +58,15 @@ use common\models\auditory\AuditoryCat;
 
                         </div>
                         <?= $form->field($model, 'building_id')
-                            ->dropDownList(AuditoryBuilding::getAuditoryBuildingList())
-                            ->label(Yii::t('yee/guide', 'Name Building'));
+                            ->dropDownList(AuditoryBuilding::getAuditoryBuildingList(), [
+                                'prompt' => Yii::t('yee/guide', 'Select Building...')
+                            ])->label(Yii::t('yee/guide', 'Name Building'));
                         ?>
 
                         <?= $form->field($model, 'cat_id')
-                            ->dropDownList(AuditoryCat::getAuditoryCatList())
-                            ->label(Yii::t('yee/guide', 'Name Auditory Category'));
+                            ->dropDownList(AuditoryCat::getAuditoryCatList(), [
+                                'prompt' => Yii::t('yee/guide', 'Select Cat...')
+                            ])->label(Yii::t('yee/guide', 'Name Auditory Category'));
                         ?>
 
                         <?= $form->field($model, 'order')->textInput() ?>

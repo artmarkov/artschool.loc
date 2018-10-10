@@ -66,25 +66,25 @@ use yii\helpers\Url;
 
                     <?php
                     echo $form->field($model, 'country_id')->dropDownList(VenueCountry::getVenueCountryList(), [
-                        'prompt' => 'Select Country...',
+                        'prompt' => Yii::t('yee/guide','Select Country...'),
                         'id' => 'country_id'
                     ])->label(Yii::t('yee/guide', 'Name Country'));
                     echo $form->field($model, 'sity_id')->widget(DepDrop::classname(), [
                         'data' => VenueSity::getSityByName($model ->country_id),
-                        'options' => ['prompt' => 'Select Sity...', 'id' => 'sity_id'],
+                        'options' => ['prompt' =>  Yii::t('yee/guide','Select Sity...'), 'id' => 'sity_id'],
                         'pluginOptions' => [
                             'depends' => ['country_id'],
-                            'placeholder' => 'Select Sity...',
+                            'placeholder' =>  Yii::t('yee/guide','Select Sity...'),
                             'url' => Url::to(['/venue/default/sity'])
                         ]
                     ])->label(Yii::t('yee/guide', 'Name Sity'));
 
                     echo $form->field($model, 'district_id')->widget(DepDrop::classname(), [
                         'data' => VenueDistrict::getDistrictByName($model ->sity_id),
-                        'options' => ['prompt' => 'Select District...'],
+                        'options' => ['prompt' =>  Yii::t('yee/guide','Select District...')],
                         'pluginOptions' => [
                             'depends' => ['sity_id'],
-                            'placeholder' => 'Select District...',
+                            'placeholder' =>  Yii::t('yee/guide','Select District...'),
                             'url' => Url::to(['/venue/default/district'])
                         ]
                     ])->label(Yii::t('yee/guide', 'Name District'));

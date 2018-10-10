@@ -45,10 +45,11 @@ use common\models\venue\VenueSity;
                             <span><?=  $model->id ?></span>
                         </div>
 
-                        <?= $form->field($model, 'sity_id')
-                            ->dropDownList(VenueSity::getVenueSityList())
-                            ->label(Yii::t('yee/guide', 'Name Sity'));
-                        ?>
+                    <?= $form->field($model, 'sity_id')
+                        ->dropDownList(VenueSity::getVenueSityList(), [
+                            'prompt' => Yii::t('yee/guide', 'Select Sity...')
+                        ])->label(Yii::t('yee/guide', 'Name Sity'));
+                    ?>
 
                         <div class="form-group">
                             <?php  if ($model->isNewRecord): ?>
@@ -57,7 +58,7 @@ use common\models\venue\VenueSity;
                             <?php  else: ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
                                 <?= Html::a(Yii::t('yee', 'Delete'),
-                                    ['/venue-district/default/delete', 'id' => $model->id], [
+                                    ['/venue/district/delete', 'id' => $model->id], [
                                     'class' => 'btn btn-default',
                                     'data' => [
                                         'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),

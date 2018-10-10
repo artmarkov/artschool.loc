@@ -75,3 +75,6 @@ a.desc:after {
 .grid-view th {
     white-space: nowrap;
 }
+div.panel-body {
+    overflow: auto !important;
+}

@@ -107,6 +107,10 @@ img.user-image {
      margin-right: 10px;
      margin-top: -4px;
  }
- textarea.form-control {
+textarea.form-control {
     resize: none !important;
 }
+div.panel-body {
+    overflow: auto !important;
+}
+

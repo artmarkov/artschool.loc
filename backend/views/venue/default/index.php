@@ -12,7 +12,7 @@ use yeesoft\grid\GridPageSize;
 /* @var $searchModel common\models\venue\search\VenuePlaceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('yee/guide','Places');
+$this->title = Yii::t('yee/guide', 'Places');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="venue-place-index">
@@ -88,8 +88,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         'label' => Yii::t('yee/guide', 'Name Sity'),
                     ],
                     [
-                        'attribute' => 'districtName',
-                        'label' => Yii::t('yee/guide', 'Name District'),
+                        'attribute' => 'districtSlug',
+                        'label' => Yii::t('yee/guide', 'Name District Slug'),
                     ],
 
                     'address',

@@ -48,10 +48,11 @@ use common\models\venue\VenueCountry;
                             <span><?= $model->id ?></span>
                         </div>
 
-                        <?= $form->field($model, 'country_id')
-                            ->dropDownList(VenueCountry::getVenueCountryList())
-                            ->label(Yii::t('yee/guide', 'Name Country'));
-                        ?>
+                    <?= $form->field($model, 'country_id')
+                        ->dropDownList(VenueCountry::getVenueCountryList(), [
+                            'prompt' => Yii::t('yee/guide', 'Select Country...')
+                        ])->label(Yii::t('yee/guide', 'Name Country'));
+                    ?>
 
                         <div class="form-group">
                             <?php if ($model->isNewRecord): ?>
