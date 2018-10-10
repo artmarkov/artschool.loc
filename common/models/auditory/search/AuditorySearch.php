@@ -66,6 +66,7 @@ class AuditorySearch extends Auditory
         $dataProvider->setSort([
             'attributes' => [
                 'id',
+                'name',
                 'num',
                 'study_flag',
                 

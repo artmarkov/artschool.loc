@@ -21,7 +21,7 @@ class UserSearch extends User
     public function rules()
     {
         return [
-            [['id', 'superadmin', 'status', 'created_at', 'updated_at', 'email_confirmed'], 'integer'],
+            [['id', 'superadmin', 'status', 'user_category', 'created_at', 'updated_at', 'email_confirmed'], 'integer'],
             [['username', 'gridRoleSearch', 'registration_ip', 'email'], 'string'],
             [['fullName'], 'string'],
         ];
@@ -64,11 +64,13 @@ class UserSearch extends User
                 'created_at',
                 'updated_at',
                 'email_confirmed',
+                'user_category',
                 'fullName' => [
                     'asc' => ['last_name' => SORT_ASC, 'first_name' => SORT_ASC, 'middle_name' => SORT_ASC],
                     'desc' => ['last_name' => SORT_DESC, 'first_name' => SORT_DESC, 'middle_name' => SORT_DESC],
                     'label' => 'Full Name',
                     //'default' => SORT_ASC
+                    'user_category',
                 ]
             ]
         ]);
@@ -89,6 +91,7 @@ class UserSearch extends User
             'id' => $this->id,
             'superadmin' => $this->superadmin,
             'status' => $this->status,
+            'user_category' => $this->user_category,
             Yii::$app->yee->auth_item_table . '.name' => $this->gridRoleSearch,
             'registration_ip' => $this->registration_ip,
             'created_at' => $this->created_at,

@@ -53,7 +53,7 @@ use common\models\venue\VenueSity;
                         <div class="form-group">
                             <?php  if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
-                                <?= Html::a(Yii::t('yee', 'Cancel'), ['/venue-district/default/index'], ['class' => 'btn btn-default']) ?>
+                                <?= Html::a(Yii::t('yee', 'Cancel'), ['/venue/district/index'], ['class' => 'btn btn-default']) ?>
                             <?php  else: ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
                                 <?= Html::a(Yii::t('yee', 'Delete'),
