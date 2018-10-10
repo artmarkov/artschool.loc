@@ -26,6 +26,8 @@ class AppAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
+        //импорт файлов BootboxAsset
+        'common\assets\CommonAsset',
     ];
 
 }

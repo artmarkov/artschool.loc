@@ -7,7 +7,7 @@ use yeesoft\assets\MetisMenuAsset;
 use yeesoft\assets\YeeAsset;
 use yeesoft\models\Menu;
 use yeesoft\widgets\LanguageSelector;
-use yeesoft\widgets\Nav as Navigation;
+use common\widgets\Nav as Navigation;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
@@ -90,7 +90,8 @@ AvatarAsset::register($this);
 
         NavBar::end();
         ?>
-<!--       --><?// echo '<pre>' . print_r(Menu::getMenuItems('admin-menu'), true) . '</pre>'; ?>
+<!--<? echo '<pre>' . print_r($menuItems, true) . '</pre>'; ?>-->
+<!--<? echo '<pre>' . print_r(Menu::getMenuItems('admin-menu'), true) . '</pre>'; ?>-->
         <!-- SIDEBAR NAV -->
         <div class="navbar-default sidebar metismenu" role="navigation">
             <?php
@@ -99,7 +100,6 @@ AvatarAsset::register($this);
                 $menuItems = Yii::$app->user->isGuest ? Menu::getMenuItems('guest-menu') : Menu::getMenuItems('main-menu');
                 Yii::$app->cache->set($menuItemsKey, $menuItems, 3600);
             }
-
             echo Navigation::widget([
                 'encodeLabels' => false,
                 'dropDownCaret' => '<span class="arrow"></span>',
@@ -144,7 +144,11 @@ AvatarAsset::register($this);
         <p class="pull-right"><?= Yii::powered() ?>, <?= yeesoft\Yee::powered() ?></p>
     </div>
 </footer>
+    
+<!--кнопка вверх-->
+<?= common\widgets\ScrollupWidget::widget() ?>
 <?php $this->endBody() ?>
+
 </body>
 </html>
 <?php $this->endPage() ?>
