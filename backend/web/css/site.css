@@ -75,6 +75,9 @@ a.desc:after {
 .grid-view th {
     white-space: nowrap;
 }
+textarea.form-control {
+    resize: none !important;
+}
 div.panel-body {
     overflow: auto !important;
 }
