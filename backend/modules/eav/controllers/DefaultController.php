@@ -161,7 +161,7 @@ class DefaultController extends BaseController
                     $categories = $model->getEavCategories();
 
                     if ($categories && !empty($categories)) {
-                        $categories = ArrayHelper::merge(['' => Yii::t('yee', 'Not Selected')], $categories);
+                       // $categories = ArrayHelper::merge(['' => Yii::t('yee', 'Not Selected')], $categories);
                         $dropDown = Html::dropDownList('entityCategory', null, $categories, ['id' => 'entityCategory', 'class' => 'form-control']);
                         return ['list' => $dropDown];
                     }

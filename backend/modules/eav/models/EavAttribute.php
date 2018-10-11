@@ -8,6 +8,12 @@ use yii\base\InvalidParamException;
 use yeesoft\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 
+use yeesoft\eav\models\EavAttributeOption;
+use yeesoft\eav\models\EavAttributeType;
+use yeesoft\eav\models\EavEntity;
+use yeesoft\eav\models\EavEntityModel;
+use yeesoft\eav\models\EavValue;
+
 /**
  * This is the model class for table "{{%eav_attribute}}".
  *

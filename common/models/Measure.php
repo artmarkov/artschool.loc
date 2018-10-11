@@ -16,7 +16,6 @@ use yeesoft\eav\EavQueryTrait;
  */
 class Measure extends ActiveRecord implements EavCategories
 {
-   // public $category_id = 1;
     /**
      * {@inheritdoc}
      */
@@ -43,9 +42,7 @@ class Measure extends ActiveRecord implements EavCategories
                 [['name'], 'required'],
                 [['category_id'], 'required'],
                 [['name'], 'string', 'max' => 64],
-                [['abbr'], 'string', 'max' => 32],
-                [['field_1','field_2'], 'required'],
-
+                [['abbr'], 'string', 'max' => 32],                
             ];
     }
 
@@ -63,7 +60,7 @@ class Measure extends ActiveRecord implements EavCategories
     }
     public function getEavCategories()
     {
-        return $this->getListTreeData();
+        return auth\User::getUserCategoryList();
     }
 
     public static function getEavCategoryField()
