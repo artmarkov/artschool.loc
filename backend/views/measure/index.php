@@ -77,6 +77,7 @@ $model = new Measure;
 //                           'id',
 //                           'name',
                              'abbr',
+                             'category_id',
                          ],
                          $model->getEavAttributesIndexList($model)
                      ),

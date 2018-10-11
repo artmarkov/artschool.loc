@@ -6,7 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\Measure;
-
+use yeesoft\eav\EavQueryTrait;
 /**
  * MeasureSearch represents the model behind the search form about `common\models\Measure`.
  */
@@ -18,7 +18,7 @@ class MeasureSearch extends Measure
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id','category_id'], 'integer'],
             [['name', 'abbr'], 'safe'],
         ];
     }
@@ -65,6 +65,7 @@ class MeasureSearch extends Measure
 
         $query->andFilterWhere([
             'id' => $this->id,
+            'category_id' => $this->category_id,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

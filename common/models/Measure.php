@@ -6,7 +6,7 @@ use yeesoft\eav\models\EavCategories;
 use Yii;
 use yii\db\ActiveRecord;
 use yeesoft\eav\EavBehavior;
-
+use yeesoft\eav\EavQueryTrait;
 /**
  * This is the model class for table "measure".
  *
@@ -16,6 +16,7 @@ use yeesoft\eav\EavBehavior;
  */
 class Measure extends ActiveRecord implements EavCategories
 {
+   // public $category_id = 1;
     /**
      * {@inheritdoc}
      */
@@ -40,6 +41,7 @@ class Measure extends ActiveRecord implements EavCategories
     {
         return  [
                 [['name'], 'required'],
+                [['category_id'], 'required'],
                 [['name'], 'string', 'max' => 64],
                 [['abbr'], 'string', 'max' => 32],
                 [['field_1','field_2'], 'required'],
@@ -54,18 +56,19 @@ class Measure extends ActiveRecord implements EavCategories
     {
         return [
             'id' => Yii::t('yee', 'ID'),
+            'category_id' => Yii::t('yee', 'Category Id'),
             'name' => Yii::t('yee', 'Name'),
             'abbr' => Yii::t('yee', 'Abbr'),
         ];
     }
     public function getEavCategories()
     {
-        return false;
+        return $this->getListTreeData();
     }
 
     public static function getEavCategoryField()
     {
-        return false;
+        return 'category_id';
     }
 
     public function getEavAttributesViewList($model)
