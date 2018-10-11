@@ -585,7 +585,7 @@
         },
         {
             "name": "bower-asset/metismenu",
-            "version": "v3.0.3",
+            "version": "v2.7.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/onokumus/metismenu.git",

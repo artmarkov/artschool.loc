@@ -8,7 +8,7 @@ use yeesoft\assets\YeeAsset;
 use yeesoft\models\Menu;
 use yeesoft\widgets\LanguageSelector;
 use common\widgets\Nav as Navigation;
-use yii\bootstrap\Nav;
+use yeesoft\widgets\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
