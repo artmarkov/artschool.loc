@@ -1,6 +1,6 @@
 <?php
 
-use yeesoft\eav\models\EavAttributeType;
+use backend\modules\eav\models\EavAttributeType;
 use yeesoft\helpers\Html;
 use common\widgets\ActiveForm;
 

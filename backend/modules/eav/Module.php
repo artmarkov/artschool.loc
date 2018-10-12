@@ -1,12 +1,12 @@
 <?php
 
 namespace backend\modules\eav;
-use yeesoft\eav\EavModule;
+
 
 /**
  * eav module definition class
  */
-class Module extends EavModule
+class Module extends \yii\base\Module
 {
     /**
      * {@inheritdoc}

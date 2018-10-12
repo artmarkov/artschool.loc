@@ -8,11 +8,11 @@ use yii\base\InvalidParamException;
 use yeesoft\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 
-use yeesoft\eav\models\EavAttributeOption;
-use yeesoft\eav\models\EavAttributeType;
-use yeesoft\eav\models\EavEntity;
-use yeesoft\eav\models\EavEntityModel;
-use yeesoft\eav\models\EavValue;
+use backend\modules\eav\models\EavAttributeOption;
+use backend\modules\eav\models\EavAttributeType;
+use backend\modules\eav\models\EavEntity;
+use backend\modules\eav\models\EavEntityModel;
+use backend\modules\eav\models\EavValue;
 
 /**
  * This is the model class for table "{{%eav_attribute}}".
@@ -121,10 +121,10 @@ class EavAttribute extends ActiveRecord
     {
         $result = [];
         $options = $this->eavOptions;
-
         foreach ($options as $option) {
             $result[$option->id] = ($translateCategory === null) ? $option->value : Yii::t($translateCategory, $option->value);
         }
+        $result = ArrayHelper::merge(['' => Yii::t('yee', 'Not Selected')], $result);
 
         return $result;
     }

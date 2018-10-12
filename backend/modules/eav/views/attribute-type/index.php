@@ -1,6 +1,6 @@
 <?php
 
-use yeesoft\eav\models\EavAttributeType;
+use backend\modules\eav\models\EavAttributeType;
 use yeesoft\grid\GridPageSize;
 use yeesoft\grid\GridView;
 use yeesoft\helpers\Html;

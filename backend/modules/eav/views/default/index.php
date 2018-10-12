@@ -1,6 +1,6 @@
 <?php
 
-use yeesoft\eav\assets\EavAsset;
+use backend\modules\eav\assets\EavAsset;
 use yeesoft\helpers\Html;
 use yii\bootstrap\Alert;
 

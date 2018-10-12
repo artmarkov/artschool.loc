@@ -55,7 +55,7 @@ use common\widgets\ActiveForm;
 
                         <?= $form->field($model, 'visible')->checkbox() ?>
 
-                        <?= $form->field($model, 'type_id')->dropDownList(yeesoft\eav\models\EavAttributeType::getAttributeTypes()) ?>
+                        <?= $form->field($model, 'type_id')->dropDownList(backend\modules\eav\models\EavAttributeType::getAttributeTypes()) ?>
 
                         <?= $form->field($model, 'icon')->dropDownList(FA::getIconsList(), [
                             'class' => 'clearfix form-control fa-font-family',

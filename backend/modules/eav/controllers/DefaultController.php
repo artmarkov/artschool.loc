@@ -2,11 +2,11 @@
 
 namespace backend\modules\eav\controllers;
 
-use yeesoft\controllers\admin\BaseController;
+
 use backend\modules\eav\models\EavAttribute;
-use yeesoft\eav\models\EavCategories;
-use yeesoft\eav\models\EavEntity;
-use yeesoft\eav\models\EavEntityModel;
+use backend\modules\eav\models\EavCategories;
+use backend\modules\eav\models\EavEntity;
+use backend\modules\eav\models\EavEntityModel;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
@@ -17,7 +17,7 @@ use yii\web\Response;
 /**
  * EavEntityController implements the CRUD actions for yeesoft\eav\models\EavEntity model.
  */
-class DefaultController extends BaseController
+class DefaultController extends \backend\controllers\DefaultController
 {
     public $layout = '@backend/views/layouts/main.php';
 
