@@ -95,7 +95,13 @@ class EavBehavior extends Behavior
 
             foreach ($attributes as $attribute) {
                 $this->eavAttributes->{$attribute['name']} = $attribute;
-                $validators[] = \yii\validators\Validator::createValidator('safe', $this->owner, [$attribute['name']], []);
+                if ($attribute->required){
+                $validators[] = \yii\validators\Validator::createValidator('required', $this->owner, [$attribute['name']], []);
+                }
+                else {
+                $validators[] = \yii\validators\Validator::createValidator('save', $this->owner, [$attribute['name']], []);
+                    
+                }
             }
 
             $this->isAttributesLoaded = true;

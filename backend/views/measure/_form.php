@@ -38,6 +38,7 @@ $fieldOptions = [
                    foreach($model->getEavAttributes() as $attr){
                        //echo '<pre>' . print_r($attr, true) . '</pre>';
                        if($model->getEavAttribute($attr)->type_id === 1) echo $form->field($model, $model->getEavAttribute($attr)->name, $fieldOptions)->textInput()->hint($model->getEavAttribute($attr)->description)->label($model->getEavAttribute($attr)->label);
+                      elseif($model->getEavAttribute($attr)->type_id === 3) echo $form->field($model, $model->getEavAttribute($attr)->name)->checkbox()->hint($model->getEavAttribute($attr)->description)->label($model->getEavAttribute($attr)->label);
                        else  echo $form->field($model, $model->getEavAttribute($attr)->name)->dropDownList($model->getEavAttribute($model->getEavAttribute($attr)->name)->getEavOptionsList())->hint($model->getEavAttribute($attr)->description)->label($model->getEavAttribute($attr)->label);
                        //echo $form->field($model, $attr->name)->eavInput($attr->type);
                     }
