@@ -45,8 +45,7 @@
     "cranky4/change-log-behavior": "*",
     "kartik-v/yii2-widget-datepicker": "@dev",
     "kartik-v/yii2-widget-depdrop": "@dev",
-    "himiklab/yii2-recaptcha-widget": "*",
-    "bower-asset/bootbox": "*"
+    "himiklab/yii2-recaptcha-widget": "*"
         
   },
   "require-dev": {

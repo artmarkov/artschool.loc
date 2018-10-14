@@ -73,8 +73,10 @@ class Measure extends ActiveRecord implements EavCategories
         $items = array();
         foreach ($model->getEavAttributes() as $attr) {
             $items[] = array(
+                'attribute' => $model->getEavAttribute($attr)->name,
                 'label' => $model->getEavAttribute($attr)->label,
                 'value' => $model->owner->$attr,
+                'filter' => $model->getEavAttribute($model->getEavAttribute($attr)->name)->getEavOptionsList(),
             );
         }
         return $items;
@@ -88,21 +90,10 @@ class Measure extends ActiveRecord implements EavCategories
                 $items[] = array(
                     'attribute' => $model->getEavAttribute($attr)->name,
                     'label' => $model->getEavAttribute($attr)->label,
-
+                    
                 );
             }
         }
         return $items;
     }
-
-   /* public function getEavAttributesRules($model)
-    {
-        $items = array();
-        foreach ($model->getEavAttributes() as $attr) {
-            $items[] = array(
-                $model->getEavAttribute($attr)->name, 'required'
-            );
-        }
-        return $items;
-    }*/
 }

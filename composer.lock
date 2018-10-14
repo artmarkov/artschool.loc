@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d590d369f4306272fd57ef9e624460d",
+    "content-hash": "a43136f18c67e176e4f9423e707ba3ef",
     "packages": [
         {
             "name": "2amigos/yii2-file-upload-widget",
@@ -240,16 +240,16 @@
         },
         {
             "name": "bower-asset/blueimp-file-upload",
-            "version": "v9.22.0",
+            "version": "v9.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/blueimp/jQuery-File-Upload.git",
-                "reference": "39607fdaaba0dc11ba8c116ac2968e28e796f153"
+                "reference": "0ab8ffb49c23640c730881056e26c17c76b95491"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blueimp/jQuery-File-Upload/zipball/39607fdaaba0dc11ba8c116ac2968e28e796f153",
-                "reference": "39607fdaaba0dc11ba8c116ac2968e28e796f153",
+                "url": "https://api.github.com/repos/blueimp/jQuery-File-Upload/zipball/0ab8ffb49c23640c730881056e26c17c76b95491",
+                "reference": "0ab8ffb49c23640c730881056e26c17c76b95491",
                 "shasum": ""
             },
             "require": {
@@ -300,7 +300,7 @@
                 "upload",
                 "widget"
             ],
-            "time": "2018-06-19T07:33:35+00:00"
+            "time": "2018-10-14T16:59:17+00:00"
         },
         {
             "name": "bower-asset/blueimp-gallery",
@@ -349,38 +349,6 @@
                 "shasum": ""
             },
             "type": "bower-asset-library"
-        },
-        {
-            "name": "bower-asset/bootbox",
-            "version": "v4.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/makeusabrew/bootbox.git",
-                "reference": "cb756203e250ed0ff2539359ff0ad1c3ffb8e8d3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/makeusabrew/bootbox/zipball/cb756203e250ed0ff2539359ff0ad1c3ffb8e8d3",
-                "reference": "cb756203e250ed0ff2539359ff0ad1c3ffb8e8d3",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/bootstrap": ">=3.0.0"
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": "./bootbox.js",
-                "bower-asset-ignore": [
-                    "CHANGELOG.md",
-                    "CONTRIBUTING",
-                    "Gruntfile.js",
-                    "header.txt",
-                    "karma*.js",
-                    "build",
-                    "tests"
-                ]
-            },
-            "time": "2015-02-22T10:16:21+00:00"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -585,7 +553,7 @@
         },
         {
             "name": "bower-asset/metismenu",
-            "version": "v2.7.9",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/onokumus/metismenu.git",

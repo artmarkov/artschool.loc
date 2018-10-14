@@ -81,3 +81,9 @@ textarea.form-control {
 div.panel-body {
     overflow: auto !important;
 }
+.form-control-feedback {
+    top: 60% !important;
+}
+.has-error .form-control-feedback {
+    top: 42% !important;
+}

@@ -32,6 +32,7 @@ class EavBehavior extends Behavior
             ActiveRecord::EVENT_INIT => 'eavInit',
             ActiveRecord::EVENT_AFTER_INSERT => 'afterInsert',
             ActiveRecord::EVENT_AFTER_UPDATE => 'afterUpdate',
+            ActiveRecord::EVENT_BEFORE_DELETE => 'beforeDelete',
         ];
     }
 
@@ -243,6 +244,16 @@ class EavBehavior extends Behavior
             $attribute->save();  
         }
     }
+    
+    public function beforeDelete() {
+        $attributes = models\EavValue::find()
+                ->andWhere(['item_id' => $this->owner->id])
+                ->all();
+        //print_r($attributes);
+           foreach ($attributes as  $attribute) {
+               $attribute->delete();
+           }
+       }
 
     public function getEavAttributes()
     {

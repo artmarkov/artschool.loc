@@ -8,11 +8,8 @@ use yeesoft\helpers\Html;
 /* @var $model common\models\Measure */
 /* @var $form yeesoft\widgets\ActiveForm */
 //echo '<pre>' . print_r($model, true) . '</pre>';
-//echo '<pre>' . print_r($model->getEavAttribute('drop')) . '</pre>';
-$fieldOptions = [
-    'options' => ['class' => 'form-group has-feedback'],
-    'inputTemplate' => "{input}<span class='fa fa-pencil form-control-feedback'></span>"
-];
+//echo '<pre>' . print_r($model->getEavAttribute('field_1')) . '</pre>';
+
 ?>
 
 <div class="measure-form">
@@ -34,16 +31,37 @@ $fieldOptions = [
 
                     <?= $form->field($model, 'abbr')->textInput(['maxlength' => true]) ?>
 
-                   <!-- --><?php
-                   foreach($model->getEavAttributes() as $attr){
-                       //echo '<pre>' . print_r($attr, true) . '</pre>';
-                       if($model->getEavAttribute($attr)->type_id === 1) echo $form->field($model, $model->getEavAttribute($attr)->name, $fieldOptions)->textInput()->hint($model->getEavAttribute($attr)->description)->label($model->getEavAttribute($attr)->label);
-                      elseif($model->getEavAttribute($attr)->type_id === 3) echo $form->field($model, $model->getEavAttribute($attr)->name)->checkbox()->hint($model->getEavAttribute($attr)->description)->label($model->getEavAttribute($attr)->label);
-                       else  echo $form->field($model, $model->getEavAttribute($attr)->name)->dropDownList($model->getEavAttribute($model->getEavAttribute($attr)->name)->getEavOptionsList())->hint($model->getEavAttribute($attr)->description)->label($model->getEavAttribute($attr)->label);
-                       //echo $form->field($model, $attr->name)->eavInput($attr->type);
-                    }
+                   <?= $form->field($model, 'category_id')->textInput(['maxlength' => true]) ?>
 
-                 ?>
+                   <?php
+                   
+                       foreach ($model->getEavAttributes() as $attr) {
+
+                       //echo '<pre>' . print_r($attr, true) . '</pre>';
+                           
+                       $eav_atribute_type = $model->getEavAttribute($attr)->type_id;
+                       $eav_atribute_name = $model->getEavAttribute($attr)->name;
+                       $eav_atribute_hint = $model->getEavAttribute($attr)->description;
+                       $eav_atribute_label = $model->getEavAttribute($attr)->label;
+                       $eav_option_list = $model->getEavAttribute($eav_atribute_name)->getEavOptionsList();
+                       $fieldOptions = [
+                            'options' => ['class' => 'form-group has-feedback'],
+                            'inputTemplate' => "{input}<span class='fa fa-" . $model->getEavAttribute($attr)->icon . " form-control-feedback'></span>"
+                        ];
+
+                        switch ($eav_atribute_type) {
+                           case 1:
+                               echo $form->field($model, $eav_atribute_name, $fieldOptions)->textInput()->hint($eav_atribute_hint)->label($eav_atribute_label);
+                               break;
+                           case 2:
+                               echo $form->field($model, $eav_atribute_name)->dropDownList($eav_option_list)->hint($eav_atribute_hint)->label($eav_atribute_label);
+                               break;
+                           case 3:
+                               echo $form->field($model, $eav_atribute_name)->checkbox()->hint($eav_atribute_hint)->label($eav_atribute_label);
+                               break;
+                       }
+                   }
+                   ?>
 
               </div>
 
