@@ -47,7 +47,7 @@ class Bonus extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['teachers_id', 'bonus_item_id', 'created_at', 'updated_at', 'created_by', 'apdated_by'], 'integer'],
+            [['teachers_id', 'bonus_item_id', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['bonus_item_id', 'created_at', 'updated_at', 'created_by', 'apdated_by'], 'required'],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
@@ -64,10 +64,10 @@ class Bonus extends \yii\db\ActiveRecord
             'id' => Yii::t('yee/teachers', 'ID'),
             'teachers_id' => Yii::t('yee/teachers', 'Teachers ID'),
             'bonus_item_id' => Yii::t('yee/teachers', 'Bonus Item ID'),
-            'created_at' => Yii::t('yee/teachers', 'Created At'),
-            'updated_at' => Yii::t('yee/teachers', 'Updated At'),
-            'created_by' => Yii::t('yee/teachers', 'Created By'),
-            'apdated_by' => Yii::t('yee/teachers', 'Apdated By'),
+            'created_at' => Yii::t('yee', 'Created At'),
+            'updated_at' => Yii::t('yee', 'Updated At'),
+            'created_by' => Yii::t('yee', 'Created By'),
+            'updated_by' => Yii::t('yee', 'Updated By'),
         ];
     }
 

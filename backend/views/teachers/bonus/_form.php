@@ -34,7 +34,7 @@ use yeesoft\helpers\Html;
 
                     <?= $form->field($model, 'created_by')->textInput() ?>
 
-                    <?= $form->field($model, 'apdated_by')->textInput() ?>
+                    <?= $form->field($model, 'updated_by')->textInput() ?>
 
                 </div>
 
@@ -54,11 +54,11 @@ use yeesoft\helpers\Html;
                         <div class="form-group">
                             <?php  if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
-                                <?= Html::a(Yii::t('yee', 'Cancel'), ['/bonus/default/index'], ['class' => 'btn btn-default']) ?>
+                                <?= Html::a(Yii::t('yee', 'Cancel'), ['/teachers/bonus/index'], ['class' => 'btn btn-default']) ?>
                             <?php  else: ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
                                 <?= Html::a(Yii::t('yee', 'Delete'),
-                                    ['/bonus/default/delete', 'id' => $model->id], [
+                                    ['/teachers/bonus/delete', 'id' => $model->id], [
                                     'class' => 'btn btn-default',
                                     'data' => [
                                         'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),

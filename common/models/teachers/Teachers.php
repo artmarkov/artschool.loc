@@ -38,9 +38,9 @@ class Teachers extends \yii\db\ActiveRecord
         return [
             [['position_id', 'work_id', 'level_id', 'timestamp_serv', 'timestamp_serv_spec'], 'integer'],
             [['tab_num'], 'string', 'max' => 16],
-            [['level_id'], 'exist', 'skipOnError' => true, 'targetClass' => TeachersLevel::className(), 'targetAttribute' => ['level_id' => 'id']],
-            [['position_id'], 'exist', 'skipOnError' => true, 'targetClass' => TeachersPosition::className(), 'targetAttribute' => ['position_id' => 'id']],
-            [['work_id'], 'exist', 'skipOnError' => true, 'targetClass' => TeachersWork::className(), 'targetAttribute' => ['work_id' => 'id']],
+            [['level_id'], 'exist', 'skipOnError' => true, 'targetClass' => Level::className(), 'targetAttribute' => ['level_id' => 'id']],
+            [['position_id'], 'exist', 'skipOnError' => true, 'targetClass' => Position::className(), 'targetAttribute' => ['position_id' => 'id']],
+            [['work_id'], 'exist', 'skipOnError' => true, 'targetClass' => Work::className(), 'targetAttribute' => ['work_id' => 'id']],
         ];
     }
 
@@ -65,7 +65,7 @@ class Teachers extends \yii\db\ActiveRecord
      */
     public function getLevel()
     {
-        return $this->hasOne(TeachersLevel::className(), ['id' => 'level_id']);
+        return $this->hasOne(Level::className(), ['id' => 'level_id']);
     }
 
     /**
@@ -73,7 +73,7 @@ class Teachers extends \yii\db\ActiveRecord
      */
     public function getPosition()
     {
-        return $this->hasOne(TeachersPosition::className(), ['id' => 'position_id']);
+        return $this->hasOne(Position::className(), ['id' => 'position_id']);
     }
 
     /**
@@ -81,14 +81,14 @@ class Teachers extends \yii\db\ActiveRecord
      */
     public function getWork()
     {
-        return $this->hasOne(TeachersWork::className(), ['id' => 'work_id']);
+        return $this->hasOne(Work::className(), ['id' => 'work_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTeachersDirectionCosts()
+    public function getDirectionCosts()
     {
-        return $this->hasMany(TeachersDirectionCost::className(), ['teachers_id' => 'id']);
+        return $this->hasMany(DirectionCost::className(), ['teachers_id' => 'id']);
     }
 }

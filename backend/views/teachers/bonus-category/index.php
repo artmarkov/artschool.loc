@@ -12,7 +12,8 @@ use yeesoft\grid\GridPageSize;
 /* @var $searchModel common\models\teachers\search\BonusCategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Bonus Categories';
+$this->title = Yii::t('yee/teachers','Bonus Category');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/teachers','Teachers'), 'url' => ['teachers/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bonus-category-index">
@@ -20,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-sm-12">
             <h3 class="lte-hide-title page-title"><?=  Html::encode($this->title) ?></h3>
-            <?= Html::a(Yii::t('yee', 'Add New'), ['/bonus-category/default/create'], ['class' => 'btn btn-sm btn-primary']) ?>
+            <?= Html::a(Yii::t('yee', 'Add New'), ['/teachers/bonus-category/create'], ['class' => 'btn btn-sm btn-primary']) ?>
         </div>
     </div>
 
@@ -61,15 +62,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
                     [
-                        'class' => 'yeesoft\grid\columns\TitleActionColumn',
-                        'controller' => '/bonus-category/default',
+                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
+                        'options' => ['style' => 'width:300px'],
+                        'attribute' => 'name',
+                        'controller' => '/teachers/bonus-category',
                         'title' => function(BonusCategory $model) {
-                            return Html::a($model->id, ['view', 'id' => $model->id], ['data-pjax' => 0]);
+                            return Html::a($model->id, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
+                        'buttonsTemplate' => '{update} {delete}',
                     ],
 
-            'id',
-            'name',
+//            'id',
+//            'name',
             'slug',
             'multiple',
 

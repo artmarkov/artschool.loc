@@ -12,7 +12,8 @@ use yeesoft\grid\GridPageSize;
 /* @var $searchModel common\models\teachers\search\CostSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Costs';
+$this->title = Yii::t('yee/teachers','Cost');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/teachers','Teachers'), 'url' => ['teachers/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cost-index">
@@ -20,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-sm-12">
             <h3 class="lte-hide-title page-title"><?=  Html::encode($this->title) ?></h3>
-            <?= Html::a(Yii::t('yee', 'Add New'), ['/cost/default/create'], ['class' => 'btn btn-sm btn-primary']) ?>
+            <?= Html::a(Yii::t('yee', 'Add New'), ['/teachers/cost/create'], ['class' => 'btn btn-sm btn-primary']) ?>
         </div>
     </div>
 
@@ -62,10 +63,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
-                        'controller' => '/cost/default',
+                        'options' => ['style' => 'width:300px'],
+//                        'attribute' => 'name',
+                        'controller' => '/teachers/cost',
                         'title' => function(Cost $model) {
-                            return Html::a($model->id, ['view', 'id' => $model->id], ['data-pjax' => 0]);
+                            return Html::a($model->id, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
+                        'buttonsTemplate' => '{update} {delete}',
                     ],
 
             'id',

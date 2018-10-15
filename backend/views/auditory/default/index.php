@@ -14,7 +14,7 @@ use yeesoft\grid\GridPageSize;
 /* @var $searchModel common\models\AuditorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('yee/guide','Auditories');
+$this->title = Yii::t('yee/guide','Auditory');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="auditory-index">

@@ -18,7 +18,7 @@ class BonusSearch extends Bonus
     public function rules()
     {
         return [
-            [['id', 'teachers_id', 'bonus_item_id', 'created_at', 'updated_at', 'created_by', 'apdated_by'], 'integer'],
+            [['id', 'teachers_id', 'bonus_item_id', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
         ];
     }
 
@@ -69,7 +69,7 @@ class BonusSearch extends Bonus
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'created_by' => $this->created_by,
-            'apdated_by' => $this->apdated_by,
+            'updated_by' => $this->updated_by,
         ]);
 
         return $dataProvider;

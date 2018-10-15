@@ -48,11 +48,11 @@ use yeesoft\helpers\Html;
                         <div class="form-group">
                             <?php  if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
-                                <?= Html::a(Yii::t('yee', 'Cancel'), ['/cost/default/index'], ['class' => 'btn btn-default']) ?>
+                                <?= Html::a(Yii::t('yee', 'Cancel'), ['/teachers/cost/index'], ['class' => 'btn btn-default']) ?>
                             <?php  else: ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
                                 <?= Html::a(Yii::t('yee', 'Delete'),
-                                    ['/cost/default/delete', 'id' => $model->id], [
+                                    ['/teachers/cost/delete', 'id' => $model->id], [
                                     'class' => 'btn btn-default',
                                     'data' => [
                                         'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),

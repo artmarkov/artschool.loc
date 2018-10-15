@@ -8,7 +8,7 @@ use Yii;
 /**
  * DefaultController implements the CRUD actions for common\models\teachers\Teachers model.
  */
-class DefaultController extends backend\controllers\DefaultController
+class DefaultController extends \backend\controllers\DefaultController
 {
     public $modelClass       = 'common\models\teachers\Teachers';
     public $modelSearchClass = 'common\models\teachers\search\TeachersSearch';

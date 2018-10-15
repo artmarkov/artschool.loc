@@ -5,8 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\teachers\BonusCategory */
 
-$this->title = 'Create Bonus Category';
-$this->params['breadcrumbs'][] = ['label' => 'Bonus Categories', 'url' => ['index']];
+$this->title = Yii::t('yee','Create');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/teachers','Teachers'), 'url' => ['teachers/default/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/teachers','Donus Category'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

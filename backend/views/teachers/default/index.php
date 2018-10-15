@@ -12,7 +12,7 @@ use yeesoft\grid\GridPageSize;
 /* @var $searchModel common\models\teachers\search\TeachersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Teachers';
+$this->title = Yii::t('yee/teachers','Teachers');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="teachers-index">
@@ -62,6 +62,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
+                        'options' => ['style' => 'width:300px'],
+                       // 'attribute' => 'name',
                         'controller' => '/teachers/default',
                         'title' => function(Teachers $model) {
                             return Html::a($model->id, ['view', 'id' => $model->id], ['data-pjax' => 0]);
@@ -73,8 +75,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'work_id',
             'level_id',
             'tab_num',
-            // 'timestamp_serv:datetime',
-            // 'timestamp_serv_spec:datetime',
+            'timestamp_serv:datetime',
+            'timestamp_serv_spec:datetime',
 
                 ],
             ]);
