@@ -36,8 +36,8 @@ class Auditory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['building_id', 'study_flag', 'floor', 'area', 'capacity', 'order'], 'required'],
-            [['building_id', 'cat_id', 'num', 'capacity', 'order'], 'integer'],
+            [['id','building_id', 'study_flag', 'floor', 'area', 'capacity', 'order'], 'required'],
+            [['id','building_id', 'cat_id', 'num', 'capacity', 'order'], 'integer'],
             [['study_flag'], 'string'],
             [['area'], 'number'],
             [['name'], 'string', 'max' => 128],
