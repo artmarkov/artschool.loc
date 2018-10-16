@@ -12,6 +12,9 @@ use common\models\teachers\Cost;
  */
 class CostSearch extends Cost
 {
+    public $directionName;
+    public $stakeName;
+    public $stakeSlug;
     /**
      * @inheritdoc
      */
@@ -19,7 +22,8 @@ class CostSearch extends Cost
     {
         return [
             [['id', 'direction_id', 'stake_id'], 'safe'],
-            [['stake'], 'number'],
+            [['stake_value'], 'number'],
+            [['directionName','stakeName','stakeSlug'], 'string'],
         ];
     }
 
@@ -50,11 +54,18 @@ class CostSearch extends Cost
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'id' => SORT_DESC,
+                    'id' => SORT_ASC,
                 ],
             ],
         ]);
-
+        $dataProvider->setSort([
+            'attributes' => [
+                'id',
+                'direction_id',
+                'stake_id',
+                'stake_value',
+            ]
+        ]);
         $this->load($params);
 
         if (!$this->validate()) {
@@ -62,9 +73,12 @@ class CostSearch extends Cost
             // $query->where('0=1');
             return $dataProvider;
         }
+//        жадная загрузка
+        $query->joinWith(['direction']);
+        $query->joinWith(['stake']);
 
         $query->andFilterWhere([
-            'stake' => $this->stake,
+            'stake_value' => $this->stake_value,
         ]);
 
         $query->andFilterWhere(['like', 'id', $this->id])

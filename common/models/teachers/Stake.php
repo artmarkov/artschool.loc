@@ -54,4 +54,10 @@ class Stake extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Cost::className(), ['stake_id' => 'id']);
     }
+
+    public static function getStakeList()
+    {
+        return \yii\helpers\ArrayHelper::map(Stake::find()->all(), 'id', 'name');
+
+    }
 }

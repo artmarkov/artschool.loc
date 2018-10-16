@@ -1,19 +1,20 @@
 <?php
 
 use yeesoft\widgets\ActiveForm;
-use common\models\teachers\DirectionCost;
+use common\models\teachers\BonusItem;
+use common\models\teachers\BonusCategory;
 use yeesoft\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\teachers\DirectionCost */
+/* @var $model common\models\teachers\BonusItem */
 /* @var $form yeesoft\widgets\ActiveForm */
 ?>
 
-<div class="direction-cost-form">
+<div class="bonus-item-form">
 
     <?php 
     $form = ActiveForm::begin([
-            'id' => 'direction-cost-form',
+            'id' => 'bonus-item-form',
             'validateOnBlur' => false,
         ])
     ?>
@@ -23,14 +24,25 @@ use yeesoft\helpers\Html;
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    
-                    <?= $form->field($model, 'teachers_id')->textInput() ?>
+                    <?php   echo $form->field($model, 'bonus_category_id')->dropDownList(BonusCategory::getBonusCategoryList(), [
+                        'prompt' => Yii::t('yee/teachers','Select Bonus Category...'),
+                        'id' => 'bonus_category_id'
+                    ])->label(Yii::t('yee/teachers', 'Bonus Category'));
+                    ?>
 
-                    <?= $form->field($model, 'direction_id')->textInput() ?>
+<!--                    --><?//= $form->field($model, 'bonus_category_id')->textInput() ?>
 
-                    <?= $form->field($model, 'stake_id')->textInput() ?>
+                    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'main_flag')->textInput() ?>
+                    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+
+                    <?= $form->field($model, 'value_default')->textInput(['maxlength' => true]) ?>
+
+                    <?= $form->field($model, 'measure_id')->textInput() ?>
+
+                    <?= $form->field($model, 'bonus_rule_id')->textInput() ?>
+
+                    <?= $form->field($model->loadDefaultValues(), 'status')->dropDownList(BonusItem::getStatusList()) ?>
 
                 </div>
 
@@ -50,11 +62,11 @@ use yeesoft\helpers\Html;
                         <div class="form-group">
                             <?php  if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
-                                <?= Html::a(Yii::t('yee', 'Cancel'), ['/teachers/direction-cost/index'], ['class' => 'btn btn-default']) ?>
+                                <?= Html::a(Yii::t('yee', 'Cancel'), ['/teachers/bonus-item/index'], ['class' => 'btn btn-default']) ?>
                             <?php  else: ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
                                 <?= Html::a(Yii::t('yee', 'Delete'),
-                                    ['/teachers/direction-cost/delete', 'id' => $model->id], [
+                                    ['/teachers/bonus-item/delete', 'id' => $model->id], [
                                     'class' => 'btn btn-default',
                                     'data' => [
                                         'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),

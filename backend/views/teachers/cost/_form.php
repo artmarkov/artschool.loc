@@ -3,6 +3,8 @@
 use yeesoft\widgets\ActiveForm;
 use common\models\teachers\Cost;
 use yeesoft\helpers\Html;
+use common\models\teachers\Direction;
+use common\models\teachers\Stake;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\teachers\Cost */
@@ -23,12 +25,19 @@ use yeesoft\helpers\Html;
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    
-                    <?= $form->field($model, 'direction_id')->textInput() ?>
+                    <?php   echo $form->field($model, 'direction_id')->dropDownList(Direction::getDirectionList(), [
+                        'prompt' => Yii::t('yee/teachers','Select Direction...'),
+                        'id' => 'direction_id'
+                    ])->label(Yii::t('yee/teachers', 'Name Direction'));
+                    ?>
 
-                    <?= $form->field($model, 'stake_id')->textInput() ?>
+                    <?php   echo $form->field($model, 'stake_id')->dropDownList(Stake::getStakeList(), [
+                        'prompt' => Yii::t('yee/teachers','Select Stake...'),
+                        'id' => 'stake_id'
+                    ])->label(Yii::t('yee/teachers', 'Name Stake'));
+                    ?>
 
-                    <?= $form->field($model, 'stake')->textInput() ?>
+                    <?= $form->field($model, 'stake_value')->textInput() ?>
 
                 </div>
 

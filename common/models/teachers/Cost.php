@@ -17,6 +17,7 @@ use Yii;
  */
 class Cost extends \yii\db\ActiveRecord
 {
+
     /**
      * {@inheritdoc}
      */
@@ -31,11 +32,13 @@ class Cost extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['direction_id', 'stake_id'], 'required'],
+            [['direction_id', 'stake_id', 'stake_value'], 'required'],
             [['direction_id', 'stake_id'], 'integer'],
-            [['stake'], 'number'],
+            ['direction_id', 'unique', 'targetAttribute' => ['direction_id', 'stake_id']], // проверка уникальности пары
+            [['stake_value'], 'number'],
             [['direction_id'], 'exist', 'skipOnError' => true, 'targetClass' => Direction::className(), 'targetAttribute' => ['direction_id' => 'id']],
             [['stake_id'], 'exist', 'skipOnError' => true, 'targetClass' => Stake::className(), 'targetAttribute' => ['stake_id' => 'id']],
+
         ];
     }
 
@@ -48,7 +51,7 @@ class Cost extends \yii\db\ActiveRecord
             'id' => Yii::t('yee/teachers', 'ID'),
             'direction_id' => Yii::t('yee/teachers', 'Direction ID'),
             'stake_id' => Yii::t('yee/teachers', 'Stake ID'),
-            'stake' => Yii::t('yee/teachers', 'Stake'),
+            'stake_value' => Yii::t('yee/teachers', 'Stake Value'),
         ];
     }
 
@@ -59,12 +62,26 @@ class Cost extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Direction::className(), ['id' => 'direction_id']);
     }
-
+    /* Геттер для названия */
+    public function getDirectionName()
+    {
+        return $this->direction->name;
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getStake0()
+    public function getStake()
     {
         return $this->hasOne(Stake::className(), ['id' => 'stake_id']);
+    }
+    /* Геттер для названия */
+    public function getStakeName()
+    {
+        return $this->stake->name;
+    }
+     /* Геттер для названия */
+    public function getStakeSlug()
+    {
+        return $this->stake->slug;
     }
 }

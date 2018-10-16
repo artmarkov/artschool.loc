@@ -70,9 +70,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'buttonsTemplate' => '{update} {delete}',
                     ],
 
-            'id',
-            'direction_id',
+           // 'id',
             'teachers_id',
+            'direction_id',
+            'stake_id',
             'main_flag',
 
                 ],

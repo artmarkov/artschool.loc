@@ -28,7 +28,6 @@ use yeesoft\helpers\Html;
 
                     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'multiple')->textInput() ?>
 
                 </div>
 
@@ -44,6 +43,8 @@ use yeesoft\helpers\Html;
                             <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
                             <span><?=  $model->id ?></span>
                         </div>
+
+                        <?= $form->field($model, 'multiple')->checkbox() ?>
 
                         <div class="form-group">
                             <?php  if ($model->isNewRecord): ?>
