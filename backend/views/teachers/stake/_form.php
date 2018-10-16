@@ -27,6 +27,8 @@ use yeesoft\helpers\Html;
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
                     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+                    
+                    <?= $form->field($model->loadDefaultValues(), 'status')->dropDownList(Stake::getStatusList()) ?>
 
                 </div>
 

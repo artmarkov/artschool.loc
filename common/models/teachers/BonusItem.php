@@ -23,6 +23,7 @@ class BonusItem extends \yii\db\ActiveRecord
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
 
+    //public $measureName;
     /**
      * {@inheritdoc}
      */
@@ -44,11 +45,6 @@ class BonusItem extends \yii\db\ActiveRecord
             [['bonus_category_id'], 'exist', 'skipOnError' => true, 'targetClass' => BonusCategory::className(), 'targetAttribute' => ['bonus_category_id' => 'id']],
             [['name','slug'], 'unique'],
         ];
-    }
-    /* Геттер для value + measure_id */
-
-    public function getMeasureFullName() {
-        return $this->value_default . ' ' . $this->measure_id;
     }
     /**
      * {@inheritdoc}
@@ -99,5 +95,26 @@ class BonusItem extends \yii\db\ActiveRecord
     public function getBonusCategoryName()
     {
         return $this->bonusCategory->name;
+    }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMeasure()
+    {
+        return $this->hasOne(\common\models\service\MeasureUnit::className(), ['id' => 'measure_id']);
+    }
+     /* Геттер для названия */
+    public function getMeasureName()
+    {
+        return $this->measure->name;
+    }
+     /* Геттер для названия */
+    public function getMeasureSlug()
+    {
+        return $this->measure->slug;
+    }
+    /* Геттер для value + measure sl*/
+    public function getMeasureValueSlugName() {
+        return $this->value_default . ' ' . $this->measureSlug;
     }
 }

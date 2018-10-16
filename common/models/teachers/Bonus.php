@@ -47,10 +47,10 @@ class Bonus extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['teachers_id', 'bonus_item_id', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['bonus_item_id', 'created_at', 'updated_at', 'created_by', 'apdated_by'], 'required'],
-            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
+            [['teachers_id', 'bonus_item_id'], 'integer'],
+            [['bonus_item_id'], 'required'],
+//            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
+//            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['bonus_item_id'], 'exist', 'skipOnError' => true, 'targetClass' => Bonus::className(), 'targetAttribute' => ['bonus_item_id' => 'id']],
         ];
     }

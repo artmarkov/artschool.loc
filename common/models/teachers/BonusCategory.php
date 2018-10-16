@@ -58,7 +58,7 @@ class BonusCategory extends \yii\db\ActiveRecord
         return $this->hasMany(BonusItem::className(), ['bonus_category_id' => 'id']);
     }
 
-    public function getBonusCategoryList()
+    public static function getBonusCategoryList()
     {
         return \yii\helpers\ArrayHelper::map(BonusCategory::find()->all(), 'id', 'name');
 

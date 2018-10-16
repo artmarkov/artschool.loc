@@ -31,6 +31,7 @@ class Position extends \yii\db\ActiveRecord
         return [
             [['name'], 'string', 'max' => 128],
             [['slug'], 'string', 'max' => 32],
+            [['name','slug'], 'unique'],
         ];
     }
 
@@ -52,5 +53,11 @@ class Position extends \yii\db\ActiveRecord
     public function getTeachers()
     {
         return $this->hasMany(Teachers::className(), ['position_id' => 'id']);
+    }
+    
+     public static function getPositionList()
+    {
+        return \yii\helpers\ArrayHelper::map(Position::find()->all(), 'id', 'name');
+
     }
 }

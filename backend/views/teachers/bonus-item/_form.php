@@ -12,11 +12,11 @@ use yeesoft\helpers\Html;
 
 <div class="bonus-item-form">
 
-    <?php 
+    <?php
     $form = ActiveForm::begin([
-            'id' => 'bonus-item-form',
-            'validateOnBlur' => false,
-        ])
+                'id' => 'bonus-item-form',
+                'validateOnBlur' => false,
+            ])
     ?>
 
     <div class="row">
@@ -24,13 +24,12 @@ use yeesoft\helpers\Html;
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <?php   echo $form->field($model, 'bonus_category_id')->dropDownList(BonusCategory::getBonusCategoryList(), [
-                        'prompt' => Yii::t('yee/teachers','Select Bonus Category...'),
+                    <?php
+                    echo $form->field($model, 'bonus_category_id')->dropDownList(BonusCategory::getBonusCategoryList(), [
+                        'prompt' => Yii::t('yee/teachers', 'Select Bonus Category...'),
                         'id' => 'bonus_category_id'
                     ])->label(Yii::t('yee/teachers', 'Bonus Category'));
                     ?>
-
-<!--                    --><?//= $form->field($model, 'bonus_category_id')->textInput() ?>
 
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -38,7 +37,12 @@ use yeesoft\helpers\Html;
 
                     <?= $form->field($model, 'value_default')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'measure_id')->textInput() ?>
+                    <?php
+                    echo $form->field($model, 'measure_id')->dropDownList(common\models\service\MeasureUnit::getMeasureUnitList(), [
+                        'prompt' => Yii::t('yee/teachers', 'Select Measure Unit...'),
+                        'id' => 'measure_id'
+                    ])->label(Yii::t('yee/teachers', 'Measure Unit'));
+                    ?>
 
                     <?= $form->field($model, 'bonus_rule_id')->textInput() ?>
 
@@ -55,24 +59,25 @@ use yeesoft\helpers\Html;
                 <div class="panel-body">
                     <div class="record-info">
                         <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
-                            <span><?=  $model->id ?></span>
+                            <label class="control-label" style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['id'] ?>: </label>
+                            <span><?= $model->id ?></span>
                         </div>
 
                         <div class="form-group">
-                            <?php  if ($model->isNewRecord): ?>
+                            <?php if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
                                 <?= Html::a(Yii::t('yee', 'Cancel'), ['/teachers/bonus-item/index'], ['class' => 'btn btn-default']) ?>
-                            <?php  else: ?>
+                            <?php else: ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
-                                <?= Html::a(Yii::t('yee', 'Delete'),
-                                    ['/teachers/bonus-item/delete', 'id' => $model->id], [
+                                <?=
+                                Html::a(Yii::t('yee', 'Delete'), ['/teachers/bonus-item/delete', 'id' => $model->id], [
                                     'class' => 'btn btn-default',
                                     'data' => [
                                         'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
                                         'method' => 'post',
                                     ],
-                                ]) ?>
+                                ])
+                                ?>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -82,6 +87,6 @@ use yeesoft\helpers\Html;
         </div>
     </div>
 
-    <?php  ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
 
 </div>

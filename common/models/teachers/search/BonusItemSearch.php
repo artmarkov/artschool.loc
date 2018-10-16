@@ -13,7 +13,7 @@ use common\models\teachers\BonusItem;
 class BonusItemSearch extends BonusItem
 {
     public $bonusCategoryName;
-    public $measureFullName;
+    public $measureValueSlugName;
 
     /**
      * @inheritdoc
@@ -23,7 +23,7 @@ class BonusItemSearch extends BonusItem
         return [
             [['id', 'bonus_category_id'], 'integer'],
             [['name', 'slug', 'value_default', 'bonus_rule_id', 'status'], 'safe'],
-            [['bonusCategoryName','measureFullName'], 'string'],
+            [['bonusCategoryName','measureValueSlugName'], 'string'],
         ];
     }
 
@@ -63,11 +63,11 @@ class BonusItemSearch extends BonusItem
                 'bonus_category_id',
                 'name',
                 'slug',
-                'measureFullName' =>
+                'measureValueSlugName' =>
                     [
                         'asc' => ['value_default' => SORT_ASC, 'measure_id' => SORT_ASC],
                         'desc' => ['value_default' => SORT_DESC, 'measure_id' => SORT_DESC],
-                        'label' => Yii::t('yee/teachers', 'Measure Full Name')
+                        'label' => Yii::t('yee/teachers', 'Value Default')
 
                     ],
                 'bonus_rule_id',
@@ -97,7 +97,7 @@ class BonusItemSearch extends BonusItem
             ->andFilterWhere(['like', 'bonus_rule_id', $this->bonus_rule_id])
         ;
 
-        $query->andWhere('value_default LIKE "%' . $this->measureFullName . '%" ');
+        $query->andWhere('value_default LIKE "%' . $this->measureValueSlugName . '%" ');
 
         return $dataProvider;
     }

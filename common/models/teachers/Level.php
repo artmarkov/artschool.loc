@@ -31,6 +31,7 @@ class Level extends \yii\db\ActiveRecord
         return [
             [['name'], 'string', 'max' => 128],
             [['slug'], 'string', 'max' => 32],
+            [['name','slug'], 'unique'],
         ];
     }
 
@@ -52,5 +53,11 @@ class Level extends \yii\db\ActiveRecord
     public function getTeachers()
     {
         return $this->hasMany(Teachers::className(), ['level_id' => 'id']);
+    }
+    
+     public static function getLevelList()
+    {
+        return \yii\helpers\ArrayHelper::map(Level::find()->all(), 'id', 'name');
+
     }
 }

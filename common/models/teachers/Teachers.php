@@ -22,6 +22,8 @@ use Yii;
  */
 class Teachers extends \yii\db\ActiveRecord
 {
+    public $time_serv_init;
+    public $time_serv_spec_init;
     /**
      * {@inheritdoc}
      */

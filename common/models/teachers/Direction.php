@@ -32,6 +32,7 @@ class Direction extends \yii\db\ActiveRecord
         return [
             [['name'], 'string', 'max' => 128],
             [['slug'], 'string', 'max' => 32],
+            [['name','slug'], 'unique'],
         ];
     }
 

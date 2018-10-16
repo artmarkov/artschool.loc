@@ -31,6 +31,7 @@ class Work extends \yii\db\ActiveRecord
         return [
             [['name'], 'string', 'max' => 128],
             [['slug'], 'string', 'max' => 32],
+            [['name','slug'], 'unique'],
         ];
     }
 
@@ -52,5 +53,11 @@ class Work extends \yii\db\ActiveRecord
     public function getTeachers()
     {
         return $this->hasMany(Teachers::className(), ['work_id' => 'id']);
+    }
+    
+     public static function getWorkList()
+    {
+        return \yii\helpers\ArrayHelper::map(Work::find()->all(), 'id', 'name');
+
     }
 }
