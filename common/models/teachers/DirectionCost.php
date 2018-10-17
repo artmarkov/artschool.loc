@@ -35,6 +35,9 @@ class DirectionCost extends \yii\db\ActiveRecord
         return [
             [['direction_id', 'stake_id', 'teachers_id'], 'required'],
             [['direction_id', 'stake_id', 'teachers_id', 'main_flag'], 'integer'],
+            ['main_flag', 'unique', 'targetAttribute' => ['main_flag', 'teachers_id']], // проверка уникальности пары
+            ['direction_id', 'unique', 'targetAttribute' => ['direction_id', 'teachers_id']], // проверка уникальности пары
+            [['direction_id', 'stake_id'], 'exist', 'skipOnError' => true, 'targetClass' => Cost::className(), 'targetAttribute' => ['direction_id' => 'direction_id', 'stake_id' => 'stake_id']],
             [['teachers_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teachers::className(), 'targetAttribute' => ['teachers_id' => 'id']],
             [['direction_id'], 'exist', 'skipOnError' => true, 'targetClass' => Direction::className(), 'targetAttribute' => ['direction_id' => 'id']],
             [['stake_id'], 'exist', 'skipOnError' => true, 'targetClass' => Stake::className(), 'targetAttribute' => ['stake_id' => 'id']],

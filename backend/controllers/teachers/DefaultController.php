@@ -2,6 +2,8 @@
 
 namespace backend\controllers\teachers;
 
+use common\models\teachers\DirectionCost;
+use common\models\teachers\Teachers;
 use Yii;
 
 
@@ -25,5 +27,33 @@ class DefaultController extends \backend\controllers\DefaultController
             default:
                 return parent::getRedirectPage($action, $model);
         }
+    }
+
+    public function actionUpdate($id)
+    {
+        $teachers = Teachers::findOne($id);
+        $directionCost = DirectionCost::findOne($id);
+
+        if (!isset($teachers, $directionCost)) {
+            throw new NotFoundHttpException("The user was not found.");
+        }
+
+//        $teachers->scenario = 'update';
+//        $directionCost->scenario = 'update';
+
+        if ($teachers->load(Yii::$app->request->post()) && $directionCost->load(Yii::$app->request->post())) {
+            $isValid = $teachers->validate();
+            $isValid = $directionCost->validate() && $isValid;
+            if ($isValid) {
+                $teachers->save(false);
+                $directionCost->save(false);
+                return $this->redirect(['view', 'id' => $id]);
+            }
+        }
+
+        return $this->render('update', [
+            'teachers' => $teachers,
+            'directionCost' => $directionCost,
+        ]);
     }
 }
