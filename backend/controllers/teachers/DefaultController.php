@@ -29,7 +29,7 @@ class DefaultController extends \backend\controllers\DefaultController
         }
     }
 
-    public function actionUpdate($id)
+    /*public function actionUpdate($id)
     {
         $teachers = Teachers::findOne($id);
         $directionCost = DirectionCost::findOne($id);
@@ -55,5 +55,5 @@ class DefaultController extends \backend\controllers\DefaultController
             'teachers' => $teachers,
             'directionCost' => $directionCost,
         ]);
-    }
+    }*/
 }
