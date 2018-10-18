@@ -3,7 +3,7 @@
 namespace common\models\teachers;
 
 use Yii;
-
+use yii\helpers\ArrayHelper;
 /**
  * This is the model class for table "{{%teachers}}".
  *
@@ -24,7 +24,7 @@ class Teachers extends \yii\db\ActiveRecord
 {
     public $time_serv_init;
     public $time_serv_spec_init;
-    // public $bonus_list;
+    
     /**
      * {@inheritdoc}
      */
@@ -52,6 +52,7 @@ class Teachers extends \yii\db\ActiveRecord
     {
         return [
             [['position_id', 'work_id', 'level_id', 'timestamp_serv', 'timestamp_serv_spec'], 'integer'],
+            [['position_id', 'work_id', 'level_id'], 'required'],
             [['tab_num'], 'string', 'max' => 16],
             [['level_id'], 'exist', 'skipOnError' => true, 'targetClass' => Level::className(), 'targetAttribute' => ['level_id' => 'id']],
             [['position_id'], 'exist', 'skipOnError' => true, 'targetClass' => Position::className(), 'targetAttribute' => ['position_id' => 'id']],
@@ -73,6 +74,7 @@ class Teachers extends \yii\db\ActiveRecord
             'tab_num' => Yii::t('yee/teachers', 'Tab Num'),
             'timestamp_serv' => Yii::t('yee/teachers', 'Timestamp Serv'),
             'timestamp_serv_spec' => Yii::t('yee/teachers', 'Timestamp Serv Spec'),
+            'bonus_list' => Yii::t('yee/teachers', 'Bonus List'),
         ];
     }
 
@@ -115,7 +117,12 @@ class Teachers extends \yii\db\ActiveRecord
     }
     public static function getBonusItemList()
     {
-       return \yii\helpers\ArrayHelper::map(BonusItem::find()->select('id, name, value_default')->orderBy('name')->asArray()->all(), 'id' ,'name',  'value_default');
-        //return BonusItem:: find()->select(['name', 'id','value_default'])->indexBy('id')->orderBy('name')->column();
+       return ArrayHelper::map(BonusItem::find()
+               ->innerJoin('teachers_bonus_category','teachers_bonus_category.id = teachers_bonus_item.bonus_category_id')
+               ->andWhere(['teachers_bonus_item.status' => BonusItem::STATUS_ACTIVE])
+               ->select('teachers_bonus_item.id as id, teachers_bonus_item.name as name, teachers_bonus_category.name as name_category')
+               ->orderBy('teachers_bonus_item.bonus_category_id')
+               ->addOrderBy('teachers_bonus_item.name')
+               ->asArray()->all(), 'id' ,'name', 'name_category');
     }
 }
