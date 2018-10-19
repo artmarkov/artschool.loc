@@ -58,6 +58,5 @@ class Position extends \yii\db\ActiveRecord
      public static function getPositionList()
     {
         return \yii\helpers\ArrayHelper::map(Position::find()->all(), 'id', 'name');
-
     }
 }

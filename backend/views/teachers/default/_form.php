@@ -6,6 +6,7 @@ use yeesoft\helpers\Html;
 use kartik\date\DatePicker;
 use nex\chosen\Chosen;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use common\models\teachers\BonusItem;
 
 /* @var $this yii\web\View */
@@ -19,18 +20,71 @@ use common\models\teachers\BonusItem;
     $form = ActiveForm::begin([
         'id' => 'teachers-form',
         'validateOnBlur' => false,
+        'enableAjaxValidation' => true,
+        'options' => ['enctype' => 'multipart/form-data'],
     ])
-    ?>
 
+    ?>
     <div class="row">
         <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <?php
+                            echo $form->field($model, 'direction_id_main')->dropDownList(\common\models\teachers\Direction::getDirectionList(), [
+                                'prompt' => Yii::t('yee/teachers', 'Select Direction Main...'),
+                                'id' => 'direction_id_main'
+                            ])->label(Yii::t('yee/teachers', 'Name Direction Main'));
+                            ?>
+                        </div>
+                        <div class="col-md-6">
+                            <?php
+                            echo $form->field($model, 'stake_id_main')->widget(\kartik\depdrop\DepDrop::classname(), [
+                                'data' => \common\models\teachers\Stake::getStakeByName($model->direction_id_main),
+                                'options' => ['prompt' => Yii::t('yee/guide', 'Select Stake Main...'), 'id' => 'stake_id_main'],
+                                'pluginOptions' => [
+                                    'depends' => ['direction_id_main'],
+                                    'placeholder' => Yii::t('yee/guide', 'Select Stake Main...'),
+                                    'url' => Url::to(['/teachers/default/stake'])
+                                ]
+                            ])->label(Yii::t('yee/guide', 'Name Stake'));
 
+                            ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <?php
+                            echo $form->field($model, 'direction_id_optional')->dropDownList(\common\models\teachers\Direction::getDirectionList(), [
+                                'prompt' => Yii::t('yee/teachers', 'Select Direction Optional...'),
+                                'id' => 'direction_id_optional'
+                            ])->label(Yii::t('yee/teachers', 'Name Direction Optional'));
+                            ?>
+                        </div>
+                        <div class="col-md-6">
+                            <?php
+                            echo $form->field($model, 'stake_id_optional')->widget(\kartik\depdrop\DepDrop::classname(), [
+                                'data' => \common\models\teachers\Stake::getStakeByName($model->direction_id_optional),
+                                'options' => ['prompt' => Yii::t('yee/guide', 'Select Stake Optional...'), 'id' => 'stake_id_optional'],
+                                'pluginOptions' => [
+                                    'depends' => ['direction_id_optional'],
+                                    'placeholder' => Yii::t('yee/guide', 'Select Stake Optional...'),
+                                    'url' => Url::to(['/teachers/default/stake'])
+                                ]
+                            ])->label(Yii::t('yee/guide', 'Name Stake Optional'));
+
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="panel panel-default">
                 <div class="panel-body">
 
                     <div class="row">
                         <div class="col-md-6">
-                            <?= $form->field($model, 'timestamp_serv')->textInput() ?>
+                            <?= $form->field($model, 'year_serv')->textInput() ?>
                         </div>
                         <div class="col-md-6">
                             <?php
@@ -46,7 +100,7 @@ use common\models\teachers\BonusItem;
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <?= $form->field($model, 'timestamp_serv_spec')->textInput() ?>
+                            <?= $form->field($model, 'year_serv_spec')->textInput() ?>
                         </div>
                         <div class="col-md-6">
                             <?php
@@ -63,42 +117,24 @@ use common\models\teachers\BonusItem;
                     </div>
                 </div>
             </div>
-            <?php
-            echo $form->field($model, 'bonus_list')->widget(Chosen::className(), [
-                'items' => Teachers::getBonusItemList(),
-                'multiple' => true,
-                'placeholder' => 'Select',
-            ]);
+            <div class="panel panel-default">
+                <div class="panel-body" style="height: 350px;">
 
-            ?>
-            <!-- <div class="panel panel-default">
-                <div class="panel-body">
-
-                    <? /*= $form->field($model, 'teachers_id')->textInput() */ ?>
-
-                    <?php /*  echo $form->field($directionCost, 'direction_id')->dropDownList(\common\models\teachers\Direction::getDirectionList(), [
-                        'prompt' => Yii::t('yee/teachers','Select Direction...'),
-                        'id' => 'direction_id'
-                    ])->label(Yii::t('yee/teachers', 'Name Direction'));
-                    */ ?>
-
-                    <?php /*  echo $form->field($directionCost, 'stake_id')->dropDownList(\common\models\teachers\Stake::getStakeList(), [
-                        'prompt' => Yii::t('yee/teachers','Select Stake...'),
-                        'id' => 'stake_id'
-                    ])->label(Yii::t('yee/teachers', 'Name Stake'));
-                    */ ?>
-
-
-                    <? /*= $form->field($directionCost, 'main_flag')->checkbox() */ ?>
-
+                    <div class="row">
+                        <div class="col-md-12">
+                            <?php
+                            echo $form->field($model, 'bonus_list')->widget(Chosen::className(), [
+                                'items' => Teachers::getBonusItemList(),
+                                'multiple' => true,
+                                'placeholder' => 'Select',
+                            ]);
+                            ?>
+                        </div>
+                    </div>
                 </div>
-
-            </div>-->
-
+            </div>
         </div>
-
         <div class="col-md-3">
-
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">

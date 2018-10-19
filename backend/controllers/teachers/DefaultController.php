@@ -3,6 +3,8 @@
 namespace backend\controllers\teachers;
 
 use common\models\teachers\DirectionCost;
+use common\models\teachers\Stake;
+use common\models\teachers\Cost;
 use common\models\teachers\Teachers;
 use Yii;
 
@@ -12,7 +14,7 @@ use Yii;
  */
 class DefaultController extends \backend\controllers\DefaultController
 {
-    public $modelClass       = 'common\models\teachers\Teachers';
+    public $modelClass = 'common\models\teachers\Teachers';
     public $modelSearchClass = 'common\models\teachers\search\TeachersSearch';
 
     protected function getRedirectPage($action, $model = null)
@@ -29,31 +31,75 @@ class DefaultController extends \backend\controllers\DefaultController
         }
     }
 
-    /*public function actionUpdate($id)
+    /**
+     * Updates an existing model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     *
+     * @param integer $id
+     *
+     * @return mixed
+     */
+    public function actionUpdate($id)
     {
-        $teachers = Teachers::findOne($id);
-        $directionCost = DirectionCost::findOne($id);
+        /* @var $model \yeesoft\db\ActiveRecord */
 
-        if (!isset($teachers, $directionCost)) {
-            throw new NotFoundHttpException("The user was not found.");
+        $year_sec = 31536000;
+        $this_time = time();
+
+        $model = $this->findModel($id);
+
+        $model->direction_id_main = Cost::getDirectionId($model->cost_main_id)->direction_id;
+        $model->stake_id_main = Cost::getStakeId($model->cost_main_id)->stake_id;
+
+        $model->direction_id_optional = Cost::getDirectionId($model->cost_optional_id)->direction_id;
+        $model->stake_id_optional = Cost::getStakeId($model->cost_optional_id)->stake_id;
+
+        $model->time_serv_init = Teachers::getTimestampToDate($mask = "d-m-Y", $this_time);
+        $model->time_serv_spec_init = Teachers::getTimestampToDate($mask = "d-m-Y", $this_time);
+
+        $model->year_serv = round(($this_time - $model->timestamp_serv)/$year_sec, 2);
+        $model->year_serv_spec = round(($this_time - $model->timestamp_serv_spec)/$year_sec, 2);
+
+        // echo '<pre>' . print_r($model, true) . '</pre>';
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            return \yii\widgets\ActiveForm::validate($model);
+        } elseif ($model->load(Yii::$app->request->post())) {
+
+            $model->cost_main_id = Cost::getCostId($model->direction_id_main, $model->stake_id_main)->id;
+            $model->cost_optional_id = Cost::getCostId($model->direction_id_optional, $model->stake_id_optional)->id;
+
+            $model->timestamp_serv = Teachers::getDateToTimestamp($mask = "-", $model->time_serv_init) - $model->year_serv*$year_sec;
+            $model->timestamp_serv_spec = Teachers::getDateToTimestamp($mask = "-", $model->time_serv_spec_init) - $model->year_serv_spec*$year_sec;
+
+
+            if ($model->save()) {
+                Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been updated.'));
+                return $this->redirect($this->getRedirectPage('update', $model));
+            }
+        } else {
+            return $this->renderIsAjax('update', compact('model'));
         }
+    }
 
-//        $teachers->scenario = 'update';
-//        $directionCost->scenario = 'update';
+    /**
+     *
+     *  формируем список ставок для widget DepDrop::classname()
+     */
+    public function actionStake()
+    {
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
 
-        if ($teachers->load(Yii::$app->request->post()) && $directionCost->load(Yii::$app->request->post())) {
-            $isValid = $teachers->validate();
-            $isValid = $directionCost->validate() && $isValid;
-            if ($isValid) {
-                $teachers->save(false);
-                $directionCost->save(false);
-                return $this->redirect(['view', 'id' => $id]);
+            if (!empty($parents)) {
+                $direction_id = $parents[0];
+                $out = Stake::getStakeByDirectionId($direction_id);
+
+                return json_encode(['output' => $out, 'selected' => '']);
             }
         }
-
-        return $this->render('update', [
-            'teachers' => $teachers,
-            'directionCost' => $directionCost,
-        ]);
-    }*/
+        return json_encode(['output' => '', 'selected' => '']);
+    }
 }

@@ -44,7 +44,7 @@ use yeesoft\helpers\Html;
                             <span><?=  $model->id ?></span>
                         </div>
 
-                        <?= $form->field($model, 'multiple')->checkbox() ?>
+<!--                        --><?//= $form->field($model, 'multiple')->checkbox() ?>
 
                         <div class="form-group">
                             <?php  if ($model->isNewRecord): ?>

@@ -30,8 +30,9 @@ class BonusCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'slug', 'multiple'], 'required'],
-            [['multiple'], 'integer'],
+            [['name', 'slug'], 'required'],
+           /* ['multiple', 'required'],
+            [['multiple'], 'integer'],*/
             [['name'], 'string', 'max' => 128],
             [['slug'], 'string', 'max' => 127],
         ];
@@ -46,7 +47,7 @@ class BonusCategory extends \yii\db\ActiveRecord
             'id' => Yii::t('yee/teachers', 'ID'),
             'name' => Yii::t('yee/teachers', 'Name'),
             'slug' => Yii::t('yee/teachers', 'Slug'),
-            'multiple' => Yii::t('yee/teachers', 'Multiple'),
+           // 'multiple' => Yii::t('yee/teachers', 'Multiple'),
         ];
     }
 

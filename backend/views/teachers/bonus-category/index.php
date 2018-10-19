@@ -72,11 +72,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         'buttonsTemplate' => '{update} {delete}',
                     ],
                     'slug',
-                    [
+                   /* [
                         'class' => 'yeesoft\grid\columns\StatusColumn',
                         'attribute' => 'multiple',
                         'options' => ['style' => 'width:100px']
-                    ],
+                    ],*/
 
                 ],
             ]);

@@ -62,11 +62,13 @@ class Cost extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Direction::className(), ['id' => 'direction_id']);
     }
+
     /* Геттер для названия */
     public function getDirectionName()
     {
         return $this->direction->name;
     }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -74,14 +76,55 @@ class Cost extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Stake::className(), ['id' => 'stake_id']);
     }
+
     /* Геттер для названия */
     public function getStakeName()
     {
         return $this->stake->name;
     }
-     /* Геттер для названия */
+
+    /* Геттер для названия */
     public function getStakeSlug()
     {
         return $this->stake->slug;
+    }
+
+    public static function getCostList()
+    {
+        return \yii\helpers\ArrayHelper::map(Cost::find()
+            ->innerJoin('teachers_direction', 'teachers_direction.id = teachers_cost.direction_id')
+            ->innerJoin('teachers_stake', 'teachers_stake.id = teachers_cost.stake_id')
+            ->select('teachers_cost.id as id, teachers_stake.name as name, teachers_direction.name as name_category')
+            ->orderBy('teachers_cost.direction_id')
+            ->addOrderBy('teachers_stake.id')
+            ->asArray()->all(), 'id', 'name', 'name_category');
+    }
+
+    /* Геттер получения  direction_id */
+    public static function getDirectionId($id)
+    {
+        $data = self::find()
+            ->select(['direction_id'])
+            ->where(['id' => $id])->one();
+
+        return $data;
+    }
+
+    /* Геттер получения  stake_id */
+    public static function getStakeId($id)
+    {
+        $data = self::find()
+            ->select(['stake_id'])
+            ->where(['id' => $id])->one();
+        return $data;
+    }
+
+    /* Геттер получения  id */
+    public static function getCostId($direction_id, $stake_id)
+    {
+        $data = self::find()
+            ->select(['id'])
+            ->where(['direction_id' => $direction_id, 'stake_id' => $stake_id])->one();
+        return $data;
     }
 }
