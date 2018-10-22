@@ -72,7 +72,7 @@ use common\models\teachers\BonusItem;
                                     'placeholder' => Yii::t('yee/guide', 'Select Stake Optional...'),
                                     'url' => Url::to(['/teachers/default/stake'])
                                 ]
-                            ])->label(Yii::t('yee/guide', 'Name Stake Optional'));
+                            ])->label(Yii::t('yee/teachers', 'Name Stake Optional'));
 
                             ?>
                         </div>
@@ -126,8 +126,8 @@ use common\models\teachers\BonusItem;
                             echo $form->field($model, 'bonus_list')->widget(Chosen::className(), [
                                 'items' => Teachers::getBonusItemList(),
                                 'multiple' => true,
-                                'placeholder' => 'Select',
-                            ]);
+                                'placeholder' => Yii::t('yee/teachers', 'Select Teachers Bonus...'),
+                            ])->label(Yii::t('yee/teachers', 'Teachers Bonus'));
                             ?>
                         </div>
                     </div>

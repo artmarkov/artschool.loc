@@ -4,23 +4,22 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 use yeesoft\grid\GridView;
 use yeesoft\grid\GridQuickLinks;
-use common\models\teachers\DirectionCost;
+use common\models\service\MeasureUnit;
 use yeesoft\helpers\Html;
 use yeesoft\grid\GridPageSize;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('yee/teachers','Direction Cost');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/teachers','Teachers'), 'url' => ['teachers/default/index']];
+$this->title = Yii::t('yee/service','Measure Units');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="direction-cost-index">
+<div class="measure-unit-index">
 
     <div class="row">
         <div class="col-sm-12">
             <h3 class="lte-hide-title page-title"><?=  Html::encode($this->title) ?></h3>
-            <?= Html::a(Yii::t('yee', 'Add New'), ['/teachers/direction-cost/create'], ['class' => 'btn btn-sm btn-primary']) ?>
+            <?= Html::a(Yii::t('yee', 'Add New'), ['/service/measure-unit/create'], ['class' => 'btn btn-sm btn-primary']) ?>
         </div>
     </div>
 
@@ -32,49 +31,47 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php 
                     /* Uncomment this to activate GridQuickLinks */
                     /* echo GridQuickLinks::widget([
-                        'model' => DirectionCost::className(),
+                        'model' => measure-unit::className(),
                         'searchModel' => $searchModel,
                     ])*/
                     ?>
                 </div>
 
                 <div class="col-sm-6 text-right">
-                    <?=  GridPageSize::widget(['pjaxId' => 'direction-cost-grid-pjax']) ?>
+                    <?=  GridPageSize::widget(['pjaxId' => 'measure-unit-grid-pjax']) ?>
                 </div>
             </div>
 
             <?php 
             Pjax::begin([
-                'id' => 'direction-cost-grid-pjax',
+                'id' => 'measure-unit-grid-pjax',
             ])
             ?>
 
             <?= 
             GridView::widget([
-                'id' => 'direction-cost-grid',
+                'id' => 'measure-unit-grid',
                 'dataProvider' => $dataProvider,
                                 'bulkActionOptions' => [
-                    'gridId' => 'direction-cost-grid',
+                    'gridId' => 'measure-unit-grid',
                     'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
                 ],
                 'columns' => [
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
                     [
-                       'class' => 'yeesoft\grid\columns\TitleActionColumn',
+                        'class' => 'yeesoft\grid\columns\TitleActionColumn',
                         'options' => ['style' => 'width:300px'],
-                        //'attribute' => 'name',
-                        'controller' => '/teachers/direction-cost',
-                        'title' => function(DirectionCost $model) {
-                            return Html::a($model->id, ['update', 'id' => $model->id], ['data-pjax' => 0]);
+                        'attribute' => 'name',
+                        'controller' => 'service/measure-unit',
+                        'title' => function(MeasureUnit $model) {
+                            return Html::a($model->name, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
                         'buttonsTemplate' => '{update} {delete}',
                     ],
 
-           // 'id',
-            'teachers_id',
-            'direction_id',
-            'stake_id',
-            'main_flag',
+//            'id',
+//            'name',
+            'slug',
 
                 ],
             ]);

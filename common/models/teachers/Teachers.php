@@ -19,7 +19,6 @@ use yii\helpers\ArrayHelper;
  * @property TeachersLevel $level
  * @property TeachersPosition $position
  * @property TeachersWork $work
- * @property TeachersDirectionCost[] $teachersDirectionCosts
  */
 class Teachers extends \yii\db\ActiveRecord
 {
@@ -73,8 +72,9 @@ class Teachers extends \yii\db\ActiveRecord
             [['cost_optional_id'], 'exist', 'skipOnError' => true, 'targetClass' => Cost::className(), 'targetAttribute' => ['cost_optional_id' => 'id']],
             [['bonus_list'], 'safe'],
             [['direction_id_main', 'stake_id_main', 'direction_id_optional', 'stake_id_optional'], 'integer'],
-            [['year_serv', 'year_serv_spec'], 'safe'],
+            [['year_serv', 'year_serv_spec', 'time_serv_init', 'time_serv_spec_init'], 'safe'],
             ['cost_main_id', 'compareCost'],
+            ['year_serv', 'compareSpec'],
         ];
     }
 
@@ -91,18 +91,31 @@ class Teachers extends \yii\db\ActiveRecord
             }
         }
     }
+     /**
+     * Сравнение общего стажа со стажем по специальности
+     * @return  mixed
+     */
+     public function compareSpec()
+    {
+        if (!$this->hasErrors()) {
+
+            if ($this->year_serv < $this->year_serv_spec) {
+                $this->addError('year_serv_spec', Yii::t('yee/teachers', 'Experience in the specialty can not be more than the total experience.'));
+            }
+        }
+    }
     /**
      * Преобразование даты в timestamp
      */
-    public function getDateToTimestamp($mask = "-", $date) {
+    public static function getDateToTimestamp($mask = "-", $date) {
         $d_in = explode($mask, $date);
-        return  mktime(0, 0, 0, $d_in[1], $d_in[0], $d_in[2]);
+        return mktime(0, 0, 0, $d_in[1], $d_in[0], $d_in[2]);
     }
 
     /**
      * Преобразование timestamp в дату
      */
-    public function getTimestampToDate($mask = "d-m-Y", $timestamp) {
+    public static function getTimestampToDate($mask = "d-m-Y", $timestamp) {
         return date($mask, $timestamp);
     }
     /**
@@ -167,11 +180,7 @@ class Teachers extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDirectionCosts()
-    {
-        return $this->hasMany(DirectionCost::className(), ['teachers_id' => 'id']);
-    }
-
+  
     public function getBonusItem()
     {
         return $this->hasMany(BonusItem::className(), ['id' => 'bonus_item_id'])

@@ -3,7 +3,7 @@
 namespace common\models\teachers;
 
 use Yii;
-
+use common\models\service\MeasureUnit;
 /**
  * This is the model class for table "{{%teachers_bonus_item}}".
  *
@@ -101,7 +101,7 @@ class BonusItem extends \yii\db\ActiveRecord
      */
     public function getMeasure()
     {
-        return $this->hasOne(\common\models\service\MeasureUnit::className(), ['id' => 'measure_id']);
+        return $this->hasOne(MeasureUnit::className(), ['id' => 'measure_id']);
     }
      /* Геттер для названия */
     public function getMeasureName()

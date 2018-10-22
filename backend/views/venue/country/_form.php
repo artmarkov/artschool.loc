@@ -26,6 +26,7 @@ use yeesoft\helpers\Html;
 
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
+                    <?= $form->field($model, 'fips')->textInput(['maxlength' => true]) ?>
 
                 </div>
 
@@ -43,9 +44,7 @@ use yeesoft\helpers\Html;
                                 : </label>
                             <span><?= $model->id ?></span>
                         </div>
-
-                    <?= $form->field($model, 'fips')->textInput(['maxlength' => true]) ?>
-
+                    
                         <div class="form-group">
                             <?php if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>

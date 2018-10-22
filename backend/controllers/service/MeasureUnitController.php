@@ -1,16 +1,16 @@
 <?php
 
-namespace backend\controllers\teachers;
+namespace backend\controllers\service;
 
 use Yii;
 use backend\controllers\DefaultController;
 
 /**
- * DirectionCostController implements the CRUD actions for common\models\teachers\DirectionCost model.
+ * LevelController implements the CRUD actions for common\models\service\measure-unit model.
  */
-class DirectionCostController extends DefaultController 
+class MeasureUnitController extends DefaultController 
 {
-    public $modelClass       = 'common\models\teachers\DirectionCost';
+    public $modelClass       = 'common\models\service\MeasureUnit';
     public $modelSearchClass = '';
 
     protected function getRedirectPage($action, $model = null)

@@ -12,7 +12,6 @@ use Yii;
  * @property string $slug
  *
  * @property Cost[] $teachersCosts
- * @property DirectionCost[] $teachersDirectionCosts
  */
 class Direction extends \yii\db\ActiveRecord
 {
@@ -59,11 +58,7 @@ class Direction extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDirectionCosts()
-    {
-        return $this->hasMany(DirectionCost::className(), ['direction_id' => 'id']);
-    }
-
+   
     public static function getDirectionList()
     {
         return \yii\helpers\ArrayHelper::map(Direction::find()->all(), 'id', 'name');

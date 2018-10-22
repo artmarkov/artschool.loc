@@ -26,6 +26,8 @@ use yeesoft\helpers\Html;
                     
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
+                    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+
                     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
                 </div>
@@ -37,14 +39,12 @@ use yeesoft\helpers\Html;
 
             <div class="panel panel-default">
                 <div class="panel-body">
-<!--                    <div class="record-info">-->
+                    <div class="record-info">
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
                             <span><?=  $model->id ?></span>
                         </div>
-
-                        <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
-
+                        
                         <div class="form-group">
                             <?php  if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
@@ -61,7 +61,7 @@ use yeesoft\helpers\Html;
                                 ]) ?>
                             <?php endif; ?>
                         </div>
-<!--                    </div>-->
+                    </div>
                 </div>
             </div>
 

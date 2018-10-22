@@ -3,6 +3,7 @@
 use yeesoft\widgets\ActiveForm;
 use common\models\teachers\BonusItem;
 use common\models\teachers\BonusCategory;
+use common\models\service\MeasureUnit;
 use yeesoft\helpers\Html;
 
 /* @var $this yii\web\View */
@@ -38,15 +39,13 @@ use yeesoft\helpers\Html;
                     <?= $form->field($model, 'value_default')->textInput(['maxlength' => true]) ?>
 
                     <?php
-                    echo $form->field($model, 'measure_id')->dropDownList(common\models\service\MeasureUnit::getMeasureUnitList(), [
+                    echo $form->field($model, 'measure_id')->dropDownList(MeasureUnit::getMeasureUnitList(), [
                         'prompt' => Yii::t('yee/teachers', 'Select Measure Unit...'),
                         'id' => 'measure_id'
                     ])->label(Yii::t('yee/teachers', 'Measure Unit'));
                     ?>
 
                     <?= $form->field($model, 'bonus_rule_id')->textInput() ?>
-
-                    <?= $form->field($model->loadDefaultValues(), 'status')->dropDownList(BonusItem::getStatusList()) ?>
 
                 </div>
 
@@ -62,6 +61,8 @@ use yeesoft\helpers\Html;
                             <label class="control-label" style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['id'] ?>: </label>
                             <span><?= $model->id ?></span>
                         </div>
+                        
+                        <?= $form->field($model->loadDefaultValues(), 'status')->dropDownList(BonusItem::getStatusList()) ?>
 
                         <div class="form-group">
                             <?php if ($model->isNewRecord): ?>
