@@ -4,22 +4,23 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 use yeesoft\grid\GridView;
 use yeesoft\grid\GridQuickLinks;
-use common\models\service\MeasureUnit;
+use common\models\subject\SubjectCategoryItem;
 use yeesoft\helpers\Html;
 use yeesoft\grid\GridPageSize;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('yee/guide','Measure Units');
+$this->title = Yii::t('yee/guide','Subject Category');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide','Subjects'), 'url' => ['subject/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="measure-unit-index">
+<div class="subject-category-item-index">
 
     <div class="row">
         <div class="col-sm-12">
             <h3 class="lte-hide-title page-title"><?=  Html::encode($this->title) ?></h3>
-            <?= Html::a(Yii::t('yee', 'Add New'), ['/service/measure-unit/create'], ['class' => 'btn btn-sm btn-primary']) ?>
+            <?= Html::a(Yii::t('yee', 'Add New'), ['/subject/category-item/create'], ['class' => 'btn btn-sm btn-primary']) ?>
         </div>
     </div>
 
@@ -31,29 +32,29 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php 
                     /* Uncomment this to activate GridQuickLinks */
                     /* echo GridQuickLinks::widget([
-                        'model' => measure-unit::className(),
+                        'model' => SubjectCategoryItem::className(),
                         'searchModel' => $searchModel,
                     ])*/
                     ?>
                 </div>
 
                 <div class="col-sm-6 text-right">
-                    <?//=  GridPageSize::widget(['pjaxId' => 'measure-unit-grid-pjax']) ?>
+                    <?//=  GridPageSize::widget(['pjaxId' => 'subject-category-item-grid-pjax']) ?>
                 </div>
             </div>
 
             <?php 
             Pjax::begin([
-                'id' => 'measure-unit-grid-pjax',
+                'id' => 'subject-category-item-grid-pjax',
             ])
             ?>
 
             <?= 
             GridView::widget([
-                'id' => 'measure-unit-grid',
+                'id' => 'subject-category-item-grid',
                 'dataProvider' => $dataProvider,
                                 'bulkActionOptions' => [
-                    'gridId' => 'measure-unit-grid',
+                    'gridId' => 'subject-category-item-grid',
                     'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
                 ],
                 'columns' => [
@@ -62,8 +63,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
                         'options' => ['style' => 'width:300px'],
                         'attribute' => 'name',
-                        'controller' => 'service/measure-unit',
-                        'title' => function(MeasureUnit $model) {
+                        'controller' => '/subject/category-item',
+                        'title' => function(SubjectCategoryItem $model) {
                             return Html::a($model->name, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
                         'buttonsTemplate' => '{update} {delete}',
@@ -72,6 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'id',
 //            'name',
             'slug',
+//            'order',
 
                 ],
             ]);
