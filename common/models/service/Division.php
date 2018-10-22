@@ -5,22 +5,20 @@ namespace common\models\service;
 use Yii;
 
 /**
- * This is the model class for table "measure_unit".
+ * This is the model class for table "{{%division}}".
  *
  * @property int $id
  * @property string $name
  * @property string $slug
- *
- * @property TeachersBonusItem[] $teachersBonusItems
  */
-class MeasureUnit extends \yii\db\ActiveRecord
+class Division extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'measure_unit';
+        return '{{%division}}';
     }
 
     /**
@@ -29,8 +27,9 @@ class MeasureUnit extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'string', 'max' => 16],
-            [['slug'], 'string', 'max' => 8],
+            [['name', 'slug'], 'required'],
+            [['name'], 'string', 'max' => 127],
+            [['slug'], 'string', 'max' => 32],
         ];
     }
 
@@ -45,18 +44,13 @@ class MeasureUnit extends \yii\db\ActiveRecord
             'slug' => Yii::t('yee/guide', 'Slug'),
         ];
     }
-
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTeachersBonusItems()
+
+    public static function getDivisionList()
     {
-        return $this->hasMany(TeachersBonusItem::className(), ['measure_id' => 'id']);
-    }
-    
-    public static function getMeasureUnitList()
-    {
-        return \yii\helpers\ArrayHelper::map(MeasureUnit::find()->all(), 'id', 'name');
+        return \yii\helpers\ArrayHelper::map(Division::find()->all(), 'id', 'name');
 
     }
 }

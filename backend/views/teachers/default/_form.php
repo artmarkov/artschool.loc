@@ -83,10 +83,10 @@ use common\models\teachers\BonusItem;
                 <div class="panel-body">
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <?= $form->field($model, 'year_serv')->textInput() ?>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <?php
                             echo $form->field($model, 'time_serv_init')->widget(DatePicker::classname(), [
                                 'options' => ['placeholder' => 'dd-mm-yyyy'],
@@ -97,12 +97,11 @@ use common\models\teachers\BonusItem;
                             ])->label(Yii::t('yee/teachers', 'For date'));
                             ?>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
+
+                        <div class="col-md-3">
                             <?= $form->field($model, 'year_serv_spec')->textInput() ?>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <?php
                             echo $form->field($model, 'time_serv_spec_init')->widget(DatePicker::classname(), [
                                 'options' => ['placeholder' => 'dd-mm-yyyy'],
@@ -117,11 +116,17 @@ use common\models\teachers\BonusItem;
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-body" style="height: 350px;">
-
-                    <div class="row">
-                        <div class="col-md-12">
+                               <div class="row">
+                        <div class="col-md-6">
+                            <?php
+                            echo $form->field($model, 'department_list')->widget(Chosen::className(), [
+                                'items' => Teachers::getDepartmentList(),
+                                'multiple' => true,
+                                'placeholder' => Yii::t('yee/teachers', 'Select Department...'),
+                            ])->label(Yii::t('yee/guide', 'Department'));
+                            ?>
+                        </div>
+                                    <div class="col-md-6">
                             <?php
                             echo $form->field($model, 'bonus_list')->widget(Chosen::className(), [
                                 'items' => Teachers::getBonusItemList(),
@@ -132,9 +137,7 @@ use common\models\teachers\BonusItem;
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-3">
+                <div class="col-md-3">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">

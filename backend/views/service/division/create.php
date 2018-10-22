@@ -3,14 +3,14 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\service\measure-unit */
+/* @var $model common\models\service\Division */
 
-$this->title = Yii::t('yee','Create');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide', 'Measure Unit'), 'url' => ['index']];
+$this->title = 'Create Division';
+$this->params['breadcrumbs'][] = ['label' => 'Divisions', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="measure-unit-create">
+<div class="division-create">
     <h3 class="lte-hide-title"><?=  Html::encode($this->title) ?></h3>
     <?=  $this->render('_form', compact('model')) ?>
 </div>

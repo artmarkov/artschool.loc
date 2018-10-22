@@ -2,6 +2,7 @@
 
 namespace common\models\teachers;
 
+use common\models\service\Department;
 use Yii;
 use yii\helpers\ArrayHelper;
 
@@ -50,6 +51,7 @@ class Teachers extends \yii\db\ActiveRecord
                 'class' => \common\components\behaviors\ManyHasManyBehavior::className(),
                 'relations' => [
                     'bonusItem' => 'bonus_list',
+                    'departmentItem' => 'department_list',
                 ],
             ],
         ];
@@ -70,7 +72,7 @@ class Teachers extends \yii\db\ActiveRecord
             [['work_id'], 'exist', 'skipOnError' => true, 'targetClass' => Work::className(), 'targetAttribute' => ['work_id' => 'id']],
             [['cost_main_id'], 'exist', 'skipOnError' => true, 'targetClass' => Cost::className(), 'targetAttribute' => ['cost_main_id' => 'id']],
             [['cost_optional_id'], 'exist', 'skipOnError' => true, 'targetClass' => Cost::className(), 'targetAttribute' => ['cost_optional_id' => 'id']],
-            [['bonus_list'], 'safe'],
+            [['bonus_list', 'department_list'], 'safe'],
             [['direction_id_main', 'stake_id_main', 'direction_id_optional', 'stake_id_optional'], 'integer'],
             [['year_serv', 'year_serv_spec', 'time_serv_init', 'time_serv_spec_init'], 'safe'],
             ['cost_main_id', 'compareCost'],
@@ -180,11 +182,21 @@ class Teachers extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-  
+
     public function getBonusItem()
     {
         return $this->hasMany(BonusItem::className(), ['id' => 'bonus_item_id'])
             ->viaTable('teachers_bonus', ['teachers_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+
+    public function getDepartmentItem()
+    {
+        return $this->hasMany(Department::className(), ['id' => 'department_id'])
+            ->viaTable('teachers_department', ['teachers_id' => 'id']);
     }
 
     public static function getBonusItemList()
@@ -195,6 +207,17 @@ class Teachers extends \yii\db\ActiveRecord
             ->select('teachers_bonus_item.id as id, teachers_bonus_item.name as name, teachers_bonus_category.name as name_category')
             ->orderBy('teachers_bonus_item.bonus_category_id')
             ->addOrderBy('teachers_bonus_item.name')
+            ->asArray()->all(), 'id', 'name', 'name_category');
+    }
+
+    public static function getDepartmentList()
+    {
+        return ArrayHelper::map(Department::find()
+            ->innerJoin('division', 'division.id = department.division_id')
+            ->andWhere(['department.status' => Department::STATUS_ACTIVE])
+            ->select('department.id as id, department.name as name, division.name as name_category')
+            ->orderBy('division.id')
+            ->addOrderBy('department.name')
             ->asArray()->all(), 'id', 'name', 'name_category');
     }
 

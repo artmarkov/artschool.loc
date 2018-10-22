@@ -4,22 +4,22 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 use yeesoft\grid\GridView;
 use yeesoft\grid\GridQuickLinks;
-use common\models\service\MeasureUnit;
+use common\models\service\Division;
 use yeesoft\helpers\Html;
 use yeesoft\grid\GridPageSize;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('yee/guide','Measure Units');
+$this->title = 'Divisions';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="measure-unit-index">
+<div class="division-index">
 
     <div class="row">
         <div class="col-sm-12">
             <h3 class="lte-hide-title page-title"><?=  Html::encode($this->title) ?></h3>
-            <?= Html::a(Yii::t('yee', 'Add New'), ['/service/measure-unit/create'], ['class' => 'btn btn-sm btn-primary']) ?>
+            <?= Html::a(Yii::t('yee', 'Add New'), ['/service/division/create'], ['class' => 'btn btn-sm btn-primary']) ?>
         </div>
     </div>
 
@@ -31,29 +31,29 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php 
                     /* Uncomment this to activate GridQuickLinks */
                     /* echo GridQuickLinks::widget([
-                        'model' => measure-unit::className(),
+                        'model' => Division::className(),
                         'searchModel' => $searchModel,
                     ])*/
                     ?>
                 </div>
 
                 <div class="col-sm-6 text-right">
-                    <?=  GridPageSize::widget(['pjaxId' => 'measure-unit-grid-pjax']) ?>
+                    <?=  GridPageSize::widget(['pjaxId' => 'division-grid-pjax']) ?>
                 </div>
             </div>
 
             <?php 
             Pjax::begin([
-                'id' => 'measure-unit-grid-pjax',
+                'id' => 'division-grid-pjax',
             ])
             ?>
 
             <?= 
             GridView::widget([
-                'id' => 'measure-unit-grid',
+                'id' => 'division-grid',
                 'dataProvider' => $dataProvider,
                                 'bulkActionOptions' => [
-                    'gridId' => 'measure-unit-grid',
+                    'gridId' => 'division-grid',
                     'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
                 ],
                 'columns' => [
@@ -62,8 +62,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
                         'options' => ['style' => 'width:300px'],
                         'attribute' => 'name',
-                        'controller' => 'service/measure-unit',
-                        'title' => function(MeasureUnit $model) {
+                        'controller' => '/service/division',
+                        'title' => function(Division $model) {
                             return Html::a($model->name, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
                         'buttonsTemplate' => '{update} {delete}',
