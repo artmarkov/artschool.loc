@@ -11,7 +11,7 @@ use yeesoft\grid\GridPageSize;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Divisions';
+$this->title = Yii::t('yee/guide', 'Division');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="division-index">

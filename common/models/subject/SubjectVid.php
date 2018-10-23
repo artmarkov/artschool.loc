@@ -5,16 +5,17 @@ namespace common\models\subject;
 use Yii;
 
 /**
- * This is the model class for table "{{%subject_category_item}}".
+ * This is the model class for table "{{%subject_vid}}".
  *
  * @property int $id
  * @property string $name
  * @property string $slug
- * @property int $order
- *
- * @property SubjectCategory[] $subjectCategories
+ * @property int $qty_min
+ * @property int $qty_max
+ * @property string $info
+ * @property int $status
  */
-class SubjectCategoryItem extends \yii\db\ActiveRecord
+class SubjectVid extends \yii\db\ActiveRecord
 {
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
@@ -24,7 +25,7 @@ class SubjectCategoryItem extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%subject_category_item}}';
+        return '{{%subject_vid}}';
     }
 
     /**
@@ -33,12 +34,11 @@ class SubjectCategoryItem extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['slug', 'name', 'status'], 'required'],
-            [['slug', 'name'], 'unique'],
-            [['order', 'status'], 'integer'],
-            [['name'], 'string', 'max' => 127],
-            [['slug'], 'string', 'max' => 64],
-            
+            [['name', 'slug', 'qty_min', 'qty_max', 'status'], 'required'],
+            [['qty_min', 'qty_max', 'status'], 'integer'],
+            [['info'], 'string'],
+            [['name'], 'string', 'max' => 64],
+            [['slug'], 'string', 'max' => 32],
         ];
     }
 
@@ -51,11 +51,14 @@ class SubjectCategoryItem extends \yii\db\ActiveRecord
             'id' => Yii::t('yee/guide', 'ID'),
             'name' => Yii::t('yee/guide', 'Name'),
             'slug' => Yii::t('yee/guide', 'Slug'),
-            'order' => Yii::t('yee/guide', 'Order'),
+            'qty_min' => Yii::t('yee/guide', 'Qty Min'),
+            'qty_max' => Yii::t('yee/guide', 'Qty Max'),
+            'info' => Yii::t('yee/guide', 'Info'),
             'status' => Yii::t('yee/guide', 'Status'),
         ];
     }
- /**
+    
+    /**
      * getStatusList
      * @return array
      */
@@ -65,7 +68,6 @@ class SubjectCategoryItem extends \yii\db\ActiveRecord
             self::STATUS_INACTIVE => Yii::t('yee', 'Inactive'),
         );
     }
-    
     /**
      * getStatusValue
      *
@@ -78,11 +80,5 @@ class SubjectCategoryItem extends \yii\db\ActiveRecord
 
         return isset($ar[$val]) ? $ar[$val] : $val;
     }
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSubjectCategories()
-    {
-        return $this->hasMany(SubjectCategory::className(), ['category_id' => 'id']);
-    }
 }
+

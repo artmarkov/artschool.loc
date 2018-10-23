@@ -5,8 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\service\Department */
 
-$this->title = 'Create Department';
-$this->params['breadcrumbs'][] = ['label' => 'Departments', 'url' => ['index']];
+$this->title = Yii::t('yee','Create');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide', 'Division'), 'url' => ['/service/division/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide','Department'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

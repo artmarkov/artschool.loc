@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-sm-12">
-            <h3 class="lte-hide-title page-title"><?=  Html::encode($this->title) ?></h3>
+            <h3 class="lte-hide-title page-title"><?= Html::encode($this->title) ?></h3>
             <?= Html::a(Yii::t('yee', 'Add New'), ['/subject/category-item/create'], ['class' => 'btn btn-sm btn-primary']) ?>
         </div>
     </div>
@@ -29,33 +29,33 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="row">
                 <div class="col-sm-6">
-                    <?php 
+                    <?php
                     /* Uncomment this to activate GridQuickLinks */
                     /* echo GridQuickLinks::widget([
-                        'model' => SubjectCategoryItem::className(),
-                        'searchModel' => $searchModel,
-                    ])*/
+                      'model' => SubjectCategoryItem::className(),
+                      'searchModel' => $searchModel,
+                      ]) */
                     ?>
                 </div>
 
                 <div class="col-sm-6 text-right">
-                    <?//=  GridPageSize::widget(['pjaxId' => 'subject-category-item-grid-pjax']) ?>
+                    <?//= GridPageSize::widget(['pjaxId' => 'subject-category-item-grid-pjax']) ?>
                 </div>
             </div>
 
-            <?php 
+            <?php
             Pjax::begin([
                 'id' => 'subject-category-item-grid-pjax',
             ])
             ?>
 
-            <?= 
+            <?=
             GridView::widget([
                 'id' => 'subject-category-item-grid',
                 'dataProvider' => $dataProvider,
-                                'bulkActionOptions' => [
+                'bulkActionOptions' => [
                     'gridId' => 'subject-category-item-grid',
-                    'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
+//                    'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
                 ],
                 'columns' => [
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
@@ -65,16 +65,21 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'name',
                         'controller' => '/subject/category-item',
                         'title' => function(SubjectCategoryItem $model) {
-                            return Html::a($model->name, ['update', 'id' => $model->id], ['data-pjax' => 0]);
-                        },
+                    return Html::a($model->name, ['update', 'id' => $model->id], ['data-pjax' => 0]);
+                },
                         'buttonsTemplate' => '{update} {delete}',
                     ],
-
-//            'id',
-//            'name',
-            'slug',
+                    'slug',
+                    [
+                        'class' => 'yeesoft\grid\columns\StatusColumn',
+                        'attribute' => 'status',
+                        'optionsArray' => [
+                            [SubjectCategoryItem::STATUS_ACTIVE, Yii::t('yee', 'Active'), 'primary'],
+                            [SubjectCategoryItem::STATUS_INACTIVE, Yii::t('yee', 'Inactive'), 'info'],
+                        ],
+                        'options' => ['style' => 'width:150px']
+                    ],
 //            'order',
-
                 ],
             ]);
             ?>

@@ -70,7 +70,9 @@ use nex\chosen\Chosen;
                                 : </label>
                             <span><?= $model->id ?></span>
                         </div>
+                        
                         <?= $form->field($model->loadDefaultValues(), 'status')->dropDownList(Subject::getStatusList()) ?>
+                        
                         <div class="form-group">
                             <?php if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>

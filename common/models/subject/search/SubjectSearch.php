@@ -43,10 +43,12 @@ class SubjectSearch extends Subject
     public function search($params)
     {
         $query = Subject::find();
-
+        
+        // очень жадная загрузка ))
         $query->with(['subjectCategories']);
-
+        $query->with(['subjectCategoryItem']);
         $query->with(['subjectDepartments']);
+        $query->with(['departmentItem']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

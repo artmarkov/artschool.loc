@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\service\Division */
 
-$this->title = 'Create Division';
-$this->params['breadcrumbs'][] = ['label' => 'Divisions', 'url' => ['index']];
+$this->title = Yii::t('yee','Create');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide', 'Division'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

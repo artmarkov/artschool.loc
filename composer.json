@@ -46,7 +46,9 @@
     "kartik-v/yii2-widget-datepicker": "@dev",
     "kartik-v/yii2-widget-depdrop": "@dev",
     "himiklab/yii2-recaptcha-widget": "*",
-    "nex/yii2-chosen": "*"
+    "nex/yii2-chosen": "*",
+    "kartik-v/yii2-widget-switchinput": "dev-master",
+    "kartik-v/yii2-widget-touchspin": "dev-master"
         
   },
   "require-dev": {
