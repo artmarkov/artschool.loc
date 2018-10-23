@@ -2,7 +2,10 @@
 
 namespace common\models\subject;
 
+use common\models\service\Department;
 use Yii;
+use yii\helpers\ArrayHelper;
+use common\models\subject\SubjectQuery;
 
 /**
  * This is the model class for table "{{%subject}}".
@@ -20,7 +23,10 @@ class Subject extends \yii\db\ActiveRecord
 {
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
-    
+
+    public $gridCategorySearch;
+    public $gridDepartmentSearch;
+
     /**
      * {@inheritdoc}
      */
@@ -28,7 +34,22 @@ class Subject extends \yii\db\ActiveRecord
     {
         return '{{%subject}}';
     }
-
+    /**
+     * Реализация поведения многое ко многим
+     * @return  mixed
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => \common\components\behaviors\ManyHasManyBehavior::className(),
+                'relations' => [
+                    'subjectCategoryItem' => 'category_list',
+                    'departmentItem' => 'department_list',
+                ],
+            ],
+        ];
+    }
     /**
      * {@inheritdoc}
      */
@@ -39,6 +60,7 @@ class Subject extends \yii\db\ActiveRecord
             [['order', 'status'], 'integer'],
             [['name'], 'string', 'max' => 64],
             [['slug'], 'string', 'max' => 32],
+            [['department_list', 'category_list'], 'safe'],
         ];
     }
 
@@ -53,9 +75,11 @@ class Subject extends \yii\db\ActiveRecord
             'slug' => Yii::t('yee/guide', 'Slug'),
             'order' => Yii::t('yee/guide', 'Order'),
             'status' => Yii::t('yee/guide', 'Status'),
+            'gridCategorySearch' => Yii::t('yee/guide', 'Subject Category'),
+            'gridDepartmentSearch' => Yii::t('yee/guide', 'Department'),
         ];
     }
- /**
+    /**
      * getStatusList
      * @return array
      */
@@ -91,5 +115,51 @@ class Subject extends \yii\db\ActiveRecord
     public function getSubjectDepartments()
     {
         return $this->hasMany(SubjectDepartment::className(), ['subject_id' => 'id']);
+    }
+    /**
+     * {@inheritdoc}
+     * @return SubjectQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new SubjectQuery(get_called_class());
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSubjectCategoryItem()
+    {
+        return $this->hasMany(SubjectCategoryItem::className(), ['id' => 'category_id'])
+            ->viaTable('subject_category', ['subject_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+
+    public function getDepartmentItem()
+    {
+        return $this->hasMany(Department::className(), ['id' => 'department_id'])
+            ->viaTable('subject_department', ['subject_id' => 'id']);
+    }
+
+    public static function getSubjectCategoryList()
+    {
+        return ArrayHelper::map(SubjectCategoryItem::find()
+            ->select('id, name')
+            ->orderBy('order')
+            ->asArray()->all(), 'id', 'name');
+    }
+
+    public static function getDepartmentList()
+    {
+        return ArrayHelper::map(Department::find()
+            ->innerJoin('division', 'division.id = department.division_id')
+            ->andWhere(['department.status' => Department::STATUS_ACTIVE])
+            ->select('department.id as id, department.name as name, division.name as name_category')
+            ->orderBy('division.id')
+            ->addOrderBy('department.name')
+            ->asArray()->all(), 'id', 'name', 'name_category');
     }
 }

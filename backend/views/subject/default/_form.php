@@ -3,6 +3,7 @@
 use yeesoft\widgets\ActiveForm;
 use common\models\subject\Subject;
 use yeesoft\helpers\Html;
+use nex\chosen\Chosen;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\subject\Subject */
@@ -11,54 +12,79 @@ use yeesoft\helpers\Html;
 
 <div class="subject-form">
 
-    <?php 
+    <?php
     $form = ActiveForm::begin([
-            'id' => 'subject-form',
-            'validateOnBlur' => false,
-        ])
+        'id' => 'teachers-form',
+        'validateOnBlur' => false,
+        'enableAjaxValidation' => true,
+        'options' => ['enctype' => 'multipart/form-data'],
+    ])
+
     ?>
 
     <div class="row">
         <div class="col-md-9">
-
             <div class="panel panel-default">
                 <div class="panel-body">
-                    
-                    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'order')->textInput() ?>
-                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+                        </div>
+                        <div class="col-md-6">
+                            <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+                        </div>
+                        <? //= $form->field($model, 'order')->textInput() ?>
+                    </div>
                 </div>
+            </div>
 
+            <div class="row">
+                <div class="col-md-6">
+                    <?php
+                    echo $form->field($model, 'department_list')->widget(Chosen::className(), [
+                        'items' => Subject::getDepartmentList(),
+                        'multiple' => true,
+                        'placeholder' => Yii::t('yee/guide', 'Select Department...'),
+                    ])->label(Yii::t('yee/guide', 'Department'));
+                    ?>
+                </div>
+                <div class="col-md-6">
+                    <?php
+                    echo $form->field($model, 'category_list')->widget(Chosen::className(), [
+                        'items' => Subject::getSubjectCategoryList(),
+                        'multiple' => true,
+                        'placeholder' => Yii::t('yee/guide', 'Select Subject Category...'),
+                    ])->label(Yii::t('yee/guide', 'Subject Category'));
+                    ?>
+                </div>
             </div>
         </div>
 
         <div class="col-md-3">
-
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">
                         <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
-                            <span><?=  $model->id ?></span>
+                            <label class="control-label"
+                                   style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['id'] ?>
+                                : </label>
+                            <span><?= $model->id ?></span>
                         </div>
-                    <?= $form->field($model->loadDefaultValues(), 'status')->dropDownList(Subject::getStatusList()) ?>
+                        <?= $form->field($model->loadDefaultValues(), 'status')->dropDownList(Subject::getStatusList()) ?>
                         <div class="form-group">
-                            <?php  if ($model->isNewRecord): ?>
+                            <?php if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
                                 <?= Html::a(Yii::t('yee', 'Cancel'), ['/subject/default/index'], ['class' => 'btn btn-default']) ?>
-                            <?php  else: ?>
+                            <?php else: ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
                                 <?= Html::a(Yii::t('yee', 'Delete'),
                                     ['/subject/default/delete', 'id' => $model->id], [
-                                    'class' => 'btn btn-default',
-                                    'data' => [
-                                        'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-                                        'method' => 'post',
-                                    ],
-                                ]) ?>
+                                        'class' => 'btn btn-default',
+                                        'data' => [
+                                            'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                                            'method' => 'post',
+                                        ],
+                                    ]) ?>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -68,6 +94,6 @@ use yeesoft\helpers\Html;
         </div>
     </div>
 
-    <?php  ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
 
 </div>

@@ -116,28 +116,28 @@ use common\models\teachers\BonusItem;
                     </div>
                 </div>
             </div>
-                               <div class="row">
-                        <div class="col-md-6">
-                            <?php
-                            echo $form->field($model, 'department_list')->widget(Chosen::className(), [
-                                'items' => Teachers::getDepartmentList(),
-                                'multiple' => true,
-                                'placeholder' => Yii::t('yee/teachers', 'Select Department...'),
-                            ])->label(Yii::t('yee/guide', 'Department'));
-                            ?>
-                        </div>
-                                    <div class="col-md-6">
-                            <?php
-                            echo $form->field($model, 'bonus_list')->widget(Chosen::className(), [
-                                'items' => Teachers::getBonusItemList(),
-                                'multiple' => true,
-                                'placeholder' => Yii::t('yee/teachers', 'Select Teachers Bonus...'),
-                            ])->label(Yii::t('yee/teachers', 'Teachers Bonus'));
-                            ?>
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <?php
+                    echo $form->field($model, 'department_list')->widget(Chosen::className(), [
+                        'items' => Teachers::getDepartmentList(),
+                        'multiple' => true,
+                        'placeholder' => Yii::t('yee/teachers', 'Select Department...'),
+                    ])->label(Yii::t('yee/guide', 'Department'));
+                    ?>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-6">
+                    <?php
+                    echo $form->field($model, 'bonus_list')->widget(Chosen::className(), [
+                        'items' => Teachers::getBonusItemList(),
+                        'multiple' => true,
+                        'placeholder' => Yii::t('yee/teachers', 'Select Teachers Bonus...'),
+                    ])->label(Yii::t('yee/teachers', 'Teachers Bonus'));
+                    ?>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">

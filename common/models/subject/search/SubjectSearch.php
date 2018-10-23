@@ -20,6 +20,7 @@ class SubjectSearch extends Subject
         return [
             [['id', 'order'], 'integer'],
             [['name', 'slug', 'status'], 'safe'],
+            [['gridCategorySearch', 'gridDepartmentSearch'], 'string'],
         ];
     }
 
@@ -43,6 +44,10 @@ class SubjectSearch extends Subject
     {
         $query = Subject::find();
 
+        $query->with(['subjectCategories']);
+
+        $query->with(['subjectDepartments']);
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
@@ -62,9 +67,16 @@ class SubjectSearch extends Subject
             // $query->where('0=1');
             return $dataProvider;
         }
-
+        if ($this->gridCategorySearch) {
+            $query->joinWith(['subjectCategories']);
+        }
+        if ($this->gridDepartmentSearch) {
+            $query->joinWith(['subjectDepartments']);
+        }
         $query->andFilterWhere([
             'id' => $this->id,
+            'subject_category.category_id' => $this->gridCategorySearch,
+            'subject_department.department_id' => $this->gridDepartmentSearch,
             'order' => $this->order,
         ]);
 
