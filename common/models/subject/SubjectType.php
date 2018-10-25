@@ -14,6 +14,9 @@ use Yii;
  */
 class SubjectType extends \yii\db\ActiveRecord
 {
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
+
     /**
      * {@inheritdoc}
      */
@@ -47,4 +50,28 @@ class SubjectType extends \yii\db\ActiveRecord
             'status' => Yii::t('yee/guide', 'Status'),
         ];
     }
+    /**
+     * getStatusList
+     * @return array
+     */
+    public static function getStatusList() {
+        return array(
+            self::STATUS_ACTIVE => Yii::t('yee', 'Active'),
+            self::STATUS_INACTIVE => Yii::t('yee', 'Inactive'),
+        );
+    }
+    /**
+     * getStatusValue
+     *
+     * @param string $val
+     *
+     * @return string
+     */
+    public static function getStatusValue($val) {
+        $ar = self::getStatusList();
+
+        return isset($ar[$val]) ? $ar[$val] : $val;
+    }
+
+
 }

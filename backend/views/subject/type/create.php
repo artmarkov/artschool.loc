@@ -5,8 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\subject\SubjectType */
 
-$this->title = 'Create Subject Type';
-$this->params['breadcrumbs'][] = ['label' => 'Subject Types', 'url' => ['index']];
+$this->title = Yii::t('yee','Create');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide','Subject'), 'url' => ['subject/default/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide','Subject Type'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

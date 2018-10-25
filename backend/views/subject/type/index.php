@@ -11,7 +11,8 @@ use yeesoft\grid\GridPageSize;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Subject Types';
+$this->title = Yii::t('yee/guide','Subject Type');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide','Type'), 'url' => ['subject/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="subject-type-index">
@@ -19,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-sm-12">
             <h3 class="lte-hide-title page-title"><?=  Html::encode($this->title) ?></h3>
-            <?= Html::a(Yii::t('yee', 'Add New'), ['/subject-type/default/create'], ['class' => 'btn btn-sm btn-primary']) ?>
+            <?= Html::a(Yii::t('yee', 'Add New'), ['/subject/type/create'], ['class' => 'btn btn-sm btn-primary']) ?>
         </div>
     </div>
 
@@ -38,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
 
                 <div class="col-sm-6 text-right">
-                    <?=  GridPageSize::widget(['pjaxId' => 'subject-type-grid-pjax']) ?>
+                    <?//=  GridPageSize::widget(['pjaxId' => 'subject-type-grid-pjax']) ?>
                 </div>
             </div>
 
@@ -54,22 +55,31 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                                 'bulkActionOptions' => [
                     'gridId' => 'subject-type-grid',
-                    'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
+//                    'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
                 ],
                 'columns' => [
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
-                        'controller' => '/subject-type/default',
+                        'options' => ['style' => 'width:300px'],
+                        'attribute' => 'name',
+                        'controller' => '/subject/type',
                         'title' => function(SubjectType $model) {
-                            return Html::a($model->id, ['view', 'id' => $model->id], ['data-pjax' => 0]);
+                            return Html::a($model->name, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
+                        'buttonsTemplate' => '{update} {delete}',
                     ],
 
-            'id',
-            'name',
             'slug',
-            'status',
+                    [
+                        'class' => 'yeesoft\grid\columns\StatusColumn',
+                        'attribute' => 'status',
+                        'optionsArray' => [
+                            [SubjectType::STATUS_ACTIVE, Yii::t('yee', 'Active'), 'primary'],
+                            [SubjectType::STATUS_INACTIVE, Yii::t('yee', 'Inactive'), 'info'],
+                        ],
+                        'options' => ['style' => 'width:150px']
+                    ],
 
                 ],
             ]);

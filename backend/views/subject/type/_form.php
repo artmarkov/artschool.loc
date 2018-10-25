@@ -28,8 +28,6 @@ use yeesoft\helpers\Html;
 
                     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'status')->textInput() ?>
-
                 </div>
 
             </div>
@@ -45,6 +43,8 @@ use yeesoft\helpers\Html;
                             <span><?=  $model->id ?></span>
                         </div>
 
+                        <?= $form->field($model->loadDefaultValues(), 'status')->dropDownList(SubjectType::getStatusList()) ?>
+
                         <div class="form-group">
                             <?php  if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
@@ -52,7 +52,7 @@ use yeesoft\helpers\Html;
                             <?php  else: ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
                                 <?= Html::a(Yii::t('yee', 'Delete'),
-                                    ['/subject-type/default/delete', 'id' => $model->id], [
+                                    ['/subject/type/delete', 'id' => $model->id], [
                                     'class' => 'btn btn-default',
                                     'data' => [
                                         'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
