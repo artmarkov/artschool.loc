@@ -136,6 +136,8 @@ class Teachers extends \yii\db\ActiveRecord
             'timestamp_serv' => Yii::t('yee/teachers', 'Timestamp Serv'),
             'timestamp_serv_spec' => Yii::t('yee/teachers', 'Timestamp Serv Spec'),
             'bonus_list' => Yii::t('yee/teachers', 'Bonus List'),
+            'year_serv' => Yii::t('yee/teachers', 'Year Serv'),
+            'year_serv_spec' => Yii::t('yee/teachers', 'Year Serv Spec'),
         ];
     }
 

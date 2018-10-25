@@ -12,7 +12,7 @@ use yeesoft\grid\GridPageSize;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('yee/guide','Subject Type');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide','Type'), 'url' => ['subject/default/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide','Subjects'), 'url' => ['subject/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="subject-type-index">

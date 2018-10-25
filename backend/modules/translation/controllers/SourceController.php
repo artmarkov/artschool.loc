@@ -23,7 +23,7 @@ class SourceController extends BaseController
                 return ['update', 'id' => $model->id];
                 break;
             case 'create':
-                return ['update', 'id' => $model->id];
+                return ['create'];
                 break;
             case 'delete':
                 return ['/translation/default/index'];

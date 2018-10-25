@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model common\models\subject\SubjectVid */
 
 $this->title = Yii::t('yee','Update'). ' : ' . ' ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide','Subject'), 'url' => ['subject/default/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide','Subjects'), 'url' => ['subject/default/index']];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide','Subject Vid'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = Yii::t('yee','Update');
 ?>

@@ -11,7 +11,7 @@ use yeesoft\grid\GridPageSize;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('yee/teachers', 'Strikes');
+$this->title = Yii::t('yee/teachers', 'Stake');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('yee/teachers', 'Teachers'), 'url' => ['teachers/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

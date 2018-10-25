@@ -33,7 +33,7 @@ use common\models\teachers\BonusItem;
                         <div class="col-md-6">
                             <?php
                             echo $form->field($model, 'direction_id_main')->dropDownList(\common\models\teachers\Direction::getDirectionList(), [
-                                'prompt' => Yii::t('yee/teachers', 'Select Direction Main...'),
+                                'prompt' => Yii::t('yee/teachers', 'Select Direction...'),
                                 'id' => 'direction_id_main'
                             ])->label(Yii::t('yee/teachers', 'Name Direction Main'));
                             ?>
@@ -42,13 +42,13 @@ use common\models\teachers\BonusItem;
                             <?php
                             echo $form->field($model, 'stake_id_main')->widget(\kartik\depdrop\DepDrop::classname(), [
                                 'data' => \common\models\teachers\Stake::getStakeByName($model->direction_id_main),
-                                'options' => ['prompt' => Yii::t('yee/guide', 'Select Stake Main...'), 'id' => 'stake_id_main'],
+                                'options' => ['prompt' => Yii::t('yee/teachers', 'Select Stake...'), 'id' => 'stake_id_main'],
                                 'pluginOptions' => [
                                     'depends' => ['direction_id_main'],
-                                    'placeholder' => Yii::t('yee/guide', 'Select Stake Main...'),
+                                    'placeholder' => Yii::t('yee/teachers', 'Select Stake...'),
                                     'url' => Url::to(['/teachers/default/stake'])
                                 ]
-                            ])->label(Yii::t('yee/guide', 'Name Stake'));
+                            ])->label(Yii::t('yee/teachers', 'Name Stake Main'));
 
                             ?>
                         </div>
@@ -57,7 +57,7 @@ use common\models\teachers\BonusItem;
                         <div class="col-md-6">
                             <?php
                             echo $form->field($model, 'direction_id_optional')->dropDownList(\common\models\teachers\Direction::getDirectionList(), [
-                                'prompt' => Yii::t('yee/teachers', 'Select Direction Optional...'),
+                                'prompt' => Yii::t('yee/teachers', 'Select Direction...'),
                                 'id' => 'direction_id_optional'
                             ])->label(Yii::t('yee/teachers', 'Name Direction Optional'));
                             ?>
@@ -66,10 +66,10 @@ use common\models\teachers\BonusItem;
                             <?php
                             echo $form->field($model, 'stake_id_optional')->widget(\kartik\depdrop\DepDrop::classname(), [
                                 'data' => \common\models\teachers\Stake::getStakeByName($model->direction_id_optional),
-                                'options' => ['prompt' => Yii::t('yee/guide', 'Select Stake Optional...'), 'id' => 'stake_id_optional'],
+                                'options' => ['prompt' => Yii::t('yee/teachers', 'Select Stake...'), 'id' => 'stake_id_optional'],
                                 'pluginOptions' => [
                                     'depends' => ['direction_id_optional'],
-                                    'placeholder' => Yii::t('yee/guide', 'Select Stake Optional...'),
+                                    'placeholder' => Yii::t('yee/teachers', 'Select Stake...'),
                                     'url' => Url::to(['/teachers/default/stake'])
                                 ]
                             ])->label(Yii::t('yee/teachers', 'Name Stake Optional'));

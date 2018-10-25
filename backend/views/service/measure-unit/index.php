@@ -12,7 +12,6 @@ use yeesoft\grid\GridPageSize;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('yee/guide','Measure Unit');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide','Subjects'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="measure-unit-index">

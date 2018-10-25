@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'bulkActionOptions' => [
                     'gridId' => 'department-grid',
-//                    'actions' => [Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
+//                    'actions' => [Url::to(['bulk-delete']) => Yii::t('yee','Delete')] //Configure here you bulk actions
                 ],
                 'columns' => [
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
@@ -71,16 +71,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                         'buttonsTemplate' => '{update} {delete}',
                     ],
-
-//            'id',
-//                    'division_id',
+                                
                     [
                         'attribute' => 'division_id',
                         'value' => 'divisionName',
                         'label' => Yii::t('yee/guide', 'Name Division'),
                         'filter' => \common\models\service\Division::getDivisionList(),
                     ],
-//            'name',
                     'slug',
                     [
                         'class' => 'yeesoft\grid\columns\StatusColumn',

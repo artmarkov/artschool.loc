@@ -52,6 +52,7 @@ class Cost extends \yii\db\ActiveRecord
             'direction_id' => Yii::t('yee/teachers', 'Direction ID'),
             'stake_id' => Yii::t('yee/teachers', 'Stake ID'),
             'stake_value' => Yii::t('yee/teachers', 'Stake Value'),
+            'title' => Yii::t('yee', 'Title'),
         ];
     }
 

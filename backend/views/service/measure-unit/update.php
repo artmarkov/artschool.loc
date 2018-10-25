@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 $this->title = Yii::t('yee','Update'). ' : ' . ' ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('yee/guide','Measure Unit'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = Yii::t('yee','Update');
 ?>
 <div class="measure-unit-update">
     <h3 class="lte-hide-title"><?= Html::encode($this->title) ?></h3>

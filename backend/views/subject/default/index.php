@@ -13,7 +13,7 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel common\models\subject\search\SubjectSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('yee/guide','Subject');
+$this->title = Yii::t('yee/guide','Subjects');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="subject-index">

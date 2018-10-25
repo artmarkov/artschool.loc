@@ -12,7 +12,7 @@ use yeesoft\grid\GridPageSize;
 /* @var $searchModel common\models\teachers\search\BonusItemSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('yee/teachers', 'Bonus Item');
+$this->title = Yii::t('yee/teachers', 'Teachers Bonus');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('yee/teachers', 'Teachers'), 'url' => ['teachers/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -75,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'bonus_category_id',
                         'value' => 'bonusCategoryName',
-                        'label' => Yii::t('yee/teachers', 'Name Bonus Category'),
+                        'label' => Yii::t('yee/teachers', 'Bonus Category'),
                         'filter' => common\models\teachers\BonusCategory::getBonusCategoryList(),
                     ],
                     [
