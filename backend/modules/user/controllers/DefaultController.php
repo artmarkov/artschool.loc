@@ -7,26 +7,27 @@ use yeesoft\controllers\admin\BaseController;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use common\models\teachers\Teachers;
+use common\models\student\Student;
 
 /**
  * DefaultController implements the CRUD actions for User model.
  */
-class DefaultController extends BaseController
-{
+class DefaultController extends BaseController {
+
     /**
      * @var User
      */
     public $modelClass = 'common\models\auth\User';
     public $layout = '@backend/views/layouts/main.php';
+
     /**
      * @var UserSearch
      */
     public $modelSearchClass = 'backend\modules\user\models\search\UserSearch';
-
     public $disabledActions = ['view'];
 
-    protected function getRedirectPage($action, $model = null)
-    {
+    protected function getRedirectPage($action, $model = null) {
         switch ($action) {
             case 'delete':
                 return ['index'];
@@ -45,8 +46,7 @@ class DefaultController extends BaseController
     /**
      * @return mixed|string|\yii\web\Response
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new User(['scenario' => 'newUser']);
 
         if ($model->load(Yii::$app->request->post())) {
@@ -67,8 +67,7 @@ class DefaultController extends BaseController
      * @throws \yii\web\NotFoundHttpException
      * @return string
      */
-    public function actionChangePassword($id)
-    {
+    public function actionChangePassword($id) {
         $model = User::findOne($id);
 
         if (!$model) {
@@ -84,6 +83,7 @@ class DefaultController extends BaseController
 
         return $this->renderIsAjax('changePassword', compact('model'));
     }
+
     /**
      * Updates an existing model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -92,12 +92,12 @@ class DefaultController extends BaseController
      *
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         /* @var $model \yeesoft\db\ActiveRecord */
         $model = $this->findModel($id);
 
-        if($model->birth_timestamp != NULL) $model->getTimestampToDate($mask = "d-m-Y");
+        if ($model->birth_timestamp != NULL)
+            $model->getTimestampToDate($mask = "d-m-Y");
 
         if ($model->load(Yii::$app->request->post())) {
 
@@ -109,4 +109,35 @@ class DefaultController extends BaseController
         }
         return $this->renderIsAjax($this->updateView, compact('model'));
     }
+
+    /**
+     * Добавляем связанную таблицу 
+     * в зависимости от user_category модели User
+     * 
+     */
+    public function createSlaveUserTable($model) {
+        switch ($model->user_category) {
+            case User::USER_CATEGORY_TEACHER:
+                if (empty(Teachers::findOne($model->id))) {
+
+                    $model_slug = new Teachers();
+                    $model_slug->id = $model->id;
+                    $model_slug->save(false);
+                }
+                break;
+
+            case User::USER_CATEGORY_STUDENT:
+                if (empty(Student::findOne($model->id))) {
+
+                    $model_slug = new Student();
+                    $model_slug->id = $model->id;
+                    $model_slug->save(false);
+                }
+                break;
+
+            default:
+                return FALSE;
+        }
+    }
+
 }

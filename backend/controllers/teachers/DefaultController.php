@@ -70,8 +70,9 @@ class DefaultController extends \backend\controllers\DefaultController {
                 $model->cost_main_id = Cost::getCostId($model->direction_id_main, $model->stake_id_main)->id;
             if ($model->direction_id_optional != NULL and $model->stake_id_optional != NULL)
                 $model->cost_optional_id = Cost::getCostId($model->direction_id_optional, $model->stake_id_optional)->id;
-
+            if ($model->year_serv != NULL)
                 $model->timestamp_serv = Teachers::getDateToTimestamp("-", $model->time_serv_init) - $model->year_serv * $year_sec;
+            if ($model->year_serv_spec != NULL)
                 $model->timestamp_serv_spec = Teachers::getDateToTimestamp("-", $model->time_serv_spec_init) - $model->year_serv_spec * $year_sec;
 
             if ($model->save()) {

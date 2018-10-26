@@ -5,6 +5,7 @@ namespace common\models\teachers;
 use common\models\service\Department;
 use Yii;
 use yii\helpers\ArrayHelper;
+use common\models\auth\User;
 
 /**
  * This is the model class for table "{{%teachers}}".
@@ -222,5 +223,11 @@ class Teachers extends \yii\db\ActiveRecord
             ->addOrderBy('department.name')
             ->asArray()->all(), 'id', 'name', 'name_category');
     }
-
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
 }
