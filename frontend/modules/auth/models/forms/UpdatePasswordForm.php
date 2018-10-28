@@ -2,7 +2,7 @@
 
 namespace frontend\modules\auth\models\forms;
 
-use common\models\auth\User;
+use common\models\user\User;
 use Yii;
 use yii\base\Model;
 

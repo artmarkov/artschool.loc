@@ -1,7 +1,7 @@
 <?php
 
 use yeesoft\helpers\Html;
-use common\models\auth\User;
+use common\models\user\User;
 use common\widgets\ActiveForm;
 use yeesoft\helpers\YeeHelper;
 use yii\widgets\MaskedInput;

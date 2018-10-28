@@ -59,7 +59,7 @@ $model = new Measure;
                 'filterModel' => $searchModel,
                 'bulkActionOptions' => [
                     'gridId' => 'measure-grid',
-                    'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
+                    'actions' => [Url::to(['bulk-delete']) => Yii::t('yee','Delete')] //Configure here you bulk actions
                 ],
                      'columns' => ArrayHelper::merge(
                          [

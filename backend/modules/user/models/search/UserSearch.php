@@ -2,7 +2,7 @@
 
 namespace backend\modules\user\models\search;
 
-use common\models\auth\User;
+use common\models\user\User;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -13,11 +13,10 @@ use yii\data\ActiveDataProvider;
 class UserSearch extends User
 {
  /**
-     * @var string
-     */
+ * @var string
+ */
     public $fullName;
-    
-    
+
     public function rules()
     {
         return [
@@ -68,9 +67,6 @@ class UserSearch extends User
                 'fullName' => [
                     'asc' => ['last_name' => SORT_ASC, 'first_name' => SORT_ASC, 'middle_name' => SORT_ASC],
                     'desc' => ['last_name' => SORT_DESC, 'first_name' => SORT_DESC, 'middle_name' => SORT_DESC],
-                    'label' => 'Full Name',
-                    //'default' => SORT_ASC
-                    'user_category',
                 ]
             ]
         ]);

@@ -8,6 +8,7 @@ use nex\chosen\Chosen;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use common\models\teachers\BonusItem;
+use yii\widgets\MaskedInput;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\teachers\Teachers */
@@ -25,8 +26,61 @@ use common\models\teachers\BonusItem;
     ])
 
     ?>
+    
     <div class="row">
         <div class="col-md-9">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <?= $form->field($modelUser, 'last_name')->textInput(['maxlength' => 124]) ?>
+                        </div>
+                        <div class="col-md-4">
+                            <?= $form->field($modelUser, 'first_name')->textInput(['maxlength' => 124]) ?>
+                        </div>
+                        <div class="col-md-4">
+                            <?= $form->field($modelUser, 'middle_name')->textInput(['maxlength' => 124]) ?>
+                        </div>
+                       </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <?= $form->field($modelUser, 'gender')->dropDownList(yeesoft\models\User::getGenderList()) ?>
+                        </div>
+                        <div class="col-md-3">
+                            <?= $form->field($modelUser, 'birth_date')->widget(MaskedInput::className(),['mask' => '99-99-9999',])->textInput() ?>
+                        </div>
+                        <div class="col-md-3">
+                            <?= $form->field($modelUser, 'snils')->widget(MaskedInput::className(),['mask' => '999-999-999 99',])->textInput() ?>
+                        </div>
+                    </div>
+                    
+              
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <?= $form->field($modelUser, 'phone')->widget(MaskedInput::className(),['mask' => '+7 (999) 999 99 99',])->textInput() ?>
+                        </div>
+                        <div class="col-md-6">
+                            <?= $form->field($modelUser, 'phone_optional')->widget(MaskedInput::className(),['mask' => '+7 (999) 999 99 99',])->textInput() ?>
+                        </div>
+                    </div>
+                    
+             
+                </div>
+            </div>
+<!--        </div>
+    </div>-->
+    
+    
+    
+    
+   <!--<div class="row">-->
+        <!--<div class="col-md-9">-->
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="row">

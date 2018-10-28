@@ -5,7 +5,7 @@ use yeesoft\grid\GridQuickLinks;
 use yeesoft\grid\GridView;
 use yeesoft\helpers\Html;
 use yeesoft\models\Role;
-use common\models\auth\User;
+use common\models\user\User;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\widgets\Pjax;

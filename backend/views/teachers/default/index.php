@@ -7,6 +7,7 @@ use yeesoft\grid\GridQuickLinks;
 use common\models\teachers\Teachers;
 use yeesoft\helpers\Html;
 use yeesoft\grid\GridPageSize;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\teachers\search\TeachersSearch */
@@ -49,35 +50,51 @@ $this->params['breadcrumbs'][] = $this->title;
             ])
             ?>
 
-            <?= 
+            <?=
             GridView::widget([
                 'id' => 'teachers-grid',
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'bulkActionOptions' => [
                     'gridId' => 'teachers-grid',
-                    'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
+                    'actions' => [Url::to(['bulk-delete']) => Yii::t('yee', 'Delete')] //Configure here you bulk actions
                 ],
                 'columns' => [
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
                         'options' => ['style' => 'width:300px'],
-                       // 'attribute' => 'name',
+                        'attribute' => 'teachersFullName',
                         'controller' => '/teachers/default',
                         'title' => function(Teachers $model) {
-                            return Html::a($model->id, ['view', 'id' => $model->id], ['data-pjax' => 0]);
-                        },
+                    return Html::a($model->teachersFullName, ['update', 'id' => $model->id], ['data-pjax' => 0]);
+                },
+                        'buttonsTemplate' => '{update} {delete}',
                     ],
-
-            'id',
-            'position_id',
-            'work_id',
-            'level_id',
-            'tab_num',
-            'timestamp_serv:datetime',
-            'timestamp_serv_spec:datetime',
-
+                    [
+                        'attribute' => 'position_id',
+                        'value' => 'position.name',
+                        'label' => Yii::t('yee/teachers', 'Name Position'),
+                        'filter' => common\models\teachers\Position::getPositionList(),
+                    ],
+                    [
+                        'attribute' => 'work_id',
+                        'value' => 'work.name',
+                        'label' => Yii::t('yee/teachers', 'Name Work'),
+                        'filter' => common\models\teachers\Work::getWorkList(),
+                    ],
+                    [
+                        'attribute' => 'gridDepartmentSearch',
+                        'filter' => Teachers::getDepartmentList(),
+                        'value' => function (Teachers $model) {
+                            return implode(', ',
+                                ArrayHelper::map($model->departmentItem, 'id', 'name'));
+                        },
+                        'options' => ['style' => 'width:350px'],
+                        'format' => 'raw',
+                    ],
+                    'user.phone',
+                    'user.email',
                 ],
             ]);
             ?>

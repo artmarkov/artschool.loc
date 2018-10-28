@@ -5,7 +5,7 @@ namespace common\models\teachers;
 use common\models\service\Department;
 use Yii;
 use yii\helpers\ArrayHelper;
-use common\models\auth\User;
+use common\models\user\User;
 
 /**
  * This is the model class for table "{{%teachers}}".
@@ -33,7 +33,9 @@ class Teachers extends \yii\db\ActiveRecord
     public $stake_id_main;
     public $direction_id_optional;
     public $stake_id_optional;
-
+    
+    public $gridDepartmentSearch;
+    
     /**
      * {@inheritdoc}
      */
@@ -139,6 +141,8 @@ class Teachers extends \yii\db\ActiveRecord
             'bonus_list' => Yii::t('yee/teachers', 'Bonus List'),
             'year_serv' => Yii::t('yee/teachers', 'Year Serv'),
             'year_serv_spec' => Yii::t('yee/teachers', 'Year Serv Spec'),
+            'teachersFullName' => Yii::t('yee', 'Full Name'),
+            'gridDepartmentSearch' => Yii::t('yee/guide', 'Department'),
         ];
     }
 
@@ -181,7 +185,14 @@ class Teachers extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Cost::className(), ['id' => 'cost_optional_id']);
     }
-
+  
+ /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTeachersDepartments()
+    {
+        return $this->hasMany(TeachersDepartment::className(), ['teachers_id' => 'id']);
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -229,5 +240,12 @@ class Teachers extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    } 
+    /**
+     * Геттер полного имени юзера
+     */
+    public function getTeachersFullName()
+    {
+        return $this->user->fullName;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace backend\modules\user\controllers;
 
-use common\models\auth\User;
+use common\models\user\User;
 use yeesoft\controllers\admin\BaseController;
 use Yii;
 use yii\web\Controller;
@@ -18,7 +18,7 @@ class DefaultController extends BaseController {
     /**
      * @var User
      */
-    public $modelClass = 'common\models\auth\User';
+    public $modelClass = 'common\models\user\User';
     public $layout = '@backend/views/layouts/main.php';
 
     /**

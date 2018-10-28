@@ -10,7 +10,7 @@ namespace frontend\modules\auth\models\forms;
 
 use Yii;
 
-use common\models\auth\User;
+use common\models\user\User;
 
 class ProfileForm extends User
 {

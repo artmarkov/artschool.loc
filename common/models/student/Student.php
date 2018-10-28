@@ -3,7 +3,7 @@
 namespace common\models\student;
 
 use Yii;
-use common\models\auth\User;
+use common\models\user\User;
 /**
  * This is the model class for table "{{%student}}".
  *

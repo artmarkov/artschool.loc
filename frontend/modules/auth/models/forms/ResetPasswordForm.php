@@ -2,7 +2,7 @@
 
 namespace frontend\modules\auth\models\forms;
 
-use common\models\auth\User;
+use common\models\user\User;
 use himiklab\yii2\recaptcha\ReCaptchaValidator;
 use Yii;
 use yii\base\Model;

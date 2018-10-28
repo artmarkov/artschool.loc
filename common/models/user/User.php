@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models\auth;
+namespace common\models\user;
 
 use yeesoft\helpers\AuthHelper;
 use yeesoft\helpers\YeeHelper;
@@ -88,6 +88,7 @@ class User extends UserIdentity {
             [['username', 'email'], 'required'],
             ['birth_timestamp', 'integer'],
             ['birth_date', 'validateDateCorrect'],
+            ['birth_date', 'required'],
             ['username', 'unique'],
             [['username', 'email', 'bind_to_ip'], 'trim'],
             ['email', 'email'],

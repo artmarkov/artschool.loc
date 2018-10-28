@@ -135,7 +135,7 @@ $col3 = (int) ($col12 / 4);
                             <label class="control-label" style="float: left; padding-right: 5px;">
                                 <?= $model->attributeLabels()['user_category'] ?> :
                             </label>
-                            <span><?= \common\models\auth\User::getUserCategoryValue($model->user_category); ?></span>
+                            <span><?= \common\models\user\User::getUserCategoryValue($model->user_category); ?></span>
 
                         </div>
                         <div class="form-group clearfix">

@@ -5,6 +5,9 @@ namespace backend\controllers\teachers;
 use common\models\teachers\Stake;
 use common\models\teachers\Cost;
 use common\models\teachers\Teachers;
+use common\models\teachers\forms\UserTeachers;
+use common\models\user\User;
+use yii\web\NotFoundHttpException;
 use Yii;
 
 /**
@@ -33,13 +36,66 @@ class DefaultController extends \backend\controllers\DefaultController {
      * (в базе ничего не меняется)
      * хранится условная временная метка
      */
-    public function actionUpdate($id) {
+    public function actionCreate() {
+
+        $year_sec = 31536000;
+        $this_time = mktime(0, 0, 0, 9, 1, date('Y', time()));
+        
+        $model = new $this->modelClass;
+        $modelUser = new UserTeachers();
+        
+        $model->time_serv_init = Teachers::getTimestampToDate("d-m-Y", $this_time);
+        $model->time_serv_spec_init = Teachers::getTimestampToDate("d-m-Y", $this_time);
+       
+        if ($modelUser->load(Yii::$app->request->post()) && $model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            return \yii\widgets\ActiveForm::validate($model,$modelUser);
+        } elseif ($modelUser->load(Yii::$app->request->post()) && $model->load(Yii::$app->request->post())) {
+
+            //echo '<pre>' . print_r($model, true) . '</pre>';
+                $modelUser->getDateToTimestamp("-");
+                $modelUser->user_category = User::USER_CATEGORY_TEACHER;
+                $modelUser->status = User::STATUS_INACTIVE;
+                
+            if ($model->direction_id_main != NULL and $model->stake_id_main != NULL)
+                $model->cost_main_id = Cost::getCostId($model->direction_id_main, $model->stake_id_main)->id;
+            if ($model->direction_id_optional != NULL and $model->stake_id_optional != NULL)
+                $model->cost_optional_id = Cost::getCostId($model->direction_id_optional, $model->stake_id_optional)->id;
+            if ($model->year_serv != NULL)
+                $model->timestamp_serv = Teachers::getDateToTimestamp("-", $model->time_serv_init) - $model->year_serv * $year_sec;
+            if ($model->year_serv_spec != NULL)
+                $model->timestamp_serv_spec = Teachers::getDateToTimestamp("-", $model->time_serv_spec_init) - $model->year_serv_spec * $year_sec;
+
+            if ($modelUser->save()) {
+                $model->user_id = $modelUser->id;               
+                
+                if ($model->save()) {
+                Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been updated.'));
+                return $this->redirect($this->getRedirectPage('update', $model));
+                }
+            }
+        } else {
+            return $this->renderIsAjax('create', [
+            'modelUser' => $modelUser,
+            'model' => $model,
+        ]);
+        }
+    }
+    
+     public function actionUpdate($id) {
 
         $year_sec = 31536000;
         $this_time = mktime(0, 0, 0, 9, 1, date('Y', time()));
 
         $model = $this->findModel($id);
-
+        $modelUser = UserTeachers::findOne(['id' => $model->user_id, 'user_category' => User::USER_CATEGORY_TEACHER]);
+        
+        if (!isset($model, $modelUser)) {
+            throw new NotFoundHttpException("The user was not found.");
+        }
+        if($modelUser->birth_timestamp != NULL) $modelUser->getTimestampToDate($mask = "d-m-Y");
+        
         if ($model->cost_main_id != NULL)
             $model->direction_id_main = Cost::getDirectionId($model->cost_main_id)->direction_id;
         if ($model->cost_main_id != NULL)
@@ -59,13 +115,15 @@ class DefaultController extends \backend\controllers\DefaultController {
         if ($model->timestamp_serv_spec != NULL)
             $model->year_serv_spec = round(($this_time - $model->timestamp_serv_spec) / $year_sec, 2);
 
-        if ($model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
+        if ($modelUser->load(Yii::$app->request->post()) && $model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
             \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
-            return \yii\widgets\ActiveForm::validate($model);
-        } elseif ($model->load(Yii::$app->request->post())) {
+            return \yii\widgets\ActiveForm::validate($model,$modelUser);
+        } elseif ($modelUser->load(Yii::$app->request->post()) && $model->load(Yii::$app->request->post())) {
 
             //echo '<pre>' . print_r($model, true) . '</pre>';
+                $modelUser->getDateToTimestamp("-");
+            
             if ($model->direction_id_main != NULL and $model->stake_id_main != NULL)
                 $model->cost_main_id = Cost::getCostId($model->direction_id_main, $model->stake_id_main)->id;
             if ($model->direction_id_optional != NULL and $model->stake_id_optional != NULL)
@@ -75,12 +133,15 @@ class DefaultController extends \backend\controllers\DefaultController {
             if ($model->year_serv_spec != NULL)
                 $model->timestamp_serv_spec = Teachers::getDateToTimestamp("-", $model->time_serv_spec_init) - $model->year_serv_spec * $year_sec;
 
-            if ($model->save()) {
+            if ($modelUser->save() && $model->save()) {
                 Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been updated.'));
                 return $this->redirect($this->getRedirectPage('update', $model));
             }
         } else {
-            return $this->renderIsAjax('update', compact('model'));
+            return $this->renderIsAjax('update', [
+            'modelUser' => $modelUser,
+            'model' => $model,
+        ]);
         }
     }
 

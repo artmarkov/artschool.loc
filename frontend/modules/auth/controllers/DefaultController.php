@@ -18,7 +18,7 @@ use yeesoft\auth\models\forms\SignupFindForm;
 use yeesoft\auth\models\forms\SetEmailForm;
 use yeesoft\auth\models\forms\SetPasswordForm;
 use yeesoft\auth\models\forms\SetUsernameForm;
-use common\models\auth\User;
+use common\models\user\User;
 use yeesoft\components\AuthEvent;
 use common\widgets\ActiveForm;
 use Yii;
