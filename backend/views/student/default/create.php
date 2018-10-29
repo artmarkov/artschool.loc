@@ -12,5 +12,5 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="student-create">
     <h3 class="lte-hide-title"><?=  Html::encode($this->title) ?></h3>
-    <?=  $this->render('_form', compact('model')) ?>
+    <?= $this->render('_form', ['model' => $model, 'modelUser' => $modelUser]) ?>
 </div>

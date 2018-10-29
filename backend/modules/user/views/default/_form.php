@@ -61,19 +61,6 @@ use yii\widgets\MaskedInput;
                             <?= $form->field($model, 'snils')->widget(MaskedInput::className(),['mask' => '999-999-999 99',])->textInput() ?>
                         </div>
                     </div>
-                    
-                    <!--<div class="row">
-                        <div class="col-md-3">
-                            <?/*= $form->field($model, 'birth_day')->textInput(['maxlength' => 2]) */?>
-                        </div>
-                        <div class="col-md-4">
-                            <?/*= $form->field($model, 'birth_month')->dropDownList(YeeHelper::getMonthsList()) */?>
-                        </div>
-                        <div class="col-md-3">
-                            <?/*= $form->field($model, 'birth_year')->textInput(['maxlength' => 4]) */?>
-                        </div>
-                    </div>-->
-
                     <div class="row">
                         <div class="col-md-6">
                             <?= $form->field($model, 'phone')->widget(MaskedInput::className(),['mask' => '+7 (999) 999 99 99',])->textInput() ?>

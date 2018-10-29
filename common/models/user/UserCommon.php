@@ -1,9 +1,8 @@
 <?php
 
-namespace common\models\teachers\forms;
+namespace common\models\user;
 
 use Yii;
-use common\models\user\User;
 use yii\behaviors\TimestampBehavior;
 /**
  * This is the model class for table "{{%user}}".
@@ -22,7 +21,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $snils
  * 
  */
-class UserTeachers extends \yeesoft\models\UserIdentity
+class UserCommon extends \yeesoft\models\UserIdentity
 {
      /**
      * @var string
@@ -95,7 +94,7 @@ class UserTeachers extends \yeesoft\models\UserIdentity
             'first_name' => Yii::t('yee', 'First Name'),
             'middle_name' => Yii::t('yee', 'Middle Name'),
             'last_name' => Yii::t('yee', 'Last Name'),
-            'birth_timestamp' => Yii::t('yee', 'Birth Timestamp'),
+            'birth_date' => Yii::t('yee', 'Birth Date'),
             'gender' => Yii::t('yee', 'Gender'),
             'phone' => Yii::t('yee', 'Phone'),
             'phone_optional' => Yii::t('yee', 'Phone Optional'),
@@ -133,9 +132,9 @@ class UserTeachers extends \yeesoft\models\UserIdentity
      */
     public function beforeValidate() {
 
-        $this->first_name = UserTeachers::getUcFirst($this->first_name);
-        $this->middle_name = UserTeachers::getUcFirst($this->middle_name);
-        $this->last_name = UserTeachers::getUcFirst($this->last_name);
+        $this->first_name = UserCommon::getUcFirst($this->first_name);
+        $this->middle_name = UserCommon::getUcFirst($this->middle_name);
+        $this->last_name = UserCommon::getUcFirst($this->last_name);
 
 
         return parent::beforeValidate();

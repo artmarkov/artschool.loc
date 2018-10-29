@@ -143,7 +143,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'class' => 'yeesoft\grid\columns\StatusColumn',
                         'attribute' => 'user_category',
                         'optionsArray' => [
-                            [User::USER_CATEGORY_STAFF, Yii::t('yee', 'Staff'), 'info'],
+                            [User::USER_CATEGORY_STAFF, Yii::t('yee', 'Staff'), 'primary'],
                             [User::USER_CATEGORY_TEACHER, Yii::t('yee', 'Teacher'), 'primary'],
                             [User::USER_CATEGORY_STUDENT, Yii::t('yee', 'Student'), 'primary'],
                             [User::USER_CATEGORY_PARENT, Yii::t('yee', 'Parent'), 'primary'],

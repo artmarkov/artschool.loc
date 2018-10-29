@@ -45,10 +45,10 @@ class StudentPosition extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('yee/student', 'ID'),
-            'name' => Yii::t('yee/student', 'Name'),
-            'slug' => Yii::t('yee/student', 'Slug'),
-            'status' => Yii::t('yee/student', 'Status'),
+            'id' => Yii::t('yee/guide', 'ID'),
+            'name' => Yii::t('yee/guide', 'Name'),
+            'slug' => Yii::t('yee/guide', 'Slug'),
+            'status' => Yii::t('yee/guide', 'Status'),
         ];
     }
  /**
@@ -82,5 +82,10 @@ class StudentPosition extends \yii\db\ActiveRecord
     public function getStudents()
     {
         return $this->hasMany(Student::className(), ['position_id' => 'id']);
+    }
+
+    public static function getPositionList()
+    {
+        return \yii\helpers\ArrayHelper::map(StudentPosition::find()->all(), 'id', 'name');
     }
 }

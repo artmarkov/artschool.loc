@@ -5,7 +5,7 @@ namespace backend\controllers\teachers;
 use common\models\teachers\Stake;
 use common\models\teachers\Cost;
 use common\models\teachers\Teachers;
-use common\models\teachers\forms\UserTeachers;
+use common\models\user\UserCommon;
 use common\models\user\User;
 use yii\web\NotFoundHttpException;
 use Yii;
@@ -42,7 +42,7 @@ class DefaultController extends \backend\controllers\DefaultController {
         $this_time = mktime(0, 0, 0, 9, 1, date('Y', time()));
         
         $model = new $this->modelClass;
-        $modelUser = new UserTeachers();
+        $modelUser = new UserCommon();
         
         $model->time_serv_init = Teachers::getTimestampToDate("d-m-Y", $this_time);
         $model->time_serv_spec_init = Teachers::getTimestampToDate("d-m-Y", $this_time);
@@ -54,7 +54,8 @@ class DefaultController extends \backend\controllers\DefaultController {
         } elseif ($modelUser->load(Yii::$app->request->post()) && $model->load(Yii::$app->request->post())) {
 
             //echo '<pre>' . print_r($model, true) . '</pre>';
-                $modelUser->getDateToTimestamp("-");
+            if($modelUser->birth_date != NULL)   $modelUser->getDateToTimestamp("-");
+
                 $modelUser->user_category = User::USER_CATEGORY_TEACHER;
                 $modelUser->status = User::STATUS_INACTIVE;
                 
@@ -89,7 +90,7 @@ class DefaultController extends \backend\controllers\DefaultController {
         $this_time = mktime(0, 0, 0, 9, 1, date('Y', time()));
 
         $model = $this->findModel($id);
-        $modelUser = UserTeachers::findOne(['id' => $model->user_id, 'user_category' => User::USER_CATEGORY_TEACHER]);
+        $modelUser = UserCommon::findOne(['id' => $model->user_id, 'user_category' => User::USER_CATEGORY_TEACHER]);
         
         if (!isset($model, $modelUser)) {
             throw new NotFoundHttpException("The user was not found.");
@@ -122,7 +123,7 @@ class DefaultController extends \backend\controllers\DefaultController {
         } elseif ($modelUser->load(Yii::$app->request->post()) && $model->load(Yii::$app->request->post())) {
 
             //echo '<pre>' . print_r($model, true) . '</pre>';
-                $modelUser->getDateToTimestamp("-");
+            if($modelUser->birth_date != NULL)   $modelUser->getDateToTimestamp("-");
             
             if ($model->direction_id_main != NULL and $model->stake_id_main != NULL)
                 $model->cost_main_id = Cost::getCostId($model->direction_id_main, $model->stake_id_main)->id;

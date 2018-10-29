@@ -33,8 +33,6 @@ use yii\widgets\MaskedInput;
             <div class="panel panel-default">
                 <div class="panel-body">
 
-                    
-                    
                     <div class="row">
                         <div class="col-md-4">
                             <?= $form->field($modelUser, 'last_name')->textInput(['maxlength' => 124]) ?>
@@ -58,9 +56,7 @@ use yii\widgets\MaskedInput;
                             <?= $form->field($modelUser, 'snils')->widget(MaskedInput::className(),['mask' => '999-999-999 99',])->textInput() ?>
                         </div>
                     </div>
-                    
-              
-
+ 
                     <div class="row">
                         <div class="col-md-6">
                             <?= $form->field($modelUser, 'phone')->widget(MaskedInput::className(),['mask' => '+7 (999) 999 99 99',])->textInput() ?>
@@ -73,14 +69,7 @@ use yii\widgets\MaskedInput;
              
                 </div>
             </div>
-<!--        </div>
-    </div>-->
-    
-    
-    
-    
-   <!--<div class="row">-->
-        <!--<div class="col-md-9">-->
+
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="row">
