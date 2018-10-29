@@ -123,4 +123,11 @@ class Student extends \yii\db\ActiveRecord
     {
         return $this->user->fullName;
     }
+    /**
+     * Геттер даты рождения
+     */
+    public function getBirthDate()
+    {
+        return Yii::$app->formatter->asDate(($this->isNewRecord) ? time() : $this->user->birth_timestamp);
+    }
 }

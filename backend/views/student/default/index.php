@@ -7,6 +7,7 @@ use yeesoft\grid\GridQuickLinks;
 use common\models\student\Student;
 use yeesoft\helpers\Html;
 use yeesoft\grid\GridPageSize;
+use common\models\user\UserCommon;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -77,11 +78,23 @@ $this->params['breadcrumbs'][] = $this->title;
                         'label' => Yii::t('yee/student', 'Name Position'),
                         'filter' => common\models\student\StudentPosition::getPositionList(),
                     ],
-                    'user.birth_timestamp',
                     'user.phone',
-                    'user.email',
+                    'user.email',  
+                     [
+                        'class' => 'yeesoft\grid\columns\DateFilterColumn',
+                        'attribute' => 'birth_timestamp',
+                        'value' => function (Student $model) {
+                            return '<span style="font-size:85%;" class="label label-'
+                            . ((time() >= $model->user->birth_timestamp) ? 'primary' : 'default') . '">'
+                            . $model->birthDate . '</span>';
+                        },
+                        'label' => Yii::t('yee', 'Birth Date'),
+                        'format' => 'raw',
+                        'options' => ['style' => 'width:150px'],
+                    ],           
+                   
                 ],
-            ]);
+                    ]);
             ?>
 
             <?php Pjax::end() ?>

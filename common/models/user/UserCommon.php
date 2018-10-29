@@ -57,13 +57,12 @@ class UserCommon extends \yeesoft\models\UserIdentity
             [['first_name', 'middle_name', 'last_name'], 'string', 'max' => 124],
             [['first_name', 'middle_name', 'last_name'], 'trim'],
             [['first_name', 'middle_name', 'last_name'], 'match', 'pattern' => Yii::$app->yee->cyrillicRegexp, 'message' => Yii::t('yee', 'Only need to enter Russian letters')],
-            ['last_name', 'unique', 'targetAttribute' => ['last_name', 'first_name', 'middle_name']],
+            ['last_name', 'unique', 'targetAttribute' => ['last_name', 'first_name', 'middle_name'], 'message' => Yii::t('yee/auth', 'The user with the entered data already exists.')],
             [['phone', 'phone_optional'], 'string', 'max' => 24],           
             [['snils'], 'string', 'max' => 16],
             
         ];
-    }
-    
+    }    
     /**
      * Check validate date
      */
