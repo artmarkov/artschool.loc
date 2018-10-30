@@ -13,6 +13,7 @@ use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
+use frontend\widgets\ContactFormWidget;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -35,6 +36,9 @@ AvatarAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
+    
+<?= (Yii::$app->user->isGuest ? ContactFormWidget::widget([]) : ''); ?>
+    
 <div class="wrap">
 
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -59,6 +63,14 @@ AvatarAsset::register($this);
        // $menuItems = Menu::getMenuItems('main-menu');
         if (Yii::$app->user->isGuest){
 
+            $menuItems[] = [
+                'label' => '<i class="fa fa-paper-plane-o"></i>&nbsp;' . Yii::t('yee/auth', 'Contact'), 
+                'url' => '#', 
+                'options' => [
+                    'data-toggle' => 'modal', 
+                    'data-target' => '#contact-modal'
+                    ]
+                ];
             $menuItems[] = [
                 'label' => '<i class="fa fa-user-plus"></i>&nbsp;' . Yii::t('yee/auth', 'Signup'),
                 'url' => \yii\helpers\Url::to(['/auth/default/finding'])

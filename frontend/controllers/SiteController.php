@@ -113,31 +113,23 @@ class SiteController extends BaseController
      *
      * @return mixed
      */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', Yii::t('yee','Thank you for contacting us. We will respond to you as soon as possible.'));
-            } else {
-                Yii::$app->session->setFlash('error', Yii::t('yee','There was an error sending email.'));
-            }
+    public function actionAjaxContact() {
+        if (Yii::$app->request->isAjax) {
+            $model = new ContactForm();
+            if ($model->load(Yii::$app->request->post())) {
+                if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
+                    Yii::$app->session->setFlash('success', Yii::t('yee', 'Thank you for contacting us. We will respond to you as soon as possible.'));
+                } else {
+                    Yii::$app->session->setFlash('error', Yii::t('yee', 'There was an error sending email.'));
+                }
 
-            return $this->refresh();
+                return $this->goBack();
+            } else {
+                Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
+                return \yii\widgets\ActiveForm::validate($model);
+            }
         } else {
-            return $this->render('contact', [
-                'model' => $model,
-            ]);
+            throw new \yii\web\NotFoundHttpException('Page not found.');
         }
     }
-
-    /**
-     * Displays about page.
-     *
-     * @return mixed - перенаправлено на page.php
-     */
-//    public function actionAbout()
-//    {
-//        return $this->render('about');
-//    }
 }
