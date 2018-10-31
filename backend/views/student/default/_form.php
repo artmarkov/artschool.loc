@@ -4,6 +4,8 @@ use yeesoft\widgets\ActiveForm;
 use common\models\student\Student;
 use yeesoft\helpers\Html;
 use yii\widgets\MaskedInput;
+use lo\widgets\modal\ModalAjax;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\student\Student */
@@ -14,12 +16,11 @@ use yii\widgets\MaskedInput;
 
     <?php
     $form = ActiveForm::begin([
-        'id' => 'student-form',
-        'validateOnBlur' => false,
-        'enableAjaxValidation' => true,
-        'options' => ['enctype' => 'multipart/form-data'],
-    ])
-
+                'id' => 'student-form',
+                'validateOnBlur' => false,
+                'enableAjaxValidation' => true,
+                'options' => ['enctype' => 'multipart/form-data'],
+            ])
     ?>
 
     <div class="row">
@@ -85,10 +86,41 @@ use yii\widgets\MaskedInput;
                     </div>
                 </div>
             </div>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <p>      
+                                <?php
+                                echo ModalAjax::widget([
+                                    'id' => 'createParents',
+                                    'header' => 'Create Parent',
+                                    'toggleButton' => [
+                                        'label' => 'Create Parent',
+                                        'class' => 'btn btn-default'
+                                    ],
+                                    'url' => Url::to(['/parents/create']), // Ajax view with form to load
+                                    'ajaxSubmit' => true, // Submit the contained form as ajax, true by default
+                                    // ... any other yii2 bootstrap modal option you need
+                                    'size' => ModalAjax::SIZE_LARGE,
+                                    //'options' => ['class' => 'header-primary'],
+                                    'autoClose' => true,
+                                    'pjaxContainer' => '#grid-parent-pjax',
+                                ]);
+                                ?>
+                            </p>                          
+
+                            
+                            
+                        </div>                
+                    </div>
+                </div>
+            </div>   
+
         </div>
-
         <div class="col-md-3">
-
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">
@@ -112,14 +144,15 @@ use yii\widgets\MaskedInput;
                                 <?= Html::a(Yii::t('yee', 'Cancel'), ['/student/default/index'], ['class' => 'btn btn-default']) ?>
                             <?php else: ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
-                                <?= Html::a(Yii::t('yee', 'Delete'),
-                                    ['/student/default/delete', 'id' => $model->id], [
-                                        'class' => 'btn btn-default',
-                                        'data' => [
-                                            'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-                                            'method' => 'post',
-                                        ],
-                                    ]) ?>
+                                <?=
+                                Html::a(Yii::t('yee', 'Delete'), ['/student/default/delete', 'id' => $model->id], [
+                                    'class' => 'btn btn-default',
+                                    'data' => [
+                                        'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                                        'method' => 'post',
+                                    ],
+                                ])
+                                ?>
                             <?php endif; ?>
                         </div>
                     </div>

@@ -102,6 +102,11 @@ class UserCommon extends \yeesoft\models\UserIdentity
             'updated_at' => Yii::t('yee', 'Updated At'),
         ];
     }
+     /* Геттер для полного имени человека */
+
+    public function getFullName() {
+        return $this->last_name . ' ' . $this->first_name . ' ' . $this->middle_name;
+    }
     /**
      * Преобразование даты в timestamp
      */
