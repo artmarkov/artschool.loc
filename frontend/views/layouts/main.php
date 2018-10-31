@@ -36,9 +36,9 @@ AvatarAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-    
+
 <?= (Yii::$app->user->isGuest ? ContactFormWidget::widget([]) : ''); ?>
-    
+
 <div class="wrap">
 
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">

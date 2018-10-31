@@ -48,7 +48,8 @@
     "himiklab/yii2-recaptcha-widget": "*",
     "nex/yii2-chosen": "*",
     "kartik-v/yii2-widget-switchinput": "dev-master",
-    "kartik-v/yii2-widget-touchspin": "dev-master"
+    "kartik-v/yii2-widget-touchspin": "dev-master",
+    "loveorigami/yii2-modal-ajax": "@dev"
         
   },
   "require-dev": {

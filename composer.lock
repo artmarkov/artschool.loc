@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6e8cd9655db18cbc0dc7c8b315bf9a64",
+    "content-hash": "044b36bc44b7b134f07c4cb4b54b6cd2",
     "packages": [
         {
             "name": "2amigos/yii2-file-upload-widget",
@@ -1617,6 +1617,50 @@
                 "storage"
             ],
             "time": "2018-10-15T13:53:10+00:00"
+        },
+        {
+            "name": "loveorigami/yii2-modal-ajax",
+            "version": "3.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/loveorigami/yii2-modal-ajax.git",
+                "reference": "0f7e435aba4ba4c2efb59e8ea056797a284ec04e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/loveorigami/yii2-modal-ajax/zipball/0f7e435aba4ba4c2efb59e8ea056797a284ec04e",
+                "reference": "0f7e435aba4ba4c2efb59e8ea056797a284ec04e",
+                "shasum": ""
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "lo\\widgets\\modal\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Karnbrock Gmbh",
+                    "homepage": "http://karnbrock.biz"
+                },
+                {
+                    "name": "Lukyanov Andrey",
+                    "homepage": "http://loveorigami.info"
+                }
+            ],
+            "description": "A wrapper around Yii2 Bootstrap Modal for using an ActiveForm via AJAX inside",
+            "homepage": "https://github.com/loveorigami/yii2-modal-ajax",
+            "keywords": [
+                "ajax-modal",
+                "bootstrap",
+                "modal",
+                "yii2"
+            ],
+            "time": "2018-08-07T06:07:39+00:00"
         },
         {
             "name": "nex/yii2-chosen",
@@ -3393,7 +3437,8 @@
         "kartik-v/yii2-widget-datepicker": 20,
         "kartik-v/yii2-widget-depdrop": 20,
         "kartik-v/yii2-widget-switchinput": 20,
-        "kartik-v/yii2-widget-touchspin": 20
+        "kartik-v/yii2-widget-touchspin": 20,
+        "loveorigami/yii2-modal-ajax": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

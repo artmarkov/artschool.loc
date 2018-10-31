@@ -47,10 +47,10 @@ return [
                 '<module:auth>/<action:(oauth)>/<authclient:\w+>' => '<module>/default/<action>',
             ),
             'multilingualRules' => [
-                '<controller:(measure|option)>' => '<controller>/index',
-                '<controller:(measure|option)>/<id:\d+>' => '<controller>/view',
-                '<controller:(measure|option)>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                '<controller:(measure|option)>/<action:\w+>' => '<controller>/<action>',
+                '<controller:(measure|option|company)>' => '<controller>/index',
+                '<controller:(measure|option|company)>/<id:\d+>' => '<controller>/view',
+                '<controller:(measure|option|company)>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:(measure|option|company)>/<action:\w+>' => '<controller>/<action>',
 
                 '<module:auth>/<action:\w+>' => '<module>/default/<action>',
                 '<controller:(category|tag)>/<slug:[\w \-]+>' => '<controller>/index',

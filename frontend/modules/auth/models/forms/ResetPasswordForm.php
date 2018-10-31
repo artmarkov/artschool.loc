@@ -41,7 +41,7 @@ class ResetPasswordForm extends Model
             ['email', 'validateEmailConfirmedAndUserActive'],
             [
                 ['reCaptcha'], ReCaptchaValidator::className(),
-                'secret' => '6Lf6gV4UAAAAANvOPDtx_2obe-hxVKnbeDjUCcfI',
+                'secret' => '6Ley33cUAAAAAIUnnCdK8zMl-TKgj5mfw1niWgIZ',
                 'uncheckedMessage' => Yii::t('yee/auth', 'Please confirm that you are not a bot.')
             ],
         ];

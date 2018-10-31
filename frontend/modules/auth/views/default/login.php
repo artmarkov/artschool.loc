@@ -48,7 +48,7 @@ $col3 = (int)($col12 / 4);
 
                         <div class="row registration-block">
                             <div class="col-sm-<?= $col6 ?>">
-                                <?= Html::a(Yii::t('yee/auth', "Registration"), ['default/signup']) ?>
+                                <?= Html::a(Yii::t('yee/auth', "Registration"), ['default/finding']) ?>
                             </div>
                             <div class="col-sm-<?= $col6 ?> text-right">
                                 <?= Html::a(Yii::t('yee/auth', "Forgot password?"), ['default/reset-password']) ?>
