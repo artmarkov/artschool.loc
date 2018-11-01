@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 $this->title = Yii::t('yee','Create');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('yee/student','Students'), 'url' => ['student/default/index']];
-$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/student','Student Position'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/student','Name Position'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

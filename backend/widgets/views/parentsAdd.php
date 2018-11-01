@@ -1,26 +1,34 @@
 <?php
 
 use yeesoft\widgets\ActiveForm;
-use common\models\user\UserCommon;
+use common\models\user\User;
 use yeesoft\helpers\Html;
 use yii\widgets\MaskedInput;
+use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\user\UserCommon */
 /* @var $form yeesoft\widgets\ActiveForm */
+
+$this->title = Yii::t('yee/user', 'Create Parent');
+
+Modal::begin([
+    'header' => '<h3 class="lte-hide-title page-title">' . Html::encode($this->title) . '</h3>',
+    'size' => 'modal-lg',
+    'id' => 'parent-modal',
+]);
 ?>
 
 <div class="parents-form">
 
-    <?php 
-    $form = ActiveForm::begin([
-            'id' => 'parents-form',
-            'validateOnBlur' => false,
-        ])
+    <?php $form = ActiveForm::begin([
+    'id' => 'parent-form',
+    'enableAjaxValidation' => true,
+    'action' => ['parent/default/ajax-create']
+]);
     ?>
-
-   <div class="row">
-        <div class="col-md-9">
+    <div class="row">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-body">
 
@@ -38,7 +46,7 @@ use yii\widgets\MaskedInput;
 
                     <div class="row">
                         <div class="col-md-3">
-                            <?= $form->field($model, 'gender')->dropDownList(yeesoft\models\User::getGenderList()) ?>
+                            <?= $form->field($model, 'gender')->dropDownList(User::getGenderList()) ?>
                         </div>
                         <div class="col-md-3">
                             <?= $form->field($model, 'birth_date')->widget(MaskedInput::className(), ['mask' => '99-99-9999',])->textInput() ?>
@@ -57,41 +65,22 @@ use yii\widgets\MaskedInput;
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-3">
 
-            <div class="panel panel-default">
                 <div class="panel-body">
-                    <div class="record-info">
-                        <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
-                            <span><?=  $model->id ?></span>
-                        </div>
+                    <div class="form-group">
+                        <?php if ($model->isNewRecord): ?>
+                            <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
+                            <?= Html::a(Yii::t('yee', 'Cancel'), ['/student/default/index'], ['class' => 'btn btn-default']) ?>
 
-                        <div class="form-group">
-                            <?php  if ($model->isNewRecord): ?>
-                                <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
-                                <?= Html::a(Yii::t('yee', 'Cancel'), ['/parents/default/index'], ['class' => 'btn btn-default']) ?>
-                            <?php  else: ?>
-                                <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
-                                <?= Html::a(Yii::t('yee', 'Delete'),
-                                    ['/parents/default/delete', 'id' => $model->id], [
-                                    'class' => 'btn btn-default',
-                                    'data' => [
-                                        'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-                                        'method' => 'post',
-                                    ],
-                                ]) ?>
-                            <?php endif; ?>
-                        </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <?php  ActiveForm::end(); ?>
+
+<?php ActiveForm::end(); ?>
 
 </div>
+<?php Modal::end(); ?>

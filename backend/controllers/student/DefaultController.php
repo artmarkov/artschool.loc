@@ -6,12 +6,12 @@ use common\models\user\User;
 use common\models\user\UserCommon;
 use yii\web\NotFoundHttpException;
 use Yii;
-use yeesoft\controllers\admin\BaseController;
+
 
 /**
  * DefaultController implements the CRUD actions for common\models\student\Student model.
  */
-class DefaultController extends BaseController 
+class DefaultController extends \backend\controllers\DefaultController 
 {
     public $modelClass       = 'common\models\student\Student';
     public $modelSearchClass = 'common\models\student\search\StudentSearch';

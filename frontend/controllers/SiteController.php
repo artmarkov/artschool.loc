@@ -108,28 +108,26 @@ class SiteController extends BaseController
         throw new \yii\web\NotFoundHttpException('Page not found.');
     }
 
-    /**
+     /**
      * Displays contact page.
      *
      * @return mixed
      */
-    public function actionAjaxContact() {
-        if (Yii::$app->request->isAjax) {
-            $model = new ContactForm();
-            if ($model->load(Yii::$app->request->post())) {
-                if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                    Yii::$app->session->setFlash('success', Yii::t('yee', 'Thank you for contacting us. We will respond to you as soon as possible.'));
-                } else {
-                    Yii::$app->session->setFlash('error', Yii::t('yee', 'There was an error sending email.'));
-                }
-
-                return $this->goBack();
+    public function actionContact()
+    {
+        $model = new ContactForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
+                Yii::$app->session->setFlash('success', Yii::t('yee','Thank you for contacting us. We will respond to you as soon as possible.'));
             } else {
-                Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
-                return \yii\widgets\ActiveForm::validate($model);
+                Yii::$app->session->setFlash('error', Yii::t('yee','There was an error sending email.'));
             }
+
+            return $this->refresh();
         } else {
-            throw new \yii\web\NotFoundHttpException('Page not found.');
+            return $this->render('contact', [
+                'model' => $model,
+            ]);
         }
     }
 }

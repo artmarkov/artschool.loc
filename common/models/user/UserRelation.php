@@ -40,9 +40,9 @@ class UserRelation extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('yee/user', 'ID'),
-            'name' => Yii::t('yee/user', 'Name'),
-            'slug' => Yii::t('yee/user', 'Slug'),
+            'id' => Yii::t('yee/guide', 'ID'),
+            'name' => Yii::t('yee/guide', 'Name'),
+            'slug' => Yii::t('yee/guide', 'Slug'),
         ];
     }
 

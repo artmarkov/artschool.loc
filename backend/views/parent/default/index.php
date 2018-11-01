@@ -11,7 +11,7 @@ use yeesoft\grid\GridPageSize;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Parents';
+$this->title = Yii::t('yee/user','Parents');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="parents-index">
@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-sm-12">
             <h3 class="lte-hide-title page-title"><?=  Html::encode($this->title) ?></h3>
-            <?= Html::a(Yii::t('yee', 'Add New'), ['/parents/default/create'], ['class' => 'btn btn-sm btn-primary']) ?>
+            <?= Html::a(Yii::t('yee', 'Add New'), ['/parent/default/create'], ['class' => 'btn btn-sm btn-primary']) ?>
         </div>
     </div>
 
@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                        'class' => 'yeesoft\grid\columns\TitleActionColumn',
                         'options' => ['style' => 'width:300px'],
                         'attribute' => 'FullName',
-                        'controller' => '/parents/default',
+                        'controller' => '/parent/default',
                         'title' => function(UserCommon $model) {
                             return Html::a($model->fullName, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },

@@ -4,29 +4,15 @@ use yeesoft\widgets\ActiveForm;
 use common\models\student\Student;
 use yeesoft\helpers\Html;
 use yii\widgets\MaskedInput;
-use lo\widgets\modal\ModalAjax;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\student\Student */
 /* @var $form yeesoft\widgets\ActiveForm */
 ?>
-<?php
-$modal = ModalAjax::widget([
-    'id' => 'createParents',
-    'header' => 'Create Parent',
-    'toggleButton' => [
-        'label' => 'Create Parent',
-        'class' => 'btn btn-primary'
-    ],
-    'url' => Url::to(['/parents/create?user_id=' . $modelUser->id]), // Ajax view with form to load
-    'ajaxSubmit' => true,
-    'size' => ModalAjax::SIZE_LARGE,
-    'autoClose' => true,
-    'pjaxContainer' => '#grid-parent-pjax',
-]);
-?>
-<?= $modal;?>
+
+<?= \backend\widgets\ParentsAddWidget::widget([]); ?>
+
 <div class="student-form">
 
   
@@ -101,13 +87,7 @@ $modal = ModalAjax::widget([
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-
-                            <p>      
-                                
-                            </p>                          
-
-                            
-                            
+                            <div data-toggle="modal" data-target="#parent-modal"><a href="#">Add Parent</a></div>             
                         </div>                
                     </div>
                 </div>
