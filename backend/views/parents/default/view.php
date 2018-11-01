@@ -7,10 +7,10 @@ use yeesoft\helpers\Html;
 /* @var $model common\models\user\UserCommon */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Parents', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'User Commons', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="parents-view">
+<div class="user-common-view">
 
     <h3 class="lte-hide-title"><?=  Html::encode($this->title) ?></h3>
 
@@ -18,10 +18,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel-body">
 
             <p>
-                <?=                 Html::a('Edit', ['/parents/default/update', 'id' => $model->id],
+                <?=                 Html::a('Edit', ['/user-common/default/update', 'id' => $model->id],
                     ['class' => 'btn btn-sm btn-primary'])
                 ?>
-                <?=                 Html::a('Delete', ['/parents/default/delete', 'id' => $model->id],
+                <?=                 Html::a('Delete', ['/user-common/default/delete', 'id' => $model->id],
                     [
                     'class' => 'btn btn-sm btn-default',
                     'data' => [
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                 ])
                 ?>
-                <?=                 Html::a(Yii::t('yee', 'Add New'), ['/parents/default/create'],
+                <?=                 Html::a(Yii::t('yee', 'Add New'), ['/user-common/default/create'],
                     ['class' => 'btn btn-sm btn-primary pull-right'])
                 ?>
             </p>

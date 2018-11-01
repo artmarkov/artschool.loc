@@ -11,15 +11,15 @@ use yeesoft\grid\GridPageSize;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Parents';
+$this->title = 'User Commons';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="parents-index">
+<div class="user-common-index">
 
     <div class="row">
         <div class="col-sm-12">
             <h3 class="lte-hide-title page-title"><?=  Html::encode($this->title) ?></h3>
-            <?= Html::a(Yii::t('yee', 'Add New'), ['/parents/default/create'], ['class' => 'btn btn-sm btn-primary']) ?>
+            <?= Html::a(Yii::t('yee', 'Add New'), ['/user-common/default/create'], ['class' => 'btn btn-sm btn-primary']) ?>
         </div>
     </div>
 
@@ -38,40 +38,61 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
 
                 <div class="col-sm-6 text-right">
-                    <?=  GridPageSize::widget(['pjaxId' => 'parents-grid-pjax']) ?>
+                    <?=  GridPageSize::widget(['pjaxId' => 'user-common-grid-pjax']) ?>
                 </div>
             </div>
 
             <?php 
             Pjax::begin([
-                'id' => 'parents-grid-pjax',
+                'id' => 'user-common-grid-pjax',
             ])
             ?>
 
             <?= 
             GridView::widget([
-                'id' => 'parents-grid',
+                'id' => 'user-common-grid',
                 'dataProvider' => $dataProvider,
                                 'bulkActionOptions' => [
-                    'gridId' => 'parents-grid',
+                    'gridId' => 'user-common-grid',
                     'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
                 ],
                 'columns' => [
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
                     [
-                       'class' => 'yeesoft\grid\columns\TitleActionColumn',
-                        'options' => ['style' => 'width:300px'],
-                        'attribute' => 'FullName',
-                        'controller' => '/parents/default',
+                        'class' => 'yeesoft\grid\columns\TitleActionColumn',
+                        'controller' => '/user-common/default',
                         'title' => function(UserCommon $model) {
-                            return Html::a($model->fullName, ['update', 'id' => $model->id], ['data-pjax' => 0]);
+                            return Html::a($model->id, ['view', 'id' => $model->id], ['data-pjax' => 0]);
                         },
-                        'buttonsTemplate' => '{update} {delete}',
                     ],
 
-            'email:email',
-             'phone',
-            
+            'id',
+            'username',
+            'auth_key',
+            'password_hash',
+            'password_reset_token',
+            // 'email:email',
+            // 'status',
+            // 'user_category',
+            // 'created_at',
+            // 'updated_at',
+            // 'superadmin',
+            // 'registration_ip',
+            // 'bind_to_ip',
+            // 'email_confirmed:email',
+            // 'confirmation_token',
+            // 'avatar:ntext',
+            // 'first_name',
+            // 'middle_name',
+            // 'last_name',
+            // 'birth_timestamp:datetime',
+            // 'gender',
+            // 'phone',
+            // 'phone_optional',
+            // 'skype',
+            // 'info',
+            // 'snils',
+
                 ],
             ]);
             ?>
