@@ -23,7 +23,8 @@ use yii\behaviors\TimestampBehavior;
  */
 class UserCommon extends \yeesoft\models\UserIdentity
 {
-     /**
+    public  $user_id;
+    /**
      * @var string
      */
     public $birth_date;
@@ -51,7 +52,7 @@ class UserCommon extends \yeesoft\models\UserIdentity
     {
         return [
             [['first_name', 'middle_name', 'last_name', 'birth_date'], 'required'],
-            [['status', 'user_category', 'gender'], 'integer'],
+            [['status', 'user_category', 'gender', 'user_id'], 'integer'],
             ['birth_timestamp', 'integer'],
             ['birth_date', 'validateDateCorrect'],
             [['first_name', 'middle_name', 'last_name'], 'string', 'max' => 124],

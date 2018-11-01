@@ -11,17 +11,27 @@ use yii\helpers\Url;
 /* @var $model common\models\student\Student */
 /* @var $form yeesoft\widgets\ActiveForm */
 ?>
-
+<?php
+$modal = ModalAjax::widget([
+    'id' => 'createParents',
+    'header' => 'Create Parent',
+    'toggleButton' => [
+        'label' => 'Create Parent',
+        'class' => 'btn btn-primary'
+    ],
+    'url' => Url::to(['/parents/create?user_id=' . $modelUser->id]), // Ajax view with form to load
+    'ajaxSubmit' => true,
+    'size' => ModalAjax::SIZE_LARGE,
+    'autoClose' => true,
+    'pjaxContainer' => '#grid-parent-pjax',
+]);
+?>
+<?= $modal;?>
 <div class="student-form">
 
-    <?php
-    $form = ActiveForm::begin([
-                'id' => 'student-form',
-                'validateOnBlur' => false,
-                'enableAjaxValidation' => true,
-                'options' => ['enctype' => 'multipart/form-data'],
-            ])
-    ?>
+  
+    <?php $form = ActiveForm::begin(); ?>
+   
 
     <div class="row">
         <div class="col-md-9">
@@ -93,23 +103,7 @@ use yii\helpers\Url;
                         <div class="col-md-12">
 
                             <p>      
-                                <?php
-                                echo ModalAjax::widget([
-                                    'id' => 'createParents',
-                                    'header' => 'Create Parent',
-                                    'toggleButton' => [
-                                        'label' => 'Create Parent',
-                                        'class' => 'btn btn-default'
-                                    ],
-                                    'url' => Url::to(['/parents/create']), // Ajax view with form to load
-                                    'ajaxSubmit' => true, // Submit the contained form as ajax, true by default
-                                    // ... any other yii2 bootstrap modal option you need
-                                    'size' => ModalAjax::SIZE_LARGE,
-                                    //'options' => ['class' => 'header-primary'],
-                                    'autoClose' => true,
-                                    'pjaxContainer' => '#grid-parent-pjax',
-                                ]);
-                                ?>
+                                
                             </p>                          
 
                             

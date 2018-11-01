@@ -49,10 +49,15 @@ class DefaultController extends \backend\controllers\DefaultController
      */
 
     public function actionCreate() {
+        
+        $user_id = Yii::$app->request->get('user_id');
+      //  echo '<pre>' . print_r($user_id, true) . '</pre>';
+
         $model = new $this->modelClass;
-
-        if ($model->load(Yii::$app->request->post())) {
-
+        $model->user_id = $user_id;
+        
+        if ($model->load(Yii::$app->request->post())) {            
+            
             $model->user_category = User::USER_CATEGORY_PARENT;
             $model->status = User::STATUS_INACTIVE;
             $model->getDateToTimestamp("-");

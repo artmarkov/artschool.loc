@@ -81,10 +81,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]);
-
-    Pjax::end();
-    ?> 
+ ?>
     <a class="btn btn-success" href="/company/update?id=1" title="Edit ID-10" data-scenario="hello">Hello ModalAjax</a>
     <a class="btn btn-default" href="/company/update?id=2" title="Edit ID-20" data-scenario="goodbye">Goodbye ModalAjax</a>
+    
+    <?php
+    Pjax::end();
+    ?> 
+   
 
 </div>
