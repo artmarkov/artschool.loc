@@ -54,6 +54,7 @@ class UserCommon extends \yeesoft\models\UserIdentity
             [['first_name', 'middle_name', 'last_name', 'birth_date'], 'required'],
             [['status', 'user_category', 'gender', 'user_id'], 'integer'],
             ['birth_timestamp', 'integer'],
+            ['birth_date', 'string'],
             ['birth_date', 'validateDateCorrect'],
             [['first_name', 'middle_name', 'last_name'], 'string', 'max' => 124],
             [['first_name', 'middle_name', 'last_name'], 'trim'],

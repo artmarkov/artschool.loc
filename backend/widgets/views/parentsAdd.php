@@ -65,17 +65,9 @@ Modal::begin([
                         </div>
                     </div>
                 </div>
-
-                <div class="panel-body">
-                    <div class="form-group">
-                        <?php if ($model->isNewRecord): ?>
-                            <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
-                            <?= Html::a(Yii::t('yee', 'Cancel'), ['/student/default/index'], ['class' => 'btn btn-default']) ?>
-
-                        <?php endif; ?>
-                    </div>
-                </div>
             </div>
+              
+                            <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
         </div>
     </div>
 
