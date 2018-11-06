@@ -49,19 +49,55 @@ Modal::begin([
                             <?= $form->field($model, 'gender')->dropDownList(User::getGenderList()) ?>
                         </div>
                         <div class="col-md-3">
-                            <?= $form->field($model, 'birth_date')->widget(MaskedInput::className(), ['mask' => '99-99-9999',])->textInput() ?>
+                            <?= $form->field($model, 'birth_date')->widget(MaskedInput::className(), [
+                            'mask' => '99-99-9999',
+                            'options' => [
+                            'class' => 'form-control',
+                            'id' => 'birth_date_2'
+                            ],
+                            'clientOptions' => [
+                            'clearIncomplete' => true
+                            ]
+                            ]) ?>
                         </div>
                         <div class="col-md-3">
-                            <?= $form->field($model, 'snils')->widget(MaskedInput::className(), ['mask' => '999-999-999 99',])->textInput() ?>
+                            <?= $form->field($model, 'snils')->widget(MaskedInput::className(), [
+                                'mask' => '999-999-999 99',
+                                'options' => [
+                                    'class' => 'form-control',
+                                    'id' => 'snils_2'
+                                ],
+                                'clientOptions' => [
+                                    'clearIncomplete' => true
+                                ]
+                            ]) ?>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
-                            <?= $form->field($model, 'phone')->widget(MaskedInput::className(), ['mask' => '+7 (999) 999 99 99',])->textInput() ?>
+                            <?= $form->field($model, 'phone')->widget(MaskedInput::className(), [
+                                'mask' => '+7 (999) 999 99 99',
+                                'options' => [
+                                    'class' => 'form-control',
+                                    'id' => 'phone_2'
+                                ],
+                                'clientOptions' => [
+                                    'clearIncomplete' => true
+                                ]
+                            ]) ?>
                         </div>
                         <div class="col-md-6">
-                            <?= $form->field($model, 'phone_optional')->widget(MaskedInput::className(), ['mask' => '+7 (999) 999 99 99',])->textInput() ?>
+                            <?= $form->field($model, 'phone_optional')->widget(MaskedInput::className(), [
+                                'mask' => '+7 (999) 999 99 99',
+                                'options' => [
+                                    'class' => 'form-control',
+                                    'id' => 'phone_optional_2'
+                                ],
+                                'clientOptions' => [
+                                    'clearIncomplete' => true
+                                ]
+                            ]) ?>
                         </div>
                     </div>
                 </div>

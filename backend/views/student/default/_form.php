@@ -15,9 +15,15 @@ use yii\helpers\Url;
 
 <div class="student-form">
 
-  
-    <?php $form = ActiveForm::begin(); ?>
-   
+
+    <?php $form = ActiveForm::begin([
+        'id' => 'student-form',
+        'validateOnBlur' => false,
+        'enableAjaxValidation' => true,
+        'options' => ['enctype' => 'multipart/form-data']
+    ]);
+    ?>
+
 
     <div class="row">
         <div class="col-md-9">
@@ -41,19 +47,55 @@ use yii\helpers\Url;
                             <?= $form->field($modelUser, 'gender')->dropDownList(yeesoft\models\User::getGenderList()) ?>
                         </div>
                         <div class="col-md-3">
-                            <?= $form->field($modelUser, 'birth_date')->widget(MaskedInput::className(), ['mask' => '99-99-9999',])->textInput() ?>
+                            <?= $form->field($modelUser, 'birth_date')->widget(MaskedInput::className(), [
+                                'mask' => '99-99-9999',
+                                'options' => [
+                                    'class' => 'form-control',
+                                    'id' => 'birth_date_1'
+                                ],
+                                'clientOptions' => [
+                                    'clearIncomplete' => true
+                                ]
+                            ]) ?>
                         </div>
                         <div class="col-md-3">
-                            <?= $form->field($modelUser, 'snils')->widget(MaskedInput::className(), ['mask' => '999-999-999 99',])->textInput() ?>
+                            <?= $form->field($modelUser, 'snils')->widget(MaskedInput::className(), [
+                            'mask' => '999-999-999 99',
+                            'options' => [
+                            'class' => 'form-control',
+                            'id' => 'snils_1'
+                            ],
+                            'clientOptions' => [
+                            'clearIncomplete' => true
+                            ]
+                            ]) ?>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
-                            <?= $form->field($modelUser, 'phone')->widget(MaskedInput::className(), ['mask' => '+7 (999) 999 99 99',])->textInput() ?>
+                            <?= $form->field($modelUser, 'phone')->widget(MaskedInput::className(), [
+                                'mask' => '+7 (999) 999 99 99',
+                                'options' => [
+                                    'class' => 'form-control',
+                                    'id' => 'phone_1'
+                                ],
+                                'clientOptions' => [
+                                    'clearIncomplete' => true
+                                ]
+                            ]) ?>
                         </div>
                         <div class="col-md-6">
-                            <?= $form->field($modelUser, 'phone_optional')->widget(MaskedInput::className(), ['mask' => '+7 (999) 999 99 99',])->textInput() ?>
+                            <?= $form->field($modelUser, 'phone_optional')->widget(MaskedInput::className(), [
+                                'mask' => '+7 (999) 999 99 99',
+                                'options' => [
+                                    'class' => 'form-control',
+                                    'id' => 'phone_optional_1'
+                                ],
+                                'clientOptions' => [
+                                    'clearIncomplete' => true
+                                ]
+                            ]) ?>
                         </div>
                     </div>
                 </div>
@@ -83,15 +125,22 @@ use yii\helpers\Url;
                 </div>
             </div>
 
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div data-toggle="modal" data-target="#parent-modal"><a href="#">Add Parent</a></div>             
-                        </div>                
+            <?php if (!$model->isNewRecord) : ?>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?= Html::a(Yii::t('yee', 'Add Parent'), ['#'], [
+                                    'class' => 'btn btn-primary',
+                                    'data-toggle' => 'modal',
+                                    'data-target' => '#parent-modal',
+                                ])
+                                ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>   
+            <?php endif; ?>
 
         </div>
         <div class="col-md-3">
