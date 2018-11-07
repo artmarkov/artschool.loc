@@ -4,6 +4,7 @@ use yeesoft\widgets\ActiveForm;
 use common\models\student\Student;
 use yeesoft\helpers\Html;
 use yii\widgets\MaskedInput;
+use kartik\select2\Select2;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
@@ -129,14 +130,37 @@ use yii\helpers\Url;
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-12">
-                                <?= Html::a(Yii::t('yee', 'Add Parent'), ['#'], [
+                            <div class="col-md-6">
+                                <?= $form->field($model, 'family_list')->widget(Select2::classname(),
+                                    [
+                                        'data' => Student::getFamilyList($modelUser->id),
+                                        'theme' => Select2::THEME_KRAJEE,
+                                        'options' => ['placeholder' => Yii::t('yee/student', 'Select Family...')],
+                                        'pluginOptions' => [
+                                            'allowClear' => true,
+                                        ],
+                                        'addon' => [
+                                            'append' => [
+                                                'content' => Html::a(Yii::t('yee', 'Add Parent'), ['#'],
+                                                [
+                                                    'class' => 'btn btn-primary',
+                                                    'data-toggle' => 'modal',
+                                                    'data-target' => '#parent-modal',
+                                                ]),
+                                                'asButton' => true,
+                                            ],
+                                        ],
+                                    ]);
+                                ?>
+                            </div>
+                            <!-- <div class="col-md-6">
+                                <? /*= Html::a(Yii::t('yee', 'Add Parent'), ['#'], [
                                     'class' => 'btn btn-primary',
                                     'data-toggle' => 'modal',
                                     'data-target' => '#parent-modal',
                                 ])
-                                ?>
-                            </div>
+                                */ ?>
+                        </div>-->
                         </div>
                     </div>
                 </div>

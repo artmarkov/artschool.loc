@@ -49,7 +49,8 @@
     "nex/yii2-chosen": "*",
     "kartik-v/yii2-widget-switchinput": "dev-master",
     "kartik-v/yii2-widget-touchspin": "dev-master",
-    "loveorigami/yii2-modal-ajax": "@dev"
+    "loveorigami/yii2-modal-ajax": "@dev",
+    "kartik-v/yii2-widget-select2": "dev-master"
         
   },
   "require-dev": {

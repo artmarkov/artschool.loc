@@ -2,8 +2,11 @@
 
 namespace common\models\student;
 
+use common\models\user\UserFamily;
 use Yii;
 use common\models\user\User;
+use yii\helpers\ArrayHelper;
+
 /**
  * This is the model class for table "{{%student}}".
  *
@@ -22,6 +25,7 @@ use common\models\user\User;
 class Student extends \yii\db\ActiveRecord
 {
     public $sertificate_date;
+    public $family_list;
     /**
      * {@inheritdoc}
      */
@@ -129,5 +133,24 @@ class Student extends \yii\db\ActiveRecord
     public function getBirthDate()
     {
         return Yii::$app->formatter->asDate(($this->isNewRecord) ? time() : $this->user->birth_timestamp);
+    }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+
+    public function getUserFamily()
+    {
+        return $this->hasMany(UserFamily::className(), ['user_main_id' => 'user_id']);
+    }
+
+    public static function getFamilyList($user_id)
+    {
+        return ArrayHelper::map(UserFamily::find()
+            ->innerJoin('user', 'user.id = user_family.user_slave_id')
+            ->andWhere(['not in', 'user.user_category', User::USER_CATEGORY_STUDENT])
+            ->andWhere(['in', 'user_family.user_main_id' , $user_id])
+            ->select(['user.id as id', "CONCAT(user.last_name, ' ',user.first_name, ' ',user.middle_name) AS name"])
+            ->orderBy('user.last_name')
+            ->asArray()->all(), 'id', 'name');
     }
 }
