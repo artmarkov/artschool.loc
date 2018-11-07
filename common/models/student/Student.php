@@ -149,8 +149,8 @@ class Student extends \yii\db\ActiveRecord
             ->innerJoin('user', 'user.id = user_family.user_slave_id')
             ->andWhere(['not in', 'user.user_category', User::USER_CATEGORY_STUDENT])
             ->andWhere(['in', 'user_family.user_main_id' , $user_id])
-            ->select(['user.id as id', "CONCAT(user.last_name, ' ',user.first_name, ' ',user.middle_name) AS name"])
+            ->select(['user.id as user_id', "CONCAT(user.last_name, ' ',user.first_name, ' ',user.middle_name) AS name"])
             ->orderBy('user.last_name')
-            ->asArray()->all(), 'id', 'name');
+            ->asArray()->all(), 'user_id', 'name');
     }
 }

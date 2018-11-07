@@ -131,8 +131,10 @@ use yii\helpers\Url;
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <?= $form->field($model, 'family_list')->widget(Select2::classname(),
+                                <label class="control-label">Family</label>
+                                <?= Select2::widget(
                                     [
+                                        'name' => 'family_list',
                                         'data' => Student::getFamilyList($modelUser->id),
                                         'theme' => Select2::THEME_KRAJEE,
                                         'options' => ['placeholder' => Yii::t('yee/student', 'Select Family...')],
