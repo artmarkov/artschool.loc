@@ -154,6 +154,28 @@ use yii\helpers\Url;
                                         ],
                                     ]);
                                 ?>
+<!--                                --><?//= $form->field($model, 'family_list')->widget(Select2::classname(),
+//                                    [
+//                                        'data' => Student::getFamilyList($modelUser->id),
+//                                        'theme' => Select2::THEME_KRAJEE,
+//                                        'options' => ['placeholder' => Yii::t('yee/student', 'Select Family...')],
+//                                        'pluginOptions' => [
+//                                            'allowClear' => true,
+//                                        ],
+//                                        'addon' => [
+//                                            'append' => [
+//                                                'content' => Html::a(Yii::t('yee', 'Add Parent'), ['/parent/default/add-family','id' => $modelUser->id],
+//                                                    [
+//                                                        'class' => 'btn btn-primary add-to-family',
+//                                                        'data-id' => $modelUser->id,
+////                                                        'data-toggle' => 'modal',
+////                                                        'data-target' => '#parent-modal',
+//                                                    ]),
+//                                                'asButton' => true,
+//                                            ],
+//                                        ],
+//                                    ]);
+//                                ?>
                             </div>
                             <!-- <div class="col-md-6">
                                 <? /*= Html::a(Yii::t('yee', 'Add Parent'), ['#'], [

@@ -2,6 +2,7 @@
 
 namespace backend\controllers\parent;
 
+use common\models\user\UserCommon;
 use Yii;
 use common\models\user\User;
 use yii\data\ActiveDataProvider;
@@ -64,11 +65,27 @@ class DefaultController extends \backend\controllers\DefaultController {
             $model->getDateToTimestamp("-");
 
             if ($model->save()) {
-                return $this->goBack();
+                //return $this->goBack();
+                return $this->redirect(Yii::$app->request->referrer);
             }
         } else {
             throw new HttpException(404, 'Page not found');
         }
+    }
+
+    public function actionAddFamily()
+    {
+        $user_main_id = Yii::$app->request->get('id');
+        $model = UserCommon::findOne($user_main_id);
+
+        if (empty($model)) return false;
+
+        if (!Yii::$app->request->isAjax) {
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+       // $this->layout = false;
+        return $this->render('parents-modal', compact('model'));
+     // echo '<pre>' . print_r($model, true) . '</pre>';
     }
 
 }
