@@ -12,7 +12,7 @@ use yii\helpers\Url;
 /* @var $form yeesoft\widgets\ActiveForm */
 ?>
 
-<?= \backend\widgets\ParentsAddWidget::widget([]); ?>
+<?//= \backend\widgets\ParentsAddWidget::widget([]); ?>
 
 <div class="student-form">
 
@@ -131,31 +131,10 @@ use yii\helpers\Url;
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <label class="control-label">Family</label>
-                                <?= Select2::widget(
-                                    [
-                                        'name' => 'family_list',
-                                        'data' => Student::getFamilyList($modelUser->id),
-                                        'theme' => Select2::THEME_KRAJEE,
-                                        'options' => ['placeholder' => Yii::t('yee/student', 'Select Family...')],
-                                        'pluginOptions' => [
-                                            'allowClear' => true,
-                                        ],
-                                        'addon' => [
-                                            'append' => [
-                                                'content' => Html::a(Yii::t('yee', 'Add Parent'), ['#'],
-                                                [
-                                                    'class' => 'btn btn-primary',
-                                                    'data-toggle' => 'modal',
-                                                    'data-target' => '#parent-modal',
-                                                ]),
-                                                'asButton' => true,
-                                            ],
-                                        ],
-                                    ]);
-                                ?>
-<!--                                --><?//= $form->field($model, 'family_list')->widget(Select2::classname(),
+                                <!--<label class="control-label">Family</label>-->
+                                <?// = Select2::widget(
 //                                    [
+//                                        'name' => 'family_list',
 //                                        'data' => Student::getFamilyList($modelUser->id),
 //                                        'theme' => Select2::THEME_KRAJEE,
 //                                        'options' => ['placeholder' => Yii::t('yee/student', 'Select Family...')],
@@ -164,18 +143,38 @@ use yii\helpers\Url;
 //                                        ],
 //                                        'addon' => [
 //                                            'append' => [
-//                                                'content' => Html::a(Yii::t('yee', 'Add Parent'), ['/parent/default/add-family','id' => $modelUser->id],
-//                                                    [
-//                                                        'class' => 'btn btn-primary add-to-family',
-//                                                        'data-id' => $modelUser->id,
-////                                                        'data-toggle' => 'modal',
-////                                                        'data-target' => '#parent-modal',
-//                                                    ]),
+//                                                'content' => Html::a(Yii::t('yee', 'Add Parent'), ['#'],
+//                                                [
+//                                                    'class' => 'btn btn-primary',
+//                                                    'data-toggle' => 'modal',
+//                                                    'data-target' => '#parent-modal',
+//                                                ]),
 //                                                'asButton' => true,
 //                                            ],
 //                                        ],
 //                                    ]);
-//                                ?>
+                                ?>
+                                <?= $form->field($model, 'family_list')->widget(Select2::classname(),
+                                    [
+                                        
+                                        'data' => \common\models\user\UserCommon::getUserParentList(),
+                                        'theme' => Select2::THEME_KRAJEE,
+                                        'options' => ['placeholder' => Yii::t('yee/student', 'Select Family...')],
+                                        'pluginOptions' => [
+                                            'allowClear' => true,
+                                        ],
+                                        'addon' => [
+                                            'append' => [
+                                                'content' => Html::a(Yii::t('yee', 'Add Parent'), ['/parent/default/add-family','id' => $modelUser->id],
+                                                    [
+                                                        'class' => 'btn btn-primary add-to-family',
+                                                        'data-id' => $modelUser->id,
+                                                    ]),
+                                                'asButton' => true,
+                                            ],
+                                        ],
+                                    ]);
+                                ?>
                             </div>
                             <!-- <div class="col-md-6">
                                 <? /*= Html::a(Yii::t('yee', 'Add Parent'), ['#'], [

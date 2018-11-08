@@ -17,6 +17,7 @@ $this->title = Yii::t('yee/user', 'Create Parent');
 
     <?php $form = ActiveForm::begin([
     'id' => 'parent-form',
+        
     'enableAjaxValidation' => true,
     'action' => ['parent/default/ajax-create']
 ]);
@@ -28,6 +29,10 @@ $this->title = Yii::t('yee/user', 'Create Parent');
 
                     <div class="row">
                         <div class="col-md-4">
+                            <?= $form->field($model, 'user_id')->label(false)->hiddenInput(['value' => $model->user_id]) ?>
+
+                            <?= $form->field($model, 'user_slave_id')->label(false)->hiddenInput(['value' => $model->user_slave_id]) ?>
+                            
                             <?= $form->field($model, 'last_name')->textInput(['maxlength' => 124]) ?>
                         </div>
                         <div class="col-md-4">

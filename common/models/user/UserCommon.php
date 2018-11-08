@@ -23,7 +23,8 @@ use yii\behaviors\TimestampBehavior;
  */
 class UserCommon extends \yeesoft\models\UserIdentity
 {
-    public  $user_id;
+    public $user_id;
+    public $user_slave_id;
     /**
      * @var string
      */
@@ -52,7 +53,7 @@ class UserCommon extends \yeesoft\models\UserIdentity
     {
         return [
             [['first_name', 'middle_name', 'last_name', 'birth_date'], 'required'],
-            [['status', 'user_category', 'gender', 'user_id'], 'integer'],
+            [['status', 'user_category', 'gender'], 'integer'],
             ['birth_timestamp', 'integer'],
             ['birth_date', 'string'],
             ['birth_date', 'validateDateCorrect'],
@@ -144,5 +145,13 @@ class UserCommon extends \yeesoft\models\UserIdentity
 
 
         return parent::beforeValidate();
+    }
+     public static function getUserParentList()
+    {
+        return \yii\helpers\ArrayHelper::map(User::find()
+            ->andWhere(['in', 'user.user_category', User::USER_CATEGORY_PARENT])
+            ->select(['user.id as user_id', "CONCAT(user.last_name, ' ',user.first_name, ' ',user.middle_name) AS name"])
+            ->orderBy('user.last_name')
+            ->asArray()->all(), 'user_id', 'name');
     }
 }

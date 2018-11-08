@@ -50,9 +50,15 @@ class DefaultController extends \backend\controllers\DefaultController {
      */
     public function actionAjaxCreate() {
 
-//      $user_id = Yii::$app->request->get('user_id');
-//      echo '<pre>' . print_r($user_id, true) . '</pre>';
-        $model = new $this->modelClass;
+       // $user_id = Yii::$app->request->post('user_id');
+        //$user_slave_id = Yii::$app->request->post('user_slave_id');
+        
+        $model = UserCommon::findOne(1);
+         if (empty($model)) return false;
+         
+        if($model->birth_timestamp != NULL) $model->getTimestampToDate("d-m-Y");
+     // echo '<pre>' . print_r($model, true) . '</pre>';
+       //$model = new $this->modelClass;
 
         if ($model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
             \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
@@ -62,29 +68,35 @@ class DefaultController extends \backend\controllers\DefaultController {
 
             $model->user_category = User::USER_CATEGORY_PARENT;
             $model->status = User::STATUS_INACTIVE;
-            $model->getDateToTimestamp("-");
+            if($model->birth_date != NULL)   $model->getDateToTimestamp("-");
 
             if ($model->save()) {
                 //return $this->goBack();
                 return $this->redirect(Yii::$app->request->referrer);
             }
         } else {
+            
             throw new HttpException(404, 'Page not found');
         }
     }
 
     public function actionAddFamily()
     {
-        $user_main_id = Yii::$app->request->get('id');
-        $model = UserCommon::findOne($user_main_id);
-
+        $id = Yii::$app->request->get('id');
+        $user_slave_id = Yii::$app->request->get('user_slave_id');
+        
+        $model = UserCommon::findOne($user_slave_id);
+        //echo '<pre>' . print_r($model, true) . '</pre>';
         if (empty($model)) return false;
 
         if (!Yii::$app->request->isAjax) {
             return $this->redirect(Yii::$app->request->referrer);
         }
-       // $this->layout = false;
-        return $this->render('parents-modal', compact('model'));
+        $model->user_id = $id;
+        $model->user_slave_id = $user_slave_id;
+        if($model->birth_timestamp != NULL) $model->getTimestampToDate("d-m-Y");
+        $this->layout = false;
+        return $this->renderAjax('parents-modal', compact('model'));
      // echo '<pre>' . print_r($model, true) . '</pre>';
     }
 
