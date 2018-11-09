@@ -25,7 +25,7 @@ use yii\helpers\ArrayHelper;
 class Student extends \yii\db\ActiveRecord
 {
     public $sertificate_date;
-    public $family_list;
+    public $user_slave_id;
     /**
      * {@inheritdoc}
      */

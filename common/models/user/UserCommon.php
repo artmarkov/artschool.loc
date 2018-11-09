@@ -146,10 +146,20 @@ class UserCommon extends \yeesoft\models\UserIdentity
 
         return parent::beforeValidate();
     }
-     public static function getUserParentList()
+
+    /**
+     * Функция возвращает массив id родителей, которых можно добавить к ученику.
+     * Не учитываются уже добавленные родители
+     * Вызывается в форме _form Student models
+     */
+     public static function getUserParentList($id)
     {
-        return \yii\helpers\ArrayHelper::map(User::find()
-            ->andWhere(['in', 'user.user_category', User::USER_CATEGORY_PARENT])
+        return \yii\helpers\ArrayHelper::map(UserCommon::find()
+            ->leftJoin('user_family', 'user.id = user_family.user_slave_id')
+            ->andWhere(['not in', 'user.status', User::STATUS_BANNED]) // заблокированных не добавляем в список
+            ->andWhere(['in', 'user.user_category', User::USER_CATEGORY_PARENT]) // только родителей
+           // ->andWhere(['not in', 'user.user_category', User::USER_CATEGORY_STUDENT]) // если добавляем родителей из числа других юзеров
+            ->andWhere(['or',['not in', 'user_family.user_main_id', $id], ['is', 'user_family.user_main_id', NULL]])
             ->select(['user.id as user_id', "CONCAT(user.last_name, ' ',user.first_name, ' ',user.middle_name) AS name"])
             ->orderBy('user.last_name')
             ->asArray()->all(), 'user_id', 'name');

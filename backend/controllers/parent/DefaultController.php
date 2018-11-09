@@ -3,6 +3,7 @@
 namespace backend\controllers\parent;
 
 use common\models\user\UserCommon;
+use common\models\user\UserFamily;
 use Yii;
 use common\models\user\User;
 use yii\data\ActiveDataProvider;
@@ -44,59 +45,71 @@ class DefaultController extends \backend\controllers\DefaultController {
     }
 
     /**
-     * Creates a new UserCommon model.
-     * Запускается из формы редактирования model Student из Модального окна
-     * @return mixed
+     * Добавляется родитель в базу и формируется родственная связь
+     * Запускается из формы редактирования model Student из Модального окна parent-modal
+     * Модал находится в layouts main
      */
-    public function actionAjaxCreate() {
+    public function actionCreateFamily() {
 
-       // $user_id = Yii::$app->request->post('user_id');
-        //$user_slave_id = Yii::$app->request->post('user_slave_id');
-        
-        $model = UserCommon::findOne(1);
-         if (empty($model)) return false;
-         
+        $modelFamily = new UserFamily();
+        $modelFamily->load(Yii::$app->request->post());
+
+        $user_slave_id = $modelFamily->user_slave_id;
+        $user_slave_id != 0 ? $model = UserCommon::findOne($user_slave_id) : $model = new UserCommon();
+
         if($model->birth_timestamp != NULL) $model->getTimestampToDate("d-m-Y");
      // echo '<pre>' . print_r($model, true) . '</pre>';
-       //$model = new $this->modelClass;
 
         if ($model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
             \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
-            return \yii\widgets\ActiveForm::validate($model);
+            return \yii\widgets\ActiveForm::validate($model,$modelFamily);
         } elseif ($model->load(Yii::$app->request->post())) {
 
             $model->user_category = User::USER_CATEGORY_PARENT;
-            $model->status = User::STATUS_INACTIVE;
+            if ($model->isNewRecord) $model->status = User::STATUS_INACTIVE;
+
             if($model->birth_date != NULL)   $model->getDateToTimestamp("-");
 
             if ($model->save()) {
-                //return $this->goBack();
-                return $this->redirect(Yii::$app->request->referrer);
+
+                $modelFamily->user_slave_id = $model->id;
+
+                if ($modelFamily->save()) {
+                    Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been updated.'));
+                    return $this->redirect(Yii::$app->request->referrer);
+                }
+            }
+            else {
+
             }
         } else {
-            
             throw new HttpException(404, 'Page not found');
         }
     }
-
-    public function actionAddFamily()
+    /**
+     * Вызывается методом Ajax из main.js
+     */
+    public function actionInitFamily()
     {
-        $id = Yii::$app->request->get('id');
-        $user_slave_id = Yii::$app->request->get('user_slave_id');
-        
-        $model = UserCommon::findOne($user_slave_id);
+            $id = Yii::$app->request->get('id');
+            $user_slave_id = Yii::$app->request->get('user_slave_id');
+            $user_slave_id != 0 ? $model = UserCommon::findOne($user_slave_id) : $model = new UserCommon();
+            $modelFamily = new UserFamily();
+
+
         //echo '<pre>' . print_r($model, true) . '</pre>';
-        if (empty($model)) return false;
+        //if (empty($model)) return false;
 
         if (!Yii::$app->request->isAjax) {
             return $this->redirect(Yii::$app->request->referrer);
         }
-        $model->user_id = $id;
-        $model->user_slave_id = $user_slave_id;
+        $modelFamily->user_main_id = $id;
+        $modelFamily->user_slave_id = $user_slave_id;
+
         if($model->birth_timestamp != NULL) $model->getTimestampToDate("d-m-Y");
         $this->layout = false;
-        return $this->renderAjax('parents-modal', compact('model'));
+        return $this->renderIsAjax('parents-modal',  ['model' => $model, 'modelFamily' => $modelFamily]);
      // echo '<pre>' . print_r($model, true) . '</pre>';
     }
 

@@ -11,5 +11,5 @@ $this->params['breadcrumbs'][] = Yii::t('yee','Update');
 ?>
 <div class="student-update">
     <h3 class="lte-hide-title"><?= Html::encode($this->title) ?></h3>
-    <?= $this->render('_form', ['model' => $model, 'modelUser' => $modelUser]) ?>
+    <?= $this->render('_form', ['model' => $model, 'modelUser' => $modelUser, 'dataProvider' => $dataProvider]) ?>
 </div>

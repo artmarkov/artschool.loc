@@ -130,7 +130,9 @@ use yii\helpers\Url;
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
                                 <!--<label class="control-label">Family</label>-->
                                 <?// = Select2::widget(
 //                                    [
@@ -154,27 +156,43 @@ use yii\helpers\Url;
 //                                        ],
 //                                    ]);
                                 ?>
-                                <?= $form->field($model, 'family_list')->widget(Select2::classname(),
+                                 <?php //$categories = \yii\helpers\ArrayHelper::merge(\common\models\user\UserCommon::getUserParentList(), ['0' => Yii::t('yee/user', '---Create New Parent---')]) ?>
+
+                                 <?= $form->field($model, 'user_slave_id')->widget(Select2::classname(),
                                     [
-                                        
-                                        'data' => \common\models\user\UserCommon::getUserParentList(),
+                                        'data' => \common\models\user\UserCommon::getUserParentList($model->user_id),
                                         'theme' => Select2::THEME_KRAJEE,
-                                        'options' => ['placeholder' => Yii::t('yee/student', 'Select Family...')],
+                                        'options' => ['placeholder' => Yii::t('yee/student', 'Create New Parent...')],
                                         'pluginOptions' => [
                                             'allowClear' => true,
                                         ],
                                         'addon' => [
                                             'append' => [
-                                                'content' => Html::a(Yii::t('yee', 'Add Parent'), ['/parent/default/add-family','id' => $modelUser->id],
+                                                'content' => Html::a(Yii::t('yee', 'Add Parent'), ['#'],
                                                     [
                                                         'class' => 'btn btn-primary add-to-family',
-                                                        'data-id' => $modelUser->id,
+                                                        'data-id' => $model->user_id,
                                                     ]),
                                                 'asButton' => true,
                                             ],
                                         ],
-                                    ]);
+                                    ])->label(Yii::t('yee/student', 'Add Parent'));
                                 ?>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                <? echo \yii\grid\GridView::widget([
+                                'dataProvider' => $dataProvider,
+                                'columns' => [
+                                ['class' => 'yii\grid\SerialColumn'],
+                                'fullName',
+                                ['class' => 'yii\grid\ActionColumn'],
+                                ],
+                                ]);
+                                ?>
+                                    </div>
+                                </div>
                             </div>
                             <!-- <div class="col-md-6">
                                 <? /*= Html::a(Yii::t('yee', 'Add Parent'), ['#'], [

@@ -53,4 +53,12 @@ class UserRelation extends \yii\db\ActiveRecord
     {
         return $this->hasMany(UserFamily::className(), ['relation_id' => 'id']);
     }
+    /**
+     * @return \yii\db\ActiveQuery
+     * Полный список Отношений в семье
+     */
+    public static function getRelationList()
+    {
+        return \yii\helpers\ArrayHelper::map(UserRelation::find()->all(), 'id', 'name');
+    }
 }

@@ -115,11 +115,12 @@ MetisMenuAsset::register($this);
 
         <!--кнопка вверх-->
         <?= common\widgets\ScrollupWidget::widget() ?>
+<!--        модал добавления родителя и формирование семейных отношений-->
         <?php \yii\bootstrap\Modal::begin([
-            'header' => '<h3 class="lte-hide-title page-title">Parents ADD</h3>',
+            'header' => '<h3 class="lte-hide-title page-title">' . Yii::t('yee/user', 'Create Parent') . '</h3>',
             'size' => 'modal-lg',
             'id' => 'parents-modal',
-            'footer' => 'footer',
+            //'footer' => 'footer',
         ]);
 
         \yii\bootstrap\Modal::end(); ?>

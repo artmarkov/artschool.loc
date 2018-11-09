@@ -33,6 +33,9 @@ class UserFamily extends \yii\db\ActiveRecord
     {
         return [
             [['relation_id', 'user_main_id', 'user_slave_id'], 'integer'],
+            ['relation_id', 'required'],
+            ['user_main_id', 'unique', 'targetAttribute' => ['user_main_id', 'user_slave_id'],'message' => Yii::t('yee/user', 'The relationships of the selected users are already defined.')], // проверка уникальности пары
+            ['user_main_id', 'unique', 'targetAttribute' => ['user_main_id', 'relation_id'],'message' => Yii::t('yee/user', 'You cannot use the same relationship to different users.')], // проверка уникальности пары
             [['user_main_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_main_id' => 'id']],
             [['user_slave_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_slave_id' => 'id']],
             [['relation_id'], 'exist', 'skipOnError' => true, 'targetClass' => UserRelation::className(), 'targetAttribute' => ['relation_id' => 'id']],

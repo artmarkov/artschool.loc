@@ -4,6 +4,7 @@ namespace backend\controllers\student;
 
 use common\models\user\User;
 use common\models\user\UserCommon;
+use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use Yii;
 
@@ -93,9 +94,18 @@ class DefaultController extends \backend\controllers\DefaultController
                 return $this->redirect($this->getRedirectPage('update', $model));
             }
         } else {
+
+            $dataProvider = new ActiveDataProvider([
+                'query' => UserCommon::find()
+                    ->innerJoin('user_family', 'user.id = user_family.user_slave_id')
+                    ->andWhere(['in', 'user_family.user_main_id', $modelUser->id]),
+            ]);
+
+
             return $this->renderIsAjax('update', [
                 'modelUser' => $modelUser,
                 'model' => $model,
+                'dataProvider' => $dataProvider,
             ]);
         }
     }

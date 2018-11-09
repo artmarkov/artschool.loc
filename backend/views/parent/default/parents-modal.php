@@ -4,13 +4,11 @@ use yeesoft\widgets\ActiveForm;
 use common\models\user\User;
 use yeesoft\helpers\Html;
 use yii\widgets\MaskedInput;
-use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\user\UserCommon */
 /* @var $form yeesoft\widgets\ActiveForm */
 
-$this->title = Yii::t('yee/user', 'Create Parent');
 ?>
 
 <div class="parents-form">
@@ -19,7 +17,7 @@ $this->title = Yii::t('yee/user', 'Create Parent');
     'id' => 'parent-form',
         
     'enableAjaxValidation' => true,
-    'action' => ['parent/default/ajax-create']
+    'action' => ['parent/default/create-family']
 ]);
     ?>
     <div class="row">
@@ -29,10 +27,6 @@ $this->title = Yii::t('yee/user', 'Create Parent');
 
                     <div class="row">
                         <div class="col-md-4">
-                            <?= $form->field($model, 'user_id')->label(false)->hiddenInput(['value' => $model->user_id]) ?>
-
-                            <?= $form->field($model, 'user_slave_id')->label(false)->hiddenInput(['value' => $model->user_slave_id]) ?>
-                            
                             <?= $form->field($model, 'last_name')->textInput(['maxlength' => 124]) ?>
                         </div>
                         <div class="col-md-4">
@@ -44,6 +38,11 @@ $this->title = Yii::t('yee/user', 'Create Parent');
                     </div>
 
                     <div class="row">
+                        <div class="col-md-3">
+                            <?= $form->field($modelFamily, 'relation_id')->dropDownList(\common\models\user\UserRelation::getRelationList(), [
+                                'prompt' => Yii::t('yee/user','Select Relation...'),
+                            ])->label(Yii::t('yee/user', 'Family Relation')); ?>
+                        </div>
                         <div class="col-md-3">
                             <?= $form->field($model, 'gender')->dropDownList(User::getGenderList()) ?>
                         </div>
@@ -101,8 +100,12 @@ $this->title = Yii::t('yee/user', 'Create Parent');
                     </div>
                 </div>
             </div>
-              
-                            <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
+
+            <?= $form->field($modelFamily, 'user_main_id')->label(false)->hiddenInput() ?>
+
+            <?= $form->field($modelFamily, 'user_slave_id')->label(false)->hiddenInput() ?>
+
+            <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
         </div>
     </div>
 
