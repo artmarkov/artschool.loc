@@ -95,15 +95,22 @@ class Student extends \yii\db\ActiveRecord
      * Преобразование даты в timestamp
      */
     public function getDateToTimestamp($mask = "-") {
-        $d_in = explode($mask, $this->sertificate_date);
-        return $this->sertificate_timestamp = mktime(0, 0, 0, $d_in[1], $d_in[0], $d_in[2]);
+        
+        if($this->sertificate_date != NULL) {
+            $d_in = explode($mask, $this->sertificate_date);
+           return   $this->sertificate_timestamp = mktime(0, 0, 0, $d_in[1], $d_in[0], $d_in[2]);
+        }
+       return FALSE;        
     }
 
     /**
      * Преобразование timestamp в дату
      */
     public function getTimestampToDate($mask = "d-m-Y") {
+        if($this->sertificate_timestamp != NULL) {
         return $this->sertificate_date = date($mask, $this->sertificate_timestamp);
+    } 
+    return FALSE;        
     }
     /**
      * @return \yii\db\ActiveQuery
@@ -142,15 +149,23 @@ class Student extends \yii\db\ActiveRecord
     {
         return $this->hasMany(UserFamily::className(), ['user_main_id' => 'user_id']);
     }
-
+    /**
+     * Список родителей ученика
+     * @param type $user_id
+     * @return array
+     */
+    
     public static function getFamilyList($user_id)
     {
-        return ArrayHelper::map(UserFamily::find()
+        $data = UserFamily::find()
+            ->innerJoin('user_relation', 'user_relation.id = user_family.relation_id')
             ->innerJoin('user', 'user.id = user_family.user_slave_id')
-            ->andWhere(['not in', 'user.user_category', User::USER_CATEGORY_STUDENT])
             ->andWhere(['in', 'user_family.user_main_id' , $user_id])
-            ->select(['user.id as user_id', "CONCAT(user.last_name, ' ',user.first_name, ' ',user.middle_name) AS name"])
+            ->select(['user_family.id as id', "CONCAT(user.last_name, ' ',user.first_name, ' ',user.middle_name) AS parent", 
+                'user_relation.name as relation', 'user.phone as phone', 'user.email as email' ])
             ->orderBy('user.last_name')
-            ->asArray()->all(), 'user_id', 'name');
+            ->asArray()->all(); 
+
+      return $data; 
     }
 }

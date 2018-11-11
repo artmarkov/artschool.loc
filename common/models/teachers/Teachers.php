@@ -37,6 +37,16 @@ class Teachers extends \yii\db\ActiveRecord
     public $gridDepartmentSearch;
     
     /**
+     * Кол-во секунд в году
+     */
+    const YEAR_SEC = 31536000; 
+    /**
+     * Дата учета рабочего времени (1 сентября текущего года)
+     */
+    const SERV_MON = 9;
+    const SERV_DAY = 1;
+    
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -247,5 +257,52 @@ class Teachers extends \yii\db\ActiveRecord
     public function getTeachersFullName()
     {
         return $this->user->fullName;
+    }
+    /**
+     * на 1 сентября текущего года  - в следующем году данные по стажу автоматически обновятся 
+     * (в базе ничего не меняется)
+     * хранится условная временная метка
+     * 
+     * @param type $year_serv
+     * @param type $time_serv_init
+     * @return type integer
+     */
+    public static function getTimestampServ($year_serv, $time_serv_init) {
+             
+        if ($year_serv != NULL)  return Teachers::getDateToTimestamp("-", $time_serv_init) - $year_serv * Teachers::YEAR_SEC;
+        return NULL;
+        
+    }
+    /**
+     * Метка времени текущего года выбранной даты
+     * @param type $mon
+     * @param type $day
+     * @return type integer
+     */
+    public static function getThisTime() {
+       return mktime(0, 0, 0, Teachers::SERV_MON, Teachers::SERV_DAY, date('Y', time())); 
+    }
+    /**
+     * Преобразование timуstamp в дату по маске
+     * @return type string
+     */
+    public static function getTimeServInit() {
+        
+        $this_time = Teachers::getThisTime();
+        
+        return Teachers::getTimestampToDate("d-m-Y", $this_time);
+        
+    }
+    /**
+     * Формирует кол-во лет стажа
+     * @param type $timestamp_serv
+     * @return type float
+     */
+    public static function getYearServ($timestamp_serv) {
+        
+        $this_time = Teachers::getThisTime();
+        
+        if ($timestamp_serv != NULL)  return round(($this_time - $timestamp_serv) / Teachers::YEAR_SEC, 2);
+        return NULL;
     }
 }

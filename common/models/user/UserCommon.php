@@ -23,8 +23,6 @@ use yii\behaviors\TimestampBehavior;
  */
 class UserCommon extends \yeesoft\models\UserIdentity
 {
-    public $user_id;
-    public $user_slave_id;
     /**
      * @var string
      */
@@ -110,19 +108,26 @@ class UserCommon extends \yeesoft\models\UserIdentity
     public function getFullName() {
         return $this->last_name . ' ' . $this->first_name . ' ' . $this->middle_name;
     }
-    /**
+     /**
      * Преобразование даты в timestamp
      */
     public function getDateToTimestamp($mask = "-") {
-        $d_in = explode($mask, $this->birth_date);
-        return $this->birth_timestamp = mktime(0, 0, 0, $d_in[1], $d_in[0], $d_in[2]);
+        
+        if($this->birth_date != NULL) {
+            $d_in = explode($mask, $this->birth_date);
+           return   $this->birth_timestamp = mktime(0, 0, 0, $d_in[1], $d_in[0], $d_in[2]);
+        }
+       return FALSE;        
     }
 
     /**
      * Преобразование timestamp в дату
      */
     public function getTimestampToDate($mask = "d-m-Y") {
+        if($this->birth_timestamp != NULL) {
         return $this->birth_date = date($mask, $this->birth_timestamp);
+    } 
+    return FALSE;        
     }
     /**
      * Первая буква заглавная
@@ -164,4 +169,5 @@ class UserCommon extends \yeesoft\models\UserIdentity
             ->orderBy('user.last_name')
             ->asArray()->all(), 'user_id', 'name');
     }
+   
 }

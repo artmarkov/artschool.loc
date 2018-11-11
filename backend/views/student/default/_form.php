@@ -1,18 +1,13 @@
 <?php
 
 use yeesoft\widgets\ActiveForm;
-use common\models\student\Student;
 use yeesoft\helpers\Html;
 use yii\widgets\MaskedInput;
-use kartik\select2\Select2;
-use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\student\Student */
 /* @var $form yeesoft\widgets\ActiveForm */
 ?>
-
-<?//= \backend\widgets\ParentsAddWidget::widget([]); ?>
 
 <div class="student-form">
 
@@ -127,84 +122,7 @@ use yii\helpers\Url;
             </div>
 
             <?php if (!$model->isNewRecord) : ?>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                <!--<label class="control-label">Family</label>-->
-                                <?// = Select2::widget(
-//                                    [
-//                                        'name' => 'family_list',
-//                                        'data' => Student::getFamilyList($modelUser->id),
-//                                        'theme' => Select2::THEME_KRAJEE,
-//                                        'options' => ['placeholder' => Yii::t('yee/student', 'Select Family...')],
-//                                        'pluginOptions' => [
-//                                            'allowClear' => true,
-//                                        ],
-//                                        'addon' => [
-//                                            'append' => [
-//                                                'content' => Html::a(Yii::t('yee', 'Add Parent'), ['#'],
-//                                                [
-//                                                    'class' => 'btn btn-primary',
-//                                                    'data-toggle' => 'modal',
-//                                                    'data-target' => '#parent-modal',
-//                                                ]),
-//                                                'asButton' => true,
-//                                            ],
-//                                        ],
-//                                    ]);
-                                ?>
-                                 <?php //$categories = \yii\helpers\ArrayHelper::merge(\common\models\user\UserCommon::getUserParentList(), ['0' => Yii::t('yee/user', '---Create New Parent---')]) ?>
-
-                                 <?= $form->field($model, 'user_slave_id')->widget(Select2::classname(),
-                                    [
-                                        'data' => \common\models\user\UserCommon::getUserParentList($model->user_id),
-                                        'theme' => Select2::THEME_KRAJEE,
-                                        'options' => ['placeholder' => Yii::t('yee/student', 'Create New Parent...')],
-                                        'pluginOptions' => [
-                                            'allowClear' => true,
-                                        ],
-                                        'addon' => [
-                                            'append' => [
-                                                'content' => Html::a(Yii::t('yee', 'Add Parent'), ['#'],
-                                                    [
-                                                        'class' => 'btn btn-primary add-to-family',
-                                                        'data-id' => $model->user_id,
-                                                    ]),
-                                                'asButton' => true,
-                                            ],
-                                        ],
-                                    ])->label(Yii::t('yee/student', 'Add Parent'));
-                                ?>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                <? echo \yii\grid\GridView::widget([
-                                'dataProvider' => $dataProvider,
-                                'columns' => [
-                                ['class' => 'yii\grid\SerialColumn'],
-                                'fullName',
-                                ['class' => 'yii\grid\ActionColumn'],
-                                ],
-                                ]);
-                                ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- <div class="col-md-6">
-                                <? /*= Html::a(Yii::t('yee', 'Add Parent'), ['#'], [
-                                    'class' => 'btn btn-primary',
-                                    'data-toggle' => 'modal',
-                                    'data-target' => '#parent-modal',
-                                ])
-                                */ ?>
-                        </div>-->
-                        </div>
-                    </div>
-                </div>
+                <?= \backend\widgets\ParentsViewWidget::widget(['model' => $model]); ?>
             <?php endif; ?>
 
         </div>

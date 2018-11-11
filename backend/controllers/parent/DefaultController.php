@@ -52,41 +52,46 @@ class DefaultController extends \backend\controllers\DefaultController {
     public function actionCreateFamily() {
 
         $modelFamily = new UserFamily();
-        $modelFamily->load(Yii::$app->request->post());
 
-        $user_slave_id = $modelFamily->user_slave_id;
-        $user_slave_id != 0 ? $model = UserCommon::findOne($user_slave_id) : $model = new UserCommon();
+        if ($modelFamily->load(Yii::$app->request->post())) {
 
-        if($model->birth_timestamp != NULL) $model->getTimestampToDate("d-m-Y");
-     // echo '<pre>' . print_r($model, true) . '</pre>';
+            $user_slave_id = $modelFamily->user_slave_id;
+            $user_slave_id != 0 ? $model = UserCommon::findOne($user_slave_id) : $model = new UserCommon();
 
-        if ($model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
-            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            if ($model->birth_timestamp != NULL)
+                $model->getTimestampToDate("d-m-Y");
+            // echo '<pre>' . print_r($model, true) . '</pre>';
 
-            return \yii\widgets\ActiveForm::validate($model,$modelFamily);
-        } elseif ($model->load(Yii::$app->request->post())) {
+            if ($model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
+                \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
-            $model->user_category = User::USER_CATEGORY_PARENT;
-            if ($model->isNewRecord) $model->status = User::STATUS_INACTIVE;
+                return \yii\widgets\ActiveForm::validate($model, $modelFamily);
+            } elseif ($model->load(Yii::$app->request->post())) {
 
-            if($model->birth_date != NULL)   $model->getDateToTimestamp("-");
+                $model->user_category = User::USER_CATEGORY_PARENT;
+                if ($model->isNewRecord)
+                    $model->status = User::STATUS_INACTIVE;
 
-            if ($model->save()) {
+                if ($model->birth_date != NULL)
+                    $model->getDateToTimestamp("-");
 
-                $modelFamily->user_slave_id = $model->id;
+                if ($model->save()) {
 
-                if ($modelFamily->save()) {
-                    Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been updated.'));
-                    return $this->redirect(Yii::$app->request->referrer);
+                    $modelFamily->user_slave_id = $model->id;
+
+                    if ($modelFamily->save()) {
+                        Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been updated.'));
+                        return $this->redirect(Yii::$app->request->referrer);
+                    }
+                } else {
+                    
                 }
-            }
-            else {
-
             }
         } else {
             throw new HttpException(404, 'Page not found');
         }
     }
+
     /**
      * Вызывается методом Ajax из main.js
      */
@@ -110,7 +115,6 @@ class DefaultController extends \backend\controllers\DefaultController {
         if($model->birth_timestamp != NULL) $model->getTimestampToDate("d-m-Y");
         $this->layout = false;
         return $this->renderIsAjax('parents-modal',  ['model' => $model, 'modelFamily' => $modelFamily]);
-     // echo '<pre>' . print_r($model, true) . '</pre>';
     }
-
+    
 }

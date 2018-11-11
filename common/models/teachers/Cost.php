@@ -104,28 +104,37 @@ class Cost extends \yii\db\ActiveRecord
     /* Геттер получения  direction_id */
     public static function getDirectionId($id)
     {
+        if ($id != NULL) {
         $data = self::find()
             ->select(['direction_id'])
             ->where(['id' => $id])->one();
 
-        return $data;
+        return $data->direction_id;
+    }
+    return NULL;
     }
 
     /* Геттер получения  stake_id */
     public static function getStakeId($id)
     {
+         if ($id != NULL) {
         $data = self::find()
             ->select(['stake_id'])
             ->where(['id' => $id])->one();
-        return $data;
+        return $data->stake_id;
+    }
+    return NULL;
     }
 
     /* Геттер получения  id */
     public static function getCostId($direction_id, $stake_id)
     {
+        if ($direction_id != NULL && $stake_id != NULL) {
         $data = self::find()
             ->select(['id'])
             ->where(['direction_id' => $direction_id, 'stake_id' => $stake_id])->one();
-        return $data;
+        return $data->id;
+    }
+    return NULL;
     }
 }

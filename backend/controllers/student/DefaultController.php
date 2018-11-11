@@ -76,8 +76,8 @@ class DefaultController extends \backend\controllers\DefaultController
         if (!isset($model, $modelUser)) {
             throw new NotFoundHttpException("The user was not found.");
         }
-        if($modelUser->birth_timestamp != NULL) $modelUser->getTimestampToDate($mask = "d-m-Y");
-        if($model->sertificate_timestamp != NULL) $model->getTimestampToDate($mask = "d-m-Y");
+         $modelUser->getTimestampToDate("d-m-Y");
+         $model->getTimestampToDate("d-m-Y");
 
         if ($modelUser->load(Yii::$app->request->post()) && $model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
             \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
@@ -86,8 +86,8 @@ class DefaultController extends \backend\controllers\DefaultController
         } elseif ($modelUser->load(Yii::$app->request->post()) && $model->load(Yii::$app->request->post())) {
 
             //echo '<pre>' . print_r($model, true) . '</pre>';
-            if($modelUser->birth_date != NULL)  $modelUser->getDateToTimestamp("-");
-            if($model->sertificate_date != NULL)  $model->getDateToTimestamp("-");
+              $modelUser->getDateToTimestamp("-");
+              $model->getDateToTimestamp("-");
 
             if ($modelUser->save() && $model->save()) {
                 Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been updated.'));
@@ -95,18 +95,25 @@ class DefaultController extends \backend\controllers\DefaultController
             }
         } else {
 
-            $dataProvider = new ActiveDataProvider([
-                'query' => UserCommon::find()
-                    ->innerJoin('user_family', 'user.id = user_family.user_slave_id')
-                    ->andWhere(['in', 'user_family.user_main_id', $modelUser->id]),
-            ]);
-
+            
 
             return $this->renderIsAjax('update', [
                 'modelUser' => $modelUser,
                 'model' => $model,
-                'dataProvider' => $dataProvider,
+          
             ]);
         }
+    }
+    /**
+     * Удаляет связь студент - родитель 
+     * Элемент Родитель при это не удаляется
+     */
+    public function actionRemove() {
+        $id = Yii::$app->request->get('id');        
+        $model = \common\models\user\UserFamily::findOne($id);
+        if (empty($model)) return false;
+        $model->delete();
+        Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been deleted.'));
+        return $this->redirect(Yii::$app->request->referrer); 
     }
 }
