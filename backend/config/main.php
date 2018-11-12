@@ -53,6 +53,7 @@ return [
         ],
         'post' => [
             'class' => 'backend\modules\post\Module',
+//            'class' => 'yeesoft\post\PostModule',
         ],
        'page' => [
             'class' => 'backend\modules\page\Module',

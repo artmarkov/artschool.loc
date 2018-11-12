@@ -1,7 +1,7 @@
 <?php
 
 use yeesoft\helpers\Html;
-use yeesoft\post\models\Category;
+use backend\modules\post\models\Category;
 use common\widgets\ActiveForm;
 use yeesoft\widgets\LanguagePills;
 

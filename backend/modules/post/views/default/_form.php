@@ -3,13 +3,13 @@
 use yeesoft\helpers\Html;
 use yeesoft\media\widgets\TinyMce;
 use yeesoft\models\User;
-use yeesoft\post\models\Category;
-use yeesoft\post\models\Post;
+use backend\modules\post\models\Category;
+use backend\modules\post\models\Post;
 use common\widgets\ActiveForm;
 use yeesoft\widgets\LanguagePills;
 use yii\jui\DatePicker;
-use yeesoft\post\widgets\MagicSuggest;
-use yeesoft\post\models\Tag;
+use backend\modules\post\widgets\MagicSuggest;
+use backend\modules\post\models\Tag;
 
 /* @var $this yii\web\View */
 /* @var $model yeesoft\post\models\Post */
@@ -39,10 +39,13 @@ use yeesoft\post\models\Tag;
 
                         <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
+                        <?= $form->field($model, 'tag_list')->widget(nex\chosen\Chosen::className(), [
+                            'items' => Tag::getTags(),
+                            'multiple' => true,
+                            'placeholder' => Yii::t('yee/post', 'Select Tags...'),
+                             ]) ?>
+
                         <?= $form->field($model, 'content')->widget(TinyMce::className()); ?>
-
-                        <?= $form->field($model, 'tagValues')->widget(MagicSuggest::className(), ['items' => Tag::getTags()]); ?>
-
 
                     </div>
                 </div>

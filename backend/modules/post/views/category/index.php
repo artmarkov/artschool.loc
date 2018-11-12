@@ -3,7 +3,7 @@
 use yeesoft\grid\GridPageSize;
 use yeesoft\grid\GridView;
 use yeesoft\helpers\Html;
-use yeesoft\post\models\Category;
+use backend\modules\post\models\Category;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 
@@ -11,7 +11,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel yeesoft\post\search\CategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('yee/media', 'Categories');
+$this->title = Yii::t('yee/post', 'Categories');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('yee/post', 'Posts'), 'url' => ['default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
