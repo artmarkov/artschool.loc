@@ -50,8 +50,7 @@ class DefaultController extends BaseController {
         $model = new User(['scenario' => 'newUser']);
 
         if ($model->load(Yii::$app->request->post())) {
-            $d_in = explode("-", $model->birth_date);
-            $model->birth_timestamp = mktime(0, 0, 0, $d_in[1], $d_in[0], $d_in[2]);
+            $model->getDateToTimestamp("-");
 
             if ($model->save()) {
                 return $this->redirect(['update', 'id' => $model->id]);
@@ -96,8 +95,11 @@ class DefaultController extends BaseController {
         /* @var $model \yeesoft\db\ActiveRecord */
         $model = $this->findModel($id);
 
-        if ($model->birth_timestamp != NULL)
-            $model->getTimestampToDate($mask = "d-m-Y");
+        if (!isset($model)) {
+            throw new NotFoundHttpException("The user was not found.");
+        }
+
+       $model->getTimestampToDate("d-m-Y");
 
         if ($model->load(Yii::$app->request->post())) {
 

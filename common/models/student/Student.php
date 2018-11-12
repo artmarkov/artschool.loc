@@ -161,8 +161,13 @@ class Student extends \yii\db\ActiveRecord
             ->innerJoin('user_relation', 'user_relation.id = user_family.relation_id')
             ->innerJoin('user', 'user.id = user_family.user_slave_id')
             ->andWhere(['in', 'user_family.user_main_id' , $user_id])
-            ->select(['user_family.id as id', "CONCAT(user.last_name, ' ',user.first_name, ' ',user.middle_name) AS parent", 
-                'user_relation.name as relation', 'user.phone as phone', 'user.email as email' ])
+            ->select(['user.id as user_id',
+                      'user_family.id as id',
+                      "CONCAT(user.last_name, ' ',user.first_name, ' ',user.middle_name) AS parent",
+                      'user_relation.name as relation',
+                      'user.phone as phone',
+                      'user.email as email'
+                ])
             ->orderBy('user.last_name')
             ->asArray()->all(); 
 

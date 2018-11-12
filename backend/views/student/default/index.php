@@ -12,7 +12,7 @@ use common\models\user\UserCommon;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('yee/students', 'Students');
+$this->title = Yii::t('yee/student', 'Students');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="student-index">

@@ -45,6 +45,47 @@ class DefaultController extends \backend\controllers\DefaultController {
     }
 
     /**
+     * @return array|string|\yii\web\Response
+     */
+    public function actionCreate() {
+        $model = new $this->modelClass;
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            $model->getDateToTimestamp("-");
+            $model->user_category = User::USER_CATEGORY_PARENT;
+            $model->status = User::STATUS_INACTIVE;
+
+            if ($model->save()) {
+                Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been created.'));
+                return $this->redirect($this->getRedirectPage('update', $model));
+            }
+        }
+
+        return $this->renderIsAjax('create', compact('model'));
+    }
+
+
+    public function actionUpdate($id) {
+
+        $model = $this->findModel(['id' => $id, 'user_category' => User::USER_CATEGORY_PARENT]);
+
+        if (!isset($model)) {
+            throw new NotFoundHttpException("The user was not found.");
+        }
+        $model->getTimestampToDate("d-m-Y");
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            $model->getDateToTimestamp("-");
+
+            if ($model->save()) {
+                Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been updated.'));
+            }
+        }
+        return $this->renderIsAjax($this->updateView, compact('model'));
+    }
+    /**
      * Добавляется родитель в базу и формируется родственная связь
      * Запускается из формы редактирования model Student из Модального окна parent-modal
      * Модал находится в layouts main

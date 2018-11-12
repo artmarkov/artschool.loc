@@ -2,6 +2,7 @@
 
 namespace common\models\user;
 
+use common\models\student\Student;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 /**
@@ -159,12 +160,13 @@ class UserCommon extends \yeesoft\models\UserIdentity
      */
      public static function getUserParentList($id)
     {
+        $user_array[] = '0'; // для работы 'not in' с пустым массивом
+        foreach (Student::getFamilyList($id) as $item)  $user_array[] = $item['user_id'];
+
         return \yii\helpers\ArrayHelper::map(UserCommon::find()
-            ->leftJoin('user_family', 'user.id = user_family.user_slave_id')
             ->andWhere(['not in', 'user.status', User::STATUS_BANNED]) // заблокированных не добавляем в список
             ->andWhere(['in', 'user.user_category', User::USER_CATEGORY_PARENT]) // только родителей
-           // ->andWhere(['not in', 'user.user_category', User::USER_CATEGORY_STUDENT]) // если добавляем родителей из числа других юзеров
-            ->andWhere(['or',['not in', 'user_family.user_main_id', $id], ['is', 'user_family.user_main_id', NULL]])
+            ->andWhere(['not in', 'user.id', $user_array]) // не добавляем уже добавленных родителей
             ->select(['user.id as user_id', "CONCAT(user.last_name, ' ',user.first_name, ' ',user.middle_name) AS name"])
             ->orderBy('user.last_name')
             ->asArray()->all(), 'user_id', 'name');

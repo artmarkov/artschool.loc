@@ -127,7 +127,7 @@ $('.remove-family').on('click', function (e) {
     $.ajax({
         url: '/admin/student/default/remove',
         data: {id: id},
-        type: 'GET',  
+        type: 'GET'
     });
 });
 

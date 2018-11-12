@@ -9,7 +9,7 @@ namespace backend\modules\settings\controllers;
  */
 class ReadingController extends SettingsBaseController
 {
-    public $modelClass = 'yeesoft\settings\models\ReadingSettings';
-    public $viewPath = '@vendor/yeesoft/yii2-yee-settings/views/reading/index';
+    public $modelClass = 'backend\modules\settings\models\ReadingSettings';
+    public $viewPath = '@backend/modules/settings/views/reading/index';
 
 }
