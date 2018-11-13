@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model yeesoft\media\models\Album */
+/* @var $model backend\modules\media\models\Album */
 
 $this->title = Yii::t('yee', 'Update {item}', ['item' => Yii::t('yee/media', 'Album')]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('yee/media', 'Media'), 'url' => ['/media/default/index']];

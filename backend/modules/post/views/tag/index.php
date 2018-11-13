@@ -8,7 +8,7 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel yeesoft\post\search\TagSearch */
+/* @var $searchModel backend\modules\post\search\TagSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('yee/post', 'Tags');

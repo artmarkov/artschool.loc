@@ -1,7 +1,7 @@
 <?php
 
 use yeesoft\assets\LanguagePillsAsset;
-use yeesoft\media\assets\ModalAsset;
+use backend\modules\media\assets\ModalAsset;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
@@ -23,7 +23,7 @@ LanguagePillsAsset::register($this);
         </div>
     </div>
 
-    <?= yeesoft\media\widgets\Gallery::widget() ?>
+    <?= backend\modules\media\widgets\Gallery::widget() ?>
 
 </div>
 

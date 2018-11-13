@@ -12,7 +12,7 @@ use backend\modules\post\widgets\MagicSuggest;
 use backend\modules\post\models\Tag;
 
 /* @var $this yii\web\View */
-/* @var $model yeesoft\post\models\Post */
+/* @var $model backend\modules\post\models\Post */
 /* @var $form yeesoft\widgets\ActiveForm */
 ?>
 

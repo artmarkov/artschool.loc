@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model yeesoft\page\models\Page */
+/* @var $model backend\modules\page\models\Page */
 
 $this->title = Yii::t('yee', 'Update "{item}"', ['item' => $model->title]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('yee/page', 'Pages'), 'url' => ['index']];

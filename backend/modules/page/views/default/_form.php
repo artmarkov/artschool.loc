@@ -3,13 +3,13 @@
 use yeesoft\helpers\Html;
 use yeesoft\media\widgets\TinyMce;
 use yeesoft\models\User;
-use yeesoft\page\models\Page;
+use backend\modules\page\models\Page;
 use common\widgets\ActiveForm;
 use yeesoft\widgets\LanguagePills;
 use yii\jui\DatePicker;
 
 /* @var $this yii\web\View */
-/* @var $model yeesoft\page\models\Page */
+/* @var $model backend\modules\page\models\Page */
 /* @var $form yeesoft\widgets\ActiveForm */
 ?>
 

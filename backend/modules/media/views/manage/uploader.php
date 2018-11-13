@@ -4,7 +4,7 @@ use dosamigos\fileupload\FileUploadUI;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $searchModel yeesoft\media\models\Media */
+/* @var $searchModel backend\modules\media\models\Media */
 
 $this->title = Yii::t('yee/media', 'Upload New File');
 

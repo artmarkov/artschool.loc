@@ -5,12 +5,12 @@ use yeesoft\grid\GridQuickLinks;
 use yeesoft\grid\GridView;
 use yeesoft\helpers\Html;
 use yeesoft\models\User;
-use yeesoft\page\models\Page;
+use backend\modules\page\models\Page;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel yeesoft\page\models\search\PageSearch */
+/* @var $searchModel backend\modules\page\models\search\PageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('yee/page', 'Pages');

@@ -1,12 +1,12 @@
 <?php
 
 use yeesoft\helpers\Html;
-use yeesoft\media\models\Category;
+use backend\modules\media\models\Category;
 use common\widgets\ActiveForm;
 use yeesoft\widgets\LanguagePills;
 
 /* @var $this yii\web\View */
-/* @var $model yeesoft\media\models\Album */
+/* @var $model backend\modules\media\models\Album */
 /* @var $form yeesoft\widgets\ActiveForm */
 ?>
 

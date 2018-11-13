@@ -1,8 +1,26 @@
 <?php
 
 namespace backend\modules\media\controllers;
-
-class CategoryController extends \yeesoft\media\controllers\CategoryController
+/**
+ * CategoryController implements the CRUD actions for backend\modules\media\models\Category model.
+ */
+class CategoryController extends \backend\controllers\DefaultController
 {
-    public $layout = '@backend/views/layouts/main.php';
+    public $modelClass = 'backend\modules\media\models\Category';
+    public $modelSearchClass = 'backend\modules\media\models\CategorySearch';
+    public $disabledActions = ['view', 'bulk-activate', 'bulk-deactivate'];
+
+    protected function getRedirectPage($action, $model = null)
+    {
+        switch ($action) {
+            case 'update':
+                return ['update', 'id' => $model->id];
+                break;
+            case 'create':
+                return ['update', 'id' => $model->id];
+                break;
+            default:
+                return parent::getRedirectPage($action, $model);
+        }
+    }
 }

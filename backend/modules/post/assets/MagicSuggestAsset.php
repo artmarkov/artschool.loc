@@ -1,6 +1,6 @@
 <?php
 
-namespace yeesoft\post\assets;
+namespace backend\modules\post\assets;
 
 use yii\web\AssetBundle;
 

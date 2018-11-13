@@ -3,13 +3,13 @@
 use yeesoft\grid\GridPageSize;
 use yeesoft\grid\GridView;
 use yeesoft\helpers\Html;
-use yeesoft\media\models\Album;
-use yeesoft\media\models\Category;
+use backend\modules\media\models\Album;
+use backend\modules\media\models\Category;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel yeesoft\media\models\AlbumSearch */
+/* @var $searchModel backend\modules\media\models\AlbumSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('yee/media', 'Albums');

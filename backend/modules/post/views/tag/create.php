@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model yeesoft\post\models\Tag */
+/* @var $model backend\modules\post\models\Tag */
 
 $this->title = Yii::t('yee/post', 'Create Tag');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('yee/post', 'Posts'), 'url' => ['default/index']];

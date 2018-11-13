@@ -5,7 +5,7 @@ use common\widgets\ActiveForm;
 use yeesoft\widgets\LanguagePills;
 
 /* @var $this yii\web\View */
-/* @var $model yeesoft\media\models\Category */
+/* @var $model backend\modules\media\models\Category */
 /* @var $form yeesoft\widgets\ActiveForm */
 ?>
 

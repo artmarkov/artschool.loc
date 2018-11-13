@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model yeesoft\media\models\Category */
+/* @var $model backend\modules\media\models\Category */
 
 $this->title = Yii::t('yee/media', 'Create Category');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('yee/media', 'Media'), 'url' => ['/media/default/index']];

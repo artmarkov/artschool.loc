@@ -4,7 +4,7 @@ namespace backend\modules\post\controllers;
 
 
 /**
- * CategoryController implements the CRUD actions for yeesoft\post\models\Category model.
+ * CategoryController implements the CRUD actions for backend\modules\post\models\Category model.
  */
 class CategoryController extends \backend\controllers\DefaultController
 {

@@ -4,7 +4,7 @@ namespace backend\modules\post\controllers;
 
 
 /**
- * TagController implements the CRUD actions for yeesoft\post\models\Tag model.
+ * TagController implements the CRUD actions for backend\modules\post\models\Tag model.
  */
 class TagController extends \backend\controllers\DefaultController
 {

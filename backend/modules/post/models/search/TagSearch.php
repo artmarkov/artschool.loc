@@ -8,7 +8,7 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
- * TagSearch represents the model behind the search form about `yeesoft\post\models\Tag`.
+ * TagSearch represents the model behind the search form about `backend\modules\post\models\Tag`.
  */
 class TagSearch extends Tag
 {

@@ -8,7 +8,7 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel yeesoft\post\search\CategorySearch */
+/* @var $searchModel backend\modules\post\search\CategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('yee/post', 'Categories');

@@ -1,7 +1,7 @@
 <?php
 
 use yeesoft\assets\LanguagePillsAsset;
-use yeesoft\media\assets\MediaAsset;
+use backend\modules\media\assets\MediaAsset;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */

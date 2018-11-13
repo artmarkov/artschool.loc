@@ -156,7 +156,7 @@ class Module extends \yii\base\Module
     /**
      * Size of thumbnail image of the post.
      *
-     * Expected values: 'original' or sizes from yeesoft\media\MediaModule::$thumbs,
+     * Expected values: 'original' or sizes from yeesoft\media\Module::$thumbs,
      * by default there are: 'small', 'medium', 'large'
      *
      * @var string
@@ -170,7 +170,7 @@ class Module extends \yii\base\Module
      *   Example:
      *
      *   'post' => [
-     *       'class' => 'yeesoft\post\PostModule',
+     *       'class' => 'backend\modules\post\PostModule',
      *       'viewList' => [
      *           'post' => 'View Label 1',
      *           'post_test' => 'View Label 2',

@@ -10,7 +10,7 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel yeesoft\post\models\search\PostSearch */
+/* @var $searchModel backend\modules\post\models\search\PostSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('yee/post', 'Posts');

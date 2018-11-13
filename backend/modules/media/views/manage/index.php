@@ -1,6 +1,6 @@
 <?php
 
-use yeesoft\media\widgets\Gallery;
+use backend\modules\media\widgets\Gallery;
 
 echo Gallery::widget(['pageSize' => 15, 'mode' => 'modal']);
 

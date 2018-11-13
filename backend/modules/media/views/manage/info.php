@@ -1,15 +1,15 @@
 <?php
 
 use yeesoft\helpers\Html;
-use yeesoft\media\assets\MediaAsset;
-use yeesoft\media\models\Album;
+use backend\modules\media\assets\MediaAsset;
+use backend\modules\media\models\Album;
 use yeesoft\models\User;
 use common\widgets\ActiveForm;
 use yeesoft\widgets\LanguagePills;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
-/* @var $model yeesoft\media\models\Media */
+/* @var $model backend\modules\media\models\Media */
 /* @var $form yeesoft\widgets\ActiveForm */
 
 $bundle = MediaAsset::register($this);
