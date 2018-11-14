@@ -69,4 +69,21 @@ class CreativeWorksAuthor extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'author_id']);
     }
+    
+    public static function getWorksAuthorList($works_id)
+    {
+        $data = CreativeWorksAuthor::find()            
+            ->innerJoin('user', 'user.id = creative_works_author.author_id')
+            ->andWhere(['in', 'creative_works_author.works_id' , $works_id])
+            ->select(['user.id as user_id',
+                      'creative_works_author.id as id',
+                      "CONCAT(user.last_name, ' ',user.first_name, ' ',user.middle_name) AS author",
+                      'creative_works_author.weight as weight',
+                      'creative_works_author.timestamp_weight as timestamp'                      
+                ])
+            ->orderBy('user.last_name')
+            ->asArray()->all(); 
+
+      return $data; 
+    }
 }

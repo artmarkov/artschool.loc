@@ -23,6 +23,7 @@ class CreativeWorksSearch extends CreativeWorks
             [['id', 'status', 'comment_status', 'created_by', 'updated_by'], 'integer'],
             [['published_at_operand','category_id', 'name', 'description', 'published_at', 'created_at', 'updated_at'], 'safe'],
             ['categoryName', 'string'],
+            ['gridDepartmentSearch', 'string'],
         ];
     }
 
@@ -67,17 +68,21 @@ class CreativeWorksSearch extends CreativeWorks
         }
 //        жадная загрузка
         $query->joinWith(['category']);
-
+        
+        $query->with(['creativeWorksDepartments']);
+        $query->with(['departmentItem']);
+        
+        
+        if ($this->gridDepartmentSearch) {
+            $query->joinWith(['creativeWorksDepartments']);
+        }
         $query->andFilterWhere([
             'id' => $this->id,
             'category_id' => $this->category_id,
             'status' => $this->status,
             'comment_status' => $this->comment_status,
             'published_at' => $this->published_at,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'created_by' => $this->created_by,
-            'updated_by' => $this->updated_by,
+            'creative_works_department.department_id' => $this->gridDepartmentSearch,
         ]);
 
         $query->andFilterWhere([($this->published_at_operand) ? $this->published_at_operand : '=', 'published_at', ($this->published_at) ? strtotime($this->published_at) : null]);

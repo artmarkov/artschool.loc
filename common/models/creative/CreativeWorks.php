@@ -3,7 +3,9 @@
 namespace common\models\creative;
 
 use common\models\user\User;
+use common\models\service\Department;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
@@ -32,6 +34,10 @@ use yii\behaviors\TimestampBehavior;
 class CreativeWorks extends \yii\db\ActiveRecord
 {
 
+    public $gridDepartmentSearch;
+    public $author_id;
+
+
     const STATUS_PENDING = 0;
     const STATUS_PUBLISHED = 1;
     const COMMENT_STATUS_CLOSED = 0;
@@ -54,7 +60,7 @@ class CreativeWorks extends \yii\db\ActiveRecord
             [
                 'class' => \common\components\behaviors\ManyHasManyBehavior::className(),
                 'relations' => [
-                   //'tags' => 'tag_list',
+                   'departmentItem' => 'department_list',
                 ],
             ],
         ];
@@ -73,7 +79,8 @@ class CreativeWorks extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 512],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => CreativeCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
             ['published_at', 'date', 'timestampAttribute' => 'published_at', 'format' => 'dd-MM-yyyy'],
-            ['published_at', 'default', 'value' => time()]
+            ['published_at', 'default', 'value' => time()],
+            [['department_list'], 'safe'],
             ];
     }
 
@@ -92,8 +99,9 @@ class CreativeWorks extends \yii\db\ActiveRecord
             'published_at' => Yii::t('yee', 'Published'),
             'created_at' => Yii::t('yee', 'Created'),
             'updated_at' => Yii::t('yee', 'Updated'),
-            'created_by' => Yii::t('yee', 'Author'),
+            'created_by' => Yii::t('yee', 'Created By'),
             'updated_by' => Yii::t('yee', 'Updated By'),
+            'gridDepartmentSearch' => Yii::t('yee/guide', 'Department'),
         ];
     }
 
@@ -190,7 +198,7 @@ class CreativeWorks extends \yii\db\ActiveRecord
     {
         return $this->hasMany(CreativeWorksAuthor::className(), ['works_id' => 'id']);
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -198,7 +206,21 @@ class CreativeWorks extends \yii\db\ActiveRecord
     {
         return $this->hasMany(CreativeWorksDepartment::className(), ['works_id' => 'id']);
     }
-
+    public function getDepartmentItem()
+    {
+        return $this->hasMany(Department::className(), ['id' => 'department_id'])
+            ->viaTable('creative_works_department', ['works_id' => 'id']);
+    }
+     public static function getDepartmentList()
+    {
+        return ArrayHelper::map(Department::find()
+            ->innerJoin('division', 'division.id = department.division_id')
+            ->andWhere(['department.status' => Department::STATUS_ACTIVE])
+            ->select('department.id as id, department.name as name, division.name as name_category')
+            ->orderBy('division.id')
+            ->addOrderBy('department.name')
+            ->asArray()->all(), 'id', 'name', 'name_category');
+    }
     /**
      * @return \yii\db\ActiveQuery
      */

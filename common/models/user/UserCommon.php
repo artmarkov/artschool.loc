@@ -171,5 +171,19 @@ class UserCommon extends \yeesoft\models\UserIdentity
             ->orderBy('user.last_name')
             ->asArray()->all(), 'user_id', 'name');
     }
+    
+    public static function getWorkAuthorTeachersList($works_id)
+    {
+        $user_array = array(); // для работы 'not in' с пустым массивом
+        foreach (\common\models\creative\CreativeWorksAuthor::getWorksAuthorList($works_id) as $item)  $user_array[] = $item['user_id'];
+
+        return \yii\helpers\ArrayHelper::map(UserCommon::find()
+            ->andWhere(['not in', 'user.status', User::STATUS_BANNED]) // заблокированных не добавляем в список
+            ->andWhere(['in', 'user.user_category', User::USER_CATEGORY_TEACHER]) // только преподаватели
+            ->andWhere(['not in', 'user.id', $user_array]) // не добавляем уже добавленных преподавателей
+            ->select(['user.id as user_id', "CONCAT(user.last_name, ' ',user.first_name, ' ',user.middle_name) AS name"])
+            ->orderBy('user.last_name')
+            ->asArray()->all(), 'user_id', 'name');
+    }
    
 }

@@ -7,6 +7,7 @@ use yeesoft\grid\GridQuickLinks;
 use common\models\creative\CreativeWorks;
 use yeesoft\helpers\Html;
 use yeesoft\grid\GridPageSize;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\creative\search\CreativeWorksSearch */
@@ -73,8 +74,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'name',
                         'controller' => '/creative/default',
                         'title' => function(CreativeWorks $model) {
-                            return Html::a($model->name, ['view', 'id' => $model->id], ['data-pjax' => 0]);
+                            return Html::a($model->name, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
+                                'buttonsTemplate' => '{update} {delete}',
                     ],
                     [
                         'attribute' => 'category_id',
@@ -82,7 +84,16 @@ $this->params['breadcrumbs'][] = $this->title;
                         'label' => Yii::t('yee/creative', 'Creative Category'),
                         'filter' => \common\models\creative\CreativeCategory::getCreativeCategoryList(),
                     ],
-
+                    [
+                        'attribute' => 'gridDepartmentSearch',
+                        'filter' => CreativeWorks::getDepartmentList(),
+                        'value' => function (CreativeWorks $model) {
+                            return implode(', ',
+                                ArrayHelper::map($model->departmentItem, 'id', 'name'));
+                        },
+                        'options' => ['style' => 'width:350px'],
+                        'format' => 'raw',
+                    ],
             'description:ntext',
 
                     [

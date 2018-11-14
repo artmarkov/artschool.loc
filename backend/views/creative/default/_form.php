@@ -26,15 +26,39 @@ use kartik\date\DatePicker;
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    
-                    <?= $form->field($model, 'category_id')->textInput() ?>
-
-                    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-
+                    <div class="row">
+                        <div class="col-md-12">
+                    <?= $form->field($model, 'name')->textarea(['rows' => 6]) ?>
+</div>
+</div>
+                    <div class="row">
+                        <div class="col-md-12">
+                    <?= $form->field($model, 'description')->textarea(['rows' => 3]) ?>
+</div>
+</div>
                 </div>
 
+
+            </div>
+             <div class="row">
+                <div class="col-md-12">
+                    <?php
+                    echo $form->field($model, 'department_list')->widget(\nex\chosen\Chosen::className(), [
+                        'items' => CreativeWorks::getDepartmentList(),
+                        'multiple' => true,
+                        'placeholder' => Yii::t('yee/teachers', 'Select Department...'),
+                    ])->label(Yii::t('yee/guide', 'Department'));
+                    ?>
+                </div>
+               
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <?php if (!$model->isNewRecord) : ?>
+                <?= \backend\widgets\WorksAuthorWidget::widget(['model' => $model]); ?>
+            <?php endif; ?>
+                </div>
+               
             </div>
         </div>
 
