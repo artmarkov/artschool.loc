@@ -5,7 +5,7 @@ use common\models\creative\CreativeWorks;
 use common\models\creative\CreativeCategory;
 use common\models\user\User;
 use yeesoft\helpers\Html;
-use yii\jui\DatePicker;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\creative\CreativeWorks */
@@ -91,19 +91,32 @@ use yii\jui\DatePicker;
 
                     <div class="record-info">
                         <?= $form->field($model, 'category_id')->dropDownList(CreativeCategory::getCreativeCategoryList(), ['prompt' => '', 'encodeSpaces' => true]) ?>
-
-                        <?= $form->field($model, 'published_at')
-                            ->widget(DatePicker::className(), ['dateFormat' => 'dd-MM-yyyy', 'options' => ['class' => 'form-control']]); ?>
-
+                        
+                        <?php  if($model->published_at) $model->published_at = date("d-m-Y", (integer) $model->published_at); ?>
+                        
+                        <?= $form->field($model, 'published_at')->widget(DatePicker::classname(), [
+                                     'type' => DatePicker::TYPE_INPUT,
+                                     'options' => ['placeholder' => ''],
+                                     'convertFormat' => true,
+                                     'value'=> date("d-m-Y",(integer) $model->published_at),
+                                     'pluginOptions' => [
+                                         'format' => 'dd-MM-yyyy',
+                                         'autoclose' => true,
+                                         'weekStart' => 1,
+                                         'startDate' => '01-01-1940',
+                                         'endDate' => '01-01-2030',
+                                         'todayBtn' => 'linked',
+                                         'todayHighlight' => true,     
+                                     ]
+                                    ]);
+                        ?>
                         <?= $form->field($model, 'status')->dropDownList(CreativeWorks::getStatusList()) ?>
 
                         <?php if (!$model->isNewRecord): ?>
                             <?= $form->field($model, 'created_by')->dropDownList(User::getUsersList()) ?>
                         <?php endif; ?>
 
-                        <?= $form->field($model, 'comment_status')->dropDownList(CreativeWorks::getCommentStatusList()) ?>
-
-                       
+                        <?= $form->field($model, 'comment_status')->dropDownList(CreativeWorks::getCommentStatusList()) ?>                       
 
                     </div>
                 </div>
