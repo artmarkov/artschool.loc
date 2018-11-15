@@ -33,10 +33,16 @@ class CreativeWorksAuthor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['works_id', 'author_id', 'timestamp_weight'], 'required'],
-            [['works_id', 'author_id', 'timestamp_weight', 'weight'], 'integer'],
+            [['works_id', 'author_id'], 'required'],
+            [['weight'], 'required', 'when' => function ($model) { return $model->timestamp_weight != NULL; }, 'enableClientValidation' => false],
+            [['timestamp_weight'], 'required', 'when' => function ($model) { return $model->weight != NULL; }, 'enableClientValidation' => false],
+            [['timestamp_weight'], 'safe'],
+            ['timestamp_weight', 'date', 'timestampAttribute' => 'timestamp_weight', 'format' => 'MM-yyyy'],
+            ['timestamp_weight', 'default', 'value' => mktime (0,0,0,date('m',time()),1,date('Y',time()))],
+            [['works_id', 'author_id', 'weight'], 'integer'],
             [['works_id'], 'exist', 'skipOnError' => true, 'targetClass' => CreativeWorks::className(), 'targetAttribute' => ['works_id' => 'id']],
             [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['author_id' => 'id']],
+            ['author_id', 'unique', 'targetAttribute' => ['timestamp_weight', 'works_id','author_id'],'message' => Yii::t('yee/creative', 'The relationships of the selected fields are already defined.')], // проверка уникальности тройки
         ];
     }
 
@@ -49,11 +55,27 @@ class CreativeWorksAuthor extends \yii\db\ActiveRecord
             'id' => Yii::t('yee/creative', 'ID'),
             'works_id' => Yii::t('yee/creative', 'Works ID'),
             'author_id' => Yii::t('yee/creative', 'Author ID'),
-            'timestamp_weight' => Yii::t('yee/creative', 'Timestamp Weight'),
+            'timestamp_weight' => Yii::t('yee/creative', 'Date Weight'),
             'weight' => Yii::t('yee/creative', 'Weight'),
         ];
     }
 
+    /**
+     * @return string
+     */
+    public function getWeightDate()
+    {
+        return Yii::$app->formatter->asDate(($this->isNewRecord) ? time() : $this->timestamp_weight);
+    }
+
+    /**
+     * @return int
+     */
+    public function getTimestampWeightWithoutDay()
+    {
+        $t = explode('-', $this->timestamp_weight);
+        return mktime (0,0,0,$t[0],1,$t[1]);
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -69,7 +91,11 @@ class CreativeWorksAuthor extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'author_id']);
     }
-    
+
+    /**
+     * @param $works_id
+     * @return array|\yii\db\ActiveRecord[]
+     */
     public static function getWorksAuthorList($works_id)
     {
         $data = CreativeWorksAuthor::find()            

@@ -1,10 +1,9 @@
 <?php
 
 use yeesoft\widgets\ActiveForm;
-use common\models\creative\CreativeWorks;
 use yeesoft\helpers\Html;
 use kartik\select2\Select2;
-//echo '<pre>' . print_r($model, true) . '</pre>';
+
 ?>
 <?php $form = ActiveForm::begin(); ?>
 
@@ -19,7 +18,7 @@ use kartik\select2\Select2;
                             <?=
                             $form->field($model, 'author_id')->widget(Select2::classname(), [
 
-                                'data' => common\models\user\UserCommon::getWorkAuthorTeachersList($model->id),
+                                'data' => common\models\user\UserCommon::getWorkAuthorTeachersList(),
                                 'theme' => Select2::THEME_KRAJEE,
                                 'options' => ['placeholder' => Yii::t('yee/user', 'Select teacher...')],
                                 'pluginOptions' => [
@@ -60,14 +59,18 @@ use kartik\select2\Select2;
                                                     <td><?= ++$id ?></td>
                                                     <td><?= $item['author'] ?></td>
                                                     <td><?= $item['weight'] ?></td>
-                                                    <td><?= $item['timestamp'] ?></td>                                                 
-
-                                                    <td><?=
-                                                        Html::a('<span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>', ['#'], [
+                                                    <td><?= Yii::$app->formatter->asDate($item['timestamp'], 'MMMM Y') ?></td>
+                                                    <td><?= Html::a('<span class="glyphicon glyphicon-pencil text-color-default" aria-hidden="true"></span>', ['#'], [
+                                                            'class' => 'update-author',
+                                                            'data-id' => $item['id'],
+                                                        ]);
+                                                        ?>
+                                                    <?= Html::a('<span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>', ['#'], [
                                                             'class' => 'remove-author',
                                                             'data-id' => $item['id'],
                                                         ]);
-                                                        ?></td>
+                                                        ?>
+                                                    </td>
                                                 </tr>
     <?php endforeach ?>
                                         </tbody>
@@ -88,7 +91,7 @@ use kartik\select2\Select2;
 $js = <<<JS
 
 function showAuthor(author) {
-    $('#works-author-modal.modal-body').html(author);
+    $('#works-author-modal .modal-body').html(author);
     $('#works-author-modal').modal();
 }
 
@@ -104,9 +107,30 @@ $('.add-to-works-author').on('click', function (e) {
         data: {id: id, author_id: author_id},
         type: 'GET',
         success: function (res) {
+            if (!res)  alert('Please select teacher...');
+           // console.log(res);
+           else showAuthor(res);
+        },
+        error: function () {
+            alert('Script Error!');
+        }
+    });
+});
+
+$('.update-author').on('click', function (e) {
+
+    e.preventDefault();
+
+    var id = $(this).data('id');
+
+    $.ajax({
+        url: '/admin/creative/works-author/update-author',
+        data: {id: id},
+        type: 'GET',
+        success: function (res) {
             if (!res)  alert('Error!');
            // console.log(res);
-            showAuthor(res);
+           else showAuthor(res);
         },
         error: function () {
             alert('Error!');

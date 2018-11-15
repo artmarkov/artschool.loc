@@ -127,7 +127,7 @@ MetisMenuAsset::register($this);
 <!--        модал добавления автора в список работ преподавателя-->
         <?php \yii\bootstrap\Modal::begin([
             'header' => '<h3 class="lte-hide-title page-title">' . Yii::t('yee/creative', 'Works authors') . '</h3>',
-            'size' => 'modal-lg',
+           // 'size' => 'modal-sm',
             'id' => 'works-author-modal',
             //'footer' => 'footer',
         ]);

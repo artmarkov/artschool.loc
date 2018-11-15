@@ -28,19 +28,18 @@ use kartik\date\DatePicker;
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                    <?= $form->field($model, 'name')->textarea(['rows' => 6]) ?>
-</div>
-</div>
+                            <?= $form->field($model, 'name')->textarea(['rows' => 6]) ?>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
-                    <?= $form->field($model, 'description')->textarea(['rows' => 3]) ?>
-</div>
-</div>
+                            <?= $form->field($model, 'description')->textarea(['rows' => 3]) ?>
+                        </div>
+                    </div>
                 </div>
 
-
             </div>
-             <div class="row">
+            <div class="row">
                 <div class="col-md-12">
                     <?php
                     echo $form->field($model, 'department_list')->widget(\nex\chosen\Chosen::className(), [
@@ -130,7 +129,7 @@ use kartik\date\DatePicker;
                                          'startDate' => '01-01-1940',
                                          'endDate' => '01-01-2030',
                                          'todayBtn' => 'linked',
-                                         'todayHighlight' => true,     
+                                         'todayHighlight' => true,
                                      ]
                                     ]);
                         ?>

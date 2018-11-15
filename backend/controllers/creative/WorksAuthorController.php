@@ -28,43 +28,50 @@ class WorksAuthorController extends DefaultController
                 return parent::getRedirectPage($action, $model);
         }
     }
-     
-     public function actionCreateAuthor() {
+    /**
+     * Вызывается методом Ajax из worksAuthor.php
+     */
+    public function actionInitAuthor()
+    {
+        $id = Yii::$app->request->get('id');
+        $author_id = Yii::$app->request->get('author_id');
+        $model = new CreativeWorksAuthor();
+        $modelUser = UserCommon::findOne($author_id);
+        if(empty($modelUser)) return false;
+
+        //echo '<pre>' . print_r($modelUser, true) . '</pre>';
+
+        if (!Yii::$app->request->isAjax) {
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+        $model->works_id = $id;
+        $model->author_id = $author_id;
+
+        $this->layout = false;
+        return $this->renderIsAjax('works-author-modal',  ['model' => $model, 'modelUser' => $modelUser]);
+    }
+
+    /**
+     * @return array|\yii\web\Response
+     * @throws HttpException
+     */
+    public function actionCreateAuthor() {
 
         $model = new CreativeWorksAuthor();
 
-        if ($modelFamily->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->post())) {
 
-            $user_slave_id = $modelFamily->user_slave_id;
-            $user_slave_id != 0 ? $model = UserCommon::findOne($user_slave_id) : $model = new UserCommon();
-
-            if ($model->birth_timestamp != NULL)
-                $model->getTimestampToDate("d-m-Y");
             // echo '<pre>' . print_r($model, true) . '</pre>';
 
             if ($model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
                 \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
-                return \yii\widgets\ActiveForm::validate($model, $modelFamily);
+                return \yii\widgets\ActiveForm::validate($model);
             } elseif ($model->load(Yii::$app->request->post())) {
-
-                $model->user_category = User::USER_CATEGORY_PARENT;
-                if ($model->isNewRecord)
-                    $model->status = User::STATUS_INACTIVE;
-
-                if ($model->birth_date != NULL)
-                    $model->getDateToTimestamp("-");
-
+                $model->timestamp_weight = $model->timestampWeightWithoutDay;
                 if ($model->save()) {
-
-                    $modelFamily->user_slave_id = $model->id;
-
-                    if ($modelFamily->save()) {
-                        Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been updated.'));
-                        return $this->redirect(Yii::$app->request->referrer);
-                    }
-                } else {
-                    
+                    Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been created.'));
+                    return $this->redirect(Yii::$app->request->referrer);
                 }
             }
         } else {
@@ -73,30 +80,40 @@ class WorksAuthorController extends DefaultController
     }
 
     /**
-     * Вызывается методом Ajax из worksAuthor.php
+     * @return array|bool|string|\yii\web\Response
      */
-    public function actionInitAuthor()
-    {
-            $id = Yii::$app->request->get('id');
-            $author_id = Yii::$app->request->get('author_id');
-            $model = new CreativeWorksAuthor();
-            $modelUser = new UserCommon();
+    public function actionUpdateAuthor() {
 
+        $id = Yii::$app->request->get('id');
 
-        //echo '<pre>' . print_r($model, true) . '</pre>';
-        //if (empty($model)) return false;
+        $model = CreativeWorksAuthor::findOne($id);
+        $modelUser = UserCommon::findOne($model->author_id);
 
-//        if (!Yii::$app->request->isAjax) {
-//            return $this->redirect(Yii::$app->request->referrer);
-//        }
-//        $modelFamily->user_main_id = $id;
-//        $modelFamily->user_slave_id = $user_slave_id;
-//
-//        if($model->birth_timestamp != NULL) $model->getTimestampToDate("d-m-Y");
+        if(empty($model)) return false;
+
+            // echo '<pre>' . print_r($model, true) . '</pre>';
+
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            return \yii\widgets\ActiveForm::validate($model);
+        } elseif ($model->load(Yii::$app->request->post())) {
+            $model->timestamp_weight = $model->timestampWeightWithoutDay;
+            if ($model->save()) {
+                Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been updated.'));
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+
+    } else {
         $this->layout = false;
         return $this->renderIsAjax('works-author-modal',  ['model' => $model, 'modelUser' => $modelUser]);
     }
-    
+}
+
+    /**
+     * @return bool|\yii\web\Response
+     *
+     */
     public function actionRemove() {
         $id = Yii::$app->request->get('id');        
         $model = CreativeWorksAuthor::findOne($id);
