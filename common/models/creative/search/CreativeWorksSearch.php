@@ -21,9 +21,9 @@ class CreativeWorksSearch extends CreativeWorks
     {
         return [
             [['id', 'status', 'comment_status', 'created_by', 'updated_by'], 'integer'],
-            [['published_at_operand','category_id', 'name', 'description', 'published_at', 'created_at', 'updated_at'], 'safe'],
+            [['published_at_operand', 'category_id', 'name', 'description', 'published_at', 'created_at', 'updated_at'], 'safe'],
             ['categoryName', 'string'],
-            ['gridDepartmentSearch', 'string'],
+            [['gridDepartmentSearch','gridAuthorSearch'], 'string'],
         ];
     }
 
@@ -72,18 +72,25 @@ class CreativeWorksSearch extends CreativeWorks
         $query->with(['creativeWorksDepartments']);
         $query->with(['departmentItem']);
         
+        $query->with(['creativeWorksAuthors']);
+        $query->with(['authorItem']);
         
         if ($this->gridDepartmentSearch) {
             $query->joinWith(['creativeWorksDepartments']);
         }
+        
+        if ($this->gridAuthorSearch) {
+            $query->joinWith(['creativeWorksAuthors']);
+        }
+        
         $query->andFilterWhere([
             'id' => $this->id,
             'category_id' => $this->category_id,
             'status' => $this->status,
             'comment_status' => $this->comment_status,
-            'published_at' => $this->published_at,
             'creative_works_department.department_id' => $this->gridDepartmentSearch,
-        ]);
+            'creative_works_author.author_id' => $this->gridAuthorSearch,
+            ]);
 
         $query->andFilterWhere([($this->published_at_operand) ? $this->published_at_operand : '=', 'published_at', ($this->published_at) ? strtotime($this->published_at) : null]);
 

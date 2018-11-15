@@ -110,6 +110,11 @@ class UserCommon extends \yeesoft\models\UserIdentity
     public function getFullName() {
         return $this->last_name . ' ' . $this->first_name . ' ' . $this->middle_name;
     }
+    /* Геттер для Фамилия И.О. */
+
+    public function getLastFM() {
+        return $this->last_name . ' ' . mb_substr((string) $this->first_name, 0, 1) . '.' . mb_substr((string) $this->middle_name, 0, 1) .'.';
+    }
      /**
      * Преобразование даты в timestamp
      */

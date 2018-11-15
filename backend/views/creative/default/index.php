@@ -5,6 +5,7 @@ use yii\widgets\Pjax;
 use yeesoft\grid\GridView;
 use yeesoft\grid\GridQuickLinks;
 use common\models\creative\CreativeWorks;
+use common\models\user\UserCommon;
 use yeesoft\helpers\Html;
 use yeesoft\grid\GridPageSize;
 use yii\helpers\ArrayHelper;
@@ -94,8 +95,16 @@ $this->params['breadcrumbs'][] = $this->title;
                         'options' => ['style' => 'width:350px'],
                         'format' => 'raw',
                     ],
-            'description:ntext',
-
+                    [
+                        'attribute' => 'gridAuthorSearch',
+                        'filter' => UserCommon::getWorkAuthorTeachersList(),
+                        'value' => function (CreativeWorks $model) {
+                            return implode('<br />',
+                                ArrayHelper::map($model->authorItem, 'id', 'lastFM'));
+                        },
+                        'options' => ['style' => 'width:350px'],
+                        'format' => 'raw',
+                    ],   
                     [
                         'class' => 'yeesoft\grid\columns\StatusColumn',
                         'attribute' => 'status',

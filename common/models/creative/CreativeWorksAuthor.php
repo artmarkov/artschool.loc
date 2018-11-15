@@ -4,6 +4,7 @@ namespace common\models\creative;
 
 use common\models\user\User;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "{{%creative_works_author}}".
@@ -38,7 +39,7 @@ class CreativeWorksAuthor extends \yii\db\ActiveRecord
             [['timestamp_weight'], 'required', 'when' => function ($model) { return $model->weight != NULL; }, 'enableClientValidation' => false],
             [['timestamp_weight'], 'safe'],
             ['timestamp_weight', 'date', 'timestampAttribute' => 'timestamp_weight', 'format' => 'MM-yyyy'],
-            ['timestamp_weight', 'default', 'value' => mktime (0,0,0,date('m',time()),1,date('Y',time()))],
+            ['timestamp_weight', 'default', 'value' => NULL],
             [['works_id', 'author_id', 'weight'], 'integer'],
             [['works_id'], 'exist', 'skipOnError' => true, 'targetClass' => CreativeWorks::className(), 'targetAttribute' => ['works_id' => 'id']],
             [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['author_id' => 'id']],
@@ -68,14 +69,6 @@ class CreativeWorksAuthor extends \yii\db\ActiveRecord
         return Yii::$app->formatter->asDate(($this->isNewRecord) ? time() : $this->timestamp_weight);
     }
 
-    /**
-     * @return int
-     */
-    public function getTimestampWeightWithoutDay()
-    {
-        $t = explode('-', $this->timestamp_weight);
-        return mktime (0,0,0,$t[0],1,$t[1]);
-    }
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -112,4 +105,5 @@ class CreativeWorksAuthor extends \yii\db\ActiveRecord
 
       return $data; 
     }
+   
 }

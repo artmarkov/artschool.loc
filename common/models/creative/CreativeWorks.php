@@ -4,6 +4,7 @@ namespace common\models\creative;
 
 use common\models\user\User;
 use common\models\service\Department;
+Use common\models\user\UserCommon;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\BlameableBehavior;
@@ -35,6 +36,7 @@ class CreativeWorks extends \yii\db\ActiveRecord
 {
 
     public $gridDepartmentSearch;
+    public $gridAuthorSearch;
     public $author_id;
 
 
@@ -79,7 +81,7 @@ class CreativeWorks extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 512],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => CreativeCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
             ['published_at', 'date', 'timestampAttribute' => 'published_at', 'format' => 'dd-MM-yyyy'],
-            ['published_at', 'default', 'value' => time()],
+            ['published_at', 'default', 'value' =>  mktime(0,0,0, date("m", time()), date("d", time()), date("Y", time()))],
             [['department_list'], 'safe'],
             ];
     }
@@ -102,6 +104,7 @@ class CreativeWorks extends \yii\db\ActiveRecord
             'created_by' => Yii::t('yee', 'Created By'),
             'updated_by' => Yii::t('yee', 'Updated By'),
             'gridDepartmentSearch' => Yii::t('yee/guide', 'Department'),
+            'gridAuthorSearch' => Yii::t('yee', 'Author'),
         ];
     }
 
@@ -206,11 +209,27 @@ class CreativeWorks extends \yii\db\ActiveRecord
     {
         return $this->hasMany(CreativeWorksDepartment::className(), ['works_id' => 'id']);
     }
+    /**
+     * 
+     * @return type
+     */
     public function getDepartmentItem()
     {
         return $this->hasMany(Department::className(), ['id' => 'department_id'])
             ->viaTable('creative_works_department', ['works_id' => 'id']);
+    }/**
+     * 
+     * @return type
+     */
+    public function getAuthorItem()
+    {
+        return $this->hasMany(UserCommon::className(), ['id' => 'author_id'])
+            ->viaTable('creative_works_author', ['works_id' => 'id']);
     }
+    /**
+     * 
+     * @return type
+     */
      public static function getDepartmentList()
     {
         return ArrayHelper::map(Department::find()

@@ -34,12 +34,16 @@ use yeesoft\helpers\Html;
                     <?= $form->field($model, 'weight')->textInput() ?>
                 </div>
                 <div class="col-md-6">
-                    <?php if ($model->timestamp_weight) $model->timestamp_weight = date("m-Y", (integer)$model->timestamp_weight); ?>
+                    
+                    <?php if ($model->timestamp_weight) {
+                      // преобразуем на 1 число месяца
+                        $model->timestamp_weight = date("m-Y", (integer) mktime(0,0,0, date("m", $model->timestamp_weight), 1, date("Y", $model->timestamp_weight))); 
+                    }           
+                    ?>
                     <?= $form->field($model, 'timestamp_weight')->widget(\kartik\date\DatePicker::classname(), [
                         'type' => \kartik\date\DatePicker::TYPE_INPUT,
                         'options' => ['placeholder' => ''],
                         'convertFormat' => true,
-                        // 'value'=> date("m-Y",(integer) $model->timestamp_weight),
                         'pluginOptions' => [
                             'format' => 'MM-yyyy',
                             'minViewMode' => 1,

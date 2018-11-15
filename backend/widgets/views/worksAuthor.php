@@ -46,7 +46,7 @@ use kartik\select2\Select2;
                                     <table class="table table-hover table-striped">
                                         <thead>
                                             <tr>
-                                                <th>№</th>
+                                                <th>#</th>
                                                 <th><?= Yii::t('yee', 'Full Name'); ?></th>
                                                 <th><?= Yii::t('yee/creative', 'Weight'); ?></th>                                                
                                                 <th><?= Yii::t('yee/creative', 'Time weight'); ?></th>
@@ -59,7 +59,7 @@ use kartik\select2\Select2;
                                                     <td><?= ++$id ?></td>
                                                     <td><?= $item['author'] ?></td>
                                                     <td><?= $item['weight'] ?></td>
-                                                    <td><?= Yii::$app->formatter->asDate($item['timestamp'], 'MMMM Y') ?></td>
+                                                    <td><?= Yii::$app->formatter->asDate($item['timestamp'], 'MMM Y') ?></td>
                                                     <td><?= Html::a('<span class="glyphicon glyphicon-pencil text-color-default" aria-hidden="true"></span>', ['#'], [
                                                             'class' => 'update-author',
                                                             'data-id' => $item['id'],

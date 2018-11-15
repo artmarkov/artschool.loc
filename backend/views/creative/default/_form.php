@@ -28,12 +28,12 @@ use kartik\date\DatePicker;
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <?= $form->field($model, 'name')->textarea(['rows' => 6]) ?>
+                            <?= $form->field($model, 'name')->textarea(['rows' => 3]) ?>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <?= $form->field($model, 'description')->textarea(['rows' => 3]) ?>
+                            <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
                         </div>
                     </div>
                 </div>
@@ -115,13 +115,13 @@ use kartik\date\DatePicker;
                     <div class="record-info">
                         <?= $form->field($model, 'category_id')->dropDownList(CreativeCategory::getCreativeCategoryList(), ['prompt' => '', 'encodeSpaces' => true]) ?>
                         
-                        <?php  if($model->published_at) $model->published_at = date("d-m-Y", (integer) $model->published_at); ?>
+                        <?php   if($model->published_at) $model->published_at = date("d-m-Y", (integer) mktime(0,0,0, date("m", $model->published_at), date("d", $model->published_at), date("Y", $model->published_at)));  ?>
                         
                         <?= $form->field($model, 'published_at')->widget(DatePicker::classname(), [
                                      'type' => DatePicker::TYPE_INPUT,
                                      'options' => ['placeholder' => ''],
                                      'convertFormat' => true,
-                                     'value'=> date("d-m-Y",(integer) $model->published_at),
+                                     //'value'=> date("d-m-Y",(integer) $model->published_at),
                                      'pluginOptions' => [
                                          'format' => 'dd-MM-yyyy',
                                          'autoclose' => true,

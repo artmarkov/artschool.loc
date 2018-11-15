@@ -68,7 +68,7 @@ class WorksAuthorController extends DefaultController
 
                 return \yii\widgets\ActiveForm::validate($model);
             } elseif ($model->load(Yii::$app->request->post())) {
-                $model->timestamp_weight = $model->timestampWeightWithoutDay;
+                
                 if ($model->save()) {
                     Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been created.'));
                     return $this->redirect(Yii::$app->request->referrer);
@@ -98,7 +98,7 @@ class WorksAuthorController extends DefaultController
 
             return \yii\widgets\ActiveForm::validate($model);
         } elseif ($model->load(Yii::$app->request->post())) {
-            $model->timestamp_weight = $model->timestampWeightWithoutDay;
+            
             if ($model->save()) {
                 Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been updated.'));
                 return $this->redirect(Yii::$app->request->referrer);
