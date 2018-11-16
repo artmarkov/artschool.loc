@@ -49,7 +49,7 @@ class UserFamily extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('yee/user', 'ID'),
-            'relation_id' => Yii::t('yee/user', 'Relation ID'),
+            'relation_id' => Yii::t('yee/user', 'Family Relation'),
             'user_main_id' => Yii::t('yee/user', 'User Main ID'),
             'user_slave_id' => Yii::t('yee/user', 'User Slave ID'),
         ];

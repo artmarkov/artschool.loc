@@ -112,7 +112,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'options' => ['style' => 'width:180px'],
                     ],
                     [
-                        'class' => 'yeesoft\grid\columns\DateFilterColumn',
+                        'class' => 'common\components\grid\columns\DateFilterColumn',
                         'attribute' => 'published_at',
                         'value' => function (CreativeWorks $model) {
                             return '<span style="font-size:85%;" class="label label-'

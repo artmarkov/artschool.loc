@@ -18,14 +18,15 @@ class ProfileForm extends User
     public function rules()
     {
         return [
-            [['username', 'email'], 'required'],
+            [['username', 'email', 'birth_timestamp'], 'required'],
             [['first_name', 'last_name'], 'required'],
             [['first_name', 'middle_name', 'last_name', 'email'], 'trim'],
             ['email', 'email'],
             [['first_name', 'middle_name', 'last_name'], 'match', 'pattern' => Yii::$app->yee->cyrillicRegexp, 'message' => Yii::t('yee', 'Only need to enter Russian letters')],
             ['phone', 'required'],
-            ['birth_date', 'required'],
-            ['birth_date','validateDateCorrect'],
+            ['birth_timestamp', 'safe'],
+            ['birth_timestamp', 'date', 'timestampAttribute' => 'birth_timestamp', 'format' => 'dd-MM-yyyy'],
+            ['birth_timestamp', 'default', 'value' =>  mktime(0,0,0, date("m", time()), date("d", time()), date("Y", time()))],
             ['info', 'string', 'max' => 1024],
         ];
     }

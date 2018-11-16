@@ -2,7 +2,7 @@
 
 use yeesoft\helpers\Html;
 use yeesoft\settings\assets\SettingsAsset;
-use yeesoft\settings\models\GeneralSettings;
+use backend\modules\settings\models\GeneralSettings;
 use common\widgets\ActiveForm;
 use yeesoft\widgets\LanguagePills;
 

@@ -599,12 +599,7 @@ class DefaultController extends \yeesoft\controllers\BaseController
 
         $model = ProfileForm::findIdentity(Yii::$app->user->id);
 
-        if($model->birth_timestamp != NULL) $model->getTimestampToDate($mask = "d-m-Y");
-
         if ($model->load(Yii::$app->request->post())) {
-
-            $model->getDateToTimestamp("-");
-
             $model->save();
         }
 

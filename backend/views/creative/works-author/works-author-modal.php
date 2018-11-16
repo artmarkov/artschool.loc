@@ -2,6 +2,7 @@
 
 use yeesoft\widgets\ActiveForm;
 use yeesoft\helpers\Html;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\user\UserCommon */
@@ -40,8 +41,8 @@ use yeesoft\helpers\Html;
                         $model->timestamp_weight = date("m-Y", (integer) mktime(0,0,0, date("m", $model->timestamp_weight), 1, date("Y", $model->timestamp_weight))); 
                     }           
                     ?>
-                    <?= $form->field($model, 'timestamp_weight')->widget(\kartik\date\DatePicker::classname(), [
-                        'type' => \kartik\date\DatePicker::TYPE_INPUT,
+                    <?= $form->field($model, 'timestamp_weight')->widget(DatePicker::classname(), [
+                        'type' => DatePicker::TYPE_INPUT,
                         'options' => ['placeholder' => ''],
                         'convertFormat' => true,
                         'pluginOptions' => [

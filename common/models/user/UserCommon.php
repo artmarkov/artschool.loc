@@ -25,11 +25,6 @@ use yii\behaviors\TimestampBehavior;
 class UserCommon extends \yeesoft\models\UserIdentity
 {
     /**
-     * @var string
-     */
-    public $birth_date;
-    
-    /**
      * @inheritdoc
      */
     public static function tableName() {
@@ -51,37 +46,19 @@ class UserCommon extends \yeesoft\models\UserIdentity
     public function rules()
     {
         return [
-            [['first_name', 'middle_name', 'last_name', 'birth_date'], 'required'],
+            [['first_name', 'middle_name', 'last_name', 'birth_timestamp'], 'required'],
             [['status', 'user_category', 'gender'], 'integer'],
-            ['birth_timestamp', 'integer'],
-            ['birth_date', 'string'],
-            ['birth_date', 'validateDateCorrect'],
+            ['birth_timestamp', 'safe'],
             [['first_name', 'middle_name', 'last_name'], 'string', 'max' => 124],
             [['first_name', 'middle_name', 'last_name'], 'trim'],
             [['first_name', 'middle_name', 'last_name'], 'match', 'pattern' => Yii::$app->yee->cyrillicRegexp, 'message' => Yii::t('yee', 'Only need to enter Russian letters')],
             ['last_name', 'unique', 'targetAttribute' => ['last_name', 'first_name', 'middle_name'], 'message' => Yii::t('yee/auth', 'The user with the entered data already exists.')],
             [['phone', 'phone_optional'], 'string', 'max' => 24],           
             [['snils'], 'string', 'max' => 16],
+            ['birth_timestamp', 'date', 'timestampAttribute' => 'birth_timestamp', 'format' => 'dd-MM-yyyy'],
+            ['birth_timestamp', 'default', 'value' =>  mktime(0,0,0, date("m", time()), date("d", time()), date("Y", time()))],
             
         ];
-    }    
-    /**
-     * Check validate date
-     */
-    public function validateDateCorrect() {
-        $error = false;
-        if ($this->birth_date) {
-            if (!preg_match("|([0-9]{1,2})-([0-9]{1,2})-([0-9]{2,4})|", $this->birth_date)) {
-                $error = true;
-                $this->addError('birth_date', Yii::t('yee', 'The format of the date input {birth_date} invalid', ['birth_date' => $this->birth_date]));
-            }
-            if (!$error) {
-                $d_in = explode("-", $this->birth_date);
-                if (checkdate($d_in[1], $d_in[0], $d_in[2]) != TRUE) {
-                    $this->addError('birth_date', Yii::t('yee', 'There is no such date {birth_date}', ['birth_date' => $this->birth_date]));
-                }
-            }
-        }
     }
     /**
      * {@inheritdoc}
@@ -95,7 +72,7 @@ class UserCommon extends \yeesoft\models\UserIdentity
             'first_name' => Yii::t('yee', 'First Name'),
             'middle_name' => Yii::t('yee', 'Middle Name'),
             'last_name' => Yii::t('yee', 'Last Name'),
-            'birth_date' => Yii::t('yee', 'Birth Date'),
+            'birth_timestamp' => Yii::t('yee', 'Birth Date'),
             'gender' => Yii::t('yee', 'Gender'),
             'phone' => Yii::t('yee', 'Phone'),
             'phone_optional' => Yii::t('yee', 'Phone Optional'),
@@ -115,27 +92,7 @@ class UserCommon extends \yeesoft\models\UserIdentity
     public function getLastFM() {
         return $this->last_name . ' ' . mb_substr((string) $this->first_name, 0, 1) . '.' . mb_substr((string) $this->middle_name, 0, 1) .'.';
     }
-     /**
-     * Преобразование даты в timestamp
-     */
-    public function getDateToTimestamp($mask = "-") {
-        
-        if($this->birth_date != NULL) {
-            $d_in = explode($mask, $this->birth_date);
-           return   $this->birth_timestamp = mktime(0, 0, 0, $d_in[1], $d_in[0], $d_in[2]);
-        }
-       return FALSE;        
-    }
 
-    /**
-     * Преобразование timestamp в дату
-     */
-    public function getTimestampToDate($mask = "d-m-Y") {
-        if($this->birth_timestamp != NULL) {
-        return $this->birth_date = date($mask, $this->birth_timestamp);
-    } 
-    return FALSE;        
-    }
     /**
      * Первая буква заглавная
      */

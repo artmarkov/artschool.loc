@@ -51,7 +51,6 @@ class DefaultController extends \backend\controllers\DefaultController {
         } elseif ($modelUser->load(Yii::$app->request->post()) && $model->load(Yii::$app->request->post())) {
 
             //echo '<pre>' . print_r($model, true) . '</pre>';
-            $modelUser->getDateToTimestamp("-");
 
                 $modelUser->user_category = User::USER_CATEGORY_TEACHER;
                 $modelUser->status = User::STATUS_INACTIVE;                
@@ -86,9 +85,7 @@ class DefaultController extends \backend\controllers\DefaultController {
         if (!isset($model, $modelUser)) {
             throw new NotFoundHttpException("The user was not found.");
         }
-        $modelUser->getTimestampToDate("d-m-Y");
-        
-        
+
             $model->direction_id_main = Cost::getDirectionId($model->cost_main_id);        
             $model->stake_id_main = Cost::getStakeId($model->cost_main_id);
        
@@ -108,7 +105,6 @@ class DefaultController extends \backend\controllers\DefaultController {
         } elseif ($modelUser->load(Yii::$app->request->post()) && $model->load(Yii::$app->request->post())) {
 
             //echo '<pre>' . print_r($model, true) . '</pre>';
-            $modelUser->getDateToTimestamp("-");
 
             $model->cost_main_id = Cost::getCostId($model->direction_id_main, $model->stake_id_main);           
             $model->cost_optional_id = Cost::getCostId($model->direction_id_optional, $model->stake_id_optional);

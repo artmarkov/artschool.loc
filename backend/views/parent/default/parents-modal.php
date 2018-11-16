@@ -47,16 +47,18 @@ use yii\widgets\MaskedInput;
                             <?= $form->field($model, 'gender')->dropDownList(User::getGenderList()) ?>
                         </div>
                         <div class="col-md-3">
-                            <?= $form->field($model, 'birth_date')->widget(yii\widgets\MaskedInput::className(), [
-                            'mask' => '99-99-9999',
-                            'options' => [
-                            'class' => 'form-control',
-                            'id' => 'birth_date_2'
-                            ],
-                            'clientOptions' => [
-                            'clearIncomplete' => true
-                            ]
-                            ]) ?>
+                            <?php  if($model->birth_timestamp) $model->birth_timestamp = date("d-m-Y", (integer) mktime(0,0,0, date("m", $model->birth_timestamp), date("d", $model->birth_timestamp), date("Y", $model->birth_timestamp)));  ?>
+                            <?= $form->field($model, 'birth_timestamp')->widget(MaskedInput::className(),[
+                                'mask' => '99-99-9999',
+                                'options' => [
+                                    'class' => 'form-control',
+                                    'id' => 'birth_date_2'
+                                ],
+                                'clientOptions' => [
+                                    'clearIncomplete' => true
+                                ]
+                            ]);
+                            ?>
                         </div>
                         <div class="col-md-3">
                             <?= $form->field($model, 'snils')->widget(MaskedInput::className(), [

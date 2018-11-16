@@ -115,8 +115,8 @@ use kartik\date\DatePicker;
                     <div class="record-info">
                         <?= $form->field($model, 'category_id')->dropDownList(CreativeCategory::getCreativeCategoryList(), ['prompt' => '', 'encodeSpaces' => true]) ?>
                         
-                        <?php   if($model->published_at) $model->published_at = date("d-m-Y", (integer) mktime(0,0,0, date("m", $model->published_at), date("d", $model->published_at), date("Y", $model->published_at)));  ?>
-                        
+                        <?php  if($model->published_at) $model->published_at = date("d-m-Y", (integer) mktime(0,0,0, date("m", $model->published_at), date("d", $model->published_at), date("Y", $model->published_at)));  ?>
+
                         <?= $form->field($model, 'published_at')->widget(DatePicker::classname(), [
                                      'type' => DatePicker::TYPE_INPUT,
                                      'options' => ['placeholder' => ''],
@@ -126,7 +126,7 @@ use kartik\date\DatePicker;
                                          'format' => 'dd-MM-yyyy',
                                          'autoclose' => true,
                                          'weekStart' => 1,
-                                         'startDate' => '01-01-1940',
+                                         'startDate' => '01-01-1930',
                                          'endDate' => '01-01-2030',
                                          'todayBtn' => 'linked',
                                          'todayHighlight' => true,

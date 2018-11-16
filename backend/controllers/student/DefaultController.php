@@ -4,7 +4,6 @@ namespace backend\controllers\student;
 
 use common\models\user\User;
 use common\models\user\UserCommon;
-use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use Yii;
 
@@ -47,15 +46,13 @@ class DefaultController extends \backend\controllers\DefaultController
         } elseif ($modelUser->load(Yii::$app->request->post()) && $model->load(Yii::$app->request->post())) {
 
             //echo '<pre>' . print_r($model, true) . '</pre>';
-            $modelUser->getDateToTimestamp("-");
 
             $modelUser->user_category = User::USER_CATEGORY_STUDENT;
             $modelUser->status = User::STATUS_INACTIVE;
 
             if ($modelUser->save()) {
                 $model->user_id = $modelUser->id;
-                $model->getDateToTimestamp("-");
-                if ($model->save()) {
+                   if ($model->save()) {
                     Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been updated.'));
                     return $this->redirect($this->getRedirectPage('update', $model));
                 }
@@ -76,8 +73,6 @@ class DefaultController extends \backend\controllers\DefaultController
         if (!isset($model, $modelUser)) {
             throw new NotFoundHttpException("The user was not found.");
         }
-         $modelUser->getTimestampToDate("d-m-Y");
-         $model->getTimestampToDate("d-m-Y");
 
         if ($modelUser->load(Yii::$app->request->post()) && $model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
             \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
@@ -86,8 +81,6 @@ class DefaultController extends \backend\controllers\DefaultController
         } elseif ($modelUser->load(Yii::$app->request->post()) && $model->load(Yii::$app->request->post())) {
 
             //echo '<pre>' . print_r($model, true) . '</pre>';
-              $modelUser->getDateToTimestamp("-");
-              $model->getDateToTimestamp("-");
 
             if ($modelUser->save() && $model->save()) {
                 Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been updated.'));

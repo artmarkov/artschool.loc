@@ -9,7 +9,6 @@ namespace backend\modules\settings\controllers;
  */
 class DefaultController extends SettingsBaseController
 {
-    public $modelClass = 'yeesoft\settings\models\GeneralSettings';
-    public $viewPath = '@vendor/yeesoft/yii2-yee-settings/views/default/index';
-
+    public $modelClass = 'backend\modules\settings\models\GeneralSettings';
+    public $viewPath = '@backend/modules/settings/views/default/index';
 }

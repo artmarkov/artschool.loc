@@ -43,7 +43,8 @@ use yii\widgets\MaskedInput;
                             <?= $form->field($modelUser, 'gender')->dropDownList(yeesoft\models\User::getGenderList()) ?>
                         </div>
                         <div class="col-md-3">
-                            <?= $form->field($modelUser, 'birth_date')->widget(MaskedInput::className(), [
+                            <?php  if($modelUser->birth_timestamp) $modelUser->birth_timestamp = date("d-m-Y", (integer) mktime(0,0,0, date("m", $modelUser->birth_timestamp), date("d", $modelUser->birth_timestamp), date("Y", $modelUser->birth_timestamp)));  ?>
+                            <?= $form->field($modelUser, 'birth_timestamp')->widget(MaskedInput::className(),[
                                 'mask' => '99-99-9999',
                                 'options' => [
                                     'class' => 'form-control',
@@ -52,7 +53,9 @@ use yii\widgets\MaskedInput;
                                 'clientOptions' => [
                                     'clearIncomplete' => true
                                 ]
-                            ]) ?>
+                             ]);
+                            ?>
+
                         </div>
                         <div class="col-md-3">
                             <?= $form->field($modelUser, 'snils')->widget(MaskedInput::className(), [
@@ -104,7 +107,8 @@ use yii\widgets\MaskedInput;
                             <?= $form->field($model, 'sertificate_name')->textInput(['maxlength' => true]) ?>
                         </div>
                         <div class="col-md-3">
-                            <?= $form->field($model, 'sertificate_date')->widget(MaskedInput::className(), ['mask' => '99-99-9999',])->textInput() ?>
+                            <?php  if($model->sertificate_timestamp) $model->sertificate_timestamp = date("d-m-Y", (integer) mktime(0,0,0, date("m", $model->sertificate_timestamp), date("d", $model->sertificate_timestamp), date("Y", $model->sertificate_timestamp)));  ?>
+                            <?= $form->field($model, 'sertificate_timestamp')->widget(MaskedInput::className(), ['mask' => '99-99-9999',])->textInput() ?>
                         </div>
                     </div>
                     <div class="row">

@@ -50,7 +50,23 @@ use yii\widgets\MaskedInput;
                             <?= $form->field($modelUser, 'gender')->dropDownList(yeesoft\models\User::getGenderList()) ?>
                         </div>
                         <div class="col-md-3">
-                            <?= $form->field($modelUser, 'birth_date')->widget(MaskedInput::className(),['mask' => '99-99-9999',])->textInput() ?>
+                            <?php  if($modelUser->birth_timestamp) $modelUser->birth_timestamp = date("d-m-Y", (integer) mktime(0,0,0, date("m", $modelUser->birth_timestamp), date("d", $modelUser->birth_timestamp), date("Y", $modelUser->birth_timestamp)));  ?>
+                            <?= $form->field($modelUser, 'birth_timestamp')->widget(MaskedInput::className(),['mask' => '99-99-9999',])->widget(DatePicker::classname(), [
+                                'type' => DatePicker::TYPE_INPUT,
+                                'options' => ['placeholder' => ''],
+                                'convertFormat' => true,
+                                //'value'=> date("d-m-Y",(integer) $model->birth_timestamp),
+                                'pluginOptions' => [
+                                    'format' => 'dd-MM-yyyy',
+                                    'autoclose' => true,
+                                    'weekStart' => 1,
+                                    'startDate' => '01-01-1930',
+                                    'endDate' => '01-01-2030',
+                                    'todayBtn' => 'linked',
+                                    'todayHighlight' => true,
+                                ]
+                            ]);
+                            ?>
                         </div>
                         <div class="col-md-3">
                             <?= $form->field($modelUser, 'snils')->widget(MaskedInput::className(),['mask' => '999-999-999 99',])->textInput() ?>
@@ -132,10 +148,17 @@ use yii\widgets\MaskedInput;
                         <div class="col-md-3">
                             <?php
                             echo $form->field($model, 'time_serv_init')->widget(DatePicker::classname(), [
-                                'options' => ['placeholder' => 'dd-mm-yyyy'],
+                                'type' => DatePicker::TYPE_INPUT,
+                                'options' => ['placeholder' => ''],
+                                'convertFormat' => true,
                                 'pluginOptions' => [
+                                    'format' => 'dd-MM-yyyy',
                                     'autoclose' => true,
-                                    'format' => 'dd-mm-yyyy'
+                                    'weekStart' => 1,
+                                    'startDate' => '01-01-1930',
+                                    'endDate' => '01-01-2030',
+                                    'todayBtn' => 'linked',
+                                    'todayHighlight' => true,
                                 ]
                             ])->label(Yii::t('yee/teachers', 'For date'));
                             ?>
@@ -147,10 +170,17 @@ use yii\widgets\MaskedInput;
                         <div class="col-md-3">
                             <?php
                             echo $form->field($model, 'time_serv_spec_init')->widget(DatePicker::classname(), [
-                                'options' => ['placeholder' => 'dd-mm-yyyy'],
+                                'type' => DatePicker::TYPE_INPUT,
+                                'options' => ['placeholder' => ''],
+                                'convertFormat' => true,
                                 'pluginOptions' => [
+                                    'format' => 'dd-MM-yyyy',
                                     'autoclose' => true,
-                                    'format' => 'dd-mm-yyyy'
+                                    'weekStart' => 1,
+                                    'startDate' => '01-01-1930',
+                                    'endDate' => '01-01-2030',
+                                    'todayBtn' => 'linked',
+                                    'todayHighlight' => true,
                                 ]
                             ])->label(Yii::t('yee/teachers', 'For date'));
                             ?>

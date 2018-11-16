@@ -49,12 +49,7 @@ class User extends UserIdentity {
      */
     public $gridRoleSearch;
 
-    /**
-     * @var string
-     */
-    public $birth_date;
-
-    /**
+   /**
      * @var string
      */
     public $password;
@@ -85,10 +80,8 @@ class User extends UserIdentity {
      */
     public function rules() {
         return [
-            [['username', 'email'], 'required'],
-            ['birth_timestamp', 'integer'],
-            ['birth_date', 'validateDateCorrect'],
-            ['birth_date', 'required'],
+            [['username', 'email', 'birth_timestamp'], 'required'],
+            ['birth_timestamp', 'safe'],
             ['username', 'unique'],
             [['username', 'email', 'bind_to_ip'], 'trim'],
             ['email', 'email'],
@@ -111,6 +104,8 @@ class User extends UserIdentity {
             ['repeat_password', 'compare', 'compareAttribute' => 'password'],
             ['user_category', 'default', 'value' => self::USER_CATEGORY_STAFF],
             ['user_category', 'in', 'range' => [self::USER_CATEGORY_STAFF, self::USER_CATEGORY_TEACHER, self::USER_CATEGORY_STUDENT, self::USER_CATEGORY_PARENT]],
+            ['birth_timestamp', 'date', 'timestampAttribute' => 'birth_timestamp', 'format' => 'dd-MM-yyyy'],
+            ['birth_timestamp', 'default', 'value' =>  mktime(0,0,0, date("m", time()), date("d", time()), date("Y", time()))],
         ];
     }
 
@@ -363,25 +358,6 @@ class User extends UserIdentity {
     }
 
     /**
-     * Check validate date
-     */
-    public function validateDateCorrect() {
-        $error = false;
-        if ($this->birth_date) {
-            if (!preg_match("|([0-9]{1,2})-([0-9]{1,2})-([0-9]{2,4})|", $this->birth_date)) {
-                $error = true;
-                $this->addError('birth_date', Yii::t('yee', 'The format of the date input {birth_date} invalid', ['birth_date' => $this->birth_date]));
-            }
-            if (!$error) {
-                $d_in = explode("-", $this->birth_date);
-                if (checkdate($d_in[1], $d_in[0], $d_in[2]) != TRUE) {
-                    $this->addError('birth_date', Yii::t('yee', 'There is no such date {birth_date}', ['birth_date' => $this->birth_date]));
-                }
-            }
-        }
-    }
-
-    /**
      * Validate bind_to_ip attr to be in correct format
      */
     public function validateBindToIp() {
@@ -394,21 +370,6 @@ class User extends UserIdentity {
                 }
             }
         }
-    }
-
-    /**
-     * Преобразование даты в timestamp
-     */
-    public function getDateToTimestamp($mask = "-") {
-        $d_in = explode($mask, $this->birth_date);
-        return $this->birth_timestamp = mktime(0, 0, 0, $d_in[1], $d_in[0], $d_in[2]);
-    }
-
-    /**
-     * Преобразование timestamp в дату
-     */
-    public function getTimestampToDate($mask = "d-m-Y") {
-        return $this->birth_date = date($mask, $this->birth_timestamp);
     }
 
     /**
@@ -439,7 +400,7 @@ class User extends UserIdentity {
             'gender' => Yii::t('yee', 'Gender'),
             'info' => Yii::t('yee', 'Short Info'),
             'snils' => Yii::t('yee', 'Snils'),
-            'birth_date' => Yii::t('yee', 'Birth Date'),
+            'birth_timestamp' => Yii::t('yee', 'Birth Date'),
             'user_category' => Yii::t('yee', 'User Category'),
             'fullName' => Yii::t('yee', 'Full Name'),
         ];
