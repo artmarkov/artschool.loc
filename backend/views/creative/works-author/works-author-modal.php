@@ -51,7 +51,7 @@ use kartik\date\DatePicker;
                             'maxViewMode' => 2,
                             'autoclose' => true,
                         ]
-                    ]); ?>
+                    ])->textInput(['autocomplete' => 'off']); ?>
                 </div>
             </div>
 

@@ -6,6 +6,8 @@ use common\models\creative\CreativeCategory;
 use common\models\user\User;
 use yeesoft\helpers\Html;
 use kartik\date\DatePicker;
+use yii\helpers\Url;
+
 
 /* @var $this yii\web\View */
 /* @var $model common\models\creative\CreativeWorks */
@@ -54,10 +56,46 @@ use kartik\date\DatePicker;
             <div class="row">
                 <div class="col-md-12">
                     <?php if (!$model->isNewRecord) : ?>
-                <?= \backend\widgets\WorksAuthorWidget::widget(['model' => $model]); ?>
-            <?php endif; ?>
+                        <?= \backend\widgets\WorksAuthorWidget::widget(['model' => $model]); ?>
+                    <?php endif; ?>
                 </div>
-               
+
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            
+                            <?= \kartik\file\FileInput::widget([
+                                    'name' => 'ImageManager[attachment]',
+                                    'options'=>[
+                                        'multiple'=>true
+                                    ],
+                                    'pluginOptions' => [
+                                        'deleteUrl' => Url::toRoute(['/service/image-manager/delete-image']),
+                                        'initialPreview'=> $model->imagesLinks,
+                                        'initialPreviewAsData'=>true,
+                                        'overwriteInitial'=>false,
+                                        'initialPreviewConfig'=>$model->imagesLinksData,
+                                        'uploadUrl' => Url::to(['/service/image-manager/file-upload']),
+                                        'uploadExtraData' => [
+                                            'ImageManager[class]' => $model->formName(),
+                                            'ImageManager[item_id]' => $model->id
+                                        ],
+                                        'maxFileCount' => 10
+                                    ],
+                                    'pluginEvents' => [
+                                        'filesorted' => new \yii\web\JsExpression('function(event, params){
+                                              $.post("'.Url::toRoute(["/service/image-manager/sort-image", "id" => $model->id]).'", {sort: params});
+                                        }')
+                                    ],
+                              ]);                    
+                          ?>
+                           
+                        </div>
+
+                    </div>
+                </div> 
             </div>
         </div>
 
@@ -131,7 +169,7 @@ use kartik\date\DatePicker;
                                          'todayBtn' => 'linked',
                                          'todayHighlight' => true,
                                      ]
-                                    ]);
+                                    ])->textInput(['autocomplete' => 'off']);
                         ?>
                         <?= $form->field($model, 'status')->dropDownList(CreativeWorks::getStatusList()) ?>
 

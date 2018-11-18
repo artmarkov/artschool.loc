@@ -5,6 +5,7 @@ namespace common\models\creative;
 use common\models\user\User;
 use common\models\service\Department;
 Use common\models\user\UserCommon;
+use common\models\service\ImageManager;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\BlameableBehavior;
@@ -38,7 +39,7 @@ class CreativeWorks extends \yii\db\ActiveRecord
     public $gridDepartmentSearch;
     public $gridAuthorSearch;
     public $author_id;
-
+  //  public $imageFiles;
 
     const STATUS_PENDING = 0;
     const STATUS_PUBLISHED = 1;
@@ -83,6 +84,7 @@ class CreativeWorks extends \yii\db\ActiveRecord
             ['published_at', 'date', 'timestampAttribute' => 'published_at', 'format' => 'dd-MM-yyyy'],
             ['published_at', 'default', 'value' =>  mktime(0,0,0, date("m", time()), date("d", time()), date("Y", time()))],
             [['department_list'], 'safe'],
+          //   ['imageFiles', 'file', 'skipOnEmpty' => false, 'extensions' => ['JPG', 'png']],
             ];
     }
 
@@ -107,7 +109,6 @@ class CreativeWorks extends \yii\db\ActiveRecord
             'gridAuthorSearch' => Yii::t('yee', 'Author'),
         ];
     }
-
 
     public function getPublishedDate()
     {
@@ -291,4 +292,24 @@ class CreativeWorks extends \yii\db\ActiveRecord
             self::COMMENT_STATUS_CLOSED => Yii::t('yee', 'Closed')
         ];
     }
+    
+    public function getImages()
+    {
+        return $this->hasMany(ImageManager::className(), ['item_id' => 'id'])->orderBy('sort');
+    }
+    public function getImagesLinks()
+    {
+        return ArrayHelper::getColumn($this->images, 'imageUrl');
+    }
+    public function getImagesLinksData()
+    {
+        return ArrayHelper::toArray($this->images,[
+                ImageManager::className() => [
+                    'caption'=>'name',
+                    'key'=>'id',
+                ]]
+        );
+    }
+     
+   
 }
