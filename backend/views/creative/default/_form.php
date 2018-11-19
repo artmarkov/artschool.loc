@@ -65,7 +65,7 @@ use yii\helpers\Url;
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                            
+                           <!--<?//php echo '<pre>' . print_r($model->imagesLinksData, true) . '</pre>'; ?>-->
                             <?= \kartik\file\FileInput::widget([
                                     'name' => 'ImageManager[attachment]',
                                     'options'=>[
@@ -75,14 +75,16 @@ use yii\helpers\Url;
                                         'deleteUrl' => Url::toRoute(['/service/image-manager/delete-image']),
                                         'initialPreview'=> $model->imagesLinks,
                                         'initialPreviewAsData'=>true,
+                                        'initialPreviewFileType' => 'image', 
                                         'overwriteInitial'=>false,
                                         'initialPreviewConfig'=>$model->imagesLinksData,
+                                        
                                         'uploadUrl' => Url::to(['/service/image-manager/file-upload']),
                                         'uploadExtraData' => [
                                             'ImageManager[class]' => $model->formName(),
                                             'ImageManager[item_id]' => $model->id
                                         ],
-                                        'maxFileCount' => 10
+                                        'maxFileCount' => 10,
                                     ],
                                     'pluginEvents' => [
                                         'filesorted' => new \yii\web\JsExpression('function(event, params){

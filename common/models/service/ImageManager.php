@@ -37,8 +37,9 @@ class ImageManager extends \yii\db\ActiveRecord {
                 $count = ImageManager::find()->andWhere(['class' => $model->class])->count();
                 return ($count > 0) ? $count++ : 0;
             }],
-            [['name', 'class', 'alt'], 'string', 'max' => 256],
-            [['attachment'], 'image'],
+            [['name', 'class', 'alt', 'type'], 'string', 'max' => 256],
+            //[['attachment'], 'image'],
+           // [['attachment'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, pdf'],
         ];
     }
 
@@ -52,6 +53,7 @@ class ImageManager extends \yii\db\ActiveRecord {
             'class' => Yii::t('yee', 'Class'),
             'item_id' => Yii::t('yee', 'Item ID'),
             'alt' => Yii::t('yee', 'Alt'),
+            'type' => Yii::t('yee', 'Type'),
         ];
     }
 

@@ -305,8 +305,9 @@ class CreativeWorks extends \yii\db\ActiveRecord
     {
         return ArrayHelper::toArray($this->images,[
                 ImageManager::className() => [
-                    'caption'=>'name',
-                    'key'=>'id',
+                    //'type' => 'type',
+                    'caption'=> 'name',
+                    'key'=> 'id',
                 ]]
         );
     }
