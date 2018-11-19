@@ -78,7 +78,7 @@ use yii\helpers\Url;
                                         'initialPreviewFileType' => 'image', 
                                         'overwriteInitial'=>false,
                                         'initialPreviewConfig'=>$model->imagesLinksData,
-                                        
+                                        'allowedFileExtensions' => ["jpg", "png", "mp4", "pdf"],
                                         'uploadUrl' => Url::to(['/service/image-manager/file-upload']),
                                         'uploadExtraData' => [
                                             'ImageManager[class]' => $model->formName(),

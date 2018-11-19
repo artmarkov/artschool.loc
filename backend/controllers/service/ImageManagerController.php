@@ -9,8 +9,8 @@ use yii\web\UploadedFile;
 use common\models\service\ImageManager;
 use yii\helpers\FileHelper;
 use yii\web\Response;
-USE yii\web\BadRequestHttpException;
-
+use yii\web\BadRequestHttpException;
+use yii\helpers\ArrayHelper;
 /**
  * Description of ImageManagerController
  *
@@ -24,6 +24,13 @@ class ImageManagerController extends DefaultController {
      * @throws BadRequestHttpException
      */
     public function actionFileUpload() {
+        
+        $type_array = [ 
+              'jpg' => ['type' => 'image'],
+              'png' => ['type' => 'image', 'filetype' => 'image/png'],
+              'pdf' => ['type' => 'pdf'],
+              'mp4' => ['type' => 'video' , 'filetype' => 'video/mp4'],        
+          ];
 
         if (Yii::$app->request->isPost) {
             $post = Yii::$app->request->post();
@@ -34,12 +41,16 @@ class ImageManagerController extends DefaultController {
                 FileHelper::createDirectory($dir);
             }
 
-            $result_link = str_replace('admin.', '', Url::home(true)) . 'uploads/images' . $post['ImageManager']['class'] . '/';
+            $result_link = str_replace('admin', '', Url::home(true)) . 'uploads/images' . '/' . $post['ImageManager']['class'] . '/';
             $file = UploadedFile::getInstanceByName('ImageManager[attachment]');
-
             $model = new ImageManager();
 
             $model->name = strtotime('now') . '_' . Yii::$app->getSecurity()->generateRandomString(6) . '.' . $file->extension;
+            
+            $model->type = ArrayHelper::getValue($type_array, $file->extension . '.type') ? ArrayHelper::getValue($type_array, $file->extension . '.type') : 'image';
+            $model->filetype = ArrayHelper::getValue($type_array, $file->extension . '.filetype');
+            $model->url = $result_link . $model->name;
+           // echo '<pre>' . print_r($model, true) . '</pre>';
             $model->load($post);
 
             $model->validate();

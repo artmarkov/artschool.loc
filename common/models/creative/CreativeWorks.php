@@ -39,8 +39,7 @@ class CreativeWorks extends \yii\db\ActiveRecord
     public $gridDepartmentSearch;
     public $gridAuthorSearch;
     public $author_id;
-  //  public $imageFiles;
-
+  
     const STATUS_PENDING = 0;
     const STATUS_PUBLISHED = 1;
     const COMMENT_STATUS_CLOSED = 0;
@@ -84,7 +83,6 @@ class CreativeWorks extends \yii\db\ActiveRecord
             ['published_at', 'date', 'timestampAttribute' => 'published_at', 'format' => 'dd-MM-yyyy'],
             ['published_at', 'default', 'value' =>  mktime(0,0,0, date("m", time()), date("d", time()), date("Y", time()))],
             [['department_list'], 'safe'],
-          //   ['imageFiles', 'file', 'skipOnEmpty' => false, 'extensions' => ['JPG', 'png']],
             ];
     }
 
@@ -305,7 +303,9 @@ class CreativeWorks extends \yii\db\ActiveRecord
     {
         return ArrayHelper::toArray($this->images,[
                 ImageManager::className() => [
-                    //'type' => 'type',
+                    'type' => 'type',
+                    'filetype' => 'filetype',
+                    'downloadUrl' => 'url',
                     'caption'=> 'name',
                     'key'=> 'id',
                 ]]

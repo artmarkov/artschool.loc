@@ -18,7 +18,7 @@ use yii\helpers\Url;
 class ImageManager extends \yii\db\ActiveRecord {
 
     public $attachment;
-
+   
     /**
      * {@inheritdoc}
      */
@@ -31,13 +31,14 @@ class ImageManager extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['name'], 'required'],
+            [['name', 'type'], 'required'],
             [['item_id', 'sort'], 'integer'],
             ['sort', 'default', 'value' => function($model) {
                 $count = ImageManager::find()->andWhere(['class' => $model->class])->count();
                 return ($count > 0) ? $count++ : 0;
             }],
-            [['name', 'class', 'alt', 'type'], 'string', 'max' => 256],
+            [['type','filetype'], 'safe'],
+            [['name', 'class', 'alt', 'url'], 'string', 'max' => 256],
             //[['attachment'], 'image'],
            // [['attachment'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, pdf'],
         ];
