@@ -77,7 +77,7 @@ use yii\widgets\MaskedInput;
                     <div class="row">
                         <div class="col-md-6">
                             <?= $form->field($model, 'phone')->widget(MaskedInput::className(), [
-                                'mask' => '+7 (999) 999 99 99',
+                                'mask' => Yii::$app->settings->get('reading.phone_mask'),
                                 'options' => [
                                     'class' => 'form-control',
                                     'id' => 'phone_2'
@@ -89,7 +89,7 @@ use yii\widgets\MaskedInput;
                         </div>
                         <div class="col-md-6">
                             <?= $form->field($model, 'phone_optional')->widget(MaskedInput::className(), [
-                                'mask' => '+7 (999) 999 99 99',
+                                'mask' => Yii::$app->settings->get('reading.phone_mask'),
                                 'options' => [
                                     'class' => 'form-control',
                                     'id' => 'phone_optional_2'

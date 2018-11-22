@@ -36,9 +36,9 @@ use yii\helpers\Url;
 
                     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'phone')->widget(MaskedInput::className(), ['mask' => '+7 (999) 999 99 99',])->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'phone')->widget(MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.phone_mask')])->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'phone_optional')->widget(MaskedInput::className(), ['mask' => '+7 (999) 999 99 99',])->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'phone_optional')->widget(MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.phone_mask')])->textInput(['maxlength' => true]) ?>
 
                     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
@@ -91,9 +91,9 @@ use yii\helpers\Url;
                     ?>
                       
                     
-                        <?= $form->field($model, 'latitude')->widget(MaskedInput::className(), ['mask' => '99.999999',])->textInput() ?>
+                        <?= $form->field($model, 'latitude')->widget(MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.coordinate_mask')])->textInput() ?>
 
-                        <?= $form->field($model, 'longitude')->widget(MaskedInput::className(), ['mask' => '99.999999',])->textInput() ?>
+                        <?= $form->field($model, 'longitude')->widget(MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.coordinate_mask')])->textInput() ?>
 
                         <div class="form-group">
                             <?php if ($model->isNewRecord): ?>

@@ -3,19 +3,7 @@
 use common\widgets\ActiveForm;
 use common\models\Option;
 use yeesoft\helpers\Html;
-use kartik\date\DatePicker;
 
-// usage without model
-echo '<label>Check Issue Date</label>';
-echo DatePicker::widget([
-    'name' => 'check_issue_date',
-    'value' => date('d-M-Y', strtotime('+2 days')),
-    'options' => ['placeholder' => 'Select issue date ...'],
-    'pluginOptions' => [
-        'format' => 'dd-M-yyyy',
-        'todayHighlight' => true
-    ]
-]);
 /* @var $this yii\web\View */
 /* @var $model common\models\Option */
 /* @var $form yeesoft\widgets\ActiveForm */

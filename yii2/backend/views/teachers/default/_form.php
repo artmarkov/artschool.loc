@@ -51,21 +51,7 @@ use yii\widgets\MaskedInput;
                         </div>
                         <div class="col-md-3">
                             <?php  if($modelUser->birth_timestamp) $modelUser->birth_timestamp = date("d-m-Y", (integer) mktime(0,0,0, date("m", $modelUser->birth_timestamp), date("d", $modelUser->birth_timestamp), date("Y", $modelUser->birth_timestamp)));  ?>
-                            <?= $form->field($modelUser, 'birth_timestamp')->widget(MaskedInput::className(),['mask' => '99-99-9999',])->widget(DatePicker::classname(), [
-                                'type' => DatePicker::TYPE_INPUT,
-                                'options' => ['placeholder' => ''],
-                                'convertFormat' => true,
-                                //'value'=> date("d-m-Y",(integer) $model->birth_timestamp),
-                                'pluginOptions' => [
-                                    'format' => 'dd-MM-yyyy',
-                                    'autoclose' => true,
-                                    'weekStart' => 1,
-                                    'startDate' => '01-01-1930',
-                                    'endDate' => '01-01-2030',
-                                    'todayBtn' => 'linked',
-                                    'todayHighlight' => true,
-                                ]
-                            ]);
+                            <?= $form->field($modelUser, 'birth_timestamp')->widget(MaskedInput::className(),['mask' => '99-99-9999',])->widget(DatePicker::classname());
                             ?>
                         </div>
                         <div class="col-md-3">
@@ -75,10 +61,10 @@ use yii\widgets\MaskedInput;
  
                     <div class="row">
                         <div class="col-md-6">
-                            <?= $form->field($modelUser, 'phone')->widget(MaskedInput::className(),['mask' => '+7 (999) 999 99 99',])->textInput() ?>
+                            <?= $form->field($modelUser, 'phone')->widget(MaskedInput::className(),['mask' => Yii::$app->settings->get('reading.phone_mask')])->textInput() ?>
                         </div>
                         <div class="col-md-6">
-                            <?= $form->field($modelUser, 'phone_optional')->widget(MaskedInput::className(),['mask' => '+7 (999) 999 99 99',])->textInput() ?>
+                            <?= $form->field($modelUser, 'phone_optional')->widget(MaskedInput::className(),['mask' => Yii::$app->settings->get('reading.phone_mask')])->textInput() ?>
                         </div>
                     </div>
                     
@@ -147,20 +133,7 @@ use yii\widgets\MaskedInput;
                         </div>
                         <div class="col-md-3">
                             <?php
-                            echo $form->field($model, 'time_serv_init')->widget(DatePicker::classname(), [
-                                'type' => DatePicker::TYPE_INPUT,
-                                'options' => ['placeholder' => ''],
-                                'convertFormat' => true,
-                                'pluginOptions' => [
-                                    'format' => 'dd-MM-yyyy',
-                                    'autoclose' => true,
-                                    'weekStart' => 1,
-                                    'startDate' => '01-01-1930',
-                                    'endDate' => '01-01-2030',
-                                    'todayBtn' => 'linked',
-                                    'todayHighlight' => true,
-                                ]
-                            ])->label(Yii::t('yee/teachers', 'For date'));
+                            echo $form->field($model, 'time_serv_init')->widget(DatePicker::classname())->label(Yii::t('yee/teachers', 'For date'));
                             ?>
                         </div>
 
@@ -169,20 +142,7 @@ use yii\widgets\MaskedInput;
                         </div>
                         <div class="col-md-3">
                             <?php
-                            echo $form->field($model, 'time_serv_spec_init')->widget(DatePicker::classname(), [
-                                'type' => DatePicker::TYPE_INPUT,
-                                'options' => ['placeholder' => ''],
-                                'convertFormat' => true,
-                                'pluginOptions' => [
-                                    'format' => 'dd-MM-yyyy',
-                                    'autoclose' => true,
-                                    'weekStart' => 1,
-                                    'startDate' => '01-01-1930',
-                                    'endDate' => '01-01-2030',
-                                    'todayBtn' => 'linked',
-                                    'todayHighlight' => true,
-                                ]
-                            ])->label(Yii::t('yee/teachers', 'For date'));
+                            echo $form->field($model, 'time_serv_spec_init')->widget(DatePicker::classname())->label(Yii::t('yee/teachers', 'For date'));
                             ?>
 
                         </div>

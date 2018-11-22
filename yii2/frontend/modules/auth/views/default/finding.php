@@ -42,7 +42,7 @@ $col3 = (int) ($col12 / 4);
 
                     <div class="row">
                         <div class="col-md-<?= $col6 ?>">
-                            <?= $form->field($model, 'birth_date')->widget(MaskedInput::className(), ['mask' => '99-99-9999',])->textInput() ?>
+                            <?= $form->field($model, 'birth_date')->widget(MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.date_mask')])->textInput() ?>
                         </div>
                     </div>
                     

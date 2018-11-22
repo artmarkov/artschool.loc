@@ -157,21 +157,7 @@ use yii\helpers\Url;
                         
                         <?php  if($model->published_at) $model->published_at = date("d-m-Y", (integer) mktime(0,0,0, date("m", $model->published_at), date("d", $model->published_at), date("Y", $model->published_at)));  ?>
 
-                        <?= $form->field($model, 'published_at')->widget(DatePicker::classname(), [
-                                     'type' => DatePicker::TYPE_INPUT,
-                                     'options' => ['placeholder' => ''],
-                                     'convertFormat' => true,
-                                     //'value'=> date("d-m-Y",(integer) $model->published_at),
-                                     'pluginOptions' => [
-                                         'format' => 'dd-MM-yyyy',
-                                         'autoclose' => true,
-                                         'weekStart' => 1,
-                                         'startDate' => '01-01-1930',
-                                         'endDate' => '01-01-2030',
-                                         'todayBtn' => 'linked',
-                                         'todayHighlight' => true,
-                                     ]
-                                    ])->textInput(['autocomplete' => 'off']);
+                        <?= $form->field($model, 'published_at')->widget(DatePicker::classname())->textInput(['autocomplete' => 'off']);
                         ?>
                         <?= $form->field($model, 'status')->dropDownList(CreativeWorks::getStatusList()) ?>
 

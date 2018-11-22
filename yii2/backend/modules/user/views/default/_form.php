@@ -64,7 +64,7 @@ use yii\widgets\MaskedInput;
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <?= $form->field($model, 'phone')->widget(MaskedInput::className(),['mask' => '+7 (999) 999 99 99',])->textInput() ?>
+                            <?= $form->field($model, 'phone')->widget(MaskedInput::className(),['mask' => Yii::$app->settings->get('reading.phone_mask')])->textInput() ?>
                         </div>
                         <div class="col-md-6">
                             <?= $form->field($model, 'phone_optional')->widget(MaskedInput::className(),['mask' => '+7 (999) 999 99 99',])->textInput() ?>
