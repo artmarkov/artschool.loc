@@ -34,7 +34,7 @@ use yii\helpers\Url;
 
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
+                    <?//= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
                     <?= $form->field($model, 'phone')->widget(MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.phone_mask')])->textInput(['maxlength' => true]) ?>
 
@@ -45,6 +45,8 @@ use yii\helpers\Url;
                     <?= $form->field($model, 'сontact_person')->textInput(['maxlength' => true]) ?>
 
                     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
+
+                    <?= $form->field($model, 'coords')->widget(\common\widgets\YandexGetCoordsWidget::className())->label(false) ?>
 
 
                 </div>
@@ -89,12 +91,7 @@ use yii\helpers\Url;
                         ]
                     ])->label(Yii::t('yee/guide', 'Name District'));
                     ?>
-                      
-                    
-                        <?= $form->field($model, 'latitude')->widget(MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.coordinate_mask')])->textInput() ?>
-
-                        <?= $form->field($model, 'longitude')->widget(MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.coordinate_mask')])->textInput() ?>
-
+                     
                         <div class="form-group">
                             <?php if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
