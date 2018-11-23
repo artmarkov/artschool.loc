@@ -10,6 +10,7 @@ use common\models\venue\VenueSity;
 use kartik\select2\Select2;
 use kartik\depdrop\DepDrop;
 use yii\helpers\Url;
+
 /* @var $this yii\web\View */
 /* @var $model common\models\venue\VenuePlace */
 /* @var $form yeesoft\widgets\ActiveForm */
@@ -22,7 +23,7 @@ use yii\helpers\Url;
         'id' => 'venue-place-form',
         'validateOnBlur' => false,
         'enableAjaxValidation' => true,
-        'options' => ['enctype' => 'multipart/form-data'], 
+        'options' => ['enctype' => 'multipart/form-data'],
     ])
     ?>
 
@@ -31,26 +32,50 @@ use yii\helpers\Url;
 
             <div class="panel panel-default">
                 <div class="panel-body">
-
-                    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-                    <?//= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'phone')->widget(MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.phone_mask')])->textInput(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'phone_optional')->widget(MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.phone_mask')])->textInput(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'сontact_person')->textInput(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'coords')->widget(\common\widgets\YandexGetCoordsWidget::className())->label(false) ?>
-
+                    <div class="row">
+                        <div class="col-md-12">
+                            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <?= $form->field($model, 'phone')->widget(MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.phone_mask')])->textInput() ?>
+                        </div>
+                        <div class="col-md-6">
+                            <?= $form->field($model, 'phone_optional')->widget(MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.phone_mask')])->textInput() ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+                        </div>
+                        <div class="col-md-6">
+                            <?= $form->field($model, 'сontact_person')->textInput(['maxlength' => true]) ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <?= $form->field($model, 'description')->textarea(['rows' => '3', 'maxlength' => true]) ?>
+                        </div>
+                    </div>
 
                 </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <?= $form->field($model, 'address')->textInput(['maxlength' => true, 'readonly' => true]) ?>
+                            <div class="help-block"><?= \Yii::t('yee', 'Click in any place of the map to get address and coordinates'); ?></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <?= $form->field($model, 'coords')->widget(\common\widgets\YandexGetCoordsWidget::className())->label(false) ?>
+                        </div>
+                    </div>
 
+                </div>
             </div>
         </div>
 
@@ -58,60 +83,60 @@ use yii\helpers\Url;
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    
-                        <div class="form-group clearfix">
-                            <label class="control-label"
-                                   style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['id'] ?>
-                                : </label>
-                            <span><?= $model->id ?></span>
-                        </div>
+
+                    <div class="form-group clearfix">
+                        <label class="control-label"
+                               style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['id'] ?>
+                            : </label>
+                        <span><?= $model->id ?></span>
+                    </div>
 
                     <?php
                     echo $form->field($model, 'country_id')->dropDownList(VenueCountry::getVenueCountryList(), [
-                        'prompt' => Yii::t('yee/guide','Select Country...'),
+                        'prompt' => Yii::t('yee/guide', 'Select Country...'),
                         'id' => 'country_id'
                     ])->label(Yii::t('yee/guide', 'Name Country'));
                     echo $form->field($model, 'sity_id')->widget(DepDrop::classname(), [
-                        'data' => VenueSity::getSityByName($model ->country_id),
-                        'options' => ['prompt' =>  Yii::t('yee/guide','Select Sity...'), 'id' => 'sity_id'],
+                        'data' => VenueSity::getSityByName($model->country_id),
+                        'options' => ['prompt' => Yii::t('yee/guide', 'Select Sity...'), 'id' => 'sity_id'],
                         'pluginOptions' => [
                             'depends' => ['country_id'],
-                            'placeholder' =>  Yii::t('yee/guide','Select Sity...'),
+                            'placeholder' => Yii::t('yee/guide', 'Select Sity...'),
                             'url' => Url::to(['/venue/default/sity'])
                         ]
                     ])->label(Yii::t('yee/guide', 'Name Sity'));
 
                     echo $form->field($model, 'district_id')->widget(DepDrop::classname(), [
-                        'data' => VenueDistrict::getDistrictByName($model ->sity_id),
-                        'options' => ['prompt' =>  Yii::t('yee/guide','Select District...')],
+                        'data' => VenueDistrict::getDistrictByName($model->sity_id),
+                        'options' => ['prompt' => Yii::t('yee/guide', 'Select District...')],
                         'pluginOptions' => [
                             'depends' => ['sity_id'],
-                            'placeholder' =>  Yii::t('yee/guide','Select District...'),
+                            'placeholder' => Yii::t('yee/guide', 'Select District...'),
                             'url' => Url::to(['/venue/default/district'])
                         ]
                     ])->label(Yii::t('yee/guide', 'Name District'));
                     ?>
-                     
-                        <div class="form-group">
-                            <?php if ($model->isNewRecord): ?>
-                                <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
-                                <?= Html::a(Yii::t('yee', 'Cancel'), ['/venue/default'], ['class' => 'btn btn-default']) ?>
-                            <?php else: ?>
-                                <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
-                                <?= Html::a(Yii::t('yee', 'Delete'),
-                                    ['/venue/default/delete', 'id' => $model->id], [
-                                        'class' => 'btn btn-default',
-                                        'data' => [
-                                            'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-                                            'method' => 'post',
-                                        ],
-                                    ]) ?>
-                                <?= Html::a(Yii::t('yee', 'Add New'), ['/venue/default/create'],
-                                    ['class' => 'btn btn-primary pull-right'])
-                                ?>
-                            <?php endif; ?>
-                        </div>
-                    
+
+                    <div class="form-group">
+                        <?php if ($model->isNewRecord): ?>
+                            <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
+                            <?= Html::a(Yii::t('yee', 'Cancel'), ['/venue/default'], ['class' => 'btn btn-default']) ?>
+                        <?php else: ?>
+                            <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
+                            <?= Html::a(Yii::t('yee', 'Delete'),
+                                ['/venue/default/delete', 'id' => $model->id], [
+                                    'class' => 'btn btn-default',
+                                    'data' => [
+                                        'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                                        'method' => 'post',
+                                    ],
+                                ]) ?>
+                            <?= Html::a(Yii::t('yee', 'Add New'), ['/venue/default/create'],
+                                ['class' => 'btn btn-primary pull-right'])
+                            ?>
+                        <?php endif; ?>
+                    </div>
+
                 </div>
             </div>
             <?php ActiveForm::end(); ?>
