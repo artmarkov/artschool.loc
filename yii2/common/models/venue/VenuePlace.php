@@ -37,6 +37,7 @@ use common\models\venue\VenueCountry;
  */
 class VenuePlace extends \yii\db\ActiveRecord
 {
+    public  $map_address;
     /**
      * {@inheritdoc}
      */
@@ -60,7 +61,7 @@ class VenuePlace extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['country_id', 'name', 'address', 'phone'], 'required'],
+            [['country_id', 'name', 'address', 'phone', 'coords'], 'required'],
             ['district_id', 'required', 'when' => function ($model) { return !empty(VenueDistrict::getDistrictBySityId($model->sity_id));}, 'enableClientValidation' => false ],                 ['district_id', 'required', 'when' => function ($model) { return !empty(VenueDistrict::getDistrictBySityId($model->sity_id));}, 'enableClientValidation' => false ], 
             ['sity_id', 'required', 'when' => function ($model) { return !empty(VenueSity::getSityByCountryId($model->country_id));}, 'enableClientValidation' => false ],         
             [['country_id', 'sity_id', 'district_id', 'map_zoom'], 'integer'],

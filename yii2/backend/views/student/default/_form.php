@@ -45,7 +45,7 @@ use yii\widgets\MaskedInput;
                         <div class="col-md-3">
                             <?php  if($modelUser->birth_timestamp) $modelUser->birth_timestamp = date("d-m-Y", (integer) mktime(0,0,0, date("m", $modelUser->birth_timestamp), date("d", $modelUser->birth_timestamp), date("Y", $modelUser->birth_timestamp)));  ?>
                             <?= $form->field($modelUser, 'birth_timestamp')->widget(MaskedInput::className(),[
-                                'mask' => '99-99-9999',
+                                'mask' => Yii::$app->settings->get('reading.date_mask'),
                                 'options' => [
                                     'class' => 'form-control',
                                     'id' => 'birth_date_1'
@@ -59,7 +59,7 @@ use yii\widgets\MaskedInput;
                         </div>
                         <div class="col-md-3">
                             <?= $form->field($modelUser, 'snils')->widget(MaskedInput::className(), [
-                            'mask' => '999-999-999 99',
+                            'mask' => Yii::$app->settings->get('reading.snils_mask'),
                             'options' => [
                             'class' => 'form-control',
                             'id' => 'snils_1'
@@ -108,7 +108,7 @@ use yii\widgets\MaskedInput;
                         </div>
                         <div class="col-md-3">
                             <?php  if($model->sertificate_timestamp) $model->sertificate_timestamp = date("d-m-Y", (integer) mktime(0,0,0, date("m", $model->sertificate_timestamp), date("d", $model->sertificate_timestamp), date("Y", $model->sertificate_timestamp)));  ?>
-                            <?= $form->field($model, 'sertificate_timestamp')->widget(MaskedInput::className(), ['mask' => '99-99-9999',])->textInput() ?>
+                            <?= $form->field($model, 'sertificate_timestamp')->widget(MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.date_mask')])->textInput() ?>
                         </div>
                     </div>
                     <div class="row">

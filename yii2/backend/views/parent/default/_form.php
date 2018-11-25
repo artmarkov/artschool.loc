@@ -42,10 +42,10 @@ use yii\widgets\MaskedInput;
                         </div>
                         <div class="col-md-3">
                             <?php  if($model->birth_timestamp) $model->birth_timestamp = date("d-m-Y", (integer) mktime(0,0,0, date("m", $model->birth_timestamp), date("d", $model->birth_timestamp), date("Y", $model->birth_timestamp)));  ?>
-                            <?= $form->field($model, 'birth_timestamp')->widget(MaskedInput::className(),['mask' => '99-99-9999'])->textInput() ?>
+                            <?= $form->field($model, 'birth_timestamp')->widget(MaskedInput::className(),['mask' => Yii::$app->settings->get('reading.date_mask')])->textInput() ?>
                         </div>
                         <div class="col-md-3">
-                            <?= $form->field($model, 'snils')->widget(MaskedInput::className(), ['mask' => '999-999-999 99',])->textInput() ?>
+                            <?= $form->field($model, 'snils')->widget(MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.snils_mask')])->textInput() ?>
                         </div>
                     </div>
 

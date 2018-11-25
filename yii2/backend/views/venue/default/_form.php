@@ -58,17 +58,18 @@ use yii\helpers\Url;
                             <?= $form->field($model, 'description')->textarea(['rows' => '3', 'maxlength' => true]) ?>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
+                          <div class="help-block"><?= \Yii::t('yee', 'Click on the map to get the address and coordinates, then click the button to insert the address into the form'); ?></div>
+                       
+                        </div>
+                    </div>
 
                 </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <?= $form->field($model, 'address')->textInput(['maxlength' => true, 'readonly' => true]) ?>
-                            <div class="help-block"><?= \Yii::t('yee', 'Click in any place of the map to get address and coordinates'); ?></div>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <?= $form->field($model, 'coords')->widget(\common\widgets\YandexGetCoordsWidget::className())->label(false) ?>
@@ -170,3 +171,13 @@ use yii\helpers\Url;
         </div>
     </div>
 </div>
+
+<?php
+$js = <<<JS
+$('.insert-coords-form').on('click', function (e) {
+    e.preventDefault();   
+    document.getElementById('venueplace-address').value = $('#venueplace-map_address').val();       
+ });
+JS;
+$this->registerJs($js);
+

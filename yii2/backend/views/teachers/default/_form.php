@@ -51,11 +51,11 @@ use yii\widgets\MaskedInput;
                         </div>
                         <div class="col-md-3">
                             <?php  if($modelUser->birth_timestamp) $modelUser->birth_timestamp = date("d-m-Y", (integer) mktime(0,0,0, date("m", $modelUser->birth_timestamp), date("d", $modelUser->birth_timestamp), date("Y", $modelUser->birth_timestamp)));  ?>
-                            <?= $form->field($modelUser, 'birth_timestamp')->widget(MaskedInput::className(),['mask' => '99-99-9999',])->widget(DatePicker::classname());
+                            <?= $form->field($modelUser, 'birth_timestamp')->widget(MaskedInput::className(),['mask' => Yii::$app->settings->get('reading.date_mask')])->widget(DatePicker::classname());
                             ?>
                         </div>
                         <div class="col-md-3">
-                            <?= $form->field($modelUser, 'snils')->widget(MaskedInput::className(),['mask' => '999-999-999 99',])->textInput() ?>
+                            <?= $form->field($modelUser, 'snils')->widget(MaskedInput::className(),['mask' => Yii::$app->settings->get('reading.snils_mask')])->textInput() ?>
                         </div>
                     </div>
  
