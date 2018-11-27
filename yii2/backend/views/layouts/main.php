@@ -134,6 +134,14 @@ MetisMenuAsset::register($this);
 
         \yii\bootstrap\Modal::end(); ?>
 
+        <?php \yii\bootstrap\Modal::begin([
+            'header' => '<h3 class="lte-hide-title page-title">' . Yii::t('yee/calendar', 'Event') . '</h3>',
+            'size' => 'modal-lg',
+            'id' => 'event-modal',
+            'footer' => 'footer',
+        ]);
+
+        \yii\bootstrap\Modal::end(); ?>
 
 <?php $this->endBody() ?>
     </body>

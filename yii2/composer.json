@@ -52,7 +52,8 @@
     "loveorigami/yii2-modal-ajax": "@dev",
     "kartik-v/yii2-widget-select2": "dev-master",
     "kartik-v/yii2-widget-datetimepicker": "dev-master",
-    "kartik-v/yii2-widget-fileinput": "dev-master"
+    "kartik-v/yii2-widget-fileinput": "dev-master",
+    "philippfrenzel/yii2fullcalendar":"*"
         
   },
   "require-dev": {
