@@ -35,6 +35,7 @@ SettingsAsset::register($this);
         <?= $form->field($model, 'phone_mask')->textInput(['maxlength' => true])->hint($model->getDescription('phone_mask')) ?>
         <?= $form->field($model, 'date_mask')->textInput(['maxlength' => true])->hint($model->getDescription('date_mask')) ?>      
         <?= $form->field($model, 'time_mask')->textInput(['maxlength' => true])->hint($model->getDescription('time_mask')) ?>
+        <?= $form->field($model, 'date_time_mask')->textInput(['maxlength' => true])->hint($model->getDescription('date_time_mask')) ?>
         <?= $form->field($model, 'snils_mask')->textInput(['maxlength' => true])->hint($model->getDescription('snils_mask')) ?>
         <?= $form->field($model, 'coordinate_mask')->textInput(['maxlength' => true])->hint($model->getDescription('coordinate_mask')) ?>
         <div class="form-group">

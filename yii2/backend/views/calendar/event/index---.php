@@ -1,18 +1,9 @@
 <?php
-
-use common\models\calendar\Event;
-use yeesoft\helpers\Html;
-use yii\widgets\Pjax;
+use yii\helpers\Url;
+use yii\helpers\Html;
 use yii\web\JsExpression;
-
 /* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
-//echo '<pre>' . print_r($events, true) . '</pre>';
-
-$this->title = 'Events';
-$this->params['breadcrumbs'][] = $this->title;
-
+$this->title = 'yii2 extension yii2-fullcalendar demo';
 $DragJS = <<<EOF
 /* initialize the external events
 -----------------------------------------------------------------*/
@@ -32,20 +23,26 @@ $('#external-events .fc-event').each(function() {
 EOF;
 $this->registerJs($DragJS);
 ?>
-<div class="event-index">
+<div class="site-index">
 
-    <div class="row">
-        <div class="col-sm-12">
-            <h3 class="lte-hide-title page-title"><?=  Html::encode($this->title) ?></h3>
-            
-        </div>
+    <div class="jumbotron">
+        <h1>Yii2 Extension Demo</h1>
+
+        <p class="lead">philippfrenzel/yii2-fullcalendar</p>
+
     </div>
 
-    <div class="panel panel-default">
-        <div class="panel-body">
-<?php 
-            Pjax::begin()
-            ?>
+    <div class="well">
+        Note: This is only a demo for the extension mentioned above. Check out the details at github!
+        If you have issues or question, pls. make an issue at github! This extension is only a wrapper
+        for the amazing efullcalendar.js library! If you wanna use it, pls. check out the license
+        there - you can use this code "as is". I take no warrenty for it! 
+
+        ;)
+    </div>
+
+    <div class="body-content">
+
 <?php
 $JSCode = <<<EOF
 function(start, end) {
@@ -82,7 +79,8 @@ function(calEvent, jsEvent, view) {
 EOF;
     
     ?>
-            <div id="external-events">
+
+<div id="external-events">
     <h4>Draggable Events</h4>
     <div class="fc-event ui-draggable ui-draggable-handle">My Event 1</div>
     <div class="fc-event ui-draggable ui-draggable-handle">My Event 2</div>
@@ -94,15 +92,9 @@ EOF;
         <label for="drop-remove">remove after drop</label>
     </p>
 </div>
-            <?= \yii2fullcalendar\yii2fullcalendar::widget([
-                'header' => [
-				'left'=> 'prev,next today',
-				'center'=> 'title',
-				'right'=> 'month,agendaWeek,agendaDay'
-			],
-			
-                'events'=> $events,
-                'clientOptions' => [
+
+        <?= yii2fullcalendar\yii2fullcalendar::widget(array(
+              'clientOptions' => [
                     'selectable' => true,
                     'selectHelper' => true,
                     'droppable' => true,
@@ -110,15 +102,14 @@ EOF;
                     'drop' => new JsExpression($JSDropEvent),
                     'select' => new JsExpression($JSCode),
                     'eventClick' => new JsExpression($JSEventClick),
-                    'defaultDate' => date('Y-m-d H:i')
+                    'defaultDate' => date('Y-m-d')
               ],
-              // 'ajaxEvents' => \yii\helpers\Url::toRoute(['/admin/calendar/event/create']),
-                       ]);
-            ?>
-             <?php Pjax::end() ?>
-        </div>
-    </div>
-</div>
+              'ajaxEvents' => Url::toRoute(['/admin/calendar/event/Ajax'])
+            ));
+        ?>        
+
+<h3>The needed code:</h3>
+
 <div class="well"> 
 <pre>
 Event Hover:
@@ -128,47 +119,6 @@ Event Click:
 <?= Html::encode($JSEventClick); ?>    
 </pre>
 </div>
- <?php \yii\bootstrap\Modal::begin([
-            'header' => '<h3 class="lte-hide-title page-title">' . Yii::t('yee/calendar', 'Event') . '</h3>',
-            'size' => 'modal-lg',
-            'id' => 'event-modal',
-            //'footer' => 'footer',
-        ]);
 
-        \yii\bootstrap\Modal::end(); ?>
-
-<?php
-//$js = <<<JS
-//
-//function showDay(day) {
-//    $('#event-modal .modal-body').html(day);
-//    $('#event-modal').modal();
-//}
-//
-//$('.fc-day').on('click', function (e) {
-//
-//    e.preventDefault();
-//
-//    var date = $(this).data('date')
-//
-//    $.ajax({
-//        url: '/admin/calendar/event/create',
-//        data: {date: date},
-//        type: 'GET',
-//        success: function (res) {
-//            if (!res)  alert('Error!');
-//          //  console.log(res);
-//            showDay(res);
-//        },
-//        error: function () {
-//            alert('Error!');
-//        }
-//    });
-//});
-//
-//
-//JS;
-//
-//$this->registerJs($js);
-?>
-
+    </div>
+</div>

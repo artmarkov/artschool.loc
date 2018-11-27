@@ -19,7 +19,7 @@ class Event extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'event';
+        return '{{%event}}';
     }
 
     /**
@@ -30,8 +30,11 @@ class Event extends \yii\db\ActiveRecord
         return [
             [['title', 'description'], 'required'],
             [['description'], 'string'],
-            [['created_date'], 'safe'],
+            [['start_timestamp', 'end_timestamp'], 'safe'],
             [['title'], 'string', 'max' => 100],
+            ['start_timestamp', 'date', 'timestampAttribute' => 'start_timestamp', 'format' => 'dd-MM-yyyy H:m'],
+            ['end_timestamp', 'date', 'timestampAttribute' => 'end_timestamp', 'format' => 'dd-MM-yyyy H:m'],
+            [['start_timestamp', 'end_timestamp'], 'default', 'value' =>  mktime(date("H", time()), date("i", time()),0, date("m", time()), date("d", time()), date("Y", time()))],
         ];
     }
 
@@ -44,7 +47,8 @@ class Event extends \yii\db\ActiveRecord
             'id' => Yii::t('yee/service', 'ID'),
             'title' => Yii::t('yee/service', 'Title'),
             'description' => Yii::t('yee/service', 'Description'),
-            'created_date' => Yii::t('yee/service', 'Created Date'),
+            'start_timestamp' => Yii::t('yee/service', 'Start'),
+            'end_timestamp' => Yii::t('yee/service', 'End'),
         ];
     }
 }
