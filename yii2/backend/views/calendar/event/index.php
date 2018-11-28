@@ -26,7 +26,7 @@ $('#external-events .fc-event').each(function() {
     $(this).draggable({
         zIndex: 999,
         revert: true,      // will cause the event to go back to its
-        revertDuration: 0  //  original position after the drag
+        revertDuration: 0  // original position after the drag
     });
 });
 EOF;
@@ -43,25 +43,46 @@ $this->registerJs($DragJS);
 
     <div class="panel panel-default">
         <div class="panel-body">
-<?php 
-            Pjax::begin()
-            ?>
+
 <?php
 $JSCode = <<<EOF
 function(start, end) {
-    var title = prompt('Event Title:');
     var eventData;
-    if (title) {
+    var title = 'титл';
         eventData = {
             title: title,
-            start: start,
-            end: end
+            start_timestamp: start._i,
+            end_timestamp: end._i,
+            start: start.format(),
+            end: end.format(),
         };
-        $('#w0').fullCalendar('renderEvent', eventData, true);
-    }
-    $('#w0').fullCalendar('unselect');
+  $.ajax({
+        url: '/admin/calendar/event/create',
+        type: 'POST',
+        data: {eventData : eventData},
+        success: function (res) {
+//            console.log(res);
+         //  $('#w0').fullCalendar('renderEvent', eventData, true);
+        showDay(res);
+        },
+        error: function () {
+            $('#w0').fullCalendar('unselect');
+        }
+    });
 }
 EOF;
+
+$JSEventClick = <<<EOF
+function(calEvent, jsEvent, view) {
+    alert('Event: ' + calEvent.title);
+    alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+    alert('View: ' + view.name);
+     console.log(view);
+    // change the border color just for fun
+    $(this).css('border-color', 'red');
+}
+EOF;
+
 $JSDropEvent = <<<EOF
 function(date) {
     alert("Dropped on " + date.format());
@@ -71,38 +92,22 @@ function(date) {
     }
 }
 EOF;
-$JSEventClick = <<<EOF
-function(calEvent, jsEvent, view) {
-    alert('Event: ' + calEvent.title);
-    alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-    alert('View: ' + view.name);
-    // change the border color just for fun
-    $(this).css('border-color', 'red');
-}
-EOF;
-    
-    ?>
-            <div id="external-events">
-    <h4>Draggable Events</h4>
-    <div class="fc-event ui-draggable ui-draggable-handle">My Event 1</div>
-    <div class="fc-event ui-draggable ui-draggable-handle">My Event 2</div>
-    <div class="fc-event ui-draggable ui-draggable-handle">My Event 3</div>
-    <div class="fc-event ui-draggable ui-draggable-handle">My Event 4</div>
-    <div class="fc-event ui-draggable ui-draggable-handle">My Event 5</div>
-    <p>
-        <input type="checkbox" id="drop-remove">
-        <label for="drop-remove">remove after drop</label>
-    </p>
-</div>
+?>
+            <div class="row">
+                <div class="col-md-10">
+
             <?= \yii2fullcalendar\yii2fullcalendar::widget([
+                'options' => [
+                    'lang' => 'ru',
+
+                ],
                 'header' => [
 				'left'=> 'prev,next today',
 				'center'=> 'title',
 				'right'=> 'month,agendaWeek,agendaDay'
 			],
-			
-                'events'=> $events,
                 'clientOptions' => [
+
                     'selectable' => true,
                     'selectHelper' => true,
                     'droppable' => true,
@@ -112,23 +117,33 @@ EOF;
                     'eventClick' => new JsExpression($JSEventClick),
                     'defaultDate' => date('Y-m-d H:i')
               ],
-              // 'ajaxEvents' => \yii\helpers\Url::toRoute(['/admin/calendar/event/create']),
-                       ]);
+
+               'events' => \yii\helpers\Url::to(['/calendar/event/calendar']),
+            ]);
             ?>
-             <?php Pjax::end() ?>
+                </div>
+                <div class="col-md-2">
+
+                          <div id="external-events">
+                                <h4>Draggable Events</h4>
+
+                                <div class="fc-event ui-draggable ui-draggable-handle">My Event 1</div>
+                                <div class="fc-event ui-draggable ui-draggable-handle">My Event 2</div>
+                                <div class="fc-event ui-draggable ui-draggable-handle">My Event 3</div>
+                                <div class="fc-event ui-draggable ui-draggable-handle">My Event 4</div>
+                                <div class="fc-event ui-draggable ui-draggable-handle">My Event 5</div>
+                                <p>
+                                    <input type="checkbox" id="drop-remove">
+                                    <label for="drop-remove">remove after drop</label>
+                                </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<div class="well"> 
-<pre>
-Event Hover:
-<?= Html::encode($JSCode); ?>
 
-Event Click:
-<?= Html::encode($JSEventClick); ?>    
-</pre>
-</div>
- <?php \yii\bootstrap\Modal::begin([
+<?php \yii\bootstrap\Modal::begin([
             'header' => '<h3 class="lte-hide-title page-title">' . Yii::t('yee/calendar', 'Event') . '</h3>',
             'size' => 'modal-lg',
             'id' => 'event-modal',
@@ -138,37 +153,37 @@ Event Click:
         \yii\bootstrap\Modal::end(); ?>
 
 <?php
-//$js = <<<JS
-//
-//function showDay(day) {
-//    $('#event-modal .modal-body').html(day);
-//    $('#event-modal').modal();
-//}
-//
-//$('.fc-day').on('click', function (e) {
-//
-//    e.preventDefault();
-//
-//    var date = $(this).data('date')
-//
-//    $.ajax({
-//        url: '/admin/calendar/event/create',
-//        data: {date: date},
-//        type: 'GET',
-//        success: function (res) {
-//            if (!res)  alert('Error!');
-//          //  console.log(res);
-//            showDay(res);
-//        },
-//        error: function () {
-//            alert('Error!');
-//        }
-//    });
-//});
-//
-//
-//JS;
-//
-//$this->registerJs($js);
+$js = <<<JS
+
+function showDay(res) {
+    $('#event-modal .modal-body').html(res);
+    $('#event-modal').modal();
+}
+
+$('.fc-day').on('click', function (e) {
+
+    e.preventDefault();
+
+    var date = $(this).data('date')
+
+    $.ajax({
+        url: '/admin/calendar/event/create',
+        data: {date: date},
+        type: 'GET',
+        success: function (res) {
+            if (!res)  alert('Error!');
+          //  console.log(res);
+            showDay(res);
+        },
+        error: function () {
+            alert('Error!');
+        }
+    });
+});
+
+
+JS;
+
+$this->registerJs($js);
 ?>
 

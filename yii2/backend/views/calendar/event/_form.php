@@ -27,9 +27,9 @@ use yeesoft\helpers\Html;
                     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
                     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-            
-                    <?php  if($model->start_timestamp) { $model->start_timestamp = date("d-m-Y H:i", (integer) mktime( date("H", $model->start_timestamp), date("i", $model->start_timestamp),0, date("m", $model->start_timestamp), date("d", $model->start_timestamp), date("Y", $model->start_timestamp))); } ?>
-                    <?= $form->field($model, 'start_timestamp')->widget(\yii\widgets\MaskedInput::className(),['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput() ?>
+
+                    <?php  if($model->start_timestamp) $model->start_timestamp = date("d-m-Y  H:i", (integer) mktime(0,0,0, date("m", $model->start_timestamp), date("d", $model->start_timestamp), date("Y", $model->start_timestamp)));  ?>
+                    <?= $form->field($model, 'start_timestamp')->widget(\kartik\date\DatePicker::classname()); ?>
                     
                     <?php  if($model->end_timestamp) { $model->end_timestamp = date("d-m-Y H:i", (integer) mktime( date("H", $model->end_timestamp), date("i", $model->end_timestamp),0, date("m", $model->end_timestamp), date("d", $model->end_timestamp), date("Y", $model->end_timestamp))); } ?>
                     <?= $form->field($model, 'end_timestamp')->widget(\yii\widgets\MaskedInput::className(),['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput() ?>
