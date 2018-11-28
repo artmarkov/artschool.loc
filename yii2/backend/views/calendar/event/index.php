@@ -48,21 +48,18 @@ $this->registerJs($DragJS);
 $JSCode = <<<EOF
 function(start, end) {
     var eventData;
-    var title = 'титл';
         eventData = {
-            title: title,
-            start_timestamp: start._i,
-            end_timestamp: end._i,
+            id: 0,
             start: start.format(),
             end: end.format(),
         };
   $.ajax({
-        url: '/admin/calendar/event/create',
+        url: '/admin/calendar/event/init-event',
         type: 'POST',
         data: {eventData : eventData},
         success: function (res) {
 //            console.log(res);
-         //  $('#w0').fullCalendar('renderEvent', eventData, true);
+        $('#w0').fullCalendar('renderEvent', eventData, true);
         showDay(res);
         },
         error: function () {
@@ -74,12 +71,34 @@ EOF;
 
 $JSEventClick = <<<EOF
 function(calEvent, jsEvent, view) {
-    alert('Event: ' + calEvent.title);
-    alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-    alert('View: ' + view.name);
-     console.log(view);
+        
+    var eventData;
+        eventData = {
+            id: calEvent.id,           
+        };
+  $.ajax({
+        url: '/admin/calendar/event/init-event',
+        type: 'POST',
+        data: {eventData : eventData},
+        success: function (res) {
+           // console.log(res);
+           
+        showDay(res);
+        },
+        error: function () {
+            alert('Error!!!');
+        }
+    });
+        
+        
+//    alert('Event: ' + calEvent.title);
+//    alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+//    alert('View: ' + view.name);
+     console.log(calEvent);
+      //  console.log(jsEvent);
+        console.log(view);
     // change the border color just for fun
-    $(this).css('border-color', 'red');
+    //$(this).css('border-color', 'red');
 }
 EOF;
 
@@ -159,28 +178,6 @@ function showDay(res) {
     $('#event-modal .modal-body').html(res);
     $('#event-modal').modal();
 }
-
-$('.fc-day').on('click', function (e) {
-
-    e.preventDefault();
-
-    var date = $(this).data('date')
-
-    $.ajax({
-        url: '/admin/calendar/event/create',
-        data: {date: date},
-        type: 'GET',
-        success: function (res) {
-            if (!res)  alert('Error!');
-          //  console.log(res);
-            showDay(res);
-        },
-        error: function () {
-            alert('Error!');
-        }
-    });
-});
-
 
 JS;
 

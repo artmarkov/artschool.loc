@@ -28,27 +28,38 @@ class Event extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'description'], 'required'],
+            ['title', 'required'],
+            [['start_timestamp', 'end_timestamp'], 'required'],
             [['description'], 'string'],
             [['start_timestamp', 'end_timestamp'], 'safe'],
-            [['title'], 'string', 'max' => 100],
-            ['start_timestamp', 'date', 'timestampAttribute' => 'start_timestamp', 'format' => 'dd-MM-yyyy H:m'],
-            ['end_timestamp', 'date', 'timestampAttribute' => 'end_timestamp', 'format' => 'dd-MM-yyyy H:m'],
+            ['title', 'string', 'max' => 100],
             [['start_timestamp', 'end_timestamp'], 'default', 'value' =>  mktime(date("H", time()), date("i", time()),0, date("m", time()), date("d", time()), date("Y", time()))],
-        ];
+            ['start_timestamp', 'compareTimestamp'],
+            ];
     }
+    /**
+     * сравнение даты начала и окончания/ дата окончания должна быть меньше даты начала
+     */
+    public function compareTimestamp()
+    {
+        if (!$this->hasErrors()) {
 
+            if ($this->end_timestamp < $this->start_timestamp) {
+                $this->addError('start_timestamp', Yii::t('yee/calendar', 'The event start date must be greater than the end date.'));
+            }
+        }
+    }
     /**
      * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('yee/service', 'ID'),
-            'title' => Yii::t('yee/service', 'Title'),
-            'description' => Yii::t('yee/service', 'Description'),
-            'start_timestamp' => Yii::t('yee/service', 'Start'),
-            'end_timestamp' => Yii::t('yee/service', 'End'),
+            'id' => Yii::t('yee/calendar', 'ID'),
+            'title' => Yii::t('yee/calendar', 'Title'),
+            'description' => Yii::t('yee/calendar', 'Description'),
+            'start_timestamp' => Yii::t('yee/calendar', 'Start Date'),
+            'end_timestamp' => Yii::t('yee/calendar', 'End Date'),
         ];
     }
 }
