@@ -45,14 +45,19 @@ EOF;
         <div class="panel-body">
 
 <?php
+// выбираем мышкой область или кликаем в пустое поле
 $JSSelect = <<<EOF
-    function(start, end) {
+    function(start, end, jsEvent, view) {
         var eventData;
             eventData = {
-                id: 0,
+                id: undefined,
                 start: start.format(),
                 end: end.format(),
+                allDay: start.allDay,
             };
+        $('#w0').fullCalendar('renderEvent', eventData, true);
+        console.log('выбираем мышкой область или кликаем в пустое поле');
+        console.log(eventData);
       $.ajax({
             url: '/admin/calendar/event/init-event',
             type: 'POST',
@@ -68,7 +73,7 @@ $JSSelect = <<<EOF
         });
     }
 EOF;
-
+// кликаем по событию
 $JSEventClick = <<<EOF
     function(calEvent, jsEvent, view) {
 
@@ -76,6 +81,8 @@ $JSEventClick = <<<EOF
             eventData = {
                 id: calEvent.id,
             };
+        console.log('кликаем по событию');
+        console.log(eventData);
       $.ajax({
             url: '/admin/calendar/event/init-event',
             type: 'POST',
@@ -90,7 +97,7 @@ $JSEventClick = <<<EOF
         });
     }
 EOF;
-
+// бросаем событие извне
 $JSDrop = <<<EOF
     function(date, jsEvent, ui, resourceId ) {
       if ($('#drop-remove').is(':checked')) {
@@ -98,10 +105,13 @@ $JSDrop = <<<EOF
              }
         var eventData;
             eventData = {
-                id: 0,
+                id: undefined,
+                title: ui.helper[0].innerHTML,
                 start: date.format(),
-                end: date.format(),
+                end: null,
             };
+        console.log('бросаем событие извне');
+        console.log(eventData);
       $.ajax({
             url: '/admin/calendar/event/init-event',
             type: 'POST',
@@ -117,14 +127,35 @@ $JSDrop = <<<EOF
 
     }
 EOF;
+// растягиваем/сжимаем событие мышкой
 $JSEventResize = <<<EOF
     function(event, delta, revertFunc, jsEvent, ui, view) {
-      console.log(event);
+      var eventData;
+            eventData = {
+                id: event.id,
+                title: event.title,
+                start: event.start.format(),
+                end: event.end.format(),
+                allDay: event.allDay,
+            };
+        console.log('растягиваем/сжимаем событие мышкой');
+        console.log(eventData);
       }
 EOF;
-$JSEventDragStop = <<<EOF
-    function(event, jsEvent, ui, view) {
-      console.log(event);
+// перетаскиваем событие, удерживая мышкой
+$JSEventDrop = <<<EOF
+    function(event, delta, revertFunc, jsEvent, ui, view) {
+        var eventData;
+            eventData = {
+                id: event.id,
+                title: event.title,
+                start: event.start.format(),
+                end: event.end == null ? null : event.end.format(),
+                allDay: event.allDay,
+            };
+      
+     console.log('перетаскиваем событие, удерживая мышкой');
+     console.log(eventData);
       }
 EOF;
 ?>
@@ -155,7 +186,7 @@ EOF;
                     'select' => new JsExpression($JSSelect),
                     'eventClick' => new JsExpression($JSEventClick),
                     'eventResize'=> new JsExpression($JSEventResize),
-                    'eventDragStop'=> new JsExpression($JSEventDragStop),
+                    'eventDrop'=> new JsExpression($JSEventDrop),
                     'defaultDate' => date('Y-m-d H:i')
               ],
 
