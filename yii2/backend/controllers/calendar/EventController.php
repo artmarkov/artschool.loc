@@ -91,6 +91,7 @@ class EventController extends DefaultController
         } elseif ($model->load(Yii::$app->request->post())) {
             $model->start_timestamp = \Yii::$app->formatter->asTimestamp($model->start_timestamp);
             $model->end_timestamp = \Yii::$app->formatter->asTimestamp($model->end_timestamp);
+
           //  echo '<pre>' . print_r($model, true) . '</pre>';     die();
             if ($model->save()) {
                 Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been created.'));
@@ -171,6 +172,8 @@ class EventController extends DefaultController
             $event->title = $item->title;
             $event->color = '#0EB6A2';
             $event->textColor = '#fff';
+            $item->all_day == 1 ? $event->allDay = true : $event->allDay = false;
+
             $event->start = date("Y-m-d H:i", (integer) mktime(
                     date("H", $item->start_timestamp), 
                     date("i", $item->start_timestamp), 
@@ -180,17 +183,17 @@ class EventController extends DefaultController
                     date("Y", $item->start_timestamp)
                     ));
             $event->end = date("Y-m-d H:i", (integer) mktime(
-                    date("H", $item->end_timestamp), 
-                    date("i", $item->end_timestamp), 
-                    0, 
-                    date("m", $item->end_timestamp), 
-                    date("d", $item->end_timestamp), 
+                    date("H", $item->end_timestamp),
+                    date("i", $item->end_timestamp),
+                    0,
+                    date("m", $item->end_timestamp),
+                    date("d", $item->end_timestamp),
                     date("Y", $item->end_timestamp)
                     ));
-            ;
+
             $tasks[] = $event;
         }
-        // echo '<pre>' . print_r($tasks, true) . '</pre>';
+        // echo '<pre>' . print_r($events, true) . '</pre>';
 
         return $tasks;
     }

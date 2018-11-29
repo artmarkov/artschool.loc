@@ -14,24 +14,24 @@ $this->title = 'Events';
 $this->params['breadcrumbs'][] = $this->title;
 
 $DragJS = <<<EOF
-/* initialize the external events
------------------------------------------------------------------*/
-$('#external-events .fc-event').each(function() {
-    // store data so the calendar knows to render an event upon drop
-    $(this).data('event', {
-        title: $.trim($(this).text()), // use the element's text as the event title
-        stick: true // maintain when user navigates (see docs on the renderEvent method)
+    /* initialize the external events
+    -----------------------------------------------------------------*/
+    $('#external-events .fc-event').each(function() {
+        // store data so the calendar knows to render an event upon drop
+        $(this).data('event', {
+            title: $.trim($(this).text()), // use the element's text as the event title
+            stick: true // maintain when user navigates (see docs on the renderEvent method)
+        });
+        // make the event draggable using jQuery UI
+        $(this).draggable({
+            zIndex: 999,
+            revert: true,      // will cause the event to go back to its
+            revertDuration: 0  // original position after the drag
+        });
     });
-    // make the event draggable using jQuery UI
-    $(this).draggable({
-        zIndex: 999,
-        revert: true,      // will cause the event to go back to its
-        revertDuration: 0  // original position after the drag
-    });
-});
 EOF;
-$this->registerJs($DragJS);
-?>
+    $this->registerJs($DragJS);
+    ?>
 <div class="event-index">
 
     <div class="row">
@@ -45,95 +45,117 @@ $this->registerJs($DragJS);
         <div class="panel-body">
 
 <?php
-$JSCode = <<<EOF
-function(start, end) {
-    var eventData;
-        eventData = {
-            id: 0,
-            start: start.format(),
-            end: end.format(),
-        };
-  $.ajax({
-        url: '/admin/calendar/event/init-event',
-        type: 'POST',
-        data: {eventData : eventData},
-        success: function (res) {
-//            console.log(res);
-        $('#w0').fullCalendar('renderEvent', eventData, true);
-        showDay(res);
-        },
-        error: function () {
-            $('#w0').fullCalendar('unselect');
-        }
-    });
-}
+$JSSelect = <<<EOF
+    function(start, end) {
+        var eventData;
+            eventData = {
+                id: 0,
+                start: start.format(),
+                end: end.format(),
+            };
+      $.ajax({
+            url: '/admin/calendar/event/init-event',
+            type: 'POST',
+            data: {eventData : eventData},
+            success: function (res) {
+    //            console.log(res);
+    //        $('#w0').fullCalendar('renderEvent', eventData, true);
+            showDay(res);
+            },
+            error: function () {
+                $('#w0').fullCalendar('unselect');
+            }
+        });
+    }
 EOF;
 
 $JSEventClick = <<<EOF
-function(calEvent, jsEvent, view) {
-        
-    var eventData;
-        eventData = {
-            id: calEvent.id,           
-        };
-  $.ajax({
-        url: '/admin/calendar/event/init-event',
-        type: 'POST',
-        data: {eventData : eventData},
-        success: function (res) {
-           // console.log(res);
-           
-        showDay(res);
-        },
-        error: function () {
-            alert('Error!!!');
-        }
-    });
-        
-        
-//    alert('Event: ' + calEvent.title);
-//    alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-//    alert('View: ' + view.name);
-     console.log(calEvent);
-      //  console.log(jsEvent);
-        console.log(view);
-    // change the border color just for fun
-    //$(this).css('border-color', 'red');
-}
+    function(calEvent, jsEvent, view) {
+
+        var eventData;
+            eventData = {
+                id: calEvent.id,
+            };
+      $.ajax({
+            url: '/admin/calendar/event/init-event',
+            type: 'POST',
+            data: {eventData : eventData},
+            success: function (res) {
+               // console.log(res);
+            showDay(res);
+            },
+            error: function () {
+                alert('Error!!!');
+            }
+        });
+    }
 EOF;
 
-$JSDropEvent = <<<EOF
-function(date) {
-    alert("Dropped on " + date.format());
-    if ($('#drop-remove').is(':checked')) {
-        // if so, remove the element from the "Draggable Events" list
-        $(this).remove();
+$JSDrop = <<<EOF
+    function(date, jsEvent, ui, resourceId ) {
+      if ($('#drop-remove').is(':checked')) {
+             $(this).remove();
+             }
+        var eventData;
+            eventData = {
+                id: 0,
+                start: date.format(),
+                end: date.format(),
+            };
+      $.ajax({
+            url: '/admin/calendar/event/init-event',
+            type: 'POST',
+            data: {eventData : eventData},
+            success: function (res) {
+    //            console.log(res);
+            showDay(res);
+            },
+            error: function () {
+                $('#w0').fullCalendar('unselect');
+            }
+        });
+
     }
-}
+EOF;
+$JSEventResize = <<<EOF
+    function(event, delta, revertFunc, jsEvent, ui, view) {
+      console.log(event);
+      }
+EOF;
+$JSEventDragStop = <<<EOF
+    function(event, jsEvent, ui, view) {
+      console.log(event);
+      }
 EOF;
 ?>
             <div class="row">
                 <div class="col-md-10">
 
             <?= \yii2fullcalendar\yii2fullcalendar::widget([
+                //'defaultView' => 'basicWeek',
+                //'defaultView' => 'basicDay',
+                //'defaultView' => 'agendaDay',
                 'options' => [
                     'lang' => 'ru',
-
                 ],
                 'header' => [
 				'left'=> 'prev,next today',
 				'center'=> 'title',
-				'right'=> 'month,agendaWeek,agendaDay'
+				'right'=> 'month,agendaWeek,agendaDay,listMonth',
+
 			],
+
                 'clientOptions' => [
 
                     'selectable' => true,
                     'selectHelper' => true,
                     'droppable' => true,
                     'editable' => true,
-                    'drop' => new JsExpression($JSDropEvent),
-                    'select' => new JsExpression($JSCode),
+                    'drop' => new JsExpression($JSDrop),
+                    'select' => new JsExpression($JSSelect),
                     'eventClick' => new JsExpression($JSEventClick),
+                    'eventResize'=> new JsExpression($JSEventResize),
+                    'eventDragStop'=> new JsExpression($JSEventDragStop),
                     'defaultDate' => date('Y-m-d H:i')
               ],
 
@@ -163,13 +185,13 @@ EOF;
 </div>
 
 <?php \yii\bootstrap\Modal::begin([
-            'header' => '<h3 class="lte-hide-title page-title">' . Yii::t('yee/calendar', 'Event') . '</h3>',
-            'size' => 'modal-lg',
-            'id' => 'event-modal',
-            //'footer' => 'footer',
-        ]);
+    'header' => '<h3 class="lte-hide-title page-title">' . Yii::t('yee/calendar', 'Event') . '</h3>',
+    'size' => 'modal-lg',
+    'id' => 'event-modal',
+    //'footer' => 'footer',
+]);
 
-        \yii\bootstrap\Modal::end(); ?>
+\yii\bootstrap\Modal::end(); ?>
 
 <?php
 $js = <<<JS
@@ -178,7 +200,6 @@ function showDay(res) {
     $('#event-modal .modal-body').html(res);
     $('#event-modal').modal();
 }
-
 JS;
 
 $this->registerJs($js);
