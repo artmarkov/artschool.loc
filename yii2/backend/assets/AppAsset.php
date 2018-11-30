@@ -21,11 +21,14 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
-        
+        //js переопределяющий yii.confirm
+        'js/yii.confirm.overrides.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
 
+        //импорт файлов BootboxAsset
+        'backend\assets\BootboxAsset',
     ];
 }

@@ -29,8 +29,9 @@ $DragJS = <<<EOF
             revertDuration: 0  // original position after the drag
         });
     });
+
 EOF;
-    $this->registerJs($DragJS);
+$this->registerJs($DragJS);
     ?>
 <div class="event-index">
 
@@ -50,7 +51,7 @@ $JSSelect = <<<EOF
     function(start, end, jsEvent, view) {
         var eventData;
             eventData = {
-                id: undefined,
+                id: 0,
                 start: start.format(),
                 end: end.format(),
                 allDay: start.allDay,
@@ -105,26 +106,25 @@ $JSDrop = <<<EOF
              }
         var eventData;
             eventData = {
-                id: undefined,
+                id: 0,
                 title: ui.helper[0].innerHTML,
                 start: date.format(),
-                end: null,
+                end: date.format(),
             };
         console.log('бросаем событие извне');
         console.log(eventData);
       $.ajax({
-            url: '/admin/calendar/event/init-event',
+            url: '/admin/calendar/event/refactor-event',
             type: 'POST',
             data: {eventData : eventData},
             success: function (res) {
-    //            console.log(res);
-            showDay(res);
+                  console.log(res);
             },
             error: function () {
-                $('#w0').fullCalendar('unselect');
+               // alert('Error!!!');
+               console.log(res);
             }
         });
-
     }
 EOF;
 // растягиваем/сжимаем событие мышкой
@@ -140,6 +140,17 @@ $JSEventResize = <<<EOF
             };
         console.log('растягиваем/сжимаем событие мышкой');
         console.log(eventData);
+         $.ajax({
+            url: '/admin/calendar/event/refactor-event',
+            type: 'POST',
+            data: {eventData : eventData},
+            success: function (res) {
+                //  console.log(res);
+            },
+            error: function () {
+                alert('Error!!!');
+            }
+        });
       }
 EOF;
 // перетаскиваем событие, удерживая мышкой
@@ -156,6 +167,17 @@ $JSEventDrop = <<<EOF
       
      console.log('перетаскиваем событие, удерживая мышкой');
      console.log(eventData);
+      $.ajax({
+            url: '/admin/calendar/event/refactor-event',
+            type: 'POST',
+            data: {eventData : eventData},
+            success: function (res) {
+                //  console.log(res);
+            },
+            error: function () {
+                alert('Error!!!');
+            }
+        });
       }
 EOF;
 ?>
@@ -163,7 +185,7 @@ EOF;
                 <div class="col-md-10">
 
             <?= \yii2fullcalendar\yii2fullcalendar::widget([
-                //'defaultView' => 'basicWeek',
+                'defaultView' => 'basicWeek',
                 //'defaultView' => 'basicDay',
                 //'defaultView' => 'agendaDay',
                 'options' => [
@@ -175,19 +197,24 @@ EOF;
 				'right'=> 'month,agendaWeek,agendaDay,listMonth',
 
 			],
-
                 'clientOptions' => [
 
                     'selectable' => true,
                     'selectHelper' => true,
                     'droppable' => true,
                     'editable' => true,
+                    'eventDurationEditable'  => true, // разрешить изменение размера
+                    'eventOverlap'  => true, // разрешить перекрытие событий
                     'drop' => new JsExpression($JSDrop),
                     'select' => new JsExpression($JSSelect),
                     'eventClick' => new JsExpression($JSEventClick),
                     'eventResize'=> new JsExpression($JSEventResize),
                     'eventDrop'=> new JsExpression($JSEventDrop),
-                    'defaultDate' => date('Y-m-d H:i')
+                    'defaultDate' => date('Y-m-d H:i'),
+                    'defaultTimedEventDuration' => '00:45:00', // при перетаскивании события в календарь задается длительность события
+                    'defaultAllDayEventDuration' => [
+                        'days' => '1'// то-же при перетаскиваниив в allDay
+                    ],
               ],
 
                'events' => \yii\helpers\Url::to(['/calendar/event/calendar']),
