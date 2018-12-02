@@ -26,6 +26,7 @@ class AppAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\YiiAsset',
+        'yii\jui\JuiAsset', // для календаря
         'yii\bootstrap\BootstrapAsset',
 
         //импорт файлов BootboxAsset

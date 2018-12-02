@@ -3,10 +3,12 @@
 namespace backend\controllers\calendar;
 
 use common\models\calendar\Event;
+use common\models\auditory\Auditory;
 use Yii;
 use backend\controllers\DefaultController;
 use yii\helpers\Json;
 use yii\helpers\Url;
+use edofre\fullcalendarscheduler\models\Resource;
 
 /**
  * EventController implements the CRUD actions for common\models\calendar\Event model.
@@ -39,8 +41,17 @@ class EventController extends DefaultController
     public function actionIndex()
     {
         return $this->renderIsAjax('index');
+    } 
+    /**
+     * @return string|\yii\web\Response
+     *
+     * рендерим виджет календаря - расписания по аудиториям
+     *
+     */
+    public function actionSchedule()
+    {
+        return $this->renderIsAjax('schedule');
     }
-
     /**
      * @return string|\yii\web\Response
      *
@@ -150,7 +161,7 @@ class EventController extends DefaultController
      *
      * @return array
      */
-    public function actionCalendar($start = NULL, $end = NULL, $_ = NULL)
+    public function actionCalendar()
     {
 
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
@@ -174,12 +185,15 @@ class EventController extends DefaultController
         $tasks = [];
         foreach ($events as $item) {
 
-            $event = new \yii2fullcalendar\models\Event();
+            $event = new \edofre\fullcalendarscheduler\models\Event();
             $event->id = $item->id;
             $event->title = $item->title;
-            $event->color = '#0EB6A2';
-            $event->textColor = '#fff';
-            $event->borderColor = '#DADADA';
+            $event->resourceId = $item->auditory_id;
+            $event->color = $item->categoryColor; 
+            $event->textColor = $item->categoryTextColor;
+            $event->borderColor = $item->categoryBorderColor;
+            if($item->categoryRendering != 0)  $event->rendering = 'background'; // для фоновых событий
+            
             // $event->url = Url::to(['/calendar/event/view', 'id' => $item->id]); // ссылка для просмотра события - перебивает событие по клику!!!
             $item->all_day == 1 ? $event->allDay = true : $event->allDay = false;
 
@@ -199,12 +213,33 @@ class EventController extends DefaultController
                 date("d", $item->end_timestamp),
                 date("Y", $item->end_timestamp)
             ));
-            // $event->rendering = 'background'; // для фоновых событий
             $tasks[] = $event;
         }
         // echo '<pre>' . print_r($events, true) . '</pre>';
 
         return $tasks;
+    }
+    
+ public function actionResources()
+    {
+
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        
+        $events = Auditory::find()
+               
+                ->all();
+        $tasks = [];
+        foreach ($events as $item) {
+
+            $resource = new Resource();
+            $resource->id = $item->id;
+            $resource->building = $item->buildingName;
+            $resource->title = $item->num . ' ' .$item->name;
+           
+            $tasks[] = $resource;
+        }
+         //echo '<pre>' . print_r($tasks, true) . '</pre>';
+         return $tasks;
     }
 
     /**

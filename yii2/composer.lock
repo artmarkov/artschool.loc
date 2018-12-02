@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "71c0c1fdfe7e3cf263ae18ec18714592",
+    "content-hash": "bcb856f1a5b11b352babd159c898a70e",
     "packages": [
         {
             "name": "2amigos/yii2-file-upload-widget",
@@ -1145,6 +1145,110 @@
             "time": "2018-11-14T11:29:47+00:00"
         },
         {
+            "name": "edofre/yii2-fullcalendar",
+            "version": "V1.0.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Edofre/yii2-fullcalendar.git",
+                "reference": "0eed44a374a95849093891f08df20b79942a0c62"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Edofre/yii2-fullcalendar/zipball/0eed44a374a95849093891f08df20b79942a0c62",
+                "reference": "0eed44a374a95849093891f08df20b79942a0c62",
+                "shasum": ""
+            },
+            "require": {
+                "npm-asset/fullcalendar": "v3.8.0",
+                "php": ">=5.5.0",
+                "yiisoft/yii2": ">=2.0.9",
+                "yiisoft/yii2-jui": ">=2.0.6"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "edofre\\fullcalendar\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Edo Freriks",
+                    "email": "edofre@gmail.com"
+                }
+            ],
+            "description": "Yii2 widget for fullcalendar",
+            "homepage": "https://github.com/edofre/yii2-fullcalendar",
+            "keywords": [
+                "calendar",
+                "event",
+                "fullcalendar",
+                "javascript"
+            ],
+            "time": "2018-01-04T21:25:17+00:00"
+        },
+        {
+            "name": "edofre/yii2-fullcalendar-scheduler",
+            "version": "V1.1.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Edofre/yii2-fullcalendar-scheduler.git",
+                "reference": "36a2fe9e1bbb51d290423cbca87f3f12d00e9198"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Edofre/yii2-fullcalendar-scheduler/zipball/36a2fe9e1bbb51d290423cbca87f3f12d00e9198",
+                "reference": "36a2fe9e1bbb51d290423cbca87f3f12d00e9198",
+                "shasum": ""
+            },
+            "require": {
+                "npm-asset/fullcalendar": "v3.8.0",
+                "npm-asset/fullcalendar-scheduler": "1.9.1",
+                "php": ">=5.5.0",
+                "yiisoft/yii2": ">=2.0.9",
+                "yiisoft/yii2-jui": ">=2.0.6"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "edofre\\fullcalendarscheduler\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Edo Freriks",
+                    "email": "edofre@gmail.com"
+                }
+            ],
+            "description": "Yii2 widget for fullcalendar scheduler module",
+            "homepage": "https://github.com/edofre/yii2-fullcalendar-scheduler",
+            "keywords": [
+                "calendar",
+                "event",
+                "fullcalendar-scheduler",
+                "javascript",
+                "scheduler"
+            ],
+            "time": "2018-03-28T09:19:09+00:00"
+        },
+        {
             "name": "ezyang/htmlpurifier",
             "version": "v4.10.0",
             "source": {
@@ -1289,16 +1393,16 @@
         },
         {
             "name": "ikimea/browser",
-            "version": "1.15.0",
+            "version": "1.15.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Ikimea/Browser.git",
-                "reference": "7f54cdcf2b7b324a0a32eb89e6df34ffcb6d15a3"
+                "reference": "774a9b7c5f10c5ae01402994bedaf34dd9a0ccf6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ikimea/Browser/zipball/7f54cdcf2b7b324a0a32eb89e6df34ffcb6d15a3",
-                "reference": "7f54cdcf2b7b324a0a32eb89e6df34ffcb6d15a3",
+                "url": "https://api.github.com/repos/Ikimea/Browser/zipball/774a9b7c5f10c5ae01402994bedaf34dd9a0ccf6",
+                "reference": "774a9b7c5f10c5ae01402994bedaf34dd9a0ccf6",
                 "shasum": ""
             },
             "require": {
@@ -1333,7 +1437,7 @@
             "keywords": [
                 "browser"
             ],
-            "time": "2017-06-09T09:14:21+00:00"
+            "time": "2018-11-29T17:06:42+00:00"
         },
         {
             "name": "imagine/imagine",
@@ -1495,16 +1599,16 @@
         },
         {
             "name": "kartik-v/yii2-krajee-base",
-            "version": "v2.0.2",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-krajee-base.git",
-                "reference": "e23b914399c77df45123d1ac848cf129f0d3d740"
+                "reference": "11896b44c3d70666b057c9153f2f77aeeb078ff6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/e23b914399c77df45123d1ac848cf129f0d3d740",
-                "reference": "e23b914399c77df45123d1ac848cf129f0d3d740",
+                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/11896b44c3d70666b057c9153f2f77aeeb078ff6",
+                "reference": "11896b44c3d70666b057c9153f2f77aeeb078ff6",
                 "shasum": ""
             },
             "suggest": {
@@ -1543,7 +1647,61 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2018-11-26T06:13:21+00:00"
+            "time": "2018-11-27T03:22:26+00:00"
+        },
+        {
+            "name": "kartik-v/yii2-widget-colorinput",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-widget-colorinput.git",
+                "reference": "199d1bf8afb7f867dd970f804121e7a5bc515694"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-colorinput/zipball/199d1bf8afb7f867dd970f804121e7a5bc515694",
+                "reference": "199d1bf8afb7f867dd970f804121e7a5bc515694",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": ">=1.9"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\color\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An enhanced Yii 2 widget encapsulating the HTML 5 color input (sub repo split from yii2-widgets)",
+            "homepage": "https://github.com/kartik-v/yii2-widget-colorinput",
+            "keywords": [
+                "HTML5",
+                "color",
+                "extension",
+                "form",
+                "input",
+                "jquery",
+                "plugin",
+                "widget",
+                "yii2"
+            ],
+            "time": "2018-11-05T12:32:25+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-datepicker",
@@ -2133,6 +2291,245 @@
             "time": "2014-10-16T23:17:26+00:00"
         },
         {
+            "name": "npm-asset/fullcalendar",
+            "version": "3.8.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/fullcalendar/-/fullcalendar-3.8.0.tgz",
+                "reference": null,
+                "shasum": "4c0fe494a62b0a8d640c6de8eb883b49a212b5dc"
+            },
+            "require": {
+                "npm-asset/jquery": ">=2,<4.0",
+                "npm-asset/moment": ">=2.9.0,<3.0.0"
+            },
+            "type": "npm-asset-library",
+            "extra": {
+                "npm-asset-bugs": {
+                    "url": "https://fullcalendar.io/wiki/Reporting-Bugs/"
+                },
+                "npm-asset-files": [
+                    "dist/*.js",
+                    "dist/*.css",
+                    "dist/*.d.ts",
+                    "dist/locale/*.js",
+                    "README.*",
+                    "LICENSE.*",
+                    "CHANGELOG.*",
+                    "CONTRIBUTING.*"
+                ],
+                "npm-asset-main": "dist/fullcalendar.js",
+                "npm-asset-directories": [],
+                "npm-asset-repository": {
+                    "type": "git",
+                    "url": "git+https://github.com/fullcalendar/fullcalendar.git"
+                },
+                "npm-asset-scripts": {
+                    "clean": "gulp clean",
+                    "dist": "gulp dist",
+                    "lint": "gulp lint",
+                    "test": "gulp test:single"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Shaw",
+                    "email": "arshaw@arshaw.com",
+                    "url": "http://arshaw.com/"
+                }
+            ],
+            "description": "Full-sized drag & drop event calendar",
+            "homepage": "https://fullcalendar.io/",
+            "keywords": [
+                "calendar",
+                "event",
+                "full-sized",
+                "jquery-plugin"
+            ],
+            "time": "2017-12-18T05:59:22+00:00"
+        },
+        {
+            "name": "npm-asset/fullcalendar-scheduler",
+            "version": "1.9.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/fullcalendar-scheduler/-/fullcalendar-scheduler-1.9.1.tgz",
+                "reference": null,
+                "shasum": "a9f5d7af913e9fe4a16cbc4589964f40b76bf01f"
+            },
+            "require": {
+                "npm-asset/fullcalendar": "~3.8.0",
+                "npm-asset/jquery": ">=2,<4.0",
+                "npm-asset/moment": ">=2.9.0,<3.0.0"
+            },
+            "type": "npm-asset-library",
+            "extra": {
+                "npm-asset-bugs": {
+                    "url": "https://github.com/fullcalendar/fullcalendar-scheduler/issues"
+                },
+                "npm-asset-files": [
+                    "dist/*.js",
+                    "dist/*.css",
+                    "dist/*.d.ts",
+                    "README.*",
+                    "LICENSE.*",
+                    "CHANGELOG.*",
+                    "CONTRIBUTING.*"
+                ],
+                "npm-asset-main": "dist/scheduler.js",
+                "npm-asset-directories": [],
+                "npm-asset-repository": {
+                    "type": "git",
+                    "url": "git+https://github.com/fullcalendar/fullcalendar-scheduler.git"
+                },
+                "npm-asset-scripts": {
+                    "clean": "gulp clean",
+                    "dist": "gulp dist",
+                    "lint": "gulp lint",
+                    "test": "gulp test:single",
+                    "test-side-effects": "./bin/test-side-effects.sh"
+                }
+            },
+            "license": [
+                "SEE LICENSE IN LICENSE.md"
+            ],
+            "description": "A premium add-on to FullCalendar for displaying events and resources",
+            "homepage": "https://fullcalendar.io/scheduler/",
+            "time": "2017-12-18T06:00:21+00:00"
+        },
+        {
+            "name": "npm-asset/jquery",
+            "version": "3.3.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/jquery/-/jquery-3.3.1.tgz",
+                "reference": null,
+                "shasum": "958ce29e81c9790f31be7792df5d4d95fc57fbca"
+            },
+            "type": "npm-asset-library",
+            "extra": {
+                "npm-asset-bugs": {
+                    "url": "https://github.com/jquery/jquery/issues"
+                },
+                "npm-asset-main": "dist/jquery.js",
+                "npm-asset-directories": [],
+                "npm-asset-repository": {
+                    "type": "git",
+                    "url": "git+https://github.com/jquery/jquery.git"
+                },
+                "npm-asset-scripts": {
+                    "build": "npm install && grunt",
+                    "start": "grunt watch",
+                    "test:browserless": "grunt && grunt test:slow",
+                    "test:browser": "grunt && grunt karma:main",
+                    "test": "grunt && grunt test:slow && grunt karma:main",
+                    "jenkins": "npm run test:browserless",
+                    "precommit": "grunt lint:newer qunit_fixture",
+                    "commitmsg": "node node_modules/commitplease"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "JS Foundation and other contributors",
+                    "url": "https://github.com/jquery/jquery/blob/3.3.1/AUTHORS.txt"
+                }
+            ],
+            "description": "JavaScript library for DOM operations",
+            "homepage": "https://jquery.com",
+            "keywords": [
+                "browser",
+                "javascript",
+                "jquery",
+                "library"
+            ],
+            "time": "2018-01-20T17:27:11+00:00"
+        },
+        {
+            "name": "npm-asset/moment",
+            "version": "2.22.2",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/moment/-/moment-2.22.2.tgz",
+                "reference": null,
+                "shasum": "3c257f9839fc0e93ff53149632239eb90783ff66"
+            },
+            "type": "npm-asset-library",
+            "extra": {
+                "npm-asset-bugs": {
+                    "url": "https://github.com/moment/moment/issues"
+                },
+                "npm-asset-main": "./moment.js",
+                "npm-asset-directories": [],
+                "npm-asset-repository": {
+                    "type": "git",
+                    "url": "git+https://github.com/moment/moment.git"
+                },
+                "npm-asset-scripts": {
+                    "typescript-test": "tsc --project typing-tests",
+                    "test": "grunt test",
+                    "coverage": "nyc npm test && nyc report",
+                    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
+                },
+                "npm-asset-engines": {
+                    "node": "*"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Iskren Ivov Chernev",
+                    "email": "iskren.chernev@gmail.com",
+                    "url": "https://github.com/ichernev"
+                },
+                {
+                    "name": "Tim Wood",
+                    "email": "washwithcare@gmail.com",
+                    "url": "http://timwoodcreates.com/"
+                },
+                {
+                    "name": "Rocky Meza",
+                    "url": "http://rockymeza.com"
+                },
+                {
+                    "name": "Matt Johnson",
+                    "email": "mj1856@hotmail.com",
+                    "url": "http://codeofmatt.com"
+                },
+                {
+                    "name": "Isaac Cambron",
+                    "email": "isaac@isaaccambron.com",
+                    "url": "http://isaaccambron.com"
+                },
+                {
+                    "name": "Andre Polykanine",
+                    "email": "andre@oire.org",
+                    "url": "https://github.com/oire"
+                }
+            ],
+            "description": "Parse, validate, manipulate, and display dates",
+            "homepage": "http://momentjs.com",
+            "keywords": [
+                "date",
+                "ender",
+                "format",
+                "i18n",
+                "l10n",
+                "moment",
+                "parse",
+                "time",
+                "validate"
+            ],
+            "time": "2018-06-01T06:58:41+00:00"
+        },
+        {
             "name": "omgdef/yii2-multilingual-behavior",
             "version": "2.1.2",
             "source": {
@@ -2275,6 +2672,55 @@
                 "yii2"
             ],
             "time": "2018-05-04T09:06:24+00:00"
+        },
+        {
+            "name": "philippfrenzel/yii2fullcalendarscheduler",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/philippfrenzel/yii2fullcalendar-scheduler.git",
+                "reference": "0b0d4e60def389e3e75756ede67a5b2a01513bd4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/philippfrenzel/yii2fullcalendar-scheduler/zipball/0b0d4e60def389e3e75756ede67a5b2a01513bd4",
+                "reference": "0b0d4e60def389e3e75756ede67a5b2a01513bd4",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/fullcalendar-scheduler": "*",
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-jui": "*"
+            },
+            "require-dev": {
+                "codeception/codeception": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yii2fullcalendarscheduler\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Philipp Frenzel",
+                    "email": "philipp@frenzel.net",
+                    "homepage": "http://www.frenzel.net/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Yii2 fullcalendar Widgets",
+            "homepage": "http://www.frenzel.net/",
+            "keywords": [
+                "fullcalendar scheduler",
+                "yii2"
+            ],
+            "time": "2018-07-24T19:47:56+00:00"
         },
         {
             "name": "rmrevin/yii2-fontawesome",
@@ -3877,7 +4323,8 @@
         "loveorigami/yii2-modal-ajax": 20,
         "kartik-v/yii2-widget-select2": 20,
         "kartik-v/yii2-widget-datetimepicker": 20,
-        "kartik-v/yii2-widget-fileinput": 20
+        "kartik-v/yii2-widget-fileinput": 20,
+        "kartik-v/yii2-widget-colorinput": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

@@ -37,6 +37,7 @@ class Event extends \yii\db\ActiveRecord
             ['title', 'string', 'max' => 100],
             [['start_timestamp', 'end_timestamp'], 'default', 'value' =>  mktime(date("H", time()), date("i", time()),0, date("m", time()), date("d", time()), date("Y", time()))],
             ['start_timestamp', 'compareTimestamp'],
+            [['category_id', 'auditory_id'], 'integer'],
             ];
     }
     /**
@@ -63,6 +64,48 @@ class Event extends \yii\db\ActiveRecord
             'start_timestamp' => Yii::t('yee/calendar', 'Start Date'),
             'end_timestamp' => Yii::t('yee/calendar', 'End Date'),
             'all_day' => Yii::t('yee/calendar', 'All Day'),
+            'category_id' => Yii::t('yee/calendar', 'Category Name'),
+            'auditory_id' => Yii::t('yee/guide', 'Auditory Name'),
         ];
+    }
+     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(EventCategory::className(), ['id' => 'category_id']);
+    }
+/**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAuditory()
+    {
+        return $this->hasOne(\common\models\auditory\Auditory::className(), ['id' => 'auditory_id']);
+    }
+
+    /* Геттер для названия категории */
+    public function getCategoryName()
+    {
+        return $this->category->name;
+    }
+    /* Геттер для названия цвета */
+    public function getCategoryColor()
+    {
+        return $this->category->color;
+    }
+    /* Геттер для названия цвета шрифта*/
+    public function getCategoryTextColor()
+    {
+        return $this->category->text_color;
+    }
+    /* Геттер для названия цвета рамки*/
+    public function getCategoryBorderColor()
+    {
+        return $this->category->border_color;
+    }
+    /* геттер определения вида представления события категории в виде фона или бара */
+     public function getCategoryRendering() 
+    {
+        return $this->category->rendering;
     }
 }
