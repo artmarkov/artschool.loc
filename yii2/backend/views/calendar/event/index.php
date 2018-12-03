@@ -192,7 +192,7 @@ EOF;
                 'header' => [
 				'left'=> 'prev,next today',
 				'center'=> 'title',
-				'right'=> 'month,agendaWeek,agendaDay,listMonth',
+				'right'=> 'agendaDay,agendaWeek,month,listMonth',
 
 			],
                 'clientOptions' => [ 
@@ -213,6 +213,7 @@ EOF;
                         'days' => '1'// то-же при перетаскиваниив в allDay
                     ],
                     'aspectRatio'       => 1.8,
+                    'defaultView' => 'agendaWeek',
               ],
 
                'events' => \yii\helpers\Url::to(['/calendar/event/calendar']),

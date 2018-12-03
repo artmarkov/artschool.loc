@@ -35,8 +35,8 @@ class Event extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['start_timestamp', 'end_timestamp','all_day'], 'safe'],
             ['title', 'string', 'max' => 100],
-            [['start_timestamp', 'end_timestamp'], 'default', 'value' =>  mktime(date("H", time()), date("i", time()),0, date("m", time()), date("d", time()), date("Y", time()))],
-            ['start_timestamp', 'compareTimestamp'],
+//            [['start_timestamp', 'end_timestamp'], 'default', 'value' =>  mktime(date("H", time()), date("i", time()),0, date("m", time()), date("d", time()), date("Y", time()))],
+//            ['start_timestamp', 'compareTimestamp'],
             [['category_id', 'auditory_id'], 'integer'],
             ];
     }

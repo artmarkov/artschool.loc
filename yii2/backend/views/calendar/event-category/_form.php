@@ -3,6 +3,7 @@
 use yeesoft\widgets\ActiveForm;
 use common\models\calendar\EventCategory;
 use yeesoft\helpers\Html;
+use kartik\color\ColorInput;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\calendar\EventCategory */
@@ -26,11 +27,20 @@ use yeesoft\helpers\Html;
                     
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'color')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'color')->widget(ColorInput::classname(), [
+                        'options' => ['placeholder' => 'Select color ...'],
+                        'pluginOptions' => ['preferredFormat' => 'rgb']
+]); ?>
 
-                    <?= $form->field($model, 'text_color')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'text_color')->widget(ColorInput::classname(), [
+                        'options' => ['placeholder' => 'Select color ...'],
+                        'pluginOptions' => ['preferredFormat' => 'rgb']
+]); ?>
 
-                    <?= $form->field($model, 'border_color')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'border_color')->widget(ColorInput::classname(), [
+                        'options' => ['placeholder' => 'Select color ...'],
+                        'pluginOptions' => ['preferredFormat' => 'rgb']
+]); ?>
 
                     <?= $form->field($model, 'rendering')->textInput() ?>
 
@@ -54,11 +64,11 @@ use yeesoft\helpers\Html;
                         <div class="form-group">
                             <?php  if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
-                                <?= Html::a(Yii::t('yee', 'Cancel'), ['/event-category/default/index'], ['class' => 'btn btn-default']) ?>
+                                <?= Html::a(Yii::t('yee', 'Cancel'), ['/calendar/event-category/index'], ['class' => 'btn btn-default']) ?>
                             <?php  else: ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
                                 <?= Html::a(Yii::t('yee', 'Delete'),
-                                    ['/event-category/default/delete', 'id' => $model->id], [
+                                    ['/calendar/event-category/delete', 'id' => $model->id], [
                                     'class' => 'btn btn-default',
                                     'data' => [
                                         'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),

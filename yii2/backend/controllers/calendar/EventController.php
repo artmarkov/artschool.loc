@@ -68,7 +68,7 @@ class EventController extends DefaultController
             $model = new Event();
             $model->start_timestamp = \Yii::$app->formatter->asDatetime($eventData['start']);
             $model->end_timestamp = \Yii::$app->formatter->asDatetime($eventData['end']);
-
+            $model->auditory_id = $eventData['resourceId'];
             return $this->renderAjax('event-modal', [
                 'model' => $model
             ]);
@@ -257,6 +257,8 @@ class EventController extends DefaultController
         $model->end_timestamp = \Yii::$app->formatter->asTimestamp($eventData['end']);
         $eventData['allDay'] == 'false' ? $model->all_day = 0 : $model->all_day = 1;
         $model->title = $eventData['title'];
+        $model->auditory_id = $eventData['resourceId'];
+        //$model->category_id = 2;
         $model->save(false);
        // echo '<pre>' . print_r($model, true) . '</pre>';
         return true;

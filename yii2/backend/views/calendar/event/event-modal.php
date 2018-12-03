@@ -25,6 +25,10 @@ use yeesoft\helpers\Html;
             <div class="panel panel-default">
                 <div class="panel-body">
 
+                    <?= $form->field($model, 'category_id') ?>
+
+                    <?= $form->field($model, 'auditory_id') ?>
+
                     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
                     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
