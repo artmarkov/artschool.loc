@@ -6,6 +6,7 @@ use yeesoft\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\calendar\Event */
 /* @var $form yeesoft\widgets\ActiveForm */
+
 ?>
 
 <div class="event-form">
@@ -14,9 +15,9 @@ use yeesoft\helpers\Html;
     $form = ActiveForm::begin([
                 'id' => 'event-form',
                 'enableAjaxValidation' => true,
-                'action' => $model->isNewRecord ?
-                        ['/calendar/event/create-event'] :
-                        ['/calendar/event/update-event?id=' . $model->id],
+//                'action' => $model->isNewRecord ?
+//                        ['/calendar/event/create-event'] :
+//                        ['/calendar/event/update-event?id=' . $model->id],
     ]);
     ?>
 
@@ -42,11 +43,11 @@ use yeesoft\helpers\Html;
             </div>
             <div class="form-group">
                 <?php if ($model->isNewRecord): ?>
-                    <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
+                    <?= Html::a(Yii::t('yee', 'Create'), ['#'],['class' => 'btn btn-primary create-event']) ?>
                     <?= Html::a(Yii::t('yee', 'Cancel'), ['/calendar/event/index'], ['class' => 'btn btn-default']) ?>
                 <?php else: ?> 
                     
-                    <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
+                    <?= Html::a(Yii::t('yee', 'Save'), ['#'],['class' => 'btn btn-primary create-event']) ?>
                     <?=
                     Html::a(Yii::t('yee', 'Delete'), ['/calendar/event/delete', 'id' => $model->id], [
                         'class' => 'btn btn-default',
@@ -64,3 +65,41 @@ use yeesoft\helpers\Html;
     <?php ActiveForm::end(); ?>
 
 </div>
+<?php
+$js = <<<JS
+
+$('.create-event').on('click', function (e) {
+
+    e.preventDefault();
+    
+    var eventData;
+            eventData = {
+                id : $model->id,
+                category_id : $('#event-category_id').val(),
+                auditory_id : $('#event-auditory_id').val(),
+                title : $('#event-title').val(),
+                description : $('#event-description').val(),
+                start : $('#event-start_timestamp').val(),
+                end : $('#event-end_timestamp').val(),
+            };
+
+    $.ajax({
+        url: '/admin/calendar/event/refactor-event',
+         data: {eventData : eventData},
+        type: 'POST',
+    success: function (res) {
+        if (!res)  alert('Error!');
+       // alert('Закрыть!');
+                console.log(res);
+            
+            },
+            error: function () {
+                alert('Error!!!');
+            }
+        });
+});
+
+JS;
+
+$this->registerJs($js);
+?>

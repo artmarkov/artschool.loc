@@ -247,7 +247,6 @@ class EventController extends DefaultController
      */
     public function actionRefactorEvent()
     {
-
         $eventData = Yii::$app->request->post('eventData');
         $id = $eventData['id'];
 
@@ -258,9 +257,10 @@ class EventController extends DefaultController
         $eventData['allDay'] == 'false' ? $model->all_day = 0 : $model->all_day = 1;
         $model->title = $eventData['title'];
         $model->auditory_id = $eventData['resourceId'];
-        //$model->category_id = 2;
+        $model->category_id = $eventData['category_id'];
+        $model->description = $eventData['description'];
+       // echo '<pre>' . print_r($model, true) . '</pre>'; 
         $model->save(false);
-       // echo '<pre>' . print_r($model, true) . '</pre>';
         return true;
     }
 }
