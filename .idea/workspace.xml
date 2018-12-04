@@ -25,50 +25,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="_form.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yii2/backend/views/calendar/event-category/_form.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-28.115385" vertical-offset="17" max-vertical-offset="1615">
-              <caret line="44" column="73" selection-start-line="44" selection-start-column="73" selection-end-line="44" selection-end-column="73" />
-              <folding>
-                <element signature="e#7#38#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EventController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="EventController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/yii2/backend/controllers/calendar/EventController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-25.615385" vertical-offset="3652" max-vertical-offset="4522">
-              <caret line="260" column="10" selection-start-line="260" selection-start-column="10" selection-end-line="260" selection-end-column="10" />
-              <folding />
+            <state vertical-scroll-proportion="0.8241379" vertical-offset="3227" max-vertical-offset="4097">
+              <caret line="232" column="5" selection-start-line="232" selection-start-column="5" selection-end-line="232" selection-end-column="5" />
+              <folding>
+                <element signature="e#48#81#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="schedule.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/yii2/backend/views/calendar/event/schedule.php">
+      <file leaf-file-name="BaseController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yii2/vendor/yeesoft/yii2-yee-core/controllers/admin/BaseController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5275862" vertical-offset="612" max-vertical-offset="4080">
-              <caret line="63" column="29" selection-start-line="63" selection-start-column="29" selection-end-line="63" selection-end-column="29" />
-              <folding>
-                <element signature="e#8#33#0#PHP" expanded="true" />
-                <element signature="e#3041#3836#0#PHP" expanded="false" />
-                <element signature="e#3896#4717#0#PHP" expanded="false" />
-                <element signature="e#4756#5884#0#PHP" expanded="false" />
-                <element signature="e#10410#10428#0#HTML" expanded="true" />
-                <marker date="1543848679250" expanded="true" signature="9353:9772" placeholder="..." />
-                <marker date="1543848679250" expanded="true" signature="9407:9772" placeholder="..." />
-                <marker date="1543848679250" expanded="true" signature="9700:9772" placeholder="..." />
-                <marker date="1543848679250" expanded="true" signature="10108:10309" placeholder="..." />
-                <marker date="1543848679250" expanded="true" signature="10787:11066" placeholder="//..." />
-                <marker date="1543848679250" expanded="true" signature="10787:11168" placeholder="//..." />
-                <marker date="1543848679250" expanded="true" signature="10832:10966" placeholder="{...}" />
-                <marker date="1543848679250" expanded="true" signature="11089:11168" placeholder="{...}" />
-                <marker date="1543848679250" expanded="true" signature="11248:11306" placeholder="{...}" />
-                <marker date="1543848679250" expanded="true" signature="11336:11377" placeholder="{...}" />
-              </folding>
+            <state vertical-scroll-proportion="-20.923077" vertical-offset="2652" max-vertical-offset="6698">
+              <caret line="198" column="25" selection-start-line="198" selection-start-column="8" selection-end-line="198" selection-end-column="25" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -76,8 +50,8 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yii2/backend/views/calendar/event/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-29.423077" vertical-offset="2873" max-vertical-offset="4828">
-              <caret line="215" column="50" selection-start-line="215" selection-start-column="50" selection-end-line="215" selection-end-column="50" />
+            <state vertical-scroll-proportion="-4.6923075" vertical-offset="3091" max-vertical-offset="4828">
+              <caret line="190" column="18" selection-start-line="188" selection-start-column="15" selection-end-line="190" selection-end-column="18" />
               <folding>
                 <marker date="1543842659296" expanded="true" signature="8658:8737" placeholder="{...}" />
               </folding>
@@ -85,11 +59,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="event-modal.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yii2/backend/views/calendar/event/event-modal.php">
+      <file leaf-file-name="schedule.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yii2/backend/views/calendar/event/schedule.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.961538" vertical-offset="44" max-vertical-offset="1207">
-              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+            <state vertical-scroll-proportion="-21.285715" vertical-offset="762" max-vertical-offset="5610">
+              <caret line="150" column="57" selection-start-line="150" selection-start-column="57" selection-end-line="150" selection-end-column="57" />
+              <folding>
+                <element signature="e#8#33#0#PHP" expanded="true" />
+                <marker date="1543933680908" expanded="true" signature="9598:10017" placeholder="..." />
+                <marker date="1543933680908" expanded="true" signature="9652:10017" placeholder="..." />
+                <marker date="1543933680908" expanded="true" signature="9945:10017" placeholder="..." />
+                <marker date="1543933680908" expanded="true" signature="10353:10554" placeholder="..." />
+                <marker date="1543933680908" expanded="true" signature="10935:11214" placeholder="//..." />
+                <marker date="1543933680908" expanded="true" signature="10935:11317" placeholder="//..." />
+                <marker date="1543933680908" expanded="true" signature="10980:11114" placeholder="{...}" />
+                <marker date="1543933680908" expanded="true" signature="11237:11317" placeholder="{...}" />
+                <marker date="1543933680908" expanded="true" signature="11397:11455" placeholder="{...}" />
+                <marker date="1543933680908" expanded="true" signature="11485:11526" placeholder="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Fullcalendar.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yii2/vendor/edofre/yii2-fullcalendar/src/Fullcalendar.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="36.5" vertical-offset="949" max-vertical-offset="2329">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -98,9 +94,31 @@
       <file leaf-file-name="Event.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yii2/common/models/calendar/Event.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.769231" vertical-offset="357" max-vertical-offset="1989">
+            <state vertical-scroll-proportion="-23.538462" vertical-offset="51" max-vertical-offset="1989">
               <caret line="39" column="41" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="41" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="event-modal.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yii2/backend/views/calendar/event/event-modal.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-79.11539" vertical-offset="0" max-vertical-offset="2278">
+              <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+              <folding>
+                <element signature="e#7#38#0#PHP" expanded="true" />
+                <marker date="1543935510261" expanded="true" signature="2505:3413" placeholder="{...}" />
+                <marker date="1543935510261" expanded="true" signature="2576:2978" placeholder="{...}" />
+                <marker date="1543935510261" expanded="true" signature="2992:3409" placeholder="{&quot;url&quot;: '/admin/calendar/event/refactor-event'...}" />
+                <marker date="1543935510261" expanded="true" signature="3137:3316" placeholder="{...}" />
+                <marker date="1543935510261" expanded="true" signature="3349:3399" placeholder="{...}" />
+                <marker date="1543935510261" expanded="true" signature="3461:3932" placeholder="{...}" />
+                <marker date="1543935510261" expanded="true" signature="3536:3928" placeholder="{&quot;url&quot;: '/admin/calendar/event/remove-event'...}" />
+                <marker date="1543935510261" expanded="true" signature="3667:3839" placeholder="{...}" />
+                <marker date="1543935510261" expanded="true" signature="3872:3922" placeholder="{...}" />
+                <marker date="1543935510261" expanded="true" signature="3958:3998" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -115,7 +133,6 @@
       <list>
         <option value="$PROJECT_DIR$/yii2/common/widgets/YandexGetCoordsWidget.php" />
         <option value="$PROJECT_DIR$/yii2/backend/views/venue/default/_form.php" />
-        <option value="$PROJECT_DIR$/yii2/backend/views/layouts/main.php" />
         <option value="$PROJECT_DIR$/yii2/backend/views/calendar/event/_form.php" />
         <option value="$PROJECT_DIR$/yii2/backend/assets/BootboxAsset.php" />
         <option value="$PROJECT_DIR$/public_html/admin/js/yii.confirm.overrides.js.php" />
@@ -123,10 +140,11 @@
         <option value="$PROJECT_DIR$/yii2/backend/views/calendar/event-category/_form.php" />
         <option value="$PROJECT_DIR$/yii2/vendor/edofre/yii2-fullcalendar-scheduler/demos/external-dragging.php" />
         <option value="$PROJECT_DIR$/yii2/common/models/calendar/Event.php" />
-        <option value="$PROJECT_DIR$/yii2/backend/views/calendar/event/event-modal.php" />
         <option value="$PROJECT_DIR$/yii2/backend/views/calendar/event/index.php" />
-        <option value="$PROJECT_DIR$/yii2/backend/controllers/calendar/EventController.php" />
+        <option value="$PROJECT_DIR$/yii2/backend/views/layouts/main.php" />
         <option value="$PROJECT_DIR$/yii2/backend/views/calendar/event/schedule.php" />
+        <option value="$PROJECT_DIR$/yii2/backend/controllers/calendar/EventController.php" />
+        <option value="$PROJECT_DIR$/yii2/backend/views/calendar/event/event-modal.php" />
       </list>
     </option>
   </component>
@@ -211,6 +229,186 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="artschool.loc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="artschool.loc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yii2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yeesoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="artschool.loc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="artschool.loc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yii2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yeesoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yii2-yee-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="artschool.loc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="artschool.loc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yii2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yeesoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yii2-yee-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layouts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="artschool.loc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="artschool.loc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yii2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yeesoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yii2-yee-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="artschool.loc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="artschool.loc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yii2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yeesoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yii2-yee-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="artschool.loc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="artschool.loc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yii2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yeesoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yii2-yee-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="behaviors" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -326,11 +524,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="yii2-fullcalendar-scheduler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="demos" />
+              <option name="myItemId" value="yii2-fullcalendar" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -356,37 +550,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="yii2-fullcalendar-scheduler" />
+              <option name="myItemId" value="yii2-fullcalendar" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="demos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="json" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="artschool.loc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="artschool.loc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yii2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="edofre" />
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -932,6 +1100,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32792208" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -942,7 +1111,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32792208" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -968,68 +1136,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/yii2/backend/views/calendar/event/event-modal.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="27" max-vertical-offset="1139">
-          <caret line="46" column="71" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yii2/common/models/calendar/Event.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="1258">
-          <caret line="20" column="7" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yii2/vendor/2amigos/yii2-file-upload-widget/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="935" max-vertical-offset="3298">
-          <caret line="55" column="32" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yii2/backend/views/layouts/main.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1412" max-vertical-offset="2346">
-          <caret line="135" column="0" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yii2/backend/views/calendar/event/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3264">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1543842659296" expanded="true" signature="8658:8737" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yii2/backend/views/teachers/default/_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="3893">
-          <caret line="53" column="28" selection-start-line="52" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yii2/common/models/calendar/Event.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="595" max-vertical-offset="1207">
-          <caret line="35" column="109" selection-start-line="34" selection-start-column="12" selection-end-line="35" selection-end-column="109" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yii2/vendor/2amigos/yii2-file-upload-widget/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="935" max-vertical-offset="3298">
@@ -1050,14 +1161,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="3451">
           <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yii2/backend/views/creative/works-author/works-author-modal.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5045977" vertical-offset="439" max-vertical-offset="1309">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#48#81#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1146,13 +1252,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yii2/frontend/controllers/CompanyController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.961538" vertical-offset="714" max-vertical-offset="2618">
-          <caret line="76" column="65" selection-start-line="65" selection-start-column="0" selection-end-line="89" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yii2/backend/controllers/SiteController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="922">
@@ -1181,20 +1280,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yii2/backend/widgets/views/parentsView.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="2363">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yii2/backend/controllers/parent/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43638393" vertical-offset="1326" max-vertical-offset="2567">
-          <caret line="101" column="65" selection-start-line="97" selection-start-column="11" selection-end-line="101" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yii2/backend/widgets/ParentsViewWidget.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="922">
@@ -1217,14 +1302,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yii2/backend/views/layouts/main.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8586207" vertical-offset="1412" max-vertical-offset="2346">
-          <caret line="135" column="0" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yii2/backend/views/creative/category/_form.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7034483" vertical-offset="0" max-vertical-offset="1275">
@@ -1236,6 +1313,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3474427" vertical-offset="1265" max-vertical-offset="3383">
           <caret line="93" column="74" selection-start-line="93" selection-start-column="27" selection-end-line="93" selection-end-column="74" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1307,7 +1385,7 @@
         <state vertical-scroll-proportion="0.56666666" vertical-offset="0" max-vertical-offset="3281">
           <caret line="29" column="2" selection-start-line="10" selection-start-column="0" selection-end-line="29" selection-end-column="2" />
           <folding>
-            <element signature="e#7#166#0#PHP" expanded="true" />
+            <element signature="e#7#166#0#PHP" expanded="false" />
             <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
@@ -1323,60 +1401,168 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yii2/common/models/calendar/Event.php">
+    <entry file="file://$PROJECT_DIR$/yii2/frontend/controllers/CompanyController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.769231" vertical-offset="357" max-vertical-offset="1989">
-          <caret line="39" column="41" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="41" />
+        <state vertical-scroll-proportion="-15.692307" vertical-offset="0" max-vertical-offset="2618">
+          <caret line="29" column="5" selection-start-line="19" selection-start-column="3" selection-end-line="29" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yii2/backend/views/calendar/event/event-modal.php">
+    <entry file="file://$PROJECT_DIR$/yii2/vendor/yeesoft/yii2-yee-core/behaviors/AccessFilter.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.961538" vertical-offset="44" max-vertical-offset="1207">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1819">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yii2/vendor/yeesoft/yii2-yee-core/controllers/BaseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.076923" vertical-offset="0" max-vertical-offset="2125">
+          <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+          <folding>
+            <element signature="e#39#74#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yii2/vendor/yeesoft/yii2-yee-core/views/layouts/admin/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.8954023" vertical-offset="779" max-vertical-offset="1955">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yii2/backend/views/layouts/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.96091956" vertical-offset="1306" max-vertical-offset="2346">
+          <caret line="134" column="39" selection-start-line="134" selection-start-column="39" selection-end-line="134" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yii2/vendor/edofre/yii2-fullcalendar-scheduler/src/FullcalendarScheduler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.5011494" vertical-offset="1306" max-vertical-offset="2431">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/yii2/backend/views/calendar/event/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-29.423077" vertical-offset="2873" max-vertical-offset="4828">
-          <caret line="215" column="50" selection-start-line="215" selection-start-column="50" selection-end-line="215" selection-end-column="50" />
+        <state vertical-scroll-proportion="-4.6923075" vertical-offset="3091" max-vertical-offset="4828">
+          <caret line="190" column="18" selection-start-line="188" selection-start-column="15" selection-end-line="190" selection-end-column="18" />
           <folding>
             <marker date="1543842659296" expanded="true" signature="8658:8737" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yii2/backend/controllers/calendar/EventController.php">
+    <entry file="file://$PROJECT_DIR$/yii2/backend/modules/media/views/manage/info.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.615385" vertical-offset="3652" max-vertical-offset="4522">
-          <caret line="260" column="10" selection-start-line="260" selection-start-column="10" selection-end-line="260" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.4404332" vertical-offset="1337" max-vertical-offset="2040">
+          <caret line="103" column="42" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yii2/vendor/edofre/yii2-fullcalendar/src/Fullcalendar.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="36.5" vertical-offset="949" max-vertical-offset="2329">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yii2/backend/widgets/views/parentsView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-25.76923" vertical-offset="1506" max-vertical-offset="2363">
+          <caret line="131" column="3" selection-start-line="120" selection-start-column="0" selection-end-line="131" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yii2/backend/controllers/parent/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35517243" vertical-offset="1612" max-vertical-offset="2482">
+          <caret line="118" column="13" selection-start-line="118" selection-start-column="13" selection-end-line="118" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yii2/vendor/yeesoft/yii2-yee-core/controllers/admin/BaseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.923077" vertical-offset="2652" max-vertical-offset="6698">
+          <caret line="198" column="25" selection-start-line="198" selection-start-column="8" selection-end-line="198" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/yii2/backend/views/calendar/event/schedule.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5275862" vertical-offset="612" max-vertical-offset="4080">
-          <caret line="63" column="29" selection-start-line="63" selection-start-column="29" selection-end-line="63" selection-end-column="29" />
+        <state vertical-scroll-proportion="-21.285715" vertical-offset="762" max-vertical-offset="5610">
+          <caret line="150" column="57" selection-start-line="150" selection-start-column="57" selection-end-line="150" selection-end-column="57" />
           <folding>
             <element signature="e#8#33#0#PHP" expanded="true" />
-            <element signature="e#3041#3836#0#PHP" expanded="false" />
-            <element signature="e#3896#4717#0#PHP" expanded="false" />
-            <element signature="e#4756#5884#0#PHP" expanded="false" />
-            <element signature="e#10410#10428#0#HTML" expanded="true" />
-            <marker date="1543848679250" expanded="true" signature="9353:9772" placeholder="..." />
-            <marker date="1543848679250" expanded="true" signature="9407:9772" placeholder="..." />
-            <marker date="1543848679250" expanded="true" signature="9700:9772" placeholder="..." />
-            <marker date="1543848679250" expanded="true" signature="10108:10309" placeholder="..." />
-            <marker date="1543848679250" expanded="true" signature="10787:11066" placeholder="//..." />
-            <marker date="1543848679250" expanded="true" signature="10787:11168" placeholder="//..." />
-            <marker date="1543848679250" expanded="true" signature="10832:10966" placeholder="{...}" />
-            <marker date="1543848679250" expanded="true" signature="11089:11168" placeholder="{...}" />
-            <marker date="1543848679250" expanded="true" signature="11248:11306" placeholder="{...}" />
-            <marker date="1543848679250" expanded="true" signature="11336:11377" placeholder="{...}" />
+            <marker date="1543933680908" expanded="true" signature="9598:10017" placeholder="..." />
+            <marker date="1543933680908" expanded="true" signature="9652:10017" placeholder="..." />
+            <marker date="1543933680908" expanded="true" signature="9945:10017" placeholder="..." />
+            <marker date="1543933680908" expanded="true" signature="10353:10554" placeholder="..." />
+            <marker date="1543933680908" expanded="true" signature="10935:11214" placeholder="//..." />
+            <marker date="1543933680908" expanded="true" signature="10935:11317" placeholder="//..." />
+            <marker date="1543933680908" expanded="true" signature="10980:11114" placeholder="{...}" />
+            <marker date="1543933680908" expanded="true" signature="11237:11317" placeholder="{...}" />
+            <marker date="1543933680908" expanded="true" signature="11397:11455" placeholder="{...}" />
+            <marker date="1543933680908" expanded="true" signature="11485:11526" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yii2/backend/views/creative/works-author/works-author-modal.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.98045975" vertical-offset="82" max-vertical-offset="1309">
+          <caret line="57" column="10" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yii2/backend/views/calendar/event/event-modal.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-79.11539" vertical-offset="0" max-vertical-offset="2278">
+          <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+          <folding>
+            <element signature="e#7#38#0#PHP" expanded="true" />
+            <marker date="1543935510261" expanded="true" signature="2505:3413" placeholder="{...}" />
+            <marker date="1543935510261" expanded="true" signature="2576:2978" placeholder="{...}" />
+            <marker date="1543935510261" expanded="true" signature="2992:3409" placeholder="{&quot;url&quot;: '/admin/calendar/event/refactor-event'...}" />
+            <marker date="1543935510261" expanded="true" signature="3137:3316" placeholder="{...}" />
+            <marker date="1543935510261" expanded="true" signature="3349:3399" placeholder="{...}" />
+            <marker date="1543935510261" expanded="true" signature="3461:3932" placeholder="{...}" />
+            <marker date="1543935510261" expanded="true" signature="3536:3928" placeholder="{&quot;url&quot;: '/admin/calendar/event/remove-event'...}" />
+            <marker date="1543935510261" expanded="true" signature="3667:3839" placeholder="{...}" />
+            <marker date="1543935510261" expanded="true" signature="3872:3922" placeholder="{...}" />
+            <marker date="1543935510261" expanded="true" signature="3958:3998" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yii2/common/models/calendar/Event.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.538462" vertical-offset="51" max-vertical-offset="1989">
+          <caret line="39" column="41" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yii2/backend/controllers/calendar/EventController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8241379" vertical-offset="3227" max-vertical-offset="4097">
+          <caret line="232" column="5" selection-start-line="232" selection-start-column="5" selection-end-line="232" selection-end-column="5" />
+          <folding>
+            <element signature="e#48#81#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

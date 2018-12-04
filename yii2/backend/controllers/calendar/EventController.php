@@ -3,9 +3,12 @@
 namespace backend\controllers\calendar;
 
 use common\models\calendar\Event;
+use edofre\fullcalendarscheduler\models\Event as BaseEvent;
 use common\models\auditory\Auditory;
 use Yii;
 use backend\controllers\DefaultController;
+use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\helpers\Url;
 use edofre\fullcalendarscheduler\models\Resource;
@@ -32,6 +35,17 @@ class EventController extends DefaultController
         }
     }
 
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['refactor-event', 'remove-event'],
+                ],
+            ],
+        ]);
+    }
     /**
      * @return string|\yii\web\Response
      *
@@ -86,74 +100,6 @@ class EventController extends DefaultController
     }
 
     /**
-     *
-     * @return type
-     * @throws \yii\web\HttpException
-     *
-     * добавляет событие в базу
-     *
-     */
-
-    public function actionCreateEvent()
-    {
-
-        $model = new Event();
-
-        if ($model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
-            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-
-            return \yii\widgets\ActiveForm::validate($model);
-        } elseif ($model->load(Yii::$app->request->post())) {
-            $model->start_timestamp = \Yii::$app->formatter->asTimestamp($model->start_timestamp);
-            $model->end_timestamp = \Yii::$app->formatter->asTimestamp($model->end_timestamp);
-
-            //  echo '<pre>' . print_r($model, true) . '</pre>';     die();
-            if ($model->save()) {
-                Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been created.'));
-                return $this->redirect(Yii::$app->request->referrer);
-            } else {
-                throw new \yii\web\HttpException(404, 'Page not found');
-            }
-        } else {
-            throw new \yii\web\HttpException(404, 'Page not found');
-        }
-    }
-
-    /**
-     *
-     * @param type $id
-     * @return type
-     * @throws \yii\web\HttpException
-     *
-     * обновляем запись в базе
-     *
-     */
-    public function actionUpdateEvent($id)
-    {
-
-        $model = Event::findOne($id);
-
-        if ($model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
-            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-
-            return \yii\widgets\ActiveForm::validate($model);
-        } elseif ($model->load(Yii::$app->request->post())) {
-            $model->start_timestamp = \Yii::$app->formatter->asTimestamp($model->start_timestamp);
-            $model->end_timestamp = \Yii::$app->formatter->asTimestamp($model->end_timestamp);
-
-            //echo '<pre>' . print_r($model, true) . '</pre>';     die();
-            if ($model->save()) {
-                Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been updated.'));
-                return $this->redirect(Yii::$app->request->referrer);
-            } else {
-                throw new \yii\web\HttpException(404, 'Page not found');
-            }
-        } else {
-            throw new \yii\web\HttpException(404, 'Page not found');
-        }
-    }
-
-    /**
      * @param null $start
      * @param null $end
      *
@@ -185,7 +131,7 @@ class EventController extends DefaultController
         $tasks = [];
         foreach ($events as $item) {
 
-            $event = new \edofre\fullcalendarscheduler\models\Event();
+            $event = new BaseEvent();
             $event->id = $item->id;
             $event->title = $item->title;
             $event->resourceId = $item->auditory_id;
@@ -252,15 +198,38 @@ class EventController extends DefaultController
 
        $id == 0 ?  $model = new Event() : $model = Event::findOne($id);
 
-        $model->start_timestamp = \Yii::$app->formatter->asTimestamp($eventData['start']);
-        $model->end_timestamp = \Yii::$app->formatter->asTimestamp($eventData['end']);
-        $eventData['allDay'] == 'false' ? $model->all_day = 0 : $model->all_day = 1;
         $model->title = $eventData['title'];
-        $model->auditory_id = $eventData['resourceId'];
-        $model->category_id = $eventData['category_id'];
-        $model->description = $eventData['description'];
-       // echo '<pre>' . print_r($model, true) . '</pre>'; 
-        $model->save(false);
-        return true;
+        $model->start_timestamp = \Yii::$app->formatter->asTimestamp($eventData['start']);
+
+        if(!empty($eventData['end'])) $model->end_timestamp = \Yii::$app->formatter->asTimestamp($eventData['end']);
+        if(!empty($eventData['allDay'])) $eventData['allDay'] == 'false' ? $model->all_day = 0 : $model->all_day = 1;
+        if(!empty($eventData['resourceId'])) $model->auditory_id = $eventData['resourceId'];
+        if(!empty($eventData['category_id'])) $model->category_id = $eventData['category_id'];
+        if(!empty($eventData['description']))$model->description = $eventData['description'];
+       // echo '<pre>' . print_r($model, true) . '</pre>';
+
+        if($model->save(false)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    /**
+     * @return bool
+     */
+    public function actionRemoveEvent()
+    {
+        $id = Yii::$app->request->post('id');
+
+        $model = Event::findOne($id);
+        // echo '<pre>' . print_r($model, true) . '</pre>';
+        if ($model) {
+            $model->delete();
+            return true;
+        } else {
+            return false;
+        }
     }
 }
+

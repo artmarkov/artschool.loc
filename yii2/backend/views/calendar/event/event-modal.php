@@ -15,9 +15,6 @@ use yeesoft\helpers\Html;
     $form = ActiveForm::begin([
                 'id' => 'event-form',
                 'enableAjaxValidation' => true,
-//                'action' => $model->isNewRecord ?
-//                        ['/calendar/event/create-event'] :
-//                        ['/calendar/event/update-event?id=' . $model->id],
     ]);
     ?>
 
@@ -37,7 +34,7 @@ use yeesoft\helpers\Html;
                     <?= $form->field($model, 'start_timestamp')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(),['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput(); ?>
                     
                     <?= $form->field($model, 'end_timestamp')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(),['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput() ?>
-                  
+
                 </div>
 
             </div>
@@ -45,16 +42,16 @@ use yeesoft\helpers\Html;
                 <?php if ($model->isNewRecord): ?>
                     <?= Html::a(Yii::t('yee', 'Create'), ['#'],['class' => 'btn btn-primary create-event']) ?>
                     <?= Html::a(Yii::t('yee', 'Cancel'), ['/calendar/event/index'], ['class' => 'btn btn-default']) ?>
-                <?php else: ?> 
-                    
+                <?php else: ?>
+                    <?= $form->field($model, 'id')->label(false)->hiddenInput() ?>
                     <?= Html::a(Yii::t('yee', 'Save'), ['#'],['class' => 'btn btn-primary create-event']) ?>
                     <?=
-                    Html::a(Yii::t('yee', 'Delete'), ['/calendar/event/delete', 'id' => $model->id], [
-                        'class' => 'btn btn-default',
-                        'data' => [
-                            'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-                            'method' => 'post',
-                        ],
+                    Html::a(Yii::t('yee', 'Delete'), ['#'], [
+                        'class' => 'btn btn-default remove-event',
+//                        'data' => [
+//                            'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+//                            'method' => 'post',
+//                        ],
                     ])
                     ?>
                 <?php endif; ?>
@@ -71,16 +68,16 @@ $js = <<<JS
 $('.create-event').on('click', function (e) {
 
     e.preventDefault();
-    
+
     var eventData;
             eventData = {
-                id : $model->id,
+                id : $('#event-id').val(),
                 category_id : $('#event-category_id').val(),
-                auditory_id : $('#event-auditory_id').val(),
+                resourceId : $('#event-auditory_id').val(),
                 title : $('#event-title').val(),
                 description : $('#event-description').val(),
                 start : $('#event-start_timestamp').val(),
-                end : $('#event-end_timestamp').val(),
+                end : $('#event-end_timestamp').val()
             };
 
     $.ajax({
@@ -89,9 +86,10 @@ $('.create-event').on('click', function (e) {
         type: 'POST',
     success: function (res) {
         if (!res)  alert('Error!');
-       // alert('Закрыть!');
-                console.log(res);
-            
+
+         $('#w0').fullCalendar('refetchEvents', JSON);
+                closeModal();
+                //console.log(eventData);
             },
             error: function () {
                 alert('Error!!!');
@@ -99,6 +97,32 @@ $('.create-event').on('click', function (e) {
         });
 });
 
+$('.remove-event').on('click', function (e) {
+
+    e.preventDefault();
+
+    var id = $('#event-id').val();
+
+    $.ajax({
+        url: '/admin/calendar/event/remove-event',
+        data: {id: id},
+        type: 'POST',
+        success: function (res) {
+        if (!res)  alert('Error!');
+
+         $('#w0').fullCalendar('refetchEvents', JSON);
+                closeModal();
+               // console.log(id);
+            },
+            error: function () {
+                alert('Error!!!');
+            }
+    });
+});
+
+function closeModal() {
+    $('#event-modal').modal('hide');
+}
 JS;
 
 $this->registerJs($js);

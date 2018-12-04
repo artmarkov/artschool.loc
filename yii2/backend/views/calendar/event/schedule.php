@@ -57,7 +57,7 @@ $JSSelect = <<<EOF
                 id: 0,
                 start: start.format(),
                 end: end.format(),
-                resourceId: resource ? resource.id : null,
+                resourceId: resource ? resource.id : null
             };
       // $('#calendar').fullCalendar('renderEvent', eventData, true);
         console.log('выбираем мышкой область или кликаем в пустое поле');
@@ -67,7 +67,7 @@ $JSSelect = <<<EOF
             type: 'POST',
             data: {eventData : eventData},
             success: function (res) {
-    //            console.log(res);
+               // console.log(res);
            //  $('#calendar').fullCalendar('renderEvent', eventData, true);
             showDay(res);
             },
@@ -148,6 +148,7 @@ $JSEventDrop = <<<EOF
             type: 'POST',
             data: {eventData : eventData},
             success: function (res) {
+            $('#w0').fullCalendar('refetchEvents', JSON);
                 //  console.log(res);
             },
             error: function () {
@@ -198,6 +199,9 @@ EOF;
                 <div class="col-md-10">
 
                     <?= \edofre\fullcalendarscheduler\FullcalendarScheduler::widget([
+                                'options' => [
+                                    'lang' => 'ru',
+                                ],
                                 'header'        => [
                                     'left'   => 'today prev,next',
                                     'center' => 'title',
@@ -205,10 +209,11 @@ EOF;
                                 ],
                                 'clientOptions' => [
                                     'schedulerLicenseKey' => 'GPL-My-Project-Is-Open-Source',
-                                            'selectable' => true, // разрешено выбирать область
+                                    'selectable' => true, // разрешено выбирать область
+                                    'selectHelper' => true,
                                             'droppable' => true,
                                             'editable' => true,
-                                            'eventDurationEditable' => true, // разрешить изменение размера
+                                            //'eventDurationEditable' => true, // разрешить изменение размера
                                             'eventOverlap' => true, // разрешить перекрытие событий
                                             'eventLimit' => true,
                                             'drop' => new JsExpression($JSDrop),
@@ -265,9 +270,7 @@ EOF;
                                     <label for="drop-remove">remove after drop</label>
                                 </p>
                     </div>
-                    <div id='calendar'></div>
 
-                    <div style='clear:both'></div>
                 </div>
             </div>
         </div>
@@ -295,6 +298,7 @@ $js = <<<JS
 //      $('#external-events').prepend(event)
 //
 function showDay(res) {
+
     $('#event-modal .modal-body').html(res);
     $('#event-modal').modal();
 }
@@ -317,3 +321,4 @@ $this->registerJs($js);
 	}
 ');
 ?>
+
