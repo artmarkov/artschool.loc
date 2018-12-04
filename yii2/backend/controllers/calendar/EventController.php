@@ -208,7 +208,7 @@ class EventController extends DefaultController
         if(!empty($eventData['description']))$model->description = $eventData['description'];
        // echo '<pre>' . print_r($model, true) . '</pre>';
 
-        if($model->save(false)) {
+        if($model->save()) {
             return true;
         }
         else {

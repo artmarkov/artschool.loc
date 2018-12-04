@@ -59,7 +59,7 @@ $JSSelect = <<<EOF
                 end: end.format(),
                 resourceId: resource ? resource.id : null
             };
-      // $('#calendar').fullCalendar('renderEvent', eventData, true);
+      
         console.log('выбираем мышкой область или кликаем в пустое поле');
         console.log(eventData);
       $.ajax({
@@ -68,11 +68,10 @@ $JSSelect = <<<EOF
             data: {eventData : eventData},
             success: function (res) {
                // console.log(res);
-           //  $('#calendar').fullCalendar('renderEvent', eventData, true);
             showDay(res);
             },
             error: function () {
-                $('#calendar').fullCalendar('unselect');
+                $('#w0').fullCalendar('unselect');
             }
         });
     }
@@ -161,7 +160,7 @@ EOF;
 
 // бросаем событие извне
 $JSDrop = <<<EOF
-    function(date, jsEvent, ui, resourceId) {
+    function(date, jsEvent, ui, resource) {
       if ($('#drop-remove').is(':checked')) {
              $(this).remove();
              }
@@ -171,27 +170,24 @@ $JSDrop = <<<EOF
                 title:  ui.helper[0].innerText,
                 start: date.format(),
                 end: date.format(),
-                resourceId: resourceId,
-//                backgroundColor: $(this).css('background-color'),
-//                borderColor:   $(this).css('border-color'),
-//                color:   $(this).css('color'),
+                resourceId: null
             };
             console.log('бросаем событие извне', eventData);
-       // $('#w0').fullCalendar('renderEvent', eventData, true);
-        //$('#calendar').fullCalendar('renderEvent', eventData, true)
+      
+      $.ajax({
+            url: '/admin/calendar/event/init-event',
+            type: 'POST',
+            data: {eventData : eventData},
+            success: function (res) {
+            showDay(res);
+         
+                 // console.log(res);
+            },
+            error: function () {
+                alert('Error!!!');
 
-//      $.ajax({
-//            url: '/admin/calendar/event/refactor-event',
-//            type: 'POST',
-//            data: {eventData : eventData},
-//            success: function (res) {
-//                  console.log(res);
-//            },
-//            error: function () {
-//                alert('Error!!!');
-//
-//            }
-//        });
+            }
+        });
     }
 EOF;
 ?>
@@ -202,7 +198,7 @@ EOF;
                                 'options' => [
                                     'lang' => 'ru',
                                 ],
-                                'header'        => [
+                                'header' => [
                                     'left'   => 'today prev,next',
                                     'center' => 'title',
                                     'right'  => 'timelineDay,timelineThreeDays,agendaWeek,month,listMonth',
@@ -210,22 +206,26 @@ EOF;
                                 'clientOptions' => [
                                     'schedulerLicenseKey' => 'GPL-My-Project-Is-Open-Source',
                                     'selectable' => true, // разрешено выбирать область
-                                    'selectHelper' => true,
-                                            'droppable' => true,
-                                            'editable' => true,
-                                            //'eventDurationEditable' => true, // разрешить изменение размера
-                                            'eventOverlap' => true, // разрешить перекрытие событий
-                                            'eventLimit' => true,
-                                            'drop' => new JsExpression($JSDrop),
-                                            'select' => new JsExpression($JSSelect),
-                                            'eventClick' => new JsExpression($JSEventClick),
-                                            'eventResize'=> new JsExpression($JSEventResize),
-                                            'eventDrop'=> new JsExpression($JSEventDrop),
-                                            'defaultDate' => date('Y-m-d H:i'),
-                                            'defaultTimedEventDuration' => '02:00:00', // при перетаскивании события в календарь задается длительность события
-                                            'defaultAllDayEventDuration' => [
-                                                'days' => '1'// то-же при перетаскиваниив в allDay
-                                            ],
+                                    'selectHelper' => true,//Следует ли рисовать событие” заполнитель " во время перетаскивания
+                                    'nowIndicator' => true, //Отображение маркера, указывающего Текущее время
+                                    'minTime' => '08:00:00', // Определяет первый временной интервал, который будет отображаться для каждого дня
+                                    'maxTime' => '22:00:00', 
+                                    'slotDuration' => '00:15:00', // Частота отображения временных интервалов.
+                                    'droppable' => true,
+                                    'editable' => true,
+                                    //'eventDurationEditable' => true, // разрешить изменение размера
+                                    'eventOverlap' => true, // разрешить перекрытие событий
+                                    'eventLimit' => true,
+                                    'drop' => new JsExpression($JSDrop),
+                                    'select' => new JsExpression($JSSelect),
+                                    'eventClick' => new JsExpression($JSEventClick),
+                                    'eventResize'=> new JsExpression($JSEventResize),
+                                    'eventDrop'=> new JsExpression($JSEventDrop),
+                                    'defaultDate' => date('Y-m-d H:i'),
+                                    'defaultTimedEventDuration' => '02:00:00', // при перетаскивании события в календарь задается длительность события
+                                    'defaultAllDayEventDuration' => [
+                                        'days' => '1'// то-же при перетаскиваниив в allDay
+                                    ],
                                     'aspectRatio'       => 1.8,
                                     'scrollTime'        => '00:00', // undo default 6am scrollTime
                                     'defaultView' => 'agendaWeek',

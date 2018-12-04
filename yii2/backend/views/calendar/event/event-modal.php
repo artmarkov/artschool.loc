@@ -12,10 +12,7 @@ use yeesoft\helpers\Html;
 <div class="event-form">
 
     <?php
-    $form = ActiveForm::begin([
-                'id' => 'event-form',
-                'enableAjaxValidation' => true,
-    ]);
+    $form = ActiveForm::begin();
     ?>
 
     <div class="row">
@@ -34,26 +31,20 @@ use yeesoft\helpers\Html;
                     <?= $form->field($model, 'start_timestamp')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(),['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput(); ?>
                     
                     <?= $form->field($model, 'end_timestamp')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(),['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput() ?>
-
+                    
+                    <?= $form->field($model, 'id')->label(false)->hiddenInput() ?>
+                    
                 </div>
 
             </div>
             <div class="form-group">
                 <?php if ($model->isNewRecord): ?>
                     <?= Html::a(Yii::t('yee', 'Create'), ['#'],['class' => 'btn btn-primary create-event']) ?>
-                    <?= Html::a(Yii::t('yee', 'Cancel'), ['/calendar/event/index'], ['class' => 'btn btn-default']) ?>
+                    <?= Html::a(Yii::t('yee', 'Cancel'), ['#'], ['class' => 'btn btn-default cancel-event']) ?>
                 <?php else: ?>
-                    <?= $form->field($model, 'id')->label(false)->hiddenInput() ?>
+                    
                     <?= Html::a(Yii::t('yee', 'Save'), ['#'],['class' => 'btn btn-primary create-event']) ?>
-                    <?=
-                    Html::a(Yii::t('yee', 'Delete'), ['#'], [
-                        'class' => 'btn btn-default remove-event',
-//                        'data' => [
-//                            'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-//                            'method' => 'post',
-//                        ],
-                    ])
-                    ?>
+                    <?= Html::a(Yii::t('yee', 'Delete'), ['#'], ['class' => 'btn btn-default remove-event']) ?>
                 <?php endif; ?>
             </div>
         </div>
@@ -82,12 +73,10 @@ $('.create-event').on('click', function (e) {
 
     $.ajax({
         url: '/admin/calendar/event/refactor-event',
-         data: {eventData : eventData},
+        data: {eventData : eventData},
         type: 'POST',
     success: function (res) {
-        if (!res)  alert('Error!');
-
-         $('#w0').fullCalendar('refetchEvents', JSON);
+                $('#w0').fullCalendar('refetchEvents', JSON);
                 closeModal();
                 //console.log(eventData);
             },
@@ -97,6 +86,11 @@ $('.create-event').on('click', function (e) {
         });
 });
 
+$('.cancel-event').on('click', function (e) {
+         e.preventDefault();        
+         closeModal();
+});
+        
 $('.remove-event').on('click', function (e) {
 
     e.preventDefault();
@@ -108,8 +102,7 @@ $('.remove-event').on('click', function (e) {
         data: {id: id},
         type: 'POST',
         success: function (res) {
-        if (!res)  alert('Error!');
-
+       
          $('#w0').fullCalendar('refetchEvents', JSON);
                 closeModal();
                // console.log(id);
