@@ -13,5 +13,5 @@ $this->params['breadcrumbs'][] = Yii::t('yee', 'Create');
 
 <div class="post-category-create">
     <h3 class="lte-hide-title"><?= Html::encode($this->title) ?></h3>
-    <?= $this->render('_form', compact('model')) ?>
+    <?= $this->render('_form',  ['model' => $model, 'root' => $root]) ?>
 </div>

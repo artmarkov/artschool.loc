@@ -1,8 +1,9 @@
 <?php
 
 namespace backend\modules\post\models;
+use creocoder\nestedsets\NestedSetsBehavior;
 
-use paulzi\nestedintervals\NestedIntervalsBehavior;
+//use paulzi\nestedintervals\NestedIntervalsBehavior;
 use yeesoft\behaviors\MultilingualBehavior;
 use yeesoft\models\OwnerAccess;
 use Yii;
@@ -27,7 +28,7 @@ use yeesoft\db\ActiveRecord;
 class Category extends ActiveRecord implements OwnerAccess
 {
 
-    public $parent_id;
+   // public $parent_id;
 
     /**
      * @inheritdoc
@@ -40,11 +41,11 @@ class Category extends ActiveRecord implements OwnerAccess
     /**
      * @inheritdoc
      */
-    public function init()
-    {
-        parent::init();
-        $this->visible = 1;
-    }
+//    public function init()
+//    {
+//        parent::init();
+//        $this->visible = 1;
+//    }
 
     /**
      * @inheritdoc
@@ -53,7 +54,7 @@ class Category extends ActiveRecord implements OwnerAccess
     {
         return [
             [['title'], 'required'],
-            [['created_by', 'updated_by', 'created_at', 'updated_at', 'visible', 'parent_id'], 'integer'],
+            [['created_by', 'updated_by', 'created_at', 'updated_at', 'visible'], 'integer'],
             [['description'], 'string'],
             [['slug', 'title'], 'string', 'max' => 255],
         ];
@@ -79,21 +80,33 @@ class Category extends ActiveRecord implements OwnerAccess
                     'title', 'description',
                 ]
             ],
-            'nestedInterval' => [
-                'class' => NestedIntervalsBehavior::className(),
-                'leftAttribute' => 'left_border',
-                'rightAttribute' => 'right_border',
-                'amountOptimize' => '25',
-                'noPrepend' => true,
+//            'nestedInterval' => [
+//                'class' => NestedIntervalsBehavior::className(),
+//                'leftAttribute' => 'left_border',
+//                'rightAttribute' => 'right_border',
+//                'amountOptimize' => '25',
+//                'noPrepend' => true,
+//            ],
+            'tree' => [
+                'class' => NestedSetsBehavior::className(),
+                // 'treeAttribute' => 'tree',
+                 'leftAttribute' => 'left_border',
+                 'rightAttribute' => 'right_border',
+                
             ],
         ];
     }
 
-    public function transactions()
+     public function transactions()
     {
         return [
             self::SCENARIO_DEFAULT => self::OP_ALL,
         ];
+    }
+
+    public static function find()
+    {
+        return new CategoryQuery(get_called_class());
     }
 
     /**
@@ -111,7 +124,7 @@ class Category extends ActiveRecord implements OwnerAccess
             'updated_by' => Yii::t('yee', 'Updated By'),
             'created_at' => Yii::t('yee', 'Created'),
             'updated_at' => Yii::t('yee', 'Updated'),
-            'parent_id' => Yii::t('yee/post', 'Parent Category'),
+           // 'parent_id' => Yii::t('yee/post', 'Parent Category'),
         ];
     }
 
@@ -119,36 +132,36 @@ class Category extends ActiveRecord implements OwnerAccess
      *
      * @inheritdoc
      */
-    public function save($runValidation = true, $attributeNames = null)
-    {
-        $parent = null;
-
-        if (isset($this->parent_id) && $this->parent_id) {
-            $parent = Category::findOne((int)$this->parent_id);
-        }
-
-        if (!$parent) {
-            $parent = Category::findOne(1);
-        }
-
-        if (!$parent) {
-            throw new \yii\base\InvalidParamException();
-        }
-
-
-        $this->appendTo($parent);
-
-        try {
-            return parent::save($runValidation, $attributeNames);
-        } catch (yii\base\Exception $exc) {
-            \Yii::$app->session->setFlash('crudMessage', $exc->getMessage());
-        }
-
-    }
-    public function getParentId() {
-        $model->parent_id = $model->id;
-        
-    }
+//    public function save($runValidation = true, $attributeNames = null)
+//    {
+//        $parent = null;
+//
+//        if (isset($this->parent_id) && $this->parent_id) {
+//            $parent = Category::findOne((int)$this->parent_id);
+//        }
+//
+//        if (!$parent) {
+//            $parent = Category::findOne(1);
+//        }
+//
+//        if (!$parent) {
+//            throw new \yii\base\InvalidParamException();
+//        }
+//
+//
+//        $this->appendTo($parent);
+//
+//        try {
+//            return parent::save($runValidation, $attributeNames);
+//        } catch (yii\base\Exception $exc) {
+//            \Yii::$app->session->setFlash('crudMessage', $exc->getMessage());
+//        }
+//
+//    }
+//    public function getParentId() {
+//        $model->parent_id = $model->id;
+//        
+//    }
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -164,27 +177,24 @@ class Category extends ActiveRecord implements OwnerAccess
      *
      * @return static[]
      */
-    public static function getCategories($skipCategories = [])
+//    public static function getCategories($skipCategories = [])
+//    {
+//        $result = [];
+//        $categories = Category::findOne(1)->getDescendants()->joinWith('translations')->all();
+//        //echo '<pre>' . print_r($categories, true) . '</pre>';
+//        foreach ($categories as $category) {
+//            if (!in_array($category->id, $skipCategories)) {
+//                $result[$category->id] = str_repeat('   ', ($category->depth - 1)) . $category->title;
+//            }
+//        }
+//
+//        return $result;
+//    }
+
+ public static function getCategories()
     {
-        $result = [];
-        $categories = Category::findOne(1)->getDescendants()->joinWith('translations')->all();
-        //echo '<pre>' . print_r($categories, true) . '</pre>';
-        foreach ($categories as $category) {
-            if (!in_array($category->id, $skipCategories)) {
-                $result[$category->id] = str_repeat('   ', ($category->depth - 1)) . $category->title;
-            }
-        }
-
-        return $result;
+        return \yii\helpers\ArrayHelper::map(Category::find()->joinWith('translations')->leaves()->all(), 'id', 'title');
     }
-
-
-    public static function find()
-    {
-        return new CategoryQuery(get_called_class());
-
-    }
-
     /**
      *
      * @inheritdoc

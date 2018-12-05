@@ -3,7 +3,8 @@
 namespace backend\modules\post\models;
 
 use omgdef\multilingual\MultilingualTrait;
-use paulzi\nestedintervals\NestedIntervalsQueryTrait;
+//use paulzi\nestedintervals\NestedIntervalsQueryTrait;
+use creocoder\nestedsets\NestedSetsQueryBehavior;
 
 
 /**
@@ -15,8 +16,15 @@ class CategoryQuery extends \yii\db\ActiveQuery
 {
 
     use MultilingualTrait;
-    use NestedIntervalsQueryTrait;
+   // use NestedIntervalsQueryTrait;
 
+
+
+    public function behaviors() {
+        return [
+            NestedSetsQueryBehavior::className(),
+        ];
+    }
 
     /**
      * @inheritdoc

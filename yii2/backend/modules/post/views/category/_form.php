@@ -30,7 +30,7 @@ use yeesoft\widgets\LanguagePills;
 
                     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-                    <?php echo $form->field($model, 'parent_id')->dropDownList(Category::getCategories(), ['prompt' => '', 'encodeSpaces' => true]) ?>
+                    <?php //echo $form->field($model, 'parent_id')->dropDownList(Category::getCategories(), ['prompt' => '', 'encodeSpaces' => true]) ?>
 
                     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 

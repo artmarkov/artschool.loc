@@ -1,27 +1,22 @@
 <?php
 
-use yeesoft\grid\GridPageSize;
-use yeesoft\grid\GridView;
-use yeesoft\helpers\Html;
-use backend\modules\post\models\Category;
+use yii\helpers\Html;
+use klisl\nestable\Nestable;
 use yii\helpers\Url;
-use yii\widgets\Pjax;
 
-/* @var $this yii\web\View */
-/* @var $searchModel backend\modules\post\search\CategorySearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $query \yii\db\ActiveQuery */
 
 $this->title = Yii::t('yee/post', 'Categories');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('yee/post', 'Posts'), 'url' => ['default/index']];
 $this->params['breadcrumbs'][] = $this->title;
-
 ?>
-<div class="post-category-index">
 
+<div class="menu-index">
     <div class="row">
         <div class="col-sm-12">
             <h3 class="lte-hide-title page-title"><?= Html::encode($this->title) ?></h3>
             <?= Html::a(Yii::t('yee', 'Add New'), ['create'], ['class' => 'btn btn-sm btn-primary']) ?>
+
         </div>
     </div>
 
@@ -29,55 +24,34 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel-body">
 
             <div class="row">
-                <div class="col-sm-12 text-right">
-                    <?= GridPageSize::widget(['pjaxId' => 'post-category-grid-pjax']) ?>
+                <div class="col-sm-12">
+
+                    <?=
+                    Nestable::widget([
+                        'type' => Nestable::TYPE_LIST,
+                        'query' => $query,
+                        'modelOptions' => [
+                            'name' => 'title', //поле из БД с названием элемента (отображается в дереве)
+                        ],
+                        'pluginEvents' => [
+                            'change' => 'function(e) {}', //js событие при выборе элемента
+                        ],
+                        'pluginOptions' => [
+                            'maxDepth' => 10, //максимальное кол-во уровней вложенности
+                        ],
+                        'update' => Url::to(['update']), //действие по обновлению
+                        'delete' => Url::to(['delete']), //действие по удалению
+                        'viewItem' => Url::to(['view']), 
+                    ]);
+                    ?>
+
+                    <div id="nestable-menu">
+                        <button class="btn btn-sm btn-primary" type="button" data-action="expand-all"><?= Yii::t('yee', 'Expand All')?></button>
+                        <button class="btn btn-sm btn-default" type="button" data-action="collapse-all"><?= Yii::t('yee', 'Collapse All')?></button>
+                    </div>
+
                 </div>
             </div>
-
-            <?php Pjax::begin(['id' => 'post-category-grid-pjax']) ?>
-
-            <?= GridView::widget([
-                'id' => 'post-category-grid',
-                'dataProvider' => $dataProvider,
-                'filterModel' => $searchModel,
-                'bulkActionOptions' => [
-                    'gridId' => 'post-category-grid',
-                    'actions' => [Url::to(['bulk-delete']) => Yii::t('yee', 'Delete')]
-                ],
-                'columns' => [
-                    ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
-                    [
-                        'class' => 'yeesoft\grid\columns\TitleActionColumn',
-                        'controller' => '/post/category',
-                        'title' => function (Category $model) {
-                            return Html::a($model->title, ['update', 'id' => $model->id], ['data-pjax' => 0]);
-                        },
-                        'buttonsTemplate' => '{update} {delete}',
-                    ],
-                    [
-                        'attribute' => 'parent_id',
-                        'value' => function (Category $model) {
-
-                            if ($parent = $model->getParent()->one() AND $parent->id > 1) {
-                                return Html::a($parent->title, ['update', 'id' => $parent->id], ['data-pjax' => 0]);
-                            } else {
-                                return '<span class="not-set">' . Yii::t('yii', '(not set)') . '</span>';
-                            }
-
-                        },
-                        'format' => 'raw',
-                        'filter' => Category::getCategories(),
-                        'filterInputOptions' => ['class' => 'form-control', 'encodeSpaces' => true],
-                    ],
-                    'description:ntext',
-                    [
-                        'class' => 'yeesoft\grid\columns\StatusColumn',
-                        'attribute' => 'visible',
-                    ],
-                ],
-            ]); ?>
-
-            <?php Pjax::end() ?>
         </div>
     </div>
 </div>
