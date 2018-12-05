@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bcb856f1a5b11b352babd159c898a70e",
+    "content-hash": "a9d060465b6d16bb4e47abcc73f7899b",
     "packages": [
         {
             "name": "2amigos/yii2-file-upload-widget",
@@ -170,21 +170,21 @@
         },
         {
             "name": "beaten-sect0r/yii2-db-manager",
-            "version": "2.1.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Beaten-Sect0r/yii2-db-manager.git",
-                "reference": "df64836833f7133e9a447579bf106f54abe04f14"
+                "reference": "04d410e79a4e65ac0bd93d490ac2884d73d94ff9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Beaten-Sect0r/yii2-db-manager/zipball/df64836833f7133e9a447579bf106f54abe04f14",
-                "reference": "df64836833f7133e9a447579bf106f54abe04f14",
+                "url": "https://api.github.com/repos/Beaten-Sect0r/yii2-db-manager/zipball/04d410e79a4e65ac0bd93d490ac2884d73d94ff9",
+                "reference": "04d410e79a4e65ac0bd93d490ac2884d73d94ff9",
                 "shasum": ""
             },
             "require": {
                 "creocoder/yii2-flysystem": "*",
-                "symfony/process": "2.8.*|3.*",
+                "symfony/process": "2.8.*|3.*|4.*",
                 "yiisoft/yii2": "*",
                 "yiisoft/yii2-bootstrap": "*"
             },
@@ -220,7 +220,7 @@
                 "dump",
                 "yii2"
             ],
-            "time": "2018-05-08T15:53:45+00:00"
+            "time": "2018-12-04T17:06:21+00:00"
         },
         {
             "name": "bower-asset/blueimp-canvas-to-blob",
@@ -510,93 +510,6 @@
             "time": "2015-09-14T05:24:12+00:00"
         },
         {
-            "name": "bower-asset/fullcalendar",
-            "version": "v3.9.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fullcalendar/fullcalendar.git",
-                "reference": "3ddb3c8d1461c6b841aed3487ba07d8ba338adb6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fullcalendar/fullcalendar/zipball/3ddb3c8d1461c6b841aed3487ba07d8ba338adb6",
-                "reference": "3ddb3c8d1461c6b841aed3487ba07d8ba338adb6",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/jquery": ">=2,<4.0",
-                "bower-asset/moment": ">=2.20.1,<3.0.0"
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": [
-                    "dist/fullcalendar.js",
-                    "dist/fullcalendar.css"
-                ],
-                "bower-asset-ignore": [
-                    "*",
-                    "**/.*",
-                    "!/dist/**",
-                    "!/README.*",
-                    "!/LICENSE.*",
-                    "!/CHANGELOG.*",
-                    "!/CONTRIBUTING.*"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "Full-sized drag & drop event calendar",
-            "keywords": [
-                "calendar",
-                "event",
-                "full-sized",
-                "jquery-plugin"
-            ],
-            "time": "2018-03-05T03:08:31+00:00"
-        },
-        {
-            "name": "bower-asset/fullcalendar-scheduler",
-            "version": "v1.9.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fullcalendar/fullcalendar-scheduler.git",
-                "reference": "6ebc6d1ec1d4cc82481e0c57272b70df80330494"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fullcalendar/fullcalendar-scheduler/zipball/6ebc6d1ec1d4cc82481e0c57272b70df80330494",
-                "reference": "6ebc6d1ec1d4cc82481e0c57272b70df80330494",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/fullcalendar": "~3.9.0",
-                "bower-asset/jquery": ">=2,<4.0",
-                "bower-asset/moment": ">=2.20.1,<3.0.0"
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": [
-                    "dist/scheduler.js",
-                    "dist/scheduler.css"
-                ],
-                "bower-asset-ignore": [
-                    "*",
-                    "**/.*",
-                    "!/dist/**",
-                    "!/README.*",
-                    "!/LICENSE.*",
-                    "!/CHANGELOG.*",
-                    "!/CONTRIBUTING.*"
-                ]
-            },
-            "license": [
-                "SEE LICENSE IN LICENSE.md"
-            ],
-            "description": "A premium add-on to FullCalendar for displaying events and resources",
-            "time": "2018-03-28T18:43:55+00:00"
-        },
-        {
             "name": "bower-asset/inputmask",
             "version": "3.3.11",
             "source": {
@@ -762,50 +675,6 @@
                 "shasum": ""
             },
             "type": "bower-asset-library"
-        },
-        {
-            "name": "bower-asset/moment",
-            "version": "2.22.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/moment/moment.git",
-                "reference": "2e2a5b35439665d4b0200143d808a7c26d6cd30f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/moment/moment/zipball/2e2a5b35439665d4b0200143d808a7c26d6cd30f",
-                "reference": "2e2a5b35439665d4b0200143d808a7c26d6cd30f",
-                "shasum": ""
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": "moment.js",
-                "bower-asset-ignore": [
-                    "**/.*",
-                    "benchmarks",
-                    "bower_components",
-                    "meteor",
-                    "node_modules",
-                    "scripts",
-                    "tasks",
-                    "test",
-                    "component.json",
-                    "composer.json",
-                    "CONTRIBUTING.md",
-                    "ender.js",
-                    "Gruntfile.js",
-                    "Moment.js.nuspec",
-                    "package.js",
-                    "package.json",
-                    "ISSUE_TEMPLATE.md",
-                    "typing-tests",
-                    "min/tests.js"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "time": "2018-06-01T06:45:43+00:00"
         },
         {
             "name": "bower-asset/punycode",
@@ -1143,6 +1012,46 @@
                 "yii2"
             ],
             "time": "2018-11-14T11:29:47+00:00"
+        },
+        {
+            "name": "creocoder/yii2-nested-sets",
+            "version": "0.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/creocoder/yii2-nested-sets.git",
+                "reference": "cb8635a459b6246e5a144f096b992dcc30cf9954"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/creocoder/yii2-nested-sets/zipball/cb8635a459b6246e5a144f096b992dcc30cf9954",
+                "reference": "cb8635a459b6246e5a144f096b992dcc30cf9954",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "creocoder\\nestedsets\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Kochetov",
+                    "email": "creocoder@gmail.com"
+                }
+            ],
+            "description": "The nested sets behavior for the Yii framework",
+            "keywords": [
+                "nested sets",
+                "yii2"
+            ],
+            "time": "2015-01-27T10:53:51+00:00"
         },
         {
             "name": "edofre/yii2-fullcalendar",
@@ -1599,16 +1508,16 @@
         },
         {
             "name": "kartik-v/yii2-krajee-base",
-            "version": "v2.0.3",
+            "version": "v2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-krajee-base.git",
-                "reference": "11896b44c3d70666b057c9153f2f77aeeb078ff6"
+                "reference": "ec7fc2c5ed76ee29c939ed6fe33bab76eb25499c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/11896b44c3d70666b057c9153f2f77aeeb078ff6",
-                "reference": "11896b44c3d70666b057c9153f2f77aeeb078ff6",
+                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/ec7fc2c5ed76ee29c939ed6fe33bab76eb25499c",
+                "reference": "ec7fc2c5ed76ee29c939ed6fe33bab76eb25499c",
                 "shasum": ""
             },
             "suggest": {
@@ -1647,7 +1556,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2018-11-27T03:22:26+00:00"
+            "time": "2018-12-04T03:40:27+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-colorinput",
@@ -2624,105 +2533,6 @@
             "time": "2018-08-06T08:37:54+00:00"
         },
         {
-            "name": "philippfrenzel/yii2fullcalendar",
-            "version": "3.9.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/philippfrenzel/yii2fullcalendar.git",
-                "reference": "0b56a80486fa01b874dda5072ffb9b2cf06210ed"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/philippfrenzel/yii2fullcalendar/zipball/0b56a80486fa01b874dda5072ffb9b2cf06210ed",
-                "reference": "0b56a80486fa01b874dda5072ffb9b2cf06210ed",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/fullcalendar": "^3.9.0@stable",
-                "bower-asset/fullcalendar-scheduler": "^1.9.2@stable",
-                "yiisoft/yii2": "*",
-                "yiisoft/yii2-jui": "*"
-            },
-            "require-dev": {
-                "codeception/codeception": "*"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "yii2fullcalendar\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Philipp Frenzel",
-                    "email": "philipp@frenzel.net",
-                    "homepage": "http://www.frenzel.net/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Yii2 fullcalendar Widgets",
-            "homepage": "http://www.frenzel.net/",
-            "keywords": [
-                "fullcalendar",
-                "widget",
-                "yii2"
-            ],
-            "time": "2018-05-04T09:06:24+00:00"
-        },
-        {
-            "name": "philippfrenzel/yii2fullcalendarscheduler",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/philippfrenzel/yii2fullcalendar-scheduler.git",
-                "reference": "0b0d4e60def389e3e75756ede67a5b2a01513bd4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/philippfrenzel/yii2fullcalendar-scheduler/zipball/0b0d4e60def389e3e75756ede67a5b2a01513bd4",
-                "reference": "0b0d4e60def389e3e75756ede67a5b2a01513bd4",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/fullcalendar-scheduler": "*",
-                "php": ">=5.4.0",
-                "yiisoft/yii2": "*",
-                "yiisoft/yii2-jui": "*"
-            },
-            "require-dev": {
-                "codeception/codeception": "*"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "yii2fullcalendarscheduler\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Philipp Frenzel",
-                    "email": "philipp@frenzel.net",
-                    "homepage": "http://www.frenzel.net/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Yii2 fullcalendar Widgets",
-            "homepage": "http://www.frenzel.net/",
-            "keywords": [
-                "fullcalendar scheduler",
-                "yii2"
-            ],
-            "time": "2018-07-24T19:47:56+00:00"
-        },
-        {
             "name": "rmrevin/yii2-fontawesome",
             "version": "2.17.1",
             "source": {
@@ -2830,25 +2640,25 @@
         },
         {
             "name": "symfony/process",
-            "version": "v3.4.19",
+            "version": "v4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "abb46b909dd6ba0b50e10d4c10ffe6ee96dd70f2"
+                "reference": "2b341009ccec76837a7f46f59641b431e4d4c2b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/abb46b909dd6ba0b50e10d4c10ffe6ee96dd70f2",
-                "reference": "abb46b909dd6ba0b50e10d4c10ffe6ee96dd70f2",
+                "url": "https://api.github.com/repos/symfony/process/zipball/2b341009ccec76837a7f46f59641b431e4d4c2b0",
+                "reference": "2b341009ccec76837a7f46f59641b431e4d4c2b0",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.5.9|>=7.0.8"
+                "php": "^7.1.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.4-dev"
+                    "dev-master": "4.2-dev"
                 }
             },
             "autoload": {
@@ -2875,7 +2685,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-11-20T16:10:26+00:00"
+            "time": "2018-11-20T16:22:05+00:00"
         },
         {
             "name": "tijsverkoyen/akismet",

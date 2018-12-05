@@ -53,12 +53,11 @@
     "kartik-v/yii2-widget-select2": "dev-master",
     "kartik-v/yii2-widget-datetimepicker": "dev-master",
     "kartik-v/yii2-widget-fileinput": "dev-master",
-    "philippfrenzel/yii2fullcalendar":"*",
-    "philippfrenzel/yii2fullcalendarscheduler":"*",
     "bower-asset/bootbox": "*",
     "edofre/yii2-fullcalendar-scheduler": "*",
     "edofre/yii2-fullcalendar": "*",
-    "kartik-v/yii2-widget-colorinput": "dev-master"
+    "kartik-v/yii2-widget-colorinput": "dev-master",
+    "creocoder/yii2-nested-sets": "^0.9.0"
         
   },
   "require-dev": {
