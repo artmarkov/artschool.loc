@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9c9375947b91e029081c251a09d58c2d",
+    "content-hash": "7e6caddcf1e6bfb5d3c0d5a093d7dfed",
     "packages": [
         {
             "name": "2amigos/yii2-file-upload-widget",
@@ -508,6 +508,61 @@
                 "theme"
             ],
             "time": "2015-09-14T05:24:12+00:00"
+        },
+        {
+            "name": "bower-asset/fancytree",
+            "version": "v2.30.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mar10/fancytree.git",
+                "reference": "d3db828cf19ba294601a3d6f79aa07f9832450a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mar10/fancytree/zipball/d3db828cf19ba294601a3d6f79aa07f9832450a1",
+                "reference": "d3db828cf19ba294601a3d6f79aa07f9832450a1",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.7",
+                "bower-asset/jquery-ui": ">=1.8.6"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "dist/jquery.fancytree-all-deps.min.js"
+                ],
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "/3rd-party",
+                    "/archive",
+                    "/bin",
+                    "/build",
+                    "/demo",
+                    "/doc",
+                    "/lib",
+                    "/src",
+                    "/test",
+                    "CONTRIBUTING.md",
+                    "fancytree.jquery.json",
+                    "Gruntfile.coffee",
+                    "index.html"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "JavaScript tree view / tree grid plugin with support for keyboard, inline editing, filtering, checkboxes, drag'n'drop, and lazy loading",
+            "keywords": [
+                "ajax",
+                "jquery-plugin",
+                "lazy",
+                "table",
+                "tabletree",
+                "tree",
+                "treegrid"
+            ],
+            "time": "2018-11-13T18:58:29+00:00"
         },
         {
             "name": "bower-asset/inputmask",
@@ -2677,7 +2732,7 @@
         },
         {
             "name": "symfony/process",
-            "version": "v4.2.0",
+            "version": "v4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -2810,6 +2865,57 @@
             "time": "2018-08-03T12:00:41+00:00"
         },
         {
+            "name": "wbraganca/yii2-fancytree-widget",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wbraganca/yii2-fancytree-widget.git",
+                "reference": "97fd3b72aacb067efce839076f8000d43dd06cae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wbraganca/yii2-fancytree-widget/zipball/97fd3b72aacb067efce839076f8000d43dd06cae",
+                "reference": "97fd3b72aacb067efce839076f8000d43dd06cae",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/fancytree": ">=2.12",
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-jui": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "wbraganca\\fancytree\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Wanderson Bragança",
+                    "email": "wanderson.wbc@gmail.com"
+                }
+            ],
+            "description": "The yii2-fancytree widget is a Yii 2 wrapper for the [Fancytree](https://github.com/mar10/fancytree). A JavaScript dynamic tree view plugin for jQuery with support for persistence, keyboard, checkboxes, tables, drag'n'drop, and lazy loading",
+            "keywords": [
+                "fancytree",
+                "treeview",
+                "wbraganca",
+                "yii2",
+                "yii2-fancytree-widget"
+            ],
+            "time": "2015-11-08T14:15:16+00:00"
+        },
+        {
             "name": "webvimark/date-range-picker",
             "version": "1.0.2",
             "source": {
@@ -2832,6 +2938,52 @@
             "notification-url": "https://packagist.org/downloads/",
             "description": "dangrossman daterangepicker yii 2 gridview",
             "time": "2017-02-27T19:12:56+00:00"
+        },
+        {
+            "name": "wokster/yii2-nested-sets-tree-behavior",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wokster/yii2-nested-sets-tree-behavior.git",
+                "reference": "fd9e4d1f39986772a0fe384396be3230d70ec3c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wokster/yii2-nested-sets-tree-behavior/zipball/fd9e4d1f39986772a0fe384396be3230d70ec3c2",
+                "reference": "fd9e4d1f39986772a0fe384396be3230d70ec3c2",
+                "shasum": ""
+            },
+            "require": {
+                "creocoder/yii2-nested-sets": "^0.9.0",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "wokster\\treebehavior\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maksym Tymofeiev",
+                    "email": "wokster@list.ru"
+                }
+            ],
+            "description": "NestedSetsTreeBehavior for build array from creocoder nested sets behavior and fancytree widget",
+            "keywords": [
+                "Behavior",
+                "array",
+                "creocoder",
+                "extension",
+                "fancytree",
+                "nested sets",
+                "yii2"
+            ],
+            "time": "2017-07-27T17:03:14+00:00"
         },
         {
             "name": "yeesoft/yii2-comments",
