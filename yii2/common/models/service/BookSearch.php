@@ -5,26 +5,26 @@ namespace common\models\service;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\service\Catalog;
+use common\models\service\Book;
 
 /**
- * CatalogSearch represents the model behind the search form of `common\models\service\Catalog`.
+ * BookSearch represents the model behind the search form about `common\models\service\Book`.
  */
-class CatalogSearch extends Catalog
+class BookSearch extends Book
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'lft', 'rgt', 'depth'], 'integer'],
-            [['name', 'url', 'text'], 'safe'],
+            [['id', 'buy_amount'], 'integer'],
+            [['name','color'], 'safe'],
         ];
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function scenarios()
     {
@@ -41,12 +41,18 @@ class CatalogSearch extends Catalog
      */
     public function search($params)
     {
-        $query = Catalog::find();
-
-        // add conditions that should always apply here
+        $query = Book::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => Yii::$app->request->cookies->getValue('_grid_page_size', 20),
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC,
+                ],
+            ],
         ]);
 
         $this->load($params);
@@ -57,18 +63,13 @@ class CatalogSearch extends Catalog
             return $dataProvider;
         }
 
-        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            //'tree' => $this->tree,
-            'lft' => $this->lft,
-            'rgt' => $this->rgt,
-            'depth' => $this->depth,
+            'buy_amount' => $this->buy_amount,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'url', $this->url])
-            ->andFilterWhere(['like', 'text', $this->text]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
+         $query->andFilterWhere(['like', 'color', $this->color]);
 
         return $dataProvider;
     }

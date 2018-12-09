@@ -4,45 +4,15 @@ namespace backend\controllers\service;
 
 use Yii;
 use common\models\service\Catalog;
-use common\models\service\CatalogSearch;
 use backend\controllers\DefaultController;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+
 
 /**
  * CatalogController implements the CRUD actions for Catalog model.
  */
 class CatalogController extends DefaultController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
-    /**
-     * Lists all Catalog models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        $searchModel = new CatalogSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
     public function actionMove($item, $action, $second)
     {
         $item_model = Catalog::findOne($item);
@@ -64,25 +34,7 @@ class CatalogController extends DefaultController
         return true;
     }
 
-    /**
-     * Displays a single Catalog model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    public function actionViewAjax($id)
-    {
-        return $this->renderAjax('_form', [
-            'model' => $this->findModel($id),
-        ]);
-    }
+   
 
     /**
      * Creates a new Catalog model.
@@ -111,17 +63,22 @@ class CatalogController extends DefaultController
         }
 
         if ($model->save()){
-            return $this->redirect('tree');
+            return $this->redirect('index');
         }
     }
 
-    return $this->render('create', [
+    return $this->renderAjax('create', [
         'model' => $model,
     ]);
 }
-public function actionTree($id = 1) 
+/**
+ * 
+ * @param type $id
+ * @return type
+ */
+public function actionIndex($id = 1) 
 {
-    return $this->render('tree', ['data' => Catalog::findOne($id)->tree()]);
+    return $this->render('index', ['data' => Catalog::findOne($id)->tree()]);
 }
     /**
      * Updates an existing Catalog model.
@@ -135,10 +92,10 @@ public function actionTree($id = 1)
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['tree', 'id' => $model->id]);
+            return $this->redirect(['index', 'id' => $model->id]);
         }
 
-        return $this->render('update', [
+        return $this->renderAjax('update', [
             'model' => $model,
         ]);
     }

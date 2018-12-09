@@ -10,27 +10,50 @@ use yii\helpers\Url;
 ?>
 
 <div class="catalog-form">
+    <div class="row">
+        <div class="col-md-12">
 
-    <?php $form = ActiveForm::begin([
-        'action' => $model->isNewRecord ? Url::toRoute(['/service/catalog/create']) : 
-        Url::toRoute(['/service/catalog/update', 'id' => $model->id])
-        
-    ]); ?>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <?php
+                    $form = ActiveForm::begin([
+                                'action' => $model->isNewRecord ? Url::toRoute(['/service/catalog/create']) :
+                                        Url::toRoute(['/service/catalog/update', 'id' => $model->id])
+                    ]);
+                    ?>
 
-    <?//= $form->field($model, 'tree')->dropDownList([1]) ?>
+                    <? //= $form->field($model, 'tree')->dropDownList([1])  ?>
 
-    <?//= $form->field($model, 'tree')->dropDownList(['корень']) ?>
+                    <? //= $form->field($model, 'tree')->dropDownList(['корень'])  ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'text')->textarea() ?>
+                    <?= $form->field($model, 'text')->textarea() ?>
 
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('yee/service', 'Save'), ['class' => 'btn btn-success']) ?>
+
+                    <div class="form-group">
+                        <?php if ($model->isNewRecord): ?>
+                            <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
+                            <?= Html::a(Yii::t('yee', 'Cancel'), ['/service/catalog/index'], ['class' => 'btn btn-default']) ?>
+                        <?php else: ?>
+                            <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
+                            <?=
+                            Html::a(Yii::t('yee', 'Delete'), ['/service/catalog/delete', 'id' => $model->id], [
+                                'class' => 'btn btn-default',
+                                'data' => [
+                                    'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                                    'method' => 'post',
+                                ],
+                            ])
+                            ?>
+                    <?php endif; ?>
+                    </div>
+                    <?php ActiveForm::end(); ?>
+
+                </div>
+            </div>
+        </div>
     </div>
-
-    <?php ActiveForm::end(); ?>
-
 </div>
