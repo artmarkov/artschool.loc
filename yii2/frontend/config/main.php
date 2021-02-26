@@ -70,6 +70,9 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'c4ChangeLog' => [
+            'class' => 'cranky4\ChangeLogBehavior\ChangeLog',
+        ],
     ],
     'params' => $params,
 ];

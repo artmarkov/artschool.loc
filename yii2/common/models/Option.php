@@ -3,7 +3,7 @@
 namespace common\models;
 
 use Yii;
-use cranky4\changeLogBehavior\ChangeLogBehavior;
+use cranky4\ChangeLogBehavior\ChangeLogBehavior;
 
 /**
  * This is the model class for table "option".
@@ -28,7 +28,7 @@ class Option extends \yii\db\ActiveRecord
     {
         return [
             [
-                'class' => ChangeLogBehavior::className(),
+                 'class' => ChangeLogBehavior::className(),
             ]
         ];
     }

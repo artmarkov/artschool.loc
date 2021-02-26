@@ -2,7 +2,7 @@
 
 use yii\widgets\DetailView;
 use yeesoft\helpers\Html;
-use cranky4\changeLogBehavior\ListWidget;
+use cranky4\ChangeLogBehavior\ChangeLogList;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Option */
@@ -45,9 +45,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ])
             ?>
-            <?=  ListWidget::widget([
-                'model' => $model,
-            ]);
+            <?php echo ChangeLogList::widget([
+    'model' => $model,
+]);
             ?>
 
         </div>

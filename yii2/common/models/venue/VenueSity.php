@@ -99,7 +99,7 @@ class VenueSity extends \yii\db\ActiveRecord
     public static function getSityByCountryId($country_id) { 
      $data = self::find()->select(['id','name']) 
      ->where(['country_id'=>$country_id]) 
-     ->asArray()->all(); 
+     ->asArray()->all();
 
       return $data; 
      }  

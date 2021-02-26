@@ -93,6 +93,7 @@ use yii\helpers\Url;
                     </div>
 
                     <?php
+                    print_r(VenueSity::getSityByCountryId($model->country_id));
                     echo $form->field($model, 'country_id')->dropDownList(VenueCountry::getVenueCountryList(), [
                         'prompt' => Yii::t('yee/guide', 'Select Country...'),
                         'id' => 'country_id'
